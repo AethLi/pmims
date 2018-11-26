@@ -1,0 +1,16 @@
+.parent-center {
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+div.parent {
+    position: relative;
+    height: 100%;
+}
+div.child {
+    width: 60%;
+    height: 60%;
+}
