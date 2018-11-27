@@ -1,12 +1,12 @@
-
 var app = angular.module('loginApp', []);
 app.controller('loginCtrl', function($scope,$http) {
     $scope.login=function () {
         $.ajax({
-            method:'post',
-            contentType: 'application/json',
+            type:'post',
+            contentType: 'application/json;charset=utf-8',
             dataType: "json",
-            url:'/AAccount.do ',
+            async: true,
+            url:'AAccount.do',
             data:JSON.stringify({
                 "action":"login",
                 "account":$scope.inputAccount,
@@ -14,7 +14,7 @@ app.controller('loginCtrl', function($scope,$http) {
                 "code":$scope.inputCode
             }),
             success:function (result) {
-                //todo success function
+               alert(result);
             }
         })
     };
