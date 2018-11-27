@@ -1,12 +1,15 @@
 var app = angular.module('loginApp', []);
 app.controller('loginCtrl', function($scope,$http) {
     $scope.login=function () {
+        if($scope.inputAccount==""&&$scope.inputPassword==""&&$scope.inputCode==""){
+            //return;
+        }
         $.ajax({
             type:'post',
             contentType: 'application/json;charset=utf-8',
             dataType: "json",
             async: true,
-            url:'AAccount.do',
+            url:'/AAccount.do',
             data:JSON.stringify({
                 "action":"login",
                 "account":$scope.inputAccount,
