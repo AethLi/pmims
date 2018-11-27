@@ -2,16 +2,16 @@ function jumpUrl(url) {
 	window.location.href = url;
 }
 function registerCheck(form) {
-	if (form.id.value == "" && form.password.value == ""
-			&& form.password_2.value == "") {
-		alert("请输入完整");
-		return false;
-	}
-	if (form.password.value != form.password_2.value) {
-		alert("两次密码不一致");
-		return false;
-	}
-	return true;
+    if (form.id.value == "" && form.password.value == ""
+        && form.password_2.value == "") {
+        alert("请输入完整");
+        return false;
+    }
+    if (form.password.value != form.password_2.value) {
+        alert("两次密码不一致");
+        return false;
+    }
+    return true;
 }
 function loginCheck(form) {
     var id = form.id.value;
