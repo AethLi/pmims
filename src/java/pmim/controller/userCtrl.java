@@ -13,8 +13,8 @@ import java.util.Map;
 public class userCtrl {
 
     @RequestMapping(value = "AAccount.do")
-    public @ResponseBody Object AAccountCtrl(@RequestBody Map<String,Object> map){
-        System.out.printf(map.toString());
+    public @ResponseBody Object AAccountCtrl(HttpServletRequest request,@RequestBody String jsonstr){
+        System.out.printf(request.getSession().getAttribute("identifyingCode").toString());
         return null;
     }
 

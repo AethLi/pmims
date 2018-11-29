@@ -22,8 +22,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 @Controller
 public class CAPTCHACtrl {
 
-	private int width = 90;// 定义图片的width
-    private int height = 20;// 定义图片的height
+	private int width = 180;// 定义图片的width
+    private int height = 40;// 定义图片的height
     private int codeCount = 4;// 定义图片上显示验证码的个数
     private int xx = 15;
     private int fontHeight = 18;

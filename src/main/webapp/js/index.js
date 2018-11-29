@@ -21,7 +21,7 @@ app.controller('loginCtrl', function($scope,$http) {
             }
         })
     };
-    $scope.changeCodeImage=function () {
-
+    $scope.changeCodeImage=function (img) {
+        img.attr("src","/ACAPTCHA.do")
     }
 })
