@@ -3,22 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.userMapper">
-    <select id="insertuser" parameterType="pmim.model.user">
-		INSERT INTO user (`id`, `password`, `permission`) VALUES (#{id},#{password}, #{permission});
-	</select>
-    <select id="selectAlluser" resultType="pmim.model.user">
-		SELECT * FROM user;
-	</select>
-    <select id="deleteAlluser">
-		DELETE FROM user;
-	</select>
-    <select id="selectuser" parameterType="pmim.model.user" resultType="pmim.model.user">
-		SELECT * FROM user WHERE id = #{id} AND password=#{password};
-	</select>
-    <select id="selectuser_Nopasswd" parameterType="pmim.model.user" resultType="pmim.model.user">
-		SELECT * FROM user WHERE id = #{id};
-	</select>
-    <select id="delectuser" parameterType="pmim.model.user">
-		DELETE FROM user WHERE id = #{id};
-	</select>
+    <insert id="insertUser_register" parameterType="pmim.model.user">
+        insert into user (userId,userPwd,userPermission,status) values (#{userId},#(userPwd),#(userPermission),#(userStatus));
+    </insert>
 </mapper>

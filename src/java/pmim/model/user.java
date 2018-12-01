@@ -1,41 +1,40 @@
 package pmim.model;
 
 public class user {
-	private String id;
-	private String password;
-	private int permission;
+    String userId;
+    int userPermission;
+    String userPwd;
+    int status;
 
-	public String getId() {
-		return id;
-	}
+    public String getUserId() {
+        return userId;
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public int getUserPermission() {
+        return userPermission;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public void setUserPermission(int userPermission) {
+        this.userPermission = userPermission;
+    }
 
-	public int getPermission() {
-		return permission;
-	}
+    public String getUserPwd() {
+        return userPwd;
+    }
 
-	public void setPermission(int permission) {
-		this.permission = permission;
-	}
+    public void setUserPwd(String userPwd) {
+        this.userPwd = userPwd;
+    }
 
-	public user(String id) {
-		super();
-		this.id = id;
-	}
+    public int getStatus() {
+        return status;
+    }
 
-	public user() {
-		super();
-	}
-
+    public void setStatus(int status) {
+        this.status = status;
+    }
 }

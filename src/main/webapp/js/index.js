@@ -1,7 +1,7 @@
 var app = angular.module('loginApp', []);
-app.controller('loginCtrl', function($scope,$http) {
+app.controller('loginCtrl', function($scope) {
     $scope.login=function () {
-        if($scope.inputAccount==""&&$scope.inputPassword==""&&$scope.inputCode==""){
+        if($scope.userId==null&&$scope.userPwd==null&&$scope.code==null){
             //return;
         }
         $.ajax({
@@ -12,16 +12,19 @@ app.controller('loginCtrl', function($scope,$http) {
             url:'/AAccount.do',
             data:JSON.stringify({
                 "action":"login",
-                "account":$scope.inputAccount,
-                "pwd":$scope.inputPassword,
-                "code":$scope.inputCode
+                "userId":$scope.userId,
+                "userPwd":$scope.userPwd,
+                "code":$scope.code
             }),
             success:function (result) {
                alert(result);
             }
         })
     };
-    $scope.changeCodeImage=function (img) {
-        img.attr("src","/ACAPTCHA.do")
+    $scope.changeCodeImage=function () {
+        document.getElementById("img").src="ACAPTCHA.do?"+Math.random();
+    }
+    $scope.jump2Register=function () {
+        window.location.href = "./html/register.html";
     }
 })
