@@ -23,7 +23,7 @@
                 姓名：<input type="" class="form-control" placeholder="账户/学号" required="" autofocus="" ng-model="userName" style="margin-bottom: 20px">
                 密码：<input type="password" class="form-control" placeholder="密码" required="" ng-model="userPwd1" style="margin-bottom: 20px">
                 再次输入密码：<input type="password" class="form-control" placeholder="密码" required="" ng-model="userPwd2" style="margin-bottom: 20px">
-                {{messageArea}}
+                <span style="color: red">{{messageArea}}</span>
                 <button class="btn btn-lg btn-primary btn-block" ng-click="registerSubmit()" >注册</button>
             </form>
         </div>

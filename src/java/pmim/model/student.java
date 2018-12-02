@@ -4,12 +4,13 @@ import java.sql.Timestamp;
 
 public class student {
     String userId;
-    String classinfo;
+    String classInfo;
     int sex;
     Timestamp birthday;
     String homeAddress;
     int status;
     String IDcardNum;
+    String name;
 
     public String getUserId() {
         return userId;
@@ -19,12 +20,12 @@ public class student {
         this.userId = userId;
     }
 
-    public String getClassinfo() {
-        return classinfo;
+    public String getClassInfo() {
+        return classInfo;
     }
 
-    public void setClassinfo(String classinfo) {
-        this.classinfo = classinfo;
+    public void setClassInfo(String classInfo) {
+        this.classInfo = classInfo;
     }
 
     public int getSex() {
@@ -65,5 +66,13 @@ public class student {
 
     public void setIDcardNum(String IDcardNum) {
         this.IDcardNum = IDcardNum;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

@@ -6,4 +6,5 @@ import pmim.model.user;
 
 public interface userMapper {
 	public void insertUser_register(user u);
+	public void deleteUserById(user u);
 }

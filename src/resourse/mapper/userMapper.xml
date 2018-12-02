@@ -2,8 +2,11 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mapper.userMapper">
+<mapper namespace="pmim.mapper.userMapper">
     <insert id="insertUser_register" parameterType="pmim.model.user">
-        insert into user (userId,userPwd,userPermission,status) values (#{userId},#(userPwd),#(userPermission),#(userStatus));
+        insert into user (`userId`,`userPwd`,`userPermission`,`status`) values (#{userId},#{userPwd},#{userPermission},#{status});
     </insert>
+    <select id="selectUser_withNoPwd" resultType="pmim.model.user" parameterType="pmim.model.user">
+        select * from user where userId=#{userId};
+    </select>
 </mapper>

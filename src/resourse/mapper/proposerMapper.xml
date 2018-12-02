@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pmim.mapper.proposerMapper">
+    <insert id="insertProposer" parameterType="pmim.model.proposer">
+        insert into proposer (`userId`,`applicationPath`,`status`,`date`) values (#{userId},#{applicationPath},#{status},#{date});
+    </insert>
+</mapper>
