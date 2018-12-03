@@ -9,4 +9,10 @@
     <select id="selectUser_withNoPwd" resultType="pmim.model.user" parameterType="pmim.model.user">
         select * from user where userId=#{userId};
     </select>
+    <select id="selectUserByPermission" resultType="pmim.model.user" parameterType="pmim.model.user">
+        select * from user where userPermission=#{userPermission};
+    </select>
+    <delete id="deleteUserById" parameterType="pmim.model.user">
+        delete from user where userId=#{userId};
+    </delete>
 </mapper>

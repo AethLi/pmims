@@ -1,6 +1,7 @@
 package pmim.controller;
 
 import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.math3.random.RandomDataGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,6 +19,7 @@ import pmim.model.user;
 import pmim.tools.tools;
 
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Random;
 
 @Controller
@@ -74,8 +76,8 @@ public class dataBuilder {
                 Random ran=new Random();
                 student s=new student();
                 s.setName(lastName[ran.nextInt(lastName.length+1)]+firstName[ran.nextInt(firstName.length+1)]);
-                s.setBirthday(new Timestamp(631123200+ran.nextInt(315532800)));
-                int age=2018-s.getBirthday().getYear();
+                s.setBirthday(new Timestamp(631123200000L+ (new RandomDataGenerator()).nextLong(0L,315532800000L)));
+                int age=118-s.getBirthday().getYear();
                 s.setClassInfo((1990+age)+"级"+(1+ran.nextInt(5))+"班");
                 s.setHomeAddress("北美洲美国加利福尼亚州");
                 s.setSex(ran.nextInt(1));
@@ -85,7 +87,7 @@ public class dataBuilder {
                 proposer p=new proposer();
                 p.setUserId(s.getUserId());
                 p.setApplicationPath("/"+RandomStringUtils.randomAscii(20)+"/"+s.getName()+RandomStringUtils.randomNumeric(5));
-                p.setDate(new Timestamp(1199116800+ran.nextInt(315532800)));
+                p.setDate(new Timestamp(1199116800000L+ (new RandomDataGenerator()).nextLong(0L,315532800000L)));
                 p.setStatus(ran.nextInt(3));
                 user u=new user();
                 u.setUserPwd(tools.toMD5(RandomStringUtils.randomAscii(8)));
@@ -97,7 +99,14 @@ public class dataBuilder {
                 um.insertUser_register(u);
             }
         } else if ("proposerC".equals(ra.getAction())) {
-
+            user u=new user();
+            u.setUserPermission(0);
+            List<user> allProposer=um.selectUserByPermission(u);
+            for (user us :allProposer){
+                pm.deleteProposerById(us);
+                sm.deleteStudentById(us);
+                um.deleteUserById(us);
+            }
         }
         return null;
     }

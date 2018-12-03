@@ -6,4 +6,7 @@
     <insert id="insertProposer" parameterType="pmim.model.proposer">
         insert into proposer (`userId`,`applicationPath`,`status`,`date`) values (#{userId},#{applicationPath},#{status},#{date});
     </insert>
+    <delete id="deleteProposerById" parameterType="pmim.model.user">
+        delete from proposer where userId=#{userId};
+    </delete>
 </mapper>

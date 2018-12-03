@@ -6,4 +6,7 @@
     <insert id="insertStudent" parameterType="pmim.model.student">
         insert into student (`userId`,`classInfo`,`sex`,`birthday`,`homeAddress`,`status`,`IDcardNum`,`name`) values (#{userId},#{classInfo},#{sex},#{birthday},#{homeAddress},#{status},#{IDcardNum},#{name})
     </insert>
+    <delete id="deleteStudentById" parameterType="pmim.model.user">
+        delete from student where userId=#{userId};
+    </delete>
 </mapper>
