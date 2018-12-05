@@ -10,4 +10,6 @@ public interface userMapper {
     public void deleteUserById(user u);
 
     public List<user> selectUserByPermission(user u);
+
+    public user selectUser_withNoPwd(user u);
 }

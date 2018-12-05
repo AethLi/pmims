@@ -13,7 +13,7 @@ app.controller('loginCtrl', function($scope) {
             data:JSON.stringify({
                 "action":"login",
                 "userId":$scope.userId,
-                "userPwd":$scope.userPwd,
+                "userPwd":hex_md5(hex_md5($scope.userPwd)+$scope.code.toLowerCase()),
                 "code":$scope.code
             }),
             success:function (result) {

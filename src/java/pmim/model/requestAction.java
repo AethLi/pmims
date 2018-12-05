@@ -4,6 +4,7 @@ public class requestAction {
     String action;
     String resUserId;
     String desUserId;
+    String code;
 
     public String getAction() {
         return action;
@@ -27,5 +28,13 @@ public class requestAction {
 
     public void setDesUserId(String desUserId) {
         this.desUserId = desUserId;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }

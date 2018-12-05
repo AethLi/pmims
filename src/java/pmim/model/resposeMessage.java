@@ -1,8 +1,11 @@
 package pmim.model;
 
 public class resposeMessage {
+    int status;
     String message;
     Object model;
+    private final int STATUS_OK=0;
+    private final int STATUS_ERROR=1;
 
     public String getMessage() {
         return message;
@@ -20,7 +23,8 @@ public class resposeMessage {
         this.model = model;
     }
 
-    public resposeMessage(String message, Object model) {
+    public resposeMessage(int status, String message, Object model) {
+        this.status = status;
         this.message = message;
         this.model = model;
     }

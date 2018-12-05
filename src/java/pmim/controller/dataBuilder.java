@@ -1,6 +1,6 @@
 package pmim.controller;
 
-import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.math3.random.RandomDataGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -86,7 +86,7 @@ public class dataBuilder {
                 s.setStatus(ran.nextInt(1));
                 proposer p=new proposer();
                 p.setUserId(s.getUserId());
-                p.setApplicationPath("/"+RandomStringUtils.randomAscii(20)+"/"+s.getName()+RandomStringUtils.randomNumeric(5));
+                p.setApplicationPath("/"+s.getName()+RandomStringUtils.randomNumeric(25));
                 p.setDate(new Timestamp(1199116800000L+ (new RandomDataGenerator()).nextLong(0L,315532800000L)));
                 p.setStatus(ran.nextInt(3));
                 user u=new user();

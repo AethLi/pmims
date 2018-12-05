@@ -32,7 +32,7 @@ public class CAPTCHACtrl {
             'Y', 'Z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
 
     @RequestMapping(value="/ACAPTCHA.do")
-    public void getCode(Model model,HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    public void getCode(Model model, HttpServletResponse resp) throws IOException {
         // 定义图像buffer
         BufferedImage buffImg = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         Graphics gd = buffImg.getGraphics();
@@ -75,10 +75,7 @@ public class CAPTCHACtrl {
             randomCode.append(code);
         }
         // 将四位数字的验证码保存到Session中。
-        HttpSession session = req.getSession();
-        model.addAttribute("identifyingCode",randomCode.toString());
-        //System.out.print(randomCode);
-        session.setAttribute("code", randomCode.toString());
+        model.addAttribute("identifyingCode",randomCode.toString().toLowerCase());
         // 禁止图像缓存。
         resp.setHeader("Pragma", "no-cache");
         resp.setHeader("Cache-Control", "no-cache");
