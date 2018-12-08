@@ -21,9 +21,9 @@
         <div class="parent-center child">
                 <form id="loginForm" class="form-signin">
                     <h2 class="form-signin-heading">请登录</h2>
-                    <input type=""  class="form-control" placeholder="账户/学号" required="" autofocus="" ng-model="userId" >
-                    <input type="password"  class="form-control" placeholder="密码" required="" ng-model="userPwd" style="margin-top: 20px" >
-                    <input type=""  class="form-control" placeholder="验证码" required=""  ng-model="code" style="margin-top: 20px" >
+                    账户：<input type=""  class="form-control" placeholder="账户/学号" required="" autofocus="" ng-model="userId" style="margin-bottom: 20px" >
+                    密码：<input type="password"  class="form-control" placeholder="密码" required="" ng-model="userPwd"  style="margin-bottom: 20px" >
+                    验证码：<input type=""  class="form-control" placeholder="验证码" required=""  ng-model="code"  style="margin-bottom: 20px" >
                     <img id="img" ng-src="/ACAPTCHA.do" style="height: 40px;width: 180px" ng-click="changeCodeImage()" >
                     <span style="font-size: 25px;color: red" >看不清，点一点</span>
                     <button class="btn btn-lg btn-primary btn-block" ng-click="login()" style="margin-top: 20px" >登录</button>

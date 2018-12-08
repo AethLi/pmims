@@ -4,8 +4,16 @@ public class resposeMessage {
     int status;
     String message;
     Object model;
-    private final int STATUS_OK=0;
-    private final int STATUS_ERROR=1;
+    private final int STATUS_OK = 0;
+    private final int STATUS_ERROR = 1;
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
 
     public String getMessage() {
         return message;

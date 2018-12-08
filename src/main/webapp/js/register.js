@@ -23,6 +23,7 @@ app.controller('registerCtrl', function ($scope) {
             }),
             success: function (result) {
                 alert(result.message);
+                window.location.href="/index.html";
             }
         })
     }

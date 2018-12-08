@@ -6,23 +6,24 @@
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/angular.min.js"></script>
-    <script src="../js/angular-route.min.js"></script>
+    <script src="../js/angular-ui-router.js"></script>
     <script src="../js/managerPage.js"></script>
+    <script src="../js/ocLazyLoad.min.js"></script>
 </head>
-<body ng-app="managerPageApp" ng-controller="managerPageAppCtrl">
+<body ng-app="managerPageApp" ng-controller="managerPageCtrl">
 <nav class="navbar navbar-inverse" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">攀枝花学院学生党员信息管理系统</a>
+            <a class="navbar-brand" ng-click="eggDisplay()" style="cursor:pointer;">攀枝花学院学生党员信息管理系统</a>
         </div>
         <div>
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">用户</a></li>
-                <li><a href="/!proposerM">申请人</a></li>
-                <li><a href="/!activistM">积极分子</a></li>
-                <li><a href="/!developmentM">发展对象</a></li>
-                <li><a href="/!probationaryM">预备党员</a></li>
-                <li><a href="/!partyMemberM">党员</a></li>
+                <li ng-class="{0:'active'}[whoIsActive]"><a href="#" ng-click="iAmActive(0)">用户</a></li>
+                <li ng-class="{1:'active'}[whoIsActive]"><a href="#!/proposerM" ng-click="iAmActive(1)">申请人</a></li>
+                <li ng-class="{2:'active'}[whoIsActive]"><a href="#!/activistM" ng-click="iAmActive(2)">积极分子</a></li>
+                <li ng-class="{3:'active'}[whoIsActive]"><a href="#!/developmentM" ng-click="iAmActive(3)">发展对象</a></li>
+                <li ng-class="{4:'active'}[whoIsActive]"><a href="#!/probationaryM" ng-click="iAmActive(4)">预备党员</a></li>
+                <li ng-class="{5:'active'}[whoIsActive]"><a href="#!/partyMemberM" ng-click="iAmActive(5)">党员</a></li>
                 <form class="navbar-form navbar-left" role="search">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="按学号搜索" ng-model="searchUserId">
@@ -33,6 +34,7 @@
         </div>
     </div>
 </nav>
-<div ng-view=""></div>
+<ui-view></ui-view>
+<div ng-include="'footer.html'"></div>
 </body>
 </html>

@@ -42,10 +42,10 @@ public class userCtrl {
                 return JSONObject.fromObject(new resposeMessage(1,"账号或用户名错误错误",null)).toString();
             }
             model.addAttribute(u);
-            if (u.getUserPermission()==5&&u.getUserPermission()==6)
-                return JSONObject.fromObject(new resposeMessage(0,"managerPage.html",null)).toString();
+            if (u.getUserPermission()==5||u.getUserPermission()==6)
+                return JSONObject.fromObject(new resposeMessage(0,"html/managerPage.html",null)).toString();
             else
-                return JSONObject.fromObject(new resposeMessage(0,"mainPage.html",null)).toString();
+                return JSONObject.fromObject(new resposeMessage(0,"html/mainPage.html",null)).toString();
         }
         return null;
     }

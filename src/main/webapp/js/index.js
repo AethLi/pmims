@@ -17,7 +17,12 @@ app.controller('loginCtrl', function($scope) {
                 "code":$scope.code
             }),
             success:function (result) {
-               alert(result);
+               if (result.status===0)
+                   window.location.href=result.message;
+               else if (result.status===1){
+                   alert(result.message);
+                   $scope.changeCodeImage();
+               }
             }
         })
     };
