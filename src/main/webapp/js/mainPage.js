@@ -1,21 +1,12 @@
-angular.module('managerPageApp', ['ui.router', 'oc.lazyLoad'])
-    .controller('managerPageCtrl', function ($scope) {
-        var eggCount=0;
+angular.module('mainPageApp', ['ui.router', 'oc.lazyLoad'])
+    .controller('mainPageCtrl', function ($scope) {
         $scope.whoIsActive = 0;
         $scope.iAmActive = function (who) {
             $scope.whoIsActive = who;
         };
-
-        $scope.eggDisplay=function () {
-            eggCount++;
-            if (eggCount===5) {
-                alert("点这个没用的;");
-                eggCount=0;
-            }
-        }
     })
-    .config(function ($stateProvider,$urlRouterProvider) {
-        $urlRouterProvider.when("","userOverview");
+    .config(function ($stateProvider, $urlRouterProvider) {
+        $urlRouterProvider.when("", "userOverview");
         $stateProvider
             .state("userOverview", {
                 url: "/userOverview",
@@ -30,67 +21,67 @@ angular.module('managerPageApp', ['ui.router', 'oc.lazyLoad'])
                     }]
                 }
             })
-            .state("proposerM", {
-                url: "/proposerM",
-                controller: "proposerMCtrl",
-                templateUrl: './proposerM.html',
+            .state("proposerU", {
+                url: "/proposerU",
+                controller: "proposerUCtrl",
+                templateUrl: './proposerU.html',
                 resolve: {
                     loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load({
                             name: 'managerPageApp',
-                            files: ['../js/proposerM.js']
+                            files: ['../js/proposerU.js']
                         })
                     }]
                 }
             })
-            .state("activistM", {
-                url: "/activistM",
-                controller: "activistMCtrl",
-                templateUrl: "./activistM.html",
+            .state("activistU", {
+                url: "/activistU",
+                controller: "activistUCtrl",
+                templateUrl: "./activistU.html",
                 resolve: {
                     loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load({
                             name: 'managerPageApp',
-                            files: ['../js/activistM.js']
+                            files: ['../js/activistU.js']
                         })
                     }]
                 }
             })
-            .state("developmentM", {
-                url: "/developmentM",
-                controller: "developmentMCtrl",
-                templateUrl: "./developmentM.html",
+            .state("developmentU", {
+                url: "/developmentU",
+                controller: "developmentUCtrl",
+                templateUrl: "./developmentU.html",
                 resolve: {
                     loadMyCtrl: ["$ocLazyLoad", function ($ocLazyLoad) {
                         return $ocLazyLoad.load({
                             name: 'managerPageApp',
-                            files: ['../js/developmentM.js']
+                            files: ['../js/developmentU.js']
                         })
                     }]
                 }
             })
-            .state("probationaryM", {
-                url: "/probationaryM",
-                controller: "probationaryMCtrl",
-                templateUrl: "./probationaryM.html",
+            .state("probationaryU", {
+                url: "/probationaryU",
+                controller: "probationaryUCtrl",
+                templateUrl: "./probationaryU.html",
                 resolve: {
                     loadMyCtrl: ["$ocLazyLoad", function ($ocLazyLoad) {
                         return $ocLazyLoad.load({
                             name: 'managerPageApp',
-                            files: ['../js/probationaryM.js']
+                            files: ['../js/probationaryU.js']
                         })
                     }]
                 }
             })
-            .state("partyMemberM", {
-                url: "/partyMemberM",
-                controller: "partyMemberMCtrl",
-                templateUrl: "./partyMemberM.html",
+            .state("partyMemberU", {
+                url: "/partyMemberU",
+                controller: "partyMemberUCtrl",
+                templateUrl: "./partyMemberU.html",
                 resolve: {
                     loadMyCtrl: ["$ocLazyLoad", function ($ocLazyLoad) {
                         return $ocLazyLoad.load({
                             name: 'managerPageApp',
-                            files: ['../js/partyMemberM.js']
+                            files: ['../js/partyMemberU.js']
                         })
                     }]
                 }
