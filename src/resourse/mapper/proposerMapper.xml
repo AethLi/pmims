@@ -4,9 +4,12 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="pmim.mapper.proposerMapper">
     <insert id="insertProposer" parameterType="pmim.model.proposer">
-        insert into proposer (`userId`,`applicationPath`,`status`,`date`) values (#{userId},#{applicationPath},#{status},#{date});
+        insert into proposer (`userId`,`path`,`status`,`date`,`type`) values (#{userId},#{path},#{status},#{date},#{type});
     </insert>
     <delete id="deleteProposerById" parameterType="pmim.model.user">
         delete from proposer where userId=#{userId};
     </delete>
+    <select id="selectProposerById" parameterType="pmim.model.user" resultType="pmim.model.proposer">
+        select * from proposer where userId=#{userId};
+    </select>
 </mapper>

@@ -4,9 +4,10 @@ import java.sql.Timestamp;
 
 public class proposer {
     String userId;
-    String applicationPath;
+    String path;
     Timestamp date;
     int status;
+    int type;
 
     public String getUserId() {
         return userId;
@@ -16,12 +17,12 @@ public class proposer {
         this.userId = userId;
     }
 
-    public String getApplicationPath() {
-        return applicationPath;
+    public String getPath() {
+        return path;
     }
 
-    public void setApplicationPath(String applicationPath) {
-        this.applicationPath = applicationPath;
+    public void setPath(String path) {
+        this.path = path;
     }
 
     public Timestamp getDate() {
@@ -38,5 +39,13 @@ public class proposer {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 }
