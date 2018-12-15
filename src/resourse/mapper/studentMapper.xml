@@ -9,4 +9,7 @@
     <delete id="deleteStudentById" parameterType="pmim.model.user">
         delete from student where userId=#{userId};
     </delete>
+    <select id="selectStudentById" parameterType="pmim.model.student" resultType="pmim.model.student">
+        select * from student where userId=#{userId};
+    </select>
 </mapper>

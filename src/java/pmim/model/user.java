@@ -5,6 +5,7 @@ public class user {
     int userPermission;
     String userPwd;
     int status;
+    String headImgPath;
 
     public String getUserId() {
         return userId;
@@ -36,5 +37,13 @@ public class user {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public String getHeadImgPath() {
+        return headImgPath;
+    }
+
+    public void setHeadImgPath(String headImgPath) {
+        this.headImgPath = headImgPath;
     }
 }

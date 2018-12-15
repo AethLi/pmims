@@ -9,4 +9,6 @@ public interface studentMapper {
     public void insertStudent(student s);
 
     public void deleteStudentById(user s);
+
+    student selectStudentById(user currentUser);
 }

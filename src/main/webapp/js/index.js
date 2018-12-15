@@ -9,7 +9,7 @@ app.controller('loginCtrl', function($scope) {
             contentType: 'application/json;charset=utf-8',
             dataType: "json",
             async: true,
-            url:'/AAccount.do',
+            url:'/user/AAccount.do',
             data:JSON.stringify({
                 "action":"login",
                 "userId":$scope.userId,

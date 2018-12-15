@@ -18,12 +18,18 @@
         </div>
         <div>
             <ul class="nav navbar-nav">
-                <li ng-class="{0:'active'}[whoIsActive]"><a href="#" ng-click="iAmActive(0)">用户</a></li>
                 <li ng-class="{1:'active'}[whoIsActive]"><a href="#!/proposerU" ng-click="iAmActive(1)">申请人</a></li>
                 <li ng-class="{2:'active'}[whoIsActive]"><a href="#!/activistU" ng-click="iAmActive(2)">积极分子</a></li>
                 <li ng-class="{3:'active'}[whoIsActive]"><a href="#!/developmentU" ng-click="iAmActive(3)">发展对象</a></li>
                 <li ng-class="{4:'active'}[whoIsActive]"><a href="#!/probationaryU" ng-click="iAmActive(4)">预备党员</a></li>
-                <li ng-class="{5:'active'}[whoIsActive]"><a href="#!/partyMemberU" ng-click="iAmActive(5)">党员</a></li>
+                <li ng-class="{5:'active'}[whoIsActive]"><a href="#!/partymemberU" ng-click="iAmActive(5)">党员</a></li>
+            </ul>
+            <ul class="nav navbar-nav" style="float: right">
+                <li><a style="cursor:pointer;">{{userPermission}}</a></li>
+                <li><img src="../img/githubLogo.png" style="max-height: 50px;cursor:pointer"></li>
+                <li><a ng-click="iAmActive(0)">{{userName}}</a> </li>
+                <li ng-class="{0:'active'}[whoIsActive]"><a href="#" ng-click="iAmActive(0)">个人中心</a></li>
+                <li ><a ng-click="logout()" style="cursor:pointer;">退出</a> </li>
             </ul>
         </div>
     </div>
