@@ -6,6 +6,22 @@ angular.module('mainPageApp', ['ui.router', 'oc.lazyLoad'])
         $scope.iAmActive = function (who) {
             $scope.whoIsActive = who;
         };
+        $scope.logout = function () {
+            $.ajax({
+                type: 'post',
+                contentType: 'application/json;charset=utf-8',
+                dataType: "json",
+                async: true,
+                url: '/user/logout.do',
+                data: JSON.stringify({
+                    "action": "logout"
+                }),
+                success: function (result) {
+                    if (result.status === 0)
+                        window.location.href = "../index.html";
+                }
+            })
+        };
         if (window.location.href.indexOf("proposer") != -1) {
             $scope.whoIsActive = 1;
         } else if (window.location.href.indexOf("activist") != -1) {
@@ -60,12 +76,10 @@ angular.module('mainPageApp', ['ui.router', 'oc.lazyLoad'])
         $stateProvider
             .state("userOverview", {
                 url: "/userOverview",
-                controller: "userOverviewCtrl",
                 templateUrl: './userOverview.html',
                 resolve: {
                     loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load({
-                            name: 'mainPageApp',
                             files: ['../js/userOverview.js']
                         })
                     }]
@@ -73,12 +87,10 @@ angular.module('mainPageApp', ['ui.router', 'oc.lazyLoad'])
             })
             .state("proposerU", {
                 url: "/proposerU",
-                controller: "proposerUCtrl",
                 templateUrl: './proposerU.html',
                 resolve: {
                     loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load({
-                            name: 'mainPageApp',
                             files: ['../js/proposerU.js']
                         })
                     }]
@@ -86,12 +98,10 @@ angular.module('mainPageApp', ['ui.router', 'oc.lazyLoad'])
             })
             .state("activistU", {
                 url: "/activistU",
-                controller: "activistUCtrl",
                 templateUrl: "./activistU.html",
                 resolve: {
                     loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
                         return $ocLazyLoad.load({
-                            name: 'mainPageApp',
                             files: ['../js/activistU.js']
                         })
                     }]
@@ -99,12 +109,10 @@ angular.module('mainPageApp', ['ui.router', 'oc.lazyLoad'])
             })
             .state("developmentU", {
                 url: "/developmentU",
-                controller: "developmentUCtrl",
                 templateUrl: "./developmentU.html",
                 resolve: {
                     loadMyCtrl: ["$ocLazyLoad", function ($ocLazyLoad) {
                         return $ocLazyLoad.load({
-                            name: 'mainPageApp',
                             files: ['../js/developmentU.js']
                         })
                     }]
@@ -112,12 +120,10 @@ angular.module('mainPageApp', ['ui.router', 'oc.lazyLoad'])
             })
             .state("probationaryU", {
                 url: "/probationaryU",
-                controller: "probationaryUCtrl",
                 templateUrl: "./probationaryU.html",
                 resolve: {
                     loadMyCtrl: ["$ocLazyLoad", function ($ocLazyLoad) {
                         return $ocLazyLoad.load({
-                            name: 'mainPageApp',
                             files: ['../js/probationaryU.js']
                         })
                     }]
@@ -125,12 +131,10 @@ angular.module('mainPageApp', ['ui.router', 'oc.lazyLoad'])
             })
             .state("partyMemberU", {
                 url: "/partyMemberU",
-                controller: "partyMemberUCtrl",
                 templateUrl: "./partyMemberU.html",
                 resolve: {
                     loadMyCtrl: ["$ocLazyLoad", function ($ocLazyLoad) {
                         return $ocLazyLoad.load({
-                            name: 'mainPageApp',
                             files: ['../js/partyMemberU.js']
                         })
                     }]

@@ -20,11 +20,11 @@ public class proposerCtrl {
     @Autowired
     private proposerService ps;
 
-    @RequestMapping(value = "/user.do")
-    public @ResponseBody Object proposerUserCtrl(HttpServletRequest request, @RequestBody String jsonstr, Model model){
-        requestAction ra=(requestAction) JSONObject.toBean(JSONObject.fromObject(jsonstr),requestAction.class);
-        if ("initProposerUserPage".equals(ra.getAction())){
-            ps.initProposerUserPage((user)request.getSession().getAttribute("currentUser"));
+    @RequestMapping(value = "/user.do", produces = "text/html;charset=UTF-8")
+    public @ResponseBody Object proposerUserCtrl(HttpServletRequest request, @RequestBody String jsonstr, Model model) {
+        requestAction ra = (requestAction) JSONObject.toBean(JSONObject.fromObject(jsonstr), requestAction.class);
+        if ("initProposerUserPage".equals(ra.getAction())) {
+            return ps.initProposerUserPage((user) request.getSession().getAttribute("currentUser"));
 
         }
         return null;

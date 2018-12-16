@@ -1,6 +1,6 @@
 package pmim.model;
 
-public class resposeMessage {
+public class responseMessage {
     int status;
     String message;
     Object model;
@@ -29,12 +29,12 @@ public class resposeMessage {
         this.model = model;
     }
 
-    public resposeMessage(int status, String message, Object model) {
+    public responseMessage(int status, String message, Object model) {
         this.status = status;
         this.message = message;
         this.model = model;
     }
 
-    public resposeMessage() {
+    public responseMessage() {
     }
 }

@@ -2,6 +2,8 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="uploadInstructionMapper">
-
+<mapper namespace="pmim.mapper.uploadInstructionMapper">
+    <select id="selectUploadInstructionByPosition" parameterType="pmim.model.uploadInstruction" resultType="pmim.model.uploadInstruction">
+        select * from uploadinstruction where position = #{position};
+    </select>
 </mapper>
