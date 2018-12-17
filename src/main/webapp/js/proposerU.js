@@ -18,6 +18,22 @@ angular.module('mainPageApp', [])
             $scope.$digest();
 
         };
+        $scope.upload=function(fileInfo){
+          var uploadForm=new FormData();
+          uploadForm.append("fileInfo",fileInfo);
+          $.ajax({
+              async: true,
+              url:'/proposer/fileUpload.do',
+              type: 'post',
+              contentType: 'multipart/form-data',
+              processData:false,
+              data: fileInfo,
+              success:function (result) {
+                  console.log(result);
+                  console.log("success");
+              }
+          })
+        };
         $scope.proposerWordFileUploadChoose=function(){
             var proposerWordFileUpload = document.getElementById("proposerWordFileUpload").files[0];
             if (proposerWordFileUpload == null)

@@ -19,14 +19,14 @@
                                 <td><a ng-click="ImageShow(this)" style="cursor:pointer">{{x.name}}</a></td>
                                 <td>已上传</td>
                                 <td>
-                                    <button ng-click="action(this)">删除</button>
+                                    <button ng-click="delete(this.x)">删除</button>
                                 </td>
                             </tr>
                             <tr ng-repeat="x in proposerImageFileChooseList">
                                 <td><a ng-click="ImageShow(this)" style="cursor:pointer">{{x.name}}</a></td>
                                 <td>准备上传</td>
                                 <td>
-                                    <button ng-click="action(this)">上传</button>
+                                    <button ng-click="upload(this.x)">上传</button>
                                 </td>
                             </tr>
                             <tr>
