@@ -21,18 +21,30 @@ angular.module('mainPageApp', [])
         $scope.upload=function(fileInfo){
           var uploadForm=new FormData();
           uploadForm.append("fileInfo",fileInfo);
-          $.ajax({
-              async: true,
-              url:'/proposer/fileUpload.do',
-              type: 'post',
-              contentType: 'multipart/form-data',
-              processData:false,
-              data: fileInfo,
-              success:function (result) {
-                  console.log(result);
-                  console.log("success");
-              }
-          })
+          // $.ajax({
+          //     async: true,
+          //     url:'/proposer/fileUpload.do',
+          //     type: 'post',
+          //     contentType: 'multipart/form-data',
+          //     processData:false,
+          //     data: fileInfo,
+          //     success:function (result) {
+          //         console.log(result);
+          //         console.log("success");
+          //     }
+          // })
+            $.ajaxFileUpload({
+                url : '/proposer/fileUpload.do',
+                secureuri : false,
+                fileElementId : 'proposerImageFileUpload',
+                dataType : 'json',
+                data : "",
+                success : function(data, status) {
+                },
+                error : function(data, status, e) {
+                    alert('上传出错');
+                }
+            })
         };
         $scope.proposerWordFileUploadChoose=function(){
             var proposerWordFileUpload = document.getElementById("proposerWordFileUpload").files[0];
