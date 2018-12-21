@@ -40,7 +40,7 @@ public class proposerCtrl {
     }
 
     @RequestMapping(value = "fileUpload.do")
-    public @ResponseBody Object fileUpload(HttpServletRequest request) {
+    public @ResponseBody Object fileUpload(MultipartFile file,HttpServletRequest request) {
         CommonsMultipartResolver multipartResolver=new CommonsMultipartResolver(
                 request.getSession().getServletContext());
         //检查form中是否有enctype="multipart/form-data"
@@ -54,7 +54,7 @@ public class proposerCtrl {
             while(iter.hasNext())
             {
                 //一次遍历所有文件
-                MultipartFile file=multiRequest.getFile(iter.next().toString());
+//                MultipartFile file=multiRequest.getFile(iter.next().toString());
                 if(file!=null)
                 {
                     String path="D:/idea project/pmims/uploadPath"+file.getOriginalFilename();

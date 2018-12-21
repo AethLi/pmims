@@ -96,10 +96,11 @@
                     </label>
                     <form style="display: none" action="/proposer/fileUpload.do" method="post"
                           enctype="multipart/form-data">
-                        <input id="proposerImageFileChoose" type="file"
+                        <!--<input id="proposerImageFileChoose" type="file"
                                onchange="angular.element(this).scope().proposerImageFileUploadChoose()" accept="image/*"
-                               ng-model="proposerImageFileUpload"/>
-                        <input id="proposerImageFileUpload" type="button" ng-click="upload('proposerImageFileChoose')">
+                               ng-model="proposerImageFileUpload"/>-->
+                        <input id="proposerImageFileChoose" type="file" name="file">
+                        <input id="proposerImageFileUpload" type="submit" ><!--ng-click="upload('proposerImageFileChoose')"-->
                     </form>
                 </div>
             </div>
