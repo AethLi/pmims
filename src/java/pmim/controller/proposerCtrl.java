@@ -39,7 +39,7 @@ public class proposerCtrl {
         return null;
     }
 
-    @RequestMapping(value = "fileUpload")
+    @RequestMapping(value = "fileUpload.do")
     public @ResponseBody Object fileUpload(HttpServletRequest request) {
         CommonsMultipartResolver multipartResolver=new CommonsMultipartResolver(
                 request.getSession().getServletContext());

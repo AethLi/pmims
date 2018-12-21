@@ -18,21 +18,22 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-@SessionAttributes(value= {"identifyingCode"},types= {String.class})
+@SessionAttributes(value = {"identifyingCode"}, types = {String.class})
 @Controller
 public class CAPTCHACtrl {
 
-	private int width = 180;// 定义图片的width
+    private int width = 180;// 定义图片的width
     private int height = 40;// 定义图片的height
     private int codeCount = 4;// 定义图片上显示验证码的个数
     private int xx = 30;
     private int fontHeight = 36;
     private int codeY = 36;
-    char[] codeSequence = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X',
-            'Y', 'Z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+    char[] codeSequence = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X',
+            'Y', 'Z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
 
-    @RequestMapping(value="/ACAPTCHA.do")
-    public void getCode(Model model, HttpServletResponse resp) throws IOException {
+    @RequestMapping(value = "/ACAPTCHA.do")
+    public void getCode(Model model, HttpServletResponse resp, HttpServletRequest request) throws IOException {
+        request.getSession();
         // 定义图像buffer
         BufferedImage buffImg = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         Graphics gd = buffImg.getGraphics();
@@ -63,7 +64,7 @@ public class CAPTCHACtrl {
         // 随机产生codeCount数字的验证码。
         for (int i = 0; i < codeCount; i++) {
             // 得到随机产生的验证码数字。
-            String code = String.valueOf(codeSequence[random.nextInt(codeSequence.length-1)]);
+            String code = String.valueOf(codeSequence[random.nextInt(codeSequence.length - 1)]);
             // 产生随机的颜色分量来构造颜色值，这样输出的每位数字的颜色值都将不同。
             red = random.nextInt(255);
             green = random.nextInt(255);
@@ -75,7 +76,7 @@ public class CAPTCHACtrl {
             randomCode.append(code);
         }
         // 将四位数字的验证码保存到Session中。
-        model.addAttribute("identifyingCode",randomCode.toString().toLowerCase());
+        model.addAttribute("identifyingCode", randomCode.toString().toLowerCase());
         // 禁止图像缓存。
         resp.setHeader("Pragma", "no-cache");
         resp.setHeader("Cache-Control", "no-cache");

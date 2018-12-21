@@ -7,7 +7,7 @@
                 <textarea style="width: 60%" rows="5" readonly>{{upload1Instruction}}</textarea>
             </div>
             <div style="height: 200px">
-                <div class="col-md-8" style="padding: 0">
+                <div class="col-md-7" style="padding: 0">
                     <div style="overflow-x: auto; overflow-y: auto; height: 180px;width: 500px">
                         <table border="1" align="center" width="500px">
                             <tr>
@@ -22,13 +22,22 @@
                                     <button ng-click="delete(this.x)">删除</button>
                                 </td>
                             </tr>
-                            <tr ng-repeat="x in proposerImageFileChooseList">
-                                <td><a ng-click="ImageShow(this)" style="cursor:pointer">{{x.name}}</a></td>
-                                <td>准备上传</td>
-                                <td>
-                                    <button ng-click="upload(this.x)">上传</button>
-                                </td>
-                            </tr>
+                            <!--<tr ng-repeat="x in proposerImageFileChooseList">-->
+                            <!--<td><a ng-click="ImageShow(this)" style="cursor:pointer">{{x.name}}</a></td>-->
+                            <!--<td>准备上传</td>-->
+                            <!--<td align="center">-->
+                            <!--<button ng-click="upload(this.x)">上传</button>-->
+                            <!--&lt;!&ndash;<label for="{{x.name+x.size}}"&ndash;&gt;-->
+                            <!--&lt;!&ndash;style="width:70px;background: #3e58c7;color: white;text-align: center;margin: 0px">上传</label>&ndash;&gt;-->
+                            <!--</td>-->
+                            <!--<td style="display: none">-->
+                            <!--<form id="{{x.name+x.size}}+'Form'" action="/proposer/fileUpload.do" method="post"-->
+                            <!--enctype="multipart/form-data">-->
+                            <!--<input type="file" ng-model="proposerImageFileUpload">-->
+                            <!--<input id="{{x.name+x.size}}" type="button" ng-click="uploadFile(this)">-->
+                            <!--</form>-->
+                            <!--</td>-->
+                            <!--</tr>-->
                             <tr>
                                 <td>&nbsp;</td>
                                 <td></td>
@@ -67,19 +76,31 @@
                         </table>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-5">
                     <button type="button" class="btn btn-default btn-lg">
                         <span class="glyphicon glyphicon-ok" aria-hidden="true"
                               style="font-size: 20px;color: green"></span>
                         <span style="font-size: 20px">审核通过</span>
                     </button>
                     <br>
-                    <label for="proposerImageFileUpload" class="btn btn-default btn-lg"
-                           style="margin-top: 80px;background: #3e58c7;width: 140px;color: white">
-                        <span style="font-size: 20px">选择文件</span>
+                    <label for="proposerImageFileChoose" class="btn btn-default btn-lg"
+                           style="margin-top: 10px;background: #3e58c7;width: 140px;color: white">
+                        <span style="font-size: 20px">{{imageFileActionHint}}</span>
                     </label>
-                    <input id="proposerImageFileUpload" type="file" style="display: none"
-                           onchange="angular.element(this).scope().proposerImageFileUploadChoose()" accept="image/*"/>
+                    <div style=" width:200px;white-space:nowrap;text-overflow:ellipsis;-o-text-overflow:ellipsis;overflow: hidden;">
+                        {{imageFileChose}}
+                    </div>
+                    <label for="proposerImageFileUpload" class="btn btn-default btn-lg"
+                           style="margin-top: 10px;background: #3e58c7;width: 140px;color: white">
+                        <span style="font-size: 20px">上传</span>
+                    </label>
+                    <form style="display: none" action="/proposer/fileUpload.do" method="post"
+                          enctype="multipart/form-data">
+                        <input id="proposerImageFileChoose" type="file"
+                               onchange="angular.element(this).scope().proposerImageFileUploadChoose()" accept="image/*"
+                               ng-model="proposerImageFileUpload"/>
+                        <input id="proposerImageFileUpload" type="button" ng-click="upload('proposerImageFileChoose')">
+                    </form>
                 </div>
             </div>
         </div>
