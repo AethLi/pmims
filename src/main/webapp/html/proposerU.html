@@ -22,22 +22,6 @@
                                     <button ng-click="delete(this.x)">删除</button>
                                 </td>
                             </tr>
-                            <!--<tr ng-repeat="x in proposerImageFileChooseList">-->
-                            <!--<td><a ng-click="ImageShow(this)" style="cursor:pointer">{{x.name}}</a></td>-->
-                            <!--<td>准备上传</td>-->
-                            <!--<td align="center">-->
-                            <!--<button ng-click="upload(this.x)">上传</button>-->
-                            <!--&lt;!&ndash;<label for="{{x.name+x.size}}"&ndash;&gt;-->
-                            <!--&lt;!&ndash;style="width:70px;background: #3e58c7;color: white;text-align: center;margin: 0px">上传</label>&ndash;&gt;-->
-                            <!--</td>-->
-                            <!--<td style="display: none">-->
-                            <!--<form id="{{x.name+x.size}}+'Form'" action="/proposer/fileUpload.do" method="post"-->
-                            <!--enctype="multipart/form-data">-->
-                            <!--<input type="file" ng-model="proposerImageFileUpload">-->
-                            <!--<input id="{{x.name+x.size}}" type="button" ng-click="uploadFile(this)">-->
-                            <!--</form>-->
-                            <!--</td>-->
-                            <!--</tr>-->
                             <tr>
                                 <td>&nbsp;</td>
                                 <td></td>
@@ -96,11 +80,10 @@
                     </label>
                     <form style="display: none" action="/proposer/fileUpload.do" method="post"
                           enctype="multipart/form-data">
-                        <!--<input id="proposerImageFileChoose" type="file"
+                        <input id="proposerImageFileChoose" type="file"
                                onchange="angular.element(this).scope().proposerImageFileUploadChoose()" accept="image/*"
-                               ng-model="proposerImageFileUpload"/>-->
-                        <input id="proposerImageFileChoose" type="file" name="file">
-                        <input id="proposerImageFileUpload" type="submit" ><!--ng-click="upload('proposerImageFileChoose')"-->
+                               ng-model="proposerImageFileUpload" name="file"/>
+                        <input id="proposerImageFileUpload" type="button" ng-click="upload('proposerImageFileChoose')">
                     </form>
                 </div>
             </div>

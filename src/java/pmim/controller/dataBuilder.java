@@ -95,7 +95,7 @@ public class dataBuilder {
                 u.setUserId(s.getUserId());
                 u.setUserPermission(0);
                 u.setStatus(ran.nextInt(3));
-                u.setHeadImgPath("/"+s.getName()+RandomStringUtils.randomNumeric(25));
+                u.setUserPath("/"+s.getName()+RandomStringUtils.randomNumeric(25));
                 pm.insertProposer(p);
                 sm.insertStudent(s);
                 um.insertUser_register(u);

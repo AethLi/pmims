@@ -12,4 +12,6 @@ public interface userMapper {
     public List<user> selectUserByPermission(user u);
 
     public user selectUser_withNoPwd(user u);
+
+    public void updateUserPath(user u);
 }

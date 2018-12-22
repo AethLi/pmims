@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="pmim.mapper.userMapper">
     <insert id="insertUser_register" parameterType="pmim.model.user">
-        insert into user (`userId`,`userPwd`,`userPermission`,`status`) values (#{userId},#{userPwd},#{userPermission},#{status},#{headImgPath});
+        insert into user (`userId`,`userPwd`,`userPermission`,`status`,`userPath`) values (#{userId},#{userPwd},#{userPermission},#{status},#{userPath});
     </insert>
     <select id="selectUser_withNoPwd" resultType="pmim.model.user" parameterType="pmim.model.user">
         select * from user where userId=#{userId};
@@ -15,4 +15,7 @@
     <delete id="deleteUserById" parameterType="pmim.model.user">
         delete from user where userId=#{userId};
     </delete>
+    <update id="updateUserPath" parameterType="pmim.model.user">
+        update user set userPath=#{userPath} where userId=#{userId};
+    </update>
 </mapper>

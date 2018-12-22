@@ -4,7 +4,6 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import javax.servlet.http.HttpServletRequest;
 
 public class tools {
     public static boolean stringLengthCheck(String desstr, int deslength) {
@@ -16,7 +15,6 @@ public class tools {
         try {
             des = new String(res.getBytes("ISO-8859-1"), "UTF-8");
         } catch (UnsupportedEncodingException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return des;
@@ -27,7 +25,6 @@ public class tools {
         try {
             md = MessageDigest.getInstance("MD5");
         } catch (NoSuchAlgorithmException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
             return null;
         }
@@ -41,6 +38,5 @@ public class tools {
             hexValue.append(Integer.toHexString(val));
         }
         return hexValue.toString();
-
     }
 }

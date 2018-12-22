@@ -27,32 +27,15 @@ angular.module('mainPageApp', [])
               secureuri : false,
               fileElementId : updateId,
               dataType : 'json',
-              data : "",
+              data :  JSON.stringify({
+                  "action": "uploadFile"
+              }),
               success : function(data, status) {
               },
               error : function(data, status, e) {
                   alert('上传出错');
               }
           })
-        };
-
-        $scope.uploadFile = function (formId) {
-            var formData = new FormData($(formId));
-            $.ajax({
-                url: '/proposer/fileUpload.do',
-                type: 'POST',
-                data: formData,
-                async: false,
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function (returndata) {
-                    alert(returndata);
-                },
-                error: function (returndata) {
-                    alert(returndata);
-                }
-            })
         };
         $scope.proposerWordFileUploadChoose = function () {
             var proposerWordFileUpload = document.getElementById("proposerWordFileUpload").files[0];
