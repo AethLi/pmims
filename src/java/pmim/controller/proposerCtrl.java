@@ -42,10 +42,12 @@ public class proposerCtrl {
         return null;
     }
 
-    @RequestMapping(value = "/fileUpload.do")
-    public @ResponseBody Object fileUpload(HttpServletRequest request) {
-            String userPath=ups.checkUserPath(,)
-            return ps.uploadFile(request,request.getSession().getAttribute("currentUser").toString());
+    @RequestMapping(value = "/fileUpload.do", produces = "text/html;charset=UTF-8")
+    public @ResponseBody
+    Object fileUpload(HttpServletRequest request) {
+        user currentUser = (user) request.getSession().getAttribute("currentUser");
+        String userPath = ups.checkUserPath(currentUser.getUserId());
+        return ps.uploadFile(request, currentUser.getUserId(), userPath);
     }
 
 

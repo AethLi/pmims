@@ -3,11 +3,15 @@ package pmim.service;
 import org.apache.commons.math3.random.RandomDataGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pmim.mapper.proposerMapper;
 import pmim.mapper.studentMapper;
 import pmim.mapper.userMapper;
+import pmim.model.proposer;
 import pmim.model.student;
 import pmim.model.user;
+import pmim.tools.tools;
 
+import java.io.File;
 import java.rmi.server.RMIClassLoaderSpi;
 import java.util.Calendar;
 
@@ -18,22 +22,24 @@ public class userPathService {
     userMapper um;
     @Autowired
     studentMapper sm;
+    @Autowired
+    proposerMapper pm;
 
-    public String checkUserPath(String userId, int type) {
+    public String checkUserPath(String userId) {
         user currentUser = new user(userId);
-        switch (type) {
-            case 0:
-                um.selectUser_withNoPwd(currentUser);
-                if (currentUser.getUserPath() == null) {
-                    student currentStudent = sm.selectStudentById(currentUser);
-                    String userPath = currentStudent.getName() + currentUser.getUserId() + Calendar.getInstance().get(Calendar.YEAR) + Calendar.getInstance().get(Calendar.MONTH) + (new RandomDataGenerator()).nextInt(0, 100);
-                    currentUser.setUserPath(userPath);
-                    um.updateUserPath(currentUser);
-                    return userPath;
-                }else {
-                    return currentUser.getUserPath();
-                }
+        currentUser = um.selectUser_withNoPwd(currentUser);
+        if (currentUser.getUserPath() == null) {
+            student currentStudent = sm.selectStudentById(currentUser);
+            String userPath = tools.toMD5(currentStudent.getName()) + currentUser.getUserId() + "_" + Calendar.getInstance().get(Calendar.YEAR) + (new RandomDataGenerator()).nextInt(0, 100);
+            currentUser.setUserPath(userPath);
+            um.updateUserPath(currentUser);
+            File file = new File("D:/idea project/pmims/uploadPath/" + userPath + "/");
+            if (!file.exists()) {
+                file.mkdir();
+            }
+            return file.getPath()+"/";
+        } else {
+            return "D:/idea project/pmims/uploadPath/" + currentUser.getUserPath() + "/";
         }
-        return null;
     }
 }

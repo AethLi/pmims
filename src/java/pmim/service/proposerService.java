@@ -17,10 +17,8 @@ import pmim.model.user;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.sql.Timestamp;
+import java.util.*;
 
 @Service
 public class proposerService {
@@ -46,7 +44,11 @@ public class proposerService {
         return JSONObject.fromObject(new responseMessage(0, "", result)).toString();
     }
 
-    public Object uploadFile(HttpServletRequest request, String currentUser) {
+    public Object uploadFile(HttpServletRequest request, String currentUser, String userPath) {
+        File proposerPath = new File(userPath + "proposer/");
+        if (!proposerPath.exists()) {
+            proposerPath.mkdir();
+        }
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(
                 request.getSession().getServletContext());
         //检查form中是否有enctype="multipart/form-data"
@@ -59,17 +61,22 @@ public class proposerService {
                 //一次遍历所有文件
                 MultipartFile file = multiRequest.getFile(iter.next().toString());
                 if (file != null) {
-                    String path = "D:/idea project/pmims/uploadPath/" + file.getOriginalFilename();
+                    if (new File(proposerPath+"/"+file.getOriginalFilename()).exists()){
+                        return JSONObject.fromObject(new responseMessage(1, "已上传过同名文件", null)).toString();
+                    }
+                    String path = proposerPath.getPath() + "/" + file.getOriginalFilename();
                     //上传
                     try {
                         file.transferTo(new File(path));
+                        pm.insertProposer(new proposer(UUID.randomUUID().toString().replace("-","0"),currentUser,file.getOriginalFilename(), Calendar.getInstance().getTimeInMillis(),0,1));
+
                     } catch (IOException e) {
                         e.printStackTrace();
-                        return JSONObject.fromObject(new responseMessage(1,"上传失败",null)).toString();
+                        return JSONObject.fromObject(new responseMessage(1, "上传失败", null)).toString();
                     }
                 }
             }
         }
-        return JSONObject.fromObject(new responseMessage(0,"上传成功",null)).toString();
+        return JSONObject.fromObject(new responseMessage(0, "上传成功", null)).toString();
     }
 }
