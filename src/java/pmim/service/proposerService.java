@@ -30,13 +30,13 @@ public class proposerService {
     public Object initProposerUserPage(user currentUser) {
         Map m = new HashMap();
         List ul;
-        proposer currentProposer;
+        List pl;
         Map result = new HashMap();
         try {
-            ul = upm.selectUploadInstructionByPosition(new uploadInstruction(1));
-            currentProposer = pm.selectProposerById(currentUser);
+            ul = upm.selectUploadInstructionByPosition(new uploadInstruction(1 ));
+            pl = pm.selectProposerById(currentUser);
             result.put("uploadInstructions", ul);
-            result.put("currentProposer", currentProposer);
+            result.put("currentProposer", pl);
         } catch (Exception e) {
             e.printStackTrace();
             return null;

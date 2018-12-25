@@ -69,4 +69,8 @@ public class proposer {
         this.status = status;
         this.type = type;
     }
+
+    public void setDate(Timestamp date) {
+        this.date = date;
+    }
 }

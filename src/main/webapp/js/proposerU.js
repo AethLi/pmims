@@ -3,7 +3,6 @@ angular.module('mainPageApp', [])
         console.log("proposerU.js onload!");
         $scope.upload1Instruction = "加载失败";
         $scope.upload2Instruction = "加载失败";
-        $scope.imageFileActionHint="选择文件";
         $scope.imageFileChose="未选择文件";
         // $scope.proposerImageFileChooseList = new Array();
         $scope.proposerImageFileList;
@@ -24,6 +23,7 @@ angular.module('mainPageApp', [])
         $scope.upload=function(updateId){
           $.ajaxFileUpload({
               url : '/proposer/fileUpload.do',
+              contentType: 'json;charset=utf-8',
               secureuri : false,
               fileElementId : updateId,
               dataType : 'json',
@@ -31,9 +31,9 @@ angular.module('mainPageApp', [])
                   "action": "uploadFile"
               }),
               success : function(data, status) {
+                  alert('上传出错');
               },
               error : function(data, status, e) {
-                  alert('上传出错');
               }
           })
         };

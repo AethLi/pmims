@@ -37,7 +37,6 @@ public class proposerCtrl {
         requestAction ra = (requestAction) JSONObject.toBean(JSONObject.fromObject(jsonstr), requestAction.class);
         if ("initProposerUserPage".equals(ra.getAction())) {
             return ps.initProposerUserPage((user) request.getSession().getAttribute("currentUser"));
-
         }
         return null;
     }

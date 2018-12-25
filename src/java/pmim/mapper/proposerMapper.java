@@ -10,5 +10,5 @@ public interface proposerMapper {
 
     void deleteProposerById(user p);
 
-    proposer selectProposerById(user currentUser);
+    List selectProposerById(user currentUser);
 }
