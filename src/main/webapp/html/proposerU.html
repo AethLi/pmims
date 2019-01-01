@@ -7,7 +7,7 @@
                 <textarea style="width: 60%" rows="5" readonly>{{upload1Instruction}}</textarea>
             </div>
             <div style="height: 200px">
-                <div class="col-md-7" style="padding: 0">
+                <div class="col-md-8" style="padding: 0">
                     <div style="overflow-x: auto; overflow-y: auto; height: 180px;width: 500px">
                         <table class="table table-striped table-bordered table-hover" align="center" width="500px">
                             <tr>
@@ -25,7 +25,7 @@
                         </table>
                     </div>
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-4">
                     <button type="button" class="btn btn-default btn-lg">
                         <span class="glyphicon glyphicon-ok" aria-hidden="true"
                               style="font-size: 20px;color: green"></span>
@@ -43,12 +43,12 @@
                            style="margin-top: 10px;background: #3e58c7;width: 140px;color: white">
                         <span style="font-size: 20px">上传</span>
                     </label>
-                    <form style="display: none" action="/proposer/fileUpload.do" method="post"
-                          enctype="multipart/form-data">
+                    <form id="form0" style="display: none">
+                        <input id="index" value="0">
                         <input id="proposerImageFileChoose" type="file"
                                onchange="angular.element(this).scope().proposerImageFileUploadChoose()" accept="image/*"
                                ng-model="proposerImageFileUpload" name="file"/>
-                        <input id="proposerImageFileUpload" type="button" ng-click="upload('proposerImageFileChoose')">
+                        <input id="proposerImageFileUpload" type="button" ng-click="upload('form0')">
                     </form>
                 </div>
             </div>
@@ -61,7 +61,7 @@
             <div style="height: 200px">
                 <div class="col-md-8" style="padding: 0">
                     <div style="overflow-x: auto; overflow-y: auto; height: 180px;width: 500px">
-                        <table border="1" align="center" width="500px">
+                        <table class="table table-striped table-bordered table-hover" border="1" align="center" width="500px">
                             <tr>
                                 <td>文件名</td>
                                 <td>状态</td>
@@ -84,13 +84,23 @@
                         <span style="font-size: 20px">审核通过</span>
                     </button>
                     <br>
-                    <label for="proposerWordFileUpload" class="btn btn-default btn-lg"
-                           style="margin-top: 80px;background: #3e58c7;width: 140px;color: white">
+                    <label for="proposerWordFileChoose" class="btn btn-default btn-lg"
+                           style="margin-top: 10px;background: #3e58c7;width: 140px;color: white">
                         <span style="font-size: 20px">选择文件</span>
                     </label>
-                    <input id="proposerWordFileUpload" type="file" style="display: none"
-                           onchange="angular.element(this).scope().proposerWordFileUploadChoose()"
-                           accept="application/msword,.docx"/>
+                    <div style=" width:200px;white-space:nowrap;text-overflow:ellipsis;-o-text-overflow:ellipsis;overflow: hidden;">
+                        {{imageWordChose}}
+                    </div>
+                    <label for="proposerWordFileUpload" class="btn btn-default btn-lg"
+                           style="margin-top: 10px;background: #3e58c7;width: 140px;color: white">
+                        <span style="font-size: 20px">上传</span>
+                    </label>
+                    <form style="display: none">
+                        <input id="proposerWordFileChoose" type="file"
+                               onchange="angular.element(this).scope().proposerWordFileUploadChoose()" accept="application/msword,.docx"
+                               ng-model="proposerImageFileUpload" name="file"/>
+                        <input id="proposerWordFileUpload" type="button" ng-click="upload('proposerWordFileChoose',1)">
+                    </form>
                 </div>
             </div>
         </div>

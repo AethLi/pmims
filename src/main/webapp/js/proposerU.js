@@ -4,44 +4,58 @@ angular.module('mainPageApp', [])
         $scope.upload1Instruction = "加载失败";
         $scope.upload2Instruction = "加载失败";
         $scope.imageFileChose="未选择文件";
-        // $scope.proposerImageFileChooseList = new Array();
+        $scope.imageWordChose="未选择文件";
         $scope.proposerImageFileList;
-        $scope.proposerWordFileChooseList = new Array();
         $scope.proposerWordFileList;
         $scope.ImageShow = function (whoAction) {
 
         };
         $scope.proposerImageFileUploadChoose = function () {
             var proposerImageFileUpload = document.getElementById("proposerImageFileChoose").files[0];
-            // if (proposerImageFileUpload == null)
-            //     return;
-            // $scope.proposerImageFileChooseList.push(proposerImageFileUpload);
             $scope.imageFileChose="已选择："+proposerImageFileUpload.name;
             $scope.$digest();
         };
 
-        $scope.upload=function(updateId){
-          $.ajaxFileUpload({
-              url : '/proposer/fileUpload.do',
-              contentType: 'json;charset=utf-8',
-              secureuri : false,
-              fileElementId : updateId,
-              dataType : 'json',
-              data :  JSON.stringify({
-                  "action": "uploadFile"
-              }),
-              success : function(data, status) {
-                  alert('上传出错');
-              },
-              error : function(data, status, e) {
-              }
-          })
+        $scope.upload=function(uploadId){
+        //   $.ajaxFileUpload({
+        //       url : '/proposer/fileUpload.do',
+        //       contentType: 'json;charset=utf-8',
+        //       secureuri : false,
+        //       fileElementId : updateId,
+        //       dataType : 'json',
+        //       data :  JSON.stringify({
+        //           "action": "uploadFile",
+        //           "index":index
+        //       }),
+        //       success : function(data, status) {
+        //           $scope.fixBugSuccess(data.responseText);
+        //       },
+        //       error : function(data, status, e) {
+        //           $scope.fixBugSuccess(data.responseText);
+        //       }
+        //   })
+        // };
+        // $scope.fixBugSuccess=function(data){
+        //   if (data.status===0){
+        //       alert("上传成功");
+        //   }else if (data.status===1){
+        //       alert((data.message));
+        //   }
+            var form=new FormData(document.getElementById(uploadId));
+            $.ajax({
+                type: 'post',
+                url: '/proposer/fileUpload.do',
+                data: form,
+                contentType: false,
+                processData: false,
+                success:function (restle) {
+                    console.log(restle)
+                }
+            })
         };
         $scope.proposerWordFileUploadChoose = function () {
-            var proposerWordFileUpload = document.getElementById("proposerWordFileUpload").files[0];
-            if (proposerWordFileUpload == null)
-                return;
-            $scope.proposerWordFileChooseList.push(proposerWordFileUpload);
+            var proposerWordFileUpload = document.getElementById("proposerWordFileChoose").files[0];
+            $scope.WordFileChose="已选择："+proposerWordFileUpload.name;
             $scope.$digest();
         };
         $.ajax({
