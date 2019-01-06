@@ -33,7 +33,7 @@ public class proposerService {
         List pl;
         Map result = new HashMap();
         try {
-            ul = upm.selectUploadInstructionByPosition(new uploadInstruction(1 ));
+            ul = upm.selectUploadInstructionByPosition(new uploadInstruction(1));
             pl = pm.selectProposerById(currentUser);
             result.put("uploadInstructions", ul);
             result.put("currentProposer", pl);
@@ -44,7 +44,7 @@ public class proposerService {
         return JSONObject.fromObject(new responseMessage(0, "", result)).toString();
     }
 
-    public Object uploadFile(HttpServletRequest request, String currentUser, String userPath) {
+    public Object uploadFile(HttpServletRequest request, String currentUser, String userPath, String index) {
         File proposerPath = new File(userPath + "proposer/");
         if (!proposerPath.exists()) {
             proposerPath.mkdir();
@@ -57,18 +57,21 @@ public class proposerService {
             MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;
             //获取multiRequest 中所有的文件名
             Iterator iter = multiRequest.getFileNames();
+            if (!iter.hasNext()) {
+                return JSONObject.fromObject(new responseMessage(1, "网络错误", null)).toString();
+            }
             while (iter.hasNext()) {
                 //一次遍历所有文件
                 MultipartFile file = multiRequest.getFile(iter.next().toString());
                 if (file != null) {
-                    if (new File(proposerPath+"/"+file.getOriginalFilename()).exists()){
+                    if (new File(proposerPath + "/" + file.getOriginalFilename()).exists()) {
                         return JSONObject.fromObject(new responseMessage(1, "已上传过同名文件", null)).toString();
                     }
                     String path = proposerPath.getPath() + "/" + file.getOriginalFilename();
                     //上传
                     try {
                         file.transferTo(new File(path));
-                        pm.insertProposer(new proposer(UUID.randomUUID().toString().replace("-","0"),currentUser,file.getOriginalFilename(), Calendar.getInstance().getTimeInMillis(),0,1));
+                        pm.insertProposer(new proposer(UUID.randomUUID().toString().replace("-", "0"), currentUser, file.getOriginalFilename(), Calendar.getInstance().getTimeInMillis(), 0, Integer.valueOf(index)));
 
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -78,5 +81,14 @@ public class proposerService {
             }
         }
         return JSONObject.fromObject(new responseMessage(0, "上传成功", null)).toString();
+    }
+
+    public Object getFileList(user currentUser) {
+        try {
+            return JSONObject.fromObject(new responseMessage(0, "", pm.selectProposerById(currentUser))).toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

@@ -2,8 +2,8 @@ package pmim.model;
 
 public class requestAction {
     String action;
-    String resUserId;
-    String desUserId;
+    String resId;
+    String desId;
     String code;
 
     public String getAction() {
@@ -14,20 +14,20 @@ public class requestAction {
         this.action = action;
     }
 
-    public String getResUserId() {
-        return resUserId;
+    public String getResId() {
+        return resId;
     }
 
-    public void setResUserId(String resUserId) {
-        this.resUserId = resUserId;
+    public void setResId(String resId) {
+        this.resId = resId;
     }
 
-    public String getDesUserId() {
-        return desUserId;
+    public String getDesId() {
+        return desId;
     }
 
-    public void setDesUserId(String desUserId) {
-        this.desUserId = desUserId;
+    public void setDesId(String desId) {
+        this.desId = desId;
     }
 
     public String getCode() {

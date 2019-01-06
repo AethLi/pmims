@@ -8,7 +8,7 @@ public class proposer {
     String fileName;
     Timestamp date;
     int status;
-    int type;
+    int index;
 
     public String getUserId() {
         return userId;
@@ -42,12 +42,12 @@ public class proposer {
         this.status = status;
     }
 
-    public int getType() {
-        return type;
+    public int getIndex() {
+        return index;
     }
 
-    public void setType(int type) {
-        this.type = type;
+    public void setIndex(int type) {
+        this.index = type;
     }
 
     public proposer() {
@@ -67,7 +67,7 @@ public class proposer {
         this.fileName = fileName;
         this.date = new Timestamp(date);
         this.status = status;
-        this.type = type;
+        this.index = type;
     }
 
     public void setDate(Timestamp date) {

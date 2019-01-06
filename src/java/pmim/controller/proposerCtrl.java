@@ -35,6 +35,8 @@ public class proposerCtrl {
         requestAction ra = (requestAction) JSONObject.toBean(JSONObject.fromObject(jsonstr), requestAction.class);
         if ("initProposerUserPage".equals(ra.getAction())) {
             return ps.initProposerUserPage((user) request.getSession().getAttribute("currentUser"));
+        } else if ("getFileList".equals(ra.getAction())) {
+            return ps.getFileList((user) request.getSession().getAttribute("currentUser"));
         }
         return null;
     }
@@ -42,17 +44,15 @@ public class proposerCtrl {
     @RequestMapping(value = "/fileUpload.do", produces = "text/html;charset=UTF-8")
     public @ResponseBody
     Object fileUpload(HttpServletRequest request) {
+        String index = (String) request.getParameter("index");
         user currentUser = (user) request.getSession().getAttribute("currentUser");
         String userPath = ups.checkUserPath(currentUser.getUserId());
-        return ps.uploadFile(request, currentUser.getUserId(), userPath);
+        return ps.uploadFile(request, currentUser.getUserId(), userPath, index);
     }
 
-
-//    @RequestMapping(value = "fileUpload")
-//    public @ResponseBody
-//    Object fileUpload(HttpServletRequest request, @RequestParam("fileInfo") MultipartFile fileInfo) {
-//
-//        return null;
-//    }
-
+    @RequestMapping(value = "/fileDelete.do",produces = "text/html;charset=UTF-8")
+    public @ResponseBody
+    Object fileDelete(HttpServletRequest request,@RequestParam String desId){
+        return null;
+    }
 }

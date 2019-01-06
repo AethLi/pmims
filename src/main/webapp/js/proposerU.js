@@ -3,61 +3,69 @@ angular.module('mainPageApp', [])
         console.log("proposerU.js onload!");
         $scope.upload1Instruction = "加载失败";
         $scope.upload2Instruction = "加载失败";
-        $scope.imageFileChose="未选择文件";
-        $scope.imageWordChose="未选择文件";
-        $scope.proposerImageFileList;
-        $scope.proposerWordFileList;
+        $scope.imageFileChose = "未选择文件";
+        $scope.wordFileChose = "未选择文件";
+        $scope.proposerImageFileList=[];
+        $scope.proposerWordFileList=[];
+
         $scope.ImageShow = function (whoAction) {
 
         };
+
         $scope.proposerImageFileUploadChoose = function () {
             var proposerImageFileUpload = document.getElementById("proposerImageFileChoose").files[0];
-            $scope.imageFileChose="已选择："+proposerImageFileUpload.name;
+            $scope.imageFileChose = "已选择：" + proposerImageFileUpload.name;
             $scope.$digest();
         };
 
-        $scope.upload=function(uploadId){
-        //   $.ajaxFileUpload({
-        //       url : '/proposer/fileUpload.do',
-        //       contentType: 'json;charset=utf-8',
-        //       secureuri : false,
-        //       fileElementId : updateId,
-        //       dataType : 'json',
-        //       data :  JSON.stringify({
-        //           "action": "uploadFile",
-        //           "index":index
-        //       }),
-        //       success : function(data, status) {
-        //           $scope.fixBugSuccess(data.responseText);
-        //       },
-        //       error : function(data, status, e) {
-        //           $scope.fixBugSuccess(data.responseText);
-        //       }
-        //   })
-        // };
-        // $scope.fixBugSuccess=function(data){
-        //   if (data.status===0){
-        //       alert("上传成功");
-        //   }else if (data.status===1){
-        //       alert((data.message));
-        //   }
-            var form=new FormData(document.getElementById(uploadId));
+        $scope.proposerWordFileUploadChoose = function () {
+            var proposerWordFileUpload = document.getElementById("proposerWordFileChoose").files[0];
+            $scope.wordFileChose = "已选择：" + proposerWordFileUpload.name;
+            $scope.$digest();
+        };
+
+        $scope.refreshTable = function (currentProposer) {
+            console.log("refresh proposer tables");
+            $scope.proposerImageFileList=new Array();
+            $scope.proposerWordFileList=new Array();
+            for (var proposer of currentProposer) {
+                if (proposer.index===0){
+                    $scope.proposerImageFileList.push(proposer)
+                } else if (proposer.index===1){
+                    $scope.proposerWordFileList.push(proposer)
+                }
+            }
+            $scope.$digest();
+        };
+
+        $scope.upload = function (uploadId) {
+            var form = new FormData(document.getElementById(uploadId));
             $.ajax({
                 type: 'post',
                 url: '/proposer/fileUpload.do',
                 data: form,
+                dataType: "json",
                 contentType: false,
                 processData: false,
-                success:function (restle) {
-                    console.log(restle)
+                success: function (result) {
+                    alert(result.message);
+                    $.ajax({
+                        type:'post',
+                        contentType: 'application/json;charset=utf-8',
+                        dataType: "json",
+                        async: true,
+                        url: '/proposer/user.do',
+                        data:JSON.stringify({
+                            "action":"getFileList"
+                        }),
+                        success:function (result) {
+                            $scope.refreshTable(result.model);
+                        }
+                    })
                 }
             })
         };
-        $scope.proposerWordFileUploadChoose = function () {
-            var proposerWordFileUpload = document.getElementById("proposerWordFileChoose").files[0];
-            $scope.WordFileChose="已选择："+proposerWordFileUpload.name;
-            $scope.$digest();
-        };
+
         $.ajax({
             type: 'post',
             contentType: 'application/json;charset=utf-8',
@@ -76,8 +84,24 @@ angular.module('mainPageApp', [])
                             $scope.upload2Instruction = uploadInstruction.instruction;
                         }
                     }
-                    $scope.$digest();
+                    $scope.refreshTable(result.model.currentProposer);
                 }
             }
         });
+
+        $scope.delete=function (fileId) {
+            $.ajax({
+                type: 'post',
+                contentType: 'application/json;charset=utf-8',
+                dataType: "json",
+                async: true,
+                url: '/proposer/fileDelete.do',
+                data: JSON.stringify({
+                    "desId": "fileId"
+                }),
+                success:function (result) {
+
+                }
+            })
+        }
     });

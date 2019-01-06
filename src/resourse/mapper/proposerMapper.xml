@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="pmim.mapper.proposerMapper">
     <insert id="insertProposer" parameterType="pmim.model.proposer">
-        insert into proposer (`proposerId`,`userId`,`fileName`,`status`,`date`,`type`) values (#{proposerId},#{userId},#{fileName},#{status},#{date},#{type});
+        insert into proposer (`proposerId`,`userId`,`fileName`,`status`,`date`,`index`) values (#{proposerId},#{userId},#{fileName},#{status},#{date},#{index});
     </insert>
     <delete id="deleteProposerById" parameterType="pmim.model.user">
         delete from proposer where userId=#{userId};

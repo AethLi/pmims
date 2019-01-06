@@ -89,7 +89,7 @@ public class dataBuilder {
                 p.setFileName("/"+s.getName()+RandomStringUtils.randomNumeric(25));
 //                p.setDate(new Timestamp(1199116800000L+ (new RandomDataGenerator()).nextLong(0L,315532800000L)));
                 p.setStatus(ran.nextInt(3));
-                p.setType(1);
+                p.setIndex(1);
                 user u=new user();
                 u.setUserPwd(tools.toMD5(RandomStringUtils.randomAscii(8)));
                 u.setUserId(s.getUserId());
