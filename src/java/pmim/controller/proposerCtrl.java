@@ -52,7 +52,9 @@ public class proposerCtrl {
 
     @RequestMapping(value = "/fileDelete.do",produces = "text/html;charset=UTF-8")
     public @ResponseBody
-    Object fileDelete(HttpServletRequest request,@RequestParam String desId){
-        return null;
+    Object fileDelete(HttpServletRequest request,@RequestBody String jsonstr){
+        user currentUser = (user) request.getSession().getAttribute("currentUser");
+        requestAction ra=(requestAction)JSONObject.toBean(JSONObject.fromObject(jsonstr),requestAction.class);
+        return ps.deleteFile(ra.getDesId(),currentUser);
     }
 }

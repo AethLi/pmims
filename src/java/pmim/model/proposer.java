@@ -50,15 +50,23 @@ public class proposer {
         this.index = type;
     }
 
-    public proposer() {
-    }
-
     public String getProposerId() {
         return proposerId;
     }
 
     public void setProposerId(String proposerId) {
         this.proposerId = proposerId;
+    }
+
+    public void setDate(Timestamp date) {
+        this.date = date;
+    }
+
+    public proposer(String proposerId) {
+        this.proposerId = proposerId;
+    }
+
+    public proposer() {
     }
 
     public proposer(String proposerId, String userId, String fileName, long date, int status, int type) {
@@ -68,9 +76,5 @@ public class proposer {
         this.date = new Timestamp(date);
         this.status = status;
         this.index = type;
-    }
-
-    public void setDate(Timestamp date) {
-        this.date = date;
     }
 }

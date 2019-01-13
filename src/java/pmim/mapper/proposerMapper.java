@@ -8,7 +8,9 @@ import java.util.List;
 public interface proposerMapper {
     public void insertProposer(proposer p);
 
-    void deleteProposerById(user p);
+    void deleteProposerById(proposer p);
 
     List selectProposerById(user currentUser);
+
+    List selectProposerByIdUndeleted(user currentUser);
 }

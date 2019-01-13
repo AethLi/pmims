@@ -5,8 +5,8 @@ angular.module('mainPageApp', [])
         $scope.upload2Instruction = "加载失败";
         $scope.imageFileChose = "未选择文件";
         $scope.wordFileChose = "未选择文件";
-        $scope.proposerImageFileList=[];
-        $scope.proposerWordFileList=[];
+        $scope.proposerImageFileList = [];
+        $scope.proposerWordFileList = [];
 
         $scope.ImageShow = function (whoAction) {
 
@@ -26,12 +26,12 @@ angular.module('mainPageApp', [])
 
         $scope.refreshTable = function (currentProposer) {
             console.log("refresh proposer tables");
-            $scope.proposerImageFileList=new Array();
-            $scope.proposerWordFileList=new Array();
+            $scope.proposerImageFileList = new Array();
+            $scope.proposerWordFileList = new Array();
             for (var proposer of currentProposer) {
-                if (proposer.index===0){
+                if (proposer.index === 0) {
                     $scope.proposerImageFileList.push(proposer)
-                } else if (proposer.index===1){
+                } else if (proposer.index === 1) {
                     $scope.proposerWordFileList.push(proposer)
                 }
             }
@@ -50,15 +50,15 @@ angular.module('mainPageApp', [])
                 success: function (result) {
                     alert(result.message);
                     $.ajax({
-                        type:'post',
+                        type: 'post',
                         contentType: 'application/json;charset=utf-8',
                         dataType: "json",
                         async: true,
                         url: '/proposer/user.do',
-                        data:JSON.stringify({
-                            "action":"getFileList"
+                        data: JSON.stringify({
+                            "action": "getFileList"
                         }),
-                        success:function (result) {
+                        success: function (result) {
                             $scope.refreshTable(result.model);
                         }
                     })
@@ -89,7 +89,7 @@ angular.module('mainPageApp', [])
             }
         });
 
-        $scope.delete=function (fileId) {
+        $scope.delete = function (fileId) {
             $.ajax({
                 type: 'post',
                 contentType: 'application/json;charset=utf-8',
@@ -97,11 +97,22 @@ angular.module('mainPageApp', [])
                 async: true,
                 url: '/proposer/fileDelete.do',
                 data: JSON.stringify({
-                    "desId": "fileId"
+                    "desId": fileId
                 }),
-                success:function (result) {
-
+                success: function (result) {
+                    $scope.refreshTable(result.model);
                 }
             })
         }
+
+        $scope.timestampToTime = function (timestamp) {
+            // var date = new Date(timestamp * 1000);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+            var Y = date.getFullYear() + '-';
+            var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+            var D = date.getDate() + ' ';
+            var h = date.getHours() + ':';
+            var m = date.getMinutes() + ':';
+            var s = date.getSeconds();
+            return Y + M + D + h + m + s;
+        };
     });

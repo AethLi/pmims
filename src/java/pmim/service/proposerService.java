@@ -33,8 +33,8 @@ public class proposerService {
         List pl;
         Map result = new HashMap();
         try {
-            ul = upm.selectUploadInstructionByPosition(new uploadInstruction(1));
-            pl = pm.selectProposerById(currentUser);
+            ul = upm.selectUploadInstructionByPosition(new uploadInstruction(0));
+            pl = pm.selectProposerByIdUndeleted(currentUser);
             result.put("uploadInstructions", ul);
             result.put("currentProposer", pl);
         } catch (Exception e) {
@@ -85,10 +85,15 @@ public class proposerService {
 
     public Object getFileList(user currentUser) {
         try {
-            return JSONObject.fromObject(new responseMessage(0, "", pm.selectProposerById(currentUser))).toString();
+            return JSONObject.fromObject(new responseMessage(0, "", pm.selectProposerByIdUndeleted(currentUser))).toString();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public Object deleteFile(String desId, user currentUser) {
+        pm.deleteProposerById(new proposer(desId));
+        return JSONObject.fromObject(new responseMessage(0, "删除成功", pm.selectProposerByIdUndeleted(currentUser))).toString();
     }
 }

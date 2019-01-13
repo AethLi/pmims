@@ -6,10 +6,13 @@
     <insert id="insertProposer" parameterType="pmim.model.proposer">
         insert into proposer (`proposerId`,`userId`,`fileName`,`status`,`date`,`index`) values (#{proposerId},#{userId},#{fileName},#{status},#{date},#{index});
     </insert>
-    <delete id="deleteProposerById" parameterType="pmim.model.user">
-        delete from proposer where userId=#{userId};
-    </delete>
+    <update id="deleteProposerById" parameterType="pmim.model.proposer">
+        update proposer set status=-1 where proposerId=#{proposerId};
+    </update>
     <select id="selectProposerById" parameterType="pmim.model.user" resultType="pmim.model.proposer">
         select * from proposer where userId=#{userId};
+    </select>
+    <select id="selectProposerByIdUndeleted" parameterType="pmim.model.user" resultType="pmim.model.proposer">
+        select * from proposer where userId=#{userId} and status != -1;
     </select>
 </mapper>
