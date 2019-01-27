@@ -73,7 +73,7 @@
                 <form id="activistForm0" style="display: none">
                     <input name="index" value="0">
                     <input type="file" id="activist0FileChoose"
-                           onchange="angular.element(this).scope().ChooseFileChange('activist0FileChoose')"
+                           onchange="angular.element(this).scope().ChooseFileChange('activist0FileChoose',0)"
                            ng-model="activist0FileChoose" name="file"/>
                     <input id="activist0FileUpload" type="button" ng-click="upload('activistForm0')">
                 </form>
@@ -110,9 +110,10 @@
                         </button>
                     </div>
                     <div>
-                        <button type="button" class="btn btn-primary btn-lg" style="width: 150px;margin-top: 10px">
-                            <label style="font-size: 20px">选择文件</label>
-                        </button>
+                        <label for="activist1FileChoose" class="btn btn-primary btn-lg"
+                               style="width: 150px;margin-top: 10px">
+                            <span style="font-size: 20px">选择文件</span>
+                        </label>
                     </div>
                     <div>
                         <label type="button" style="width: 150px;margin-top: 10px">
@@ -120,11 +121,19 @@
                         </label>
                     </div>
                     <div>
-                        <label type="button" class="btn btn-primary btn-lg" style="width: 150px;margin-top: 10px">
+                        <label for="activist1FileUpload" type="button" class="btn btn-primary btn-lg"
+                               style="width: 150px;margin-top: 10px">
                             <span style="font-size: 20px">上传</span>
                         </label>
                     </div>
                 </div>
+                <form id="activistForm1" style="display: none">
+                    <input name="index" value="1">
+                    <input type="file" id="activist1FileChoose"
+                           onchange="angular.element(this).scope().ChooseFileChange('activist1FileChoose',1)"
+                           ng-model="activist1FileChoose" name="file"/>
+                    <input id="activist1FileUpload" type="button" ng-click="upload('activistForm1')">
+                </form>
             </div>
         </div>
         <div style="width: 100%;margin-top: 10px">
@@ -158,21 +167,30 @@
                         </button>
                     </div>
                     <div>
-                        <button type="button" class="btn btn-primary btn-lg" style="width: 150px;margin-top: 10px">
-                            <label style="font-size: 20px">选择文件</label>
-                        </button>
-                    </div>
-                    <div>
-                        <label type="button" style="width: 150px;margin-top: 10px">
-                            <span style="font-size: 10px">{{file1Name}}</span>
+                        <label for="activist2FileChoose" class="btn btn-primary btn-lg"
+                               style="width: 150px;margin-top: 10px">
+                            <span style="font-size: 20px">选择文件</span>
                         </label>
                     </div>
                     <div>
-                        <label type="button" class="btn btn-primary btn-lg" style="width: 150px;margin-top: 10px">
+                        <label type="button" style="width: 150px;margin-top: 10px">
+                            <span style="font-size: 10px">{{file2Name}}</span>
+                        </label>
+                    </div>
+                    <div>
+                        <label for="activist2FileUpload" type="button" class="btn btn-primary btn-lg"
+                               style="width: 150px;margin-top: 10px">
                             <span style="font-size: 20px">上传</span>
                         </label>
                     </div>
                 </div>
+                <form id="activistForm2" style="display: none">
+                    <input name="index" value="2">
+                    <input type="file" id="activist2FileChoose"
+                           onchange="angular.element(this).scope().ChooseFileChange('activist2FileChoose',2)"
+                           ng-model="activist2FileChoose" name="file"/>
+                    <input id="activist2FileUpload" type="button" ng-click="upload('activistForm2')">
+                </form>
             </div>
         </div>
         <div style="width: 100%;margin-top: 10px">
@@ -206,21 +224,30 @@
                         </button>
                     </div>
                     <div>
-                        <button type="button" class="btn btn-primary btn-lg" style="width: 150px;margin-top: 10px">
-                            <label style="font-size: 20px">选择文件</label>
-                        </button>
-                    </div>
-                    <div>
-                        <label type="button" style="width: 150px;margin-top: 10px">
-                            <span style="font-size: 10px">{{file1Name}}</span>
+                        <label for="activist3FileChoose" class="btn btn-primary btn-lg"
+                               style="width: 150px;margin-top: 10px">
+                            <span style="font-size: 20px">选择文件</span>
                         </label>
                     </div>
                     <div>
-                        <label type="button" class="btn btn-primary btn-lg" style="width: 150px;margin-top: 10px">
+                        <label type="button" style="width: 150px;margin-top: 10px">
+                            <span style="font-size: 10px">{{file3Name}}</span>
+                        </label>
+                    </div>
+                    <div>
+                        <label for="activist3FileUpload" type="button" class="btn btn-primary btn-lg"
+                               style="width: 150px;margin-top: 10px">
                             <span style="font-size: 20px">上传</span>
                         </label>
                     </div>
                 </div>
+                <form id="activistForm3" style="display: none">
+                    <input name="index" value="3">
+                    <input type="file" id="activist3FileChoose"
+                           onchange="angular.element(this).scope().ChooseFileChange('activist3FileChoose',3)"
+                           ng-model="activist3FileChoose" name="file"/>
+                    <input id="activist3FileUpload" type="button" ng-click="upload('activistForm3')">
+                </form>
             </div>
         </div>
         <div style="width: 100%;margin-top: 10px">
@@ -254,21 +281,30 @@
                         </button>
                     </div>
                     <div>
-                        <button type="button" class="btn btn-primary btn-lg" style="width: 150px;margin-top: 10px">
-                            <label style="font-size: 20px">选择文件</label>
-                        </button>
-                    </div>
-                    <div>
-                        <label type="button" style="width: 150px;margin-top: 10px">
-                            <span style="font-size: 10px">{{file1Name}}</span>
+                        <label for="activist4FileChoose" class="btn btn-primary btn-lg"
+                               style="width: 150px;margin-top: 10px">
+                            <span style="font-size: 20px">选择文件</span>
                         </label>
                     </div>
                     <div>
-                        <label type="button" class="btn btn-primary btn-lg" style="width: 150px;margin-top: 10px">
+                        <label type="button" style="width: 150px;margin-top: 10px">
+                            <span style="font-size: 10px">{{file4Name}}</span>
+                        </label>
+                    </div>
+                    <div>
+                        <label for="activist4FileUpload" type="button" class="btn btn-primary btn-lg"
+                               style="width: 150px;margin-top: 10px">
                             <span style="font-size: 20px">上传</span>
                         </label>
                     </div>
                 </div>
+                <form id="activistForm4" style="display: none">
+                    <input name="index" value="4">
+                    <input type="file" id="activist4FileChoose"
+                           onchange="angular.element(this).scope().ChooseFileChange('activist4FileChoose',4)"
+                           ng-model="activist4FileChoose" name="file"/>
+                    <input id="activist4FileUpload" type="button" ng-click="upload('activistForm4')">
+                </form>
             </div>
             <div style="width: 100%;margin-top: 10px">
                 <div style="height: 450px">
@@ -301,130 +337,154 @@
                             </button>
                         </div>
                         <div>
-                            <button type="button" class="btn btn-primary btn-lg" style="width: 150px;margin-top: 10px">
-                                <label style="font-size: 20px">选择文件</label>
-                            </button>
-                        </div>
-                        <div>
-                            <label type="button" style="width: 150px;margin-top: 10px">
-                                <span style="font-size: 10px">{{file1Name}}</span>
+                            <label for="activist5FileChoose" class="btn btn-primary btn-lg"
+                                   style="width: 150px;margin-top: 10px">
+                                <span style="font-size: 20px">选择文件</span>
                             </label>
                         </div>
                         <div>
-                            <label type="button" class="btn btn-primary btn-lg" style="width: 150px;margin-top: 10px">
+                            <label type="button" style="width: 150px;margin-top: 10px">
+                                <span style="font-size: 10px">{{file5Name}}</span>
+                            </label>
+                        </div>
+                        <div>
+                            <label for="activist5FileUpload" type="button" class="btn btn-primary btn-lg"
+                                   style="width: 150px;margin-top: 10px">
                                 <span style="font-size: 20px">上传</span>
                             </label>
                         </div>
                     </div>
-                </div>
-                <div style="width: 100%;margin-top: 10px">
-                    <div style="height: 450px">
-                        <span style="font-size: 20px;font-weight: bold"> 联系人谈话：</span><br/>
-                        <textarea style="width: 60%" rows="5" readonly>{{activistU6Instruction}}</textarea>
-                        <div class="col-md-8"
-                             style="overflow-x: auto; overflow-y: auto; height: 300px;border: solid black">
-                            <table class="" style="width: 100%;text-overflow:ellipsis;">
-                                <tr>
-                                    <td style="width: 50%">文件名</td>
-                                    <td style="width: 30%">上传时间</td>
-                                    <td style="width: 20%">删除</td>
-                                </tr>
-                                <tr ng-repeat="x in proposerImageFileList">
-                                    <td style="width: 50%"><a ng-click="ImageShow(this)"
-                                                              style="cursor:pointer">{{x.fileName}}</a>
-                                    </td>
-                                    <td style="width: 30%">{{x.date}}</td>
-                                    <td style="width: 20%">
-                                        <button ng-click="delete(x.proposerId)">删除</button>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="col-md-4">
-                            <div>
-                                <button type="button" class="btn btn-default btn-lg" style="width: 150px;">
-                        <span class="glyphicon glyphicon-ok" aria-hidden="true"
-                              style="font-size: 20px;color: green"></span>
-                                    <span style="font-size: 20px">审核通过</span>
-                                </button>
-                            </div>
-                            <div>
-                                <button type="button" class="btn btn-primary btn-lg"
-                                        style="width: 150px;margin-top: 10px">
-                                    <label style="font-size: 20px">选择文件</label>
-                                </button>
-                            </div>
-                            <div>
-                                <label type="button" style="width: 150px;margin-top: 10px">
-                                    <span style="font-size: 10px">{{file1Name}}</span>
-                                </label>
-                            </div>
-                            <div>
-                                <label type="button" class="btn btn-primary btn-lg"
-                                       style="width: 150px;margin-top: 10px">
-                                    <span style="font-size: 20px">上传</span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div style="width: 100%;margin-top: 10px">
-                    <div style="height: 450px">
-                        <span style="font-size: 20px;font-weight: bold">其他资料：</span><br/>
-                        <textarea style="width: 60%" rows="5" readonly>{{activistU7Instruction}}</textarea>
-                        <div class="col-md-8"
-                             style="overflow-x: auto; overflow-y: auto; height: 300px;border: solid black">
-                            <table class="" style="width: 100%;text-overflow:ellipsis;">
-                                <tr>
-                                    <td style="width: 50%">文件名</td>
-                                    <td style="width: 30%">上传时间</td>
-                                    <td style="width: 20%">删除</td>
-                                </tr>
-                                <tr ng-repeat="x in proposerImageFileList">
-                                    <td style="width: 50%"><a ng-click="ImageShow(this)"
-                                                              style="cursor:pointer">{{x.fileName}}</a>
-                                    </td>
-                                    <td style="width: 30%">{{x.date}}</td>
-                                    <td style="width: 20%">
-                                        <button ng-click="delete(x.proposerId)">删除</button>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="col-md-4">
-                            <div>
-                                <button type="button" class="btn btn-default btn-lg" style="width: 150px;">
-                        <span class="glyphicon glyphicon-ok" aria-hidden="true"
-                              style="font-size: 20px;color: green"></span>
-                                    <span style="font-size: 20px">审核通过</span>
-                                </button>
-                            </div>
-                            <div>
-                                <button type="button" class="btn btn-primary btn-lg"
-                                        style="width: 150px;margin-top: 10px">
-                                    <label style="font-size: 20px">选择文件</label>
-                                </button>
-                            </div>
-                            <div>
-                                <label type="button" style="width: 150px;margin-top: 10px">
-                                    <span style="font-size: 10px">{{file1Name}}</span>
-                                </label>
-                            </div>
-                            <div>
-                                <label type="button" class="btn btn-primary btn-lg"
-                                       style="width: 150px;margin-top: 10px">
-                                    <span style="font-size: 20px">上传</span>
-                                </label>
-                            </div>
-                        </div>
-                    </div>
+                    <form id="activistForm5" style="display: none">
+                        <input name="index" value="5">
+                        <input type="file" id="activist5FileChoose"
+                               onchange="angular.element(this).scope().ChooseFileChange('activist5FileChoose',5)"
+                               ng-model="activist5FileChoose" name="file"/>
+                        <input id="activist5FileUpload" type="button" ng-click="upload('activistForm5')">
+                    </form>
                 </div>
             </div>
-            <div class="col-md-4"></div>
+            <div style="width: 100%;margin-top: 10px">
+                <div style="height: 450px">
+                    <span style="font-size: 20px;font-weight: bold"> 联系人谈话：</span><br/>
+                    <textarea style="width: 60%" rows="5" readonly>{{activistU6Instruction}}</textarea>
+                    <div class="col-md-8"
+                         style="overflow-x: auto; overflow-y: auto; height: 300px;border: solid black">
+                        <table class="" style="width: 100%;text-overflow:ellipsis;">
+                            <tr>
+                                <td style="width: 50%">文件名</td>
+                                <td style="width: 30%">上传时间</td>
+                                <td style="width: 20%">删除</td>
+                            </tr>
+                            <tr ng-repeat="x in proposerImageFileList">
+                                <td style="width: 50%"><a ng-click="ImageShow(this)"
+                                                          style="cursor:pointer">{{x.fileName}}</a>
+                                </td>
+                                <td style="width: 30%">{{x.date}}</td>
+                                <td style="width: 20%">
+                                    <button ng-click="delete(x.proposerId)">删除</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-4">
+                        <div>
+                            <button type="button" class="btn btn-default btn-lg" style="width: 150px;">
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"
+                              style="font-size: 20px;color: green"></span>
+                                <span style="font-size: 20px">审核通过</span>
+                            </button>
+                        </div>
+                        <div>
+                            <label for="activist6FileChoose" class="btn btn-primary btn-lg"
+                                   style="width: 150px;margin-top: 10px">
+                                <span style="font-size: 20px">选择文件</span>
+                            </label>
+                        </div>
+                        <div>
+                            <label type="button" style="width: 150px;margin-top: 10px">
+                                <span style="font-size: 10px">{{file6Name}}</span>
+                            </label>
+                        </div>
+                        <div>
+                            <label for="activist6FileUpload" type="button" class="btn btn-primary btn-lg"
+                                   style="width: 150px;margin-top: 10px">
+                                <span style="font-size: 20px">上传</span>
+                            </label>
+                        </div>
+                    </div>
+                    <form id="activistForm6" style="display: none">
+                        <input name="index" value="6">
+                        <input type="file" id="activist6FileChoose"
+                               onchange="angular.element(this).scope().ChooseFileChange('activist6FileChoose',6)"
+                               ng-model="activist6FileChoose" name="file"/>
+                        <input id="activist6FileUpload" type="button" ng-click="upload('activistForm6')">
+                    </form>
+                </div>
+            </div>
+            <div style="width: 100%;margin-top: 10px">
+                <div style="height: 450px">
+                    <span style="font-size: 20px;font-weight: bold">其他资料：</span><br/>
+                    <textarea style="width: 60%" rows="5" readonly>{{activistU7Instruction}}</textarea>
+                    <div class="col-md-8"
+                         style="overflow-x: auto; overflow-y: auto; height: 300px;border: solid black">
+                        <table class="" style="width: 100%;text-overflow:ellipsis;">
+                            <tr>
+                                <td style="width: 50%">文件名</td>
+                                <td style="width: 30%">上传时间</td>
+                                <td style="width: 20%">删除</td>
+                            </tr>
+                            <tr ng-repeat="x in proposerImageFileList">
+                                <td style="width: 50%"><a ng-click="ImageShow(this)"
+                                                          style="cursor:pointer">{{x.fileName}}</a>
+                                </td>
+                                <td style="width: 30%">{{x.date}}</td>
+                                <td style="width: 20%">
+                                    <button ng-click="delete(x.proposerId)">删除</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-4">
+                        <div>
+                            <button type="button" class="btn btn-default btn-lg" style="width: 150px;">
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"
+                              style="font-size: 20px;color: green"></span>
+                                <span style="font-size: 20px">审核通过</span>
+                            </button>
+                        </div>
+                        <div>
+                            <label for="activist7FileChoose" class="btn btn-primary btn-lg"
+                                   style="width: 150px;margin-top: 10px">
+                                <span style="font-size: 20px">选择文件</span>
+                            </label>
+                        </div>
+                        <div>
+                            <label type="button" style="width: 150px;margin-top: 10px">
+                                <span style="font-size: 10px">{{file7Name}}</span>
+                            </label>
+                        </div>
+                        <div>
+                            <label for="activist7FileUpload" type="button" class="btn btn-primary btn-lg"
+                                   style="width: 150px;margin-top: 10px">
+                                <span style="font-size: 20px">上传</span>
+                            </label>
+                        </div>
+                    </div>
+                    <form id="activistForm7" style="display: none">
+                        <input name="index" value="7">
+                        <input type="file" id="activist7FileChoose"
+                               onchange="angular.element(this).scope().ChooseFileChange('activist7FileChoose',7)"
+                               ng-model="activist7FileChoose" name="file"/>
+                        <input id="activist7FileUpload" type="button" ng-click="upload('activistForm7')">
+                    </form>
+                </div>
+            </div>
         </div>
-
+        <div class="col-md-4"></div>
     </div>
-    <div class="col-md-2"></div>
+
+</div>
+<div class="col-md-2"></div>
 </div>
 <div class="col-md-2"></div>
 </div>

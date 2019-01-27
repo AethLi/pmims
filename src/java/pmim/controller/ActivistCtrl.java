@@ -6,9 +6,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import pmim.model.requestAction;
-import pmim.model.user;
+import pmim.model.SysUser;
+import pmim.model.RequestAction;
 import pmim.service.ActivistService;
+import pmim.service.UserPathService;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -17,15 +18,28 @@ import javax.servlet.http.HttpServletRequest;
 public class ActivistCtrl {
 
     @Autowired
-    ActivistService as;
+    private ActivistService as;
+    @Autowired
+    private UserPathService ups;
+
 
     @RequestMapping(value = "/user.do", produces = "text/html;charset=UTF-8")
     public @ResponseBody
     Object activistUser(HttpServletRequest request, @RequestBody String jsonstr) {
-        requestAction ra = (requestAction) JSONObject.toBean(JSONObject.fromObject(jsonstr), requestAction.class);
+        RequestAction ra = (RequestAction) JSONObject.toBean(JSONObject.fromObject(jsonstr), RequestAction.class);
         if ("init".equals(ra.getAction())) {
-            return as.initUserPage((user) request.getSession().getAttribute("currentUser"));
+            return as.initUserPage((SysUser) request.getSession().getAttribute("currentUser"));
         }
         return null;
     }
+
+    @RequestMapping(value = "/fileUpload.do", produces = "text/html;charset=UTF-8")
+    public @ResponseBody
+    Object fileUpload(HttpServletRequest request) {
+        String index = (String) request.getParameter("index");
+        SysUser currentSysUser = (SysUser) request.getSession().getAttribute("currentSysUser");
+        String userPath = ups.checkUserPath(currentSysUser.getUserId());
+        return as.uploadFile(request, currentSysUser.getUserId(), userPath, index);
+    }
+
 }

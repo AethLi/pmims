@@ -2,7 +2,7 @@ package pmim.model;
 
 import java.sql.Timestamp;
 
-public class proposer {
+public class Proposer {
     String proposerId;
     String userId;
     String fileName;
@@ -62,14 +62,14 @@ public class proposer {
         this.date = date;
     }
 
-    public proposer(String proposerId) {
+    public Proposer(String proposerId) {
         this.proposerId = proposerId;
     }
 
-    public proposer() {
+    public Proposer() {
     }
 
-    public proposer(String proposerId, String userId, String fileName, long date, int status, int type) {
+    public Proposer(String proposerId, String userId, String fileName, long date, int status, int type) {
         this.proposerId = proposerId;
         this.userId = userId;
         this.fileName = fileName;

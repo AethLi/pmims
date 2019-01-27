@@ -1,6 +1,6 @@
 package pmim.model;
 
-public class user {
+public class SysUser {
     String userId;
     int userPermission;
     String userPwd;
@@ -47,10 +47,10 @@ public class user {
         this.userPath = userPath;
     }
 
-    public user(String userId) {
+    public SysUser(String userId) {
         this.userId = userId;
     }
 
-    public user() {
+    public SysUser() {
     }
 }

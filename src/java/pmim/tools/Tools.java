@@ -5,7 +5,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 
-public class tools {
+public class Tools {
     public static boolean stringLengthCheck(String desstr, int deslength) {
         return desstr.length() < deslength ? false : true;
     }

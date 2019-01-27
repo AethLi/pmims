@@ -9,14 +9,14 @@
 //import org.springframework.web.bind.annotation.ResponseBody;
 //
 //import net.sf.json.JSONObject;
-//import pmim.mapper.proposerMapper;
-//import pmim.mapper.studentMapper;
-//import pmim.mapper.userMapper;
-//import pmim.model.proposer;
-//import pmim.model.requestAction;
-//import pmim.model.student;
-//import pmim.model.user;
-//import pmim.tools.tools;
+//import pmim.mapper.ProposerMapper;
+//import pmim.mapper.StudentMapper;
+//import pmim.mapper.UserMapper;
+//import pmim.model.Proposer;
+//import pmim.model.RequestAction;
+//import pmim.model.Student;
+//import pmim.model.SysUser;
+//import pmim.Tools.Tools;
 //
 //import java.sql.Timestamp;
 //import java.util.List;
@@ -26,11 +26,11 @@
 //public class dataBuilder {
 //
 //    @Autowired
-//    proposerMapper pm;
+//    ProposerMapper pm;
 //    @Autowired
-//    userMapper um;
+//    UserMapper um;
 //    @Autowired
-//    studentMapper sm;
+//    StudentMapper sm;
 //
 //    public static String[] firstName = {"伟", "芳", "娜", "敏", "静", "秀英", "丽", "强", "磊", "洋", "艳", "勇", "军", "杰", "娟",
 //            "涛", "超", "明", "霞", "秀兰", "刚", "平", "燕", "辉", "玲", "桂英", "丹", "萍", "鹏", "华", "红", "玉兰", "飞", "桂兰", "英", "梅",
@@ -70,11 +70,11 @@
 //
 //    @RequestMapping(value = "AdataBuilder.do", produces = "text/html;charset=UTF-8")
 //    public @ResponseBody Object dataBuilderController(@RequestBody String jsonstr) {
-//        requestAction ra=(requestAction)JSONObject.toBean(JSONObject.fromObject(jsonstr),requestAction.class);
-//        if ("proposer".equals(ra.getAction())) {
+//        RequestAction ra=(RequestAction)JSONObject.toBean(JSONObject.fromObject(jsonstr),RequestAction.class);
+//        if ("Proposer".equals(ra.getAction())) {
 //            for (int i = 0; i < 20; i++) {
 //                Random ran=new Random();
-//                student s=new student();
+//                Student s=new Student();
 //                s.setName(lastName[ran.nextInt(lastName.length+1)]+firstName[ran.nextInt(firstName.length+1)]);
 //                s.setBirthday(new Timestamp(631123200000L+ (new RandomDataGenerator()).nextLong(0L,315532800000L)));
 //                int age=118-s.getBirthday().getYear();
@@ -84,14 +84,14 @@
 //                s.setIDcardNum(RandomStringUtils.randomNumeric(18));
 //                s.setUserId(RandomStringUtils.randomNumeric(20));
 //                s.setStatus(ran.nextInt(1));
-//                proposer p=new proposer();
+//                Proposer p=new Proposer();
 //                p.setUserId(s.getUserId());
 //                p.setFileName("/"+s.getName()+RandomStringUtils.randomNumeric(25));
 ////                p.setDate(new Timestamp(1199116800000L+ (new RandomDataGenerator()).nextLong(0L,315532800000L)));
 //                p.setStatus(ran.nextInt(3));
 //                p.setIndex(1);
-//                user u=new user();
-//                u.setUserPwd(tools.toMD5(RandomStringUtils.randomAscii(8)));
+//                SysUser u=new SysUser();
+//                u.setUserPwd(Tools.toMD5(RandomStringUtils.randomAscii(8)));
 //                u.setUserId(s.getUserId());
 //                u.setUserPermission(0);
 //                u.setStatus(ran.nextInt(3));
@@ -101,11 +101,11 @@
 //                um.insertUser_register(u);
 //            }
 //        } else if ("proposerC".equals(ra.getAction())) {
-//            user u=new user();
+//            SysUser u=new SysUser();
 //            u.setUserPermission(0);
-//            List<user> allProposer=um.selectUserByPermission(u);
-//            for (user us :allProposer){
-//                pm.deleteProposerById(new proposer());
+//            List<SysUser> allProposer=um.selectUserByPermission(u);
+//            for (SysUser us :allProposer){
+//                pm.deleteProposerById(new Proposer());
 //                sm.deleteStudentById(us);
 //                um.deleteUserById(us);
 //            }

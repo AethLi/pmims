@@ -1,6 +1,6 @@
 package pmim.model;
 
-public class uploadInfo {
+public class UploadInfo {
     String index;
     String position;
     String userId;

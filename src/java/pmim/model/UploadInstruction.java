@@ -1,6 +1,6 @@
 package pmim.model;
 
-public class uploadInstruction {
+public class UploadInstruction {
     String instruction;
     String status;
     int position;
@@ -38,10 +38,10 @@ public class uploadInstruction {
         this.index = index;
     }
 
-    public uploadInstruction(int position) {
+    public UploadInstruction(int position) {
         this.position = position;
     }
 
-    public uploadInstruction() {
+    public UploadInstruction() {
     }
 }

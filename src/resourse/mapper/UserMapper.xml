@@ -2,20 +2,20 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="pmim.mapper.userMapper">
-    <insert id="insertUser_register" parameterType="pmim.model.user">
+<mapper namespace="pmim.mapper.UserMapper">
+    <insert id="insertUser_register" parameterType="pmim.model.SysUser">
         insert into user (`userId`,`userPwd`,`userPermission`,`status`,`userPath`) values (#{userId},#{userPwd},#{userPermission},#{status},#{userPath});
     </insert>
-    <select id="selectUser_withNoPwd" resultType="pmim.model.user" parameterType="pmim.model.user">
+    <select id="selectUser_withNoPwd" resultType="pmim.model.SysUser" parameterType="pmim.model.SysUser">
         select * from user where userId=#{userId};
     </select>
-    <select id="selectUserByPermission" resultType="pmim.model.user" parameterType="pmim.model.user">
+    <select id="selectUserByPermission" resultType="pmim.model.SysUser" parameterType="pmim.model.SysUser">
         select * from user where userPermission=#{userPermission};
     </select>
-    <delete id="deleteUserById" parameterType="pmim.model.user">
+    <delete id="deleteUserById" parameterType="pmim.model.SysUser">
         delete from user where userId=#{userId};
     </delete>
-    <update id="updateUserPath" parameterType="pmim.model.user">
+    <update id="updateUserPath" parameterType="pmim.model.SysUser">
         update user set userPath=#{userPath} where userId=#{userId};
     </update>
 </mapper>

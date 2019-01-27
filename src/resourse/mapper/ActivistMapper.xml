@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pmim.mapper.ActivistMapper">
+    <insert id="insertActivist" parameterType="pmim.model.Activist">
+        insert into activist (`activistId`,`userId`,`fileName`,`status`,`date`,`index`) values (#{activistId},#{userId},#{fileName},#{status},#{date},#{index});
+    </insert>
+    <update id="deleteActivistById" parameterType="pmim.model.Activist">
+        update activist set status=-1 where activistId=#{activistId};
+    </update>
+    <select id="selectActivistById" parameterType="pmim.model.SysUser" resultType="pmim.model.Activist">
+        select * from activist where userId=#{userId};
+    </select>
+    <select id="selectActivistByIdUndeleted" parameterType="pmim.model.SysUser" resultType="pmim.model.Activist">
+        select * from activist where userId=#{userId} and status != -1;
+    </select>
+</mapper>

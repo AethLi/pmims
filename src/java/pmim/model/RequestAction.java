@@ -1,6 +1,6 @@
 package pmim.model;
 
-public class requestAction {
+public class RequestAction {
     String action;
     String resId;
     String desId;

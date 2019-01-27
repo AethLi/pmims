@@ -2,14 +2,14 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="pmim.mapper.studentMapper">
-    <insert id="insertStudent" parameterType="pmim.model.student">
+<mapper namespace="pmim.mapper.StudentMapper">
+    <insert id="insertStudent" parameterType="pmim.model.Student">
         insert into student (`userId`,`classInfo`,`sex`,`birthday`,`homeAddress`,`status`,`IDcardNum`,`name`) values (#{userId},#{classInfo},#{sex},#{birthday},#{homeAddress},#{status},#{IDcardNum},#{name})
     </insert>
-    <delete id="deleteStudentById" parameterType="pmim.model.user">
+    <delete id="deleteStudentById" parameterType="pmim.model.SysUser">
         delete from student where userId=#{userId};
     </delete>
-    <select id="selectStudentById" parameterType="pmim.model.student" resultType="pmim.model.student">
+    <select id="selectStudentById" parameterType="pmim.model.Student" resultType="pmim.model.Student">
         select * from student where userId=#{userId};
     </select>
 </mapper>

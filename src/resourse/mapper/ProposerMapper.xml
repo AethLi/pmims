@@ -2,17 +2,17 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="pmim.mapper.proposerMapper">
-    <insert id="insertProposer" parameterType="pmim.model.proposer">
+<mapper namespace="pmim.mapper.ProposerMapper">
+    <insert id="insertProposer" parameterType="pmim.model.Proposer">
         insert into proposer (`proposerId`,`userId`,`fileName`,`status`,`date`,`index`) values (#{proposerId},#{userId},#{fileName},#{status},#{date},#{index});
     </insert>
-    <update id="deleteProposerById" parameterType="pmim.model.proposer">
+    <update id="deleteProposerById" parameterType="pmim.model.Proposer">
         update proposer set status=-1 where proposerId=#{proposerId};
     </update>
-    <select id="selectProposerById" parameterType="pmim.model.user" resultType="pmim.model.proposer">
+    <select id="selectProposerById" parameterType="pmim.model.SysUser" resultType="pmim.model.Proposer">
         select * from proposer where userId=#{userId};
     </select>
-    <select id="selectProposerByIdUndeleted" parameterType="pmim.model.user" resultType="pmim.model.proposer">
+    <select id="selectProposerByIdUndeleted" parameterType="pmim.model.SysUser" resultType="pmim.model.Proposer">
         select * from proposer where userId=#{userId} and status != -1;
     </select>
 </mapper>

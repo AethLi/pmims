@@ -2,7 +2,7 @@ package pmim.model;
 
 import java.sql.Timestamp;
 
-public class student {
+public class Student {
     String userId;
     String classInfo;
     int sex;
