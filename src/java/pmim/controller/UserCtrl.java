@@ -14,7 +14,7 @@ import pmim.tools.Tools;
 
 import javax.servlet.http.HttpServletRequest;
 
-@SessionAttributes(value = "currentUser", types = SysUser.class)
+@SessionAttributes(value = "currentSysUser", types = SysUser.class)
 @Controller
 @RequestMapping(value = "/user")
 public class UserCtrl {
@@ -41,7 +41,7 @@ public class UserCtrl {
             if (u == null) {
                 return JSONObject.fromObject(new ResponseMessage(1, "账号或用户名错误错误", null)).toString();
             }
-            model.addAttribute("currentUser", u);
+            model.addAttribute("currentSysUser", u);
             if (u.getUserPermission() == 5 || u.getUserPermission() == 6)
                 return JSONObject.fromObject(new ResponseMessage(0, "html/managerPage.html", null)).toString();
             else

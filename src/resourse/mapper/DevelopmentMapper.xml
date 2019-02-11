@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pmim.mapper.DevelopmentMapper">
+    <insert id="insertDevelopment" parameterType="pmim.model.Development">
+        insert into Development (`DevelopmentId`,`userId`,`fileName`,`status`,`date`,`index`) values (#{DevelopmentId},#{userId},#{fileName},#{status},#{date},#{index});
+    </insert>
+    <update id="deleteDevelopmentById" parameterType="pmim.model.Development">
+        update Development set status=-1 where DevelopmentId=#{DevelopmentId};
+    </update>
+    <select id="selectDevelopmentById" parameterType="pmim.model.SysUser" resultType="pmim.model.Development">
+        select * from Development where userId=#{userId};
+    </select>
+    <select id="selectDevelopmentByIdUndeleted" parameterType="pmim.model.SysUser" resultType="pmim.model.Development">
+        select * from Development where userId=#{userId} and status != -1;
+    </select>
+</mapper>

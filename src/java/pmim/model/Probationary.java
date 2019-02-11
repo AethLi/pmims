@@ -2,20 +2,20 @@ package pmim.model;
 
 import java.sql.Timestamp;
 
-public class Development {
-    String developmentId;
+public class Probationary {
+    String ProbationaryId;
     String userId;
     String fileName;
     Timestamp date;
     int status;
     int index;
 
-    public String getDevelopmentId() {
-        return developmentId;
+    public String getProbationaryId() {
+        return ProbationaryId;
     }
 
-    public void setDevelopmentId(String developmentId) {
-        this.developmentId = developmentId;
+    public void setProbationaryId(String probationaryId) {
+        ProbationaryId = probationaryId;
     }
 
     public String getUserId() {
@@ -42,12 +42,12 @@ public class Development {
         this.date = date;
     }
 
-    public void setDate(long date) {
-        this.date = new Timestamp(date);
-    }
-
     public int getStatus() {
         return status;
+    }
+
+    public void setDate(long date) {
+        this.date = new Timestamp(date);
     }
 
     public void setStatus(int status) {
@@ -62,11 +62,11 @@ public class Development {
         this.index = index;
     }
 
-    public Development() {
+    public Probationary() {
     }
 
-    public Development(String developmentId, String userId, String fileName, long date, int status, int index) {
-        this.developmentId = developmentId;
+    public Probationary(String probationaryId, String userId, String fileName, long date, int status, int index) {
+        ProbationaryId = probationaryId;
         this.userId = userId;
         this.fileName = fileName;
         this.date = new Timestamp(date);
