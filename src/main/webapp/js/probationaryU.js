@@ -10,4 +10,6 @@ angular.module('mainPageApp', [])
         $scope.file1Name="未选择文件";
         $scope.file2Name="未选择文件";
         $scope.file3Name="未选择文件";
+
+        $.ajax()
     });
