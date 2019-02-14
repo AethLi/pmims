@@ -29,7 +29,6 @@ angular.module('managerPageApp', ['ui.router', 'oc.lazyLoad'])
         $stateProvider
             .state("userOverview", {
                 url: "/userOverview",
-                controller: "userOverviewCtrl",
                 templateUrl: './userOverview.html',
                 resolve: {
                     loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
@@ -42,7 +41,6 @@ angular.module('managerPageApp', ['ui.router', 'oc.lazyLoad'])
             })
             .state("proposerM", {
                 url: "/proposerM",
-                controller: "proposerMCtrl",
                 templateUrl: './proposerM.html',
                 resolve: {
                     loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
@@ -55,7 +53,6 @@ angular.module('managerPageApp', ['ui.router', 'oc.lazyLoad'])
             })
             .state("activistM", {
                 url: "/activistM",
-                controller: "activistMCtrl",
                 templateUrl: "./activistM.html",
                 resolve: {
                     loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
@@ -68,7 +65,6 @@ angular.module('managerPageApp', ['ui.router', 'oc.lazyLoad'])
             })
             .state("developmentM", {
                 url: "/developmentM",
-                controller: "developmentMCtrl",
                 templateUrl: "./developmentM.html",
                 resolve: {
                     loadMyCtrl: ["$ocLazyLoad", function ($ocLazyLoad) {
@@ -81,7 +77,6 @@ angular.module('managerPageApp', ['ui.router', 'oc.lazyLoad'])
             })
             .state("probationaryM", {
                 url: "/probationaryM",
-                controller: "probationaryMCtrl",
                 templateUrl: "./probationaryM.html",
                 resolve: {
                     loadMyCtrl: ["$ocLazyLoad", function ($ocLazyLoad) {
@@ -94,7 +89,6 @@ angular.module('managerPageApp', ['ui.router', 'oc.lazyLoad'])
             })
             .state("partyMemberM", {
                 url: "/partyMemberM",
-                controller: "partyMemberMCtrl",
                 templateUrl: "./partyMemberM.html",
                 resolve: {
                     loadMyCtrl: ["$ocLazyLoad", function ($ocLazyLoad) {
