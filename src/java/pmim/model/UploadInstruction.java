@@ -3,8 +3,8 @@ package pmim.model;
 public class UploadInstruction {
     String instruction;
     String status;
-    int position;
-    int index;
+    Integer position;
+    Integer index;
 
     public String getInstruction() {
         return instruction;
@@ -22,23 +22,23 @@ public class UploadInstruction {
         this.status = status;
     }
 
-    public int getPosition() {
+    public Integer getPosition() {
         return position;
     }
 
-    public void setPosition(int position) {
+    public void setPosition(Integer position) {
         this.position = position;
     }
 
-    public int getIndex() {
+    public Integer getIndex() {
         return index;
     }
 
-    public void setIndex(int index) {
+    public void setIndex(Integer index) {
         this.index = index;
     }
 
-    public UploadInstruction(int position) {
+    public UploadInstruction(Integer position) {
         this.position = position;
     }
 
