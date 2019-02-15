@@ -3865,35 +3865,35 @@
         }
         /** @hidden */
         Transition.prototype.onBefore = function (criteria, callback, options) {
-            return;
+
         };
         /** @inheritdoc */
         Transition.prototype.onStart = function (criteria, callback, options) {
-            return;
+
         };
         /** @inheritdoc */
         Transition.prototype.onExit = function (criteria, callback, options) {
-            return;
+
         };
         /** @inheritdoc */
         Transition.prototype.onRetain = function (criteria, callback, options) {
-            return;
+
         };
         /** @inheritdoc */
         Transition.prototype.onEnter = function (criteria, callback, options) {
-            return;
+
         };
         /** @inheritdoc */
         Transition.prototype.onFinish = function (criteria, callback, options) {
-            return;
+
         };
         /** @inheritdoc */
         Transition.prototype.onSuccess = function (criteria, callback, options) {
-            return;
+
         };
         /** @inheritdoc */
         Transition.prototype.onError = function (criteria, callback, options) {
-            return;
+
         };
         /** @hidden
          * Creates the transition-level hook registration functions
@@ -7166,39 +7166,39 @@
          * @returns a function which deregisters the hook.
          */
         TransitionService.prototype.onCreate = function (criteria, callback, options) {
-            return;
+
         };
         /** @inheritdoc */
         TransitionService.prototype.onBefore = function (criteria, callback, options) {
-            return;
+
         };
         /** @inheritdoc */
         TransitionService.prototype.onStart = function (criteria, callback, options) {
-            return;
+
         };
         /** @inheritdoc */
         TransitionService.prototype.onExit = function (criteria, callback, options) {
-            return;
+
         };
         /** @inheritdoc */
         TransitionService.prototype.onRetain = function (criteria, callback, options) {
-            return;
+
         };
         /** @inheritdoc */
         TransitionService.prototype.onEnter = function (criteria, callback, options) {
-            return;
+
         };
         /** @inheritdoc */
         TransitionService.prototype.onFinish = function (criteria, callback, options) {
-            return;
+
         };
         /** @inheritdoc */
         TransitionService.prototype.onSuccess = function (criteria, callback, options) {
-            return;
+
         };
         /** @inheritdoc */
         TransitionService.prototype.onError = function (criteria, callback, options) {
-            return;
+
         };
         /**
          * dispose

@@ -26,8 +26,8 @@ angular.module('mainPageApp', [])
 
         $scope.refreshTable = function (currentProposer) {
             console.log("refresh proposer tables");
-            $scope.proposerImageFileList = new Array();
-            $scope.proposerWordFileList = new Array();
+            $scope.proposerImageFileList = [];
+            $scope.proposerWordFileList = [];
             for (var proposer of currentProposer) {
                 if (proposer.index === 0) {
                     $scope.proposerImageFileList.push(proposer)
@@ -103,7 +103,7 @@ angular.module('mainPageApp', [])
                     $scope.refreshTable(result.model);
                 }
             })
-        }
+        };
 
         $scope.timestampToTime = function (timestamp) {
             // var date = new Date(timestamp * 1000);//时间戳为10位需*1000，时间戳为13位的话不需乘1000

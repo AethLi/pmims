@@ -6,7 +6,7 @@ import pmim.model.SysUser;
 import java.util.List;
 
 public interface ProposerMapper {
-    public void insertProposer(Proposer p);
+    void insertProposer(Proposer p);
 
     void deleteProposerById(Proposer p);
 

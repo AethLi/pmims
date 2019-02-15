@@ -10,9 +10,14 @@ public class ManagerService {
     @Autowired
     UploadInstructionMapper uim;
 
-    public Object initProposer() {
+    public Object initManagerPages(Integer position) {
         UploadInstruction uploadInstruction = new UploadInstruction();
-        uploadInstruction.setPosition(0);
+        uploadInstruction.setPosition(position);
         return uim.selectUploadInstructionByPosition(uploadInstruction);
+    }
+
+    public String saveUploadInstruction(UploadInstruction ui) {
+        uim.insertUploadInstruction(ui);
+        return "修改成功";
     }
 }

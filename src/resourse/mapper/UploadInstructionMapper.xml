@@ -3,7 +3,11 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="pmim.mapper.UploadInstructionMapper">
-    <select id="selectUploadInstructionByPosition" parameterType="pmim.model.UploadInstruction" resultType="pmim.model.UploadInstruction">
+    <select id="selectUploadInstructionByPosition" parameterType="pmim.model.UploadInstruction"
+            resultType="pmim.model.UploadInstruction">
         select * from uploadinstruction where position = #{position};
     </select>
+    <update id="insertUploadInstruction" parameterType="pmim.model.UploadInstruction">
+        update uploadinstruction set instruction=#{instruction} =  where position=#{position} and index=#{index};
+    </update>
 </mapper>

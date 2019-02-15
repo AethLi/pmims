@@ -19,13 +19,13 @@ function loginCheck(form) {
     var cap = form.cap.value;
     if (id == "") {
         alert("请输入管理员账户!");
-        return;
+
     } else if (pwd == "") {
         alert("请输入密码!");
-        return;
+
     } else if (cap == "") {
         alert("验证码");
-        return;
+
     } else {
         pwd = hex_md5(hex_md5(pwd) + cap);
         $.ajax({

@@ -28,8 +28,8 @@ app.controller('loginCtrl', function($scope) {
     };
     $scope.changeCodeImage=function () {
         document.getElementById("img").src="ACAPTCHA.do?"+Math.random();
-    }
+    };
     $scope.jump2Register=function () {
         window.location.href = "./html/register.html";
     }
-})
+});

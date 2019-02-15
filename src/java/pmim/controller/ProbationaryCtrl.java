@@ -33,7 +33,7 @@ public class ProbationaryCtrl {
     @RequestMapping(value = "/fileUpload.do", produces = "text/html;charset=UTF-8")
     public @ResponseBody
     Object fileUpload(HttpServletRequest request) {
-        String index = (String) request.getParameter("index");
+        String index = request.getParameter("index");
         SysUser currentSysUser = (SysUser) request.getSession().getAttribute("currentSysUser");
         String userPath = ups.checkUserPath(currentSysUser.getUserId());
         return ps.uploadFile(request, currentSysUser.getUserId(), userPath, index);

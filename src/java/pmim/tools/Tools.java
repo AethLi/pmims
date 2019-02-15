@@ -1,22 +1,19 @@
 package pmim.tools;
 
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 
 public class Tools {
     public static boolean stringLengthCheck(String desstr, int deslength) {
-        return desstr.length() < deslength ? false : true;
+        return desstr.length() >= deslength;
     }
 
     public static String charset_utf8(String res) {
         String des = null;
-        try {
-            des = new String(res.getBytes("ISO-8859-1"), "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+        des = new String(res.getBytes(StandardCharsets.ISO_8859_1), StandardCharsets.UTF_8);
         return des;
     }
 

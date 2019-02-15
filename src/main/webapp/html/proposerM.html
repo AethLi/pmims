@@ -5,7 +5,7 @@
             <span style="font-size: 20px;font-weight: bold">申请书（图片）上传格式说明：</span><br/>
             <textarea style="width: 60%" rows="5">{{upload0Instruction}}</textarea><br/>
             <label class="btn btn-default btn-lg"
-                   style="background: #3e58c7;width: 140px;color: white">
+                   style="background: #3e58c7;width: 140px;color: white" ng-click="saveUploadInstruction(0)">
                 <span style="font-size: 20px">保存</span>
             </label>
         </div>
@@ -13,7 +13,7 @@
             <span style="font-size: 20px;font-weight: bold">申请书（Word）上传格式说明：</span><br/>
             <textarea style="width: 60%" rows="5">{{upload1Instruction}}</textarea><br/>
             <label class="btn btn-default btn-lg"
-                   style="background: #3e58c7;width: 140px;color: white">
+                   style="background: #3e58c7;width: 140px;color: white" ng-click="saveUploadInstruction(1)">
                 <span style="font-size: 20px">保存</span>
             </label>
         </div>
