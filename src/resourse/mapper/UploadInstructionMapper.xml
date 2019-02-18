@@ -8,6 +8,6 @@
         select * from uploadinstruction where position = #{position};
     </select>
     <update id="insertUploadInstruction" parameterType="pmim.model.UploadInstruction">
-        update uploadinstruction set instruction=#{instruction} =  where position=#{position} and index=#{index};
+        UPDATE uploadinstruction SET instruction=#{instruction} WHERE position= #{position} AND `index`=#{index};
     </update>
 </mapper>
