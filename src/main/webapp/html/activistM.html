@@ -79,25 +79,137 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="x in allProposers">
+                <tr ng-repeat="x in allActivists">
                     <td>{{x.name}}</td>
                     <td>{{x.userId}}</td>
                     <td>{{x.count}}</td>
                     <td>{{x.countN}}</td>
-                    <td><input type="button" value="查看详情"></td>
+                    <td><input type="button" value="查看详情" ng-click="tableAction(x.userId)"></td>
                     <td><input type="button" value="审核" style="display: none"></td>
                 </tr>
                 </tbody>
             </table>
             <div style="margin-top: 20px">
                 <span>
-                    {{proposerCount}}
+                    {{activistCount}}
                 </span>
                 <span style="float: right">
                     <a>上一页</a>
                     <a>下一页</a>
                 </span>
             </div>
+        </div>
+    </div>
+    <div class="modal fade sewDetail" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div style="background-color: rgb(255,255,255);;width: 800px;height: 600px;position: fixed;left: 50%;top: 50%; margin: -300px 0 0 -400px;overflow: auto;padding: 10px">
+            <div>
+                <span>姓名：{{model.name}}</span>
+                <span>学号：{{model.id}}</span>
+                <span>班级：{{model.classAndGrade}}</span>
+            </div>
+            <br>
+            <div>
+            <span style="font-weight: bold">
+                培养联系人:
+            </span>
+                <span style="font-weight: bold">
+                姓名：
+            </span>
+                <input ng-model="linkMan0" style="width: 100px">
+                <span style="font-weight: bold">
+                电话：
+            </span>
+                <input ng-model="linkNumber0" style="width: 100px">
+                <span style="font-weight: bold">
+                姓名：
+            </span>
+                <input ng-model="linkMan1" style="width: 100px">
+                <span style="font-weight: bold">
+                电话：
+            </span>
+                <input ng-model="linkNumber1" style="width: 100px">
+                <input type="button" value="保存">
+            </div>
+            <div style="margin-top: 50px" class="well">入党积极分子考察表图片已上传文件列表</div>
+            <table class="table" style="background: #b3b3b3">
+                <thead>
+                <tr>
+                    <td style="width: 50%">文件名</td>
+                    <td style="width: 30%">上传时间</td>
+                    <td style="width: 20%">删除</td>
+                </tr>
+                </thead>
+            </table>
+            <div style="margin-top: 50px" class="well">思想汇报一图片上传说明已上传文件列表</div>
+            <table class="table" style="background: #b3b3b3">
+                <thead>
+                <tr>
+                    <td style="width: 50%">文件名</td>
+                    <td style="width: 30%">上传时间</td>
+                    <td style="width: 20%">删除</td>
+                </tr>
+                </thead>
+            </table>
+            <div style="margin-top: 50px" class="well">思想汇报一文档上传说明已上传文件列表</div>
+            <table class="table" style="background: #b3b3b3">
+                <thead>
+                <tr>
+                    <td style="width: 50%">文件名</td>
+                    <td style="width: 30%">上传时间</td>
+                    <td style="width: 20%">删除</td>
+                </tr>
+                </thead>
+            </table>
+            <div style="margin-top: 50px" class="well">思想汇报二图片上传说明已上传文件列表</div>
+            <table class="table" style="background: #b3b3b3">
+                <thead>
+                <tr>
+                    <td style="width: 50%">文件名</td>
+                    <td style="width: 30%">上传时间</td>
+                    <td style="width: 20%">删除</td>
+                </tr>
+                </thead>
+            </table>
+            <div style="margin-top: 50px" class="well">思想汇报二文档上传说明已上传文件列表</div>
+            <table class="table" style="background: #b3b3b3">
+                <thead>
+                <tr>
+                    <td style="width: 50%">文件名</td>
+                    <td style="width: 30%">上传时间</td>
+                    <td style="width: 20%">删除</td>
+                </tr>
+                </thead>
+            </table>
+            <div style="margin-top: 50px" class="well">参加入党积极分子培训班结业证图片已上传文件列表</div>
+            <table class="table" style="background: #b3b3b3">
+                <thead>
+                <tr>
+                    <td style="width: 50%">文件名</td>
+                    <td style="width: 30%">上传时间</td>
+                    <td style="width: 20%">删除</td>
+                </tr>
+                </thead>
+            </table>
+            <div style="margin-top: 50px" class="well">联系人谈话已上传文件列表</div>
+            <table class="table" style="background: #b3b3b3">
+                <thead>
+                <tr>
+                    <td style="width: 50%">文件名</td>
+                    <td style="width: 30%">上传时间</td>
+                    <td style="width: 20%">删除</td>
+                </tr>
+                </thead>
+            </table>
+            <div style="margin-top: 50px" class="well">其他资料已上传文件列表</div>
+            <table class="table" style="background: #b3b3b3">
+                <thead>
+                <tr>
+                    <td style="width: 50%">文件名</td>
+                    <td style="width: 30%">上传时间</td>
+                    <td style="width: 20%">删除</td>
+                </tr>
+                </thead>
+            </table>
         </div>
     </div>
 </div>

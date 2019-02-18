@@ -28,8 +28,10 @@ public class ManagerCtrl {
     public @ResponseBody
     Object initManagerPages(HttpServletRequest request, @RequestBody String jsonstr) {
         RequestAction ra = (RequestAction) JSONObject.toBean(JSONObject.fromObject(jsonstr), RequestAction.class);
-        if (pcs.permissionCheck(5) || pcs.permissionCheck(6)) {
-            return JSONObject.fromObject(new ResponseMessage(0, "", ms.initManagerPages(Integer.valueOf(ra.getCode())))).toString();
+        if ("uploadInstruction".equals(ra.getAction())) {
+            if (pcs.permissionCheck(5) || pcs.permissionCheck(6)) {
+                return JSONObject.fromObject(new ResponseMessage(0, "", ms.initManagerPages(Integer.valueOf(ra.getCode())))).toString();
+            }
         }
         return JSONObject.fromObject(new ResponseMessage(0, "权限存在问题", null)).toString();
     }
@@ -39,7 +41,7 @@ public class ManagerCtrl {
     Object saveUploadInstruction(HttpServletRequest request, @RequestBody String jsonstr) {
         UploadInstruction ui = (UploadInstruction) JSONObject.toBean(JSONObject.fromObject(jsonstr), UploadInstruction.class);
         if (pcs.permissionCheck(5) || pcs.permissionCheck(6)) {
-            return JSONObject.fromObject(new ResponseMessage(0, ms.saveUploadInstruction(ui),null )).toString();
+            return JSONObject.fromObject(new ResponseMessage(0, ms.saveUploadInstruction(ui), null)).toString();
         }
         return JSONObject.fromObject(new ResponseMessage(0, "权限存在问题", null)).toString();
     }

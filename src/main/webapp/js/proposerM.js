@@ -67,8 +67,7 @@ angular.module('managerPageApp', [])
                 var uploadInstruction = "";
                 if (index === 0) {
                     uploadInstruction = $scope.upload0Instruction;
-                }
-                else if (index === 1) {
+                } else if (index === 1) {
                     uploadInstruction = $scope.upload1Instruction;
                 }
                 $.ajax({
@@ -83,26 +82,7 @@ angular.module('managerPageApp', [])
                         "instruction": uploadInstruction
                     }),
                     success: function (result) {
-                        $.ajax({
-                            type: 'post',
-                            contentType: 'application/json;charset=utf-8',
-                            dataType: "json",
-                            async: true,
-                            url: '/managerCtrl/init.do',
-                            data: JSON.stringify({
-                                "code": "0"
-                            }),
-                            success: function (result) {
-                                for (uploadInstruction of result.model) {
-                                    if (uploadInstruction.index === 0) {
-                                        $scope.upload0Instruction = uploadInstruction.instruction;
-                                    } else if (uploadInstruction.index === 1) {
-                                        $scope.upload1Instruction = uploadInstruction.instruction;
-                                    }
-                                    $scope.$digest();
-                                }
-                            }
-                        })
+
                     }
                 });
             };
@@ -113,7 +93,8 @@ angular.module('managerPageApp', [])
                 async: true,
                 url: '/managerCtrl/init.do',
                 data: JSON.stringify({
-                    "code": "0"
+                    "code": "0",
+                    "action":"uploadInstruction"
                 }),
                 success: function (result) {
                     for (uploadInstruction of result.model) {
@@ -125,6 +106,9 @@ angular.module('managerPageApp', [])
                         $scope.$digest();
                     }
                 }
-            })
+            });
+            $scope.tableAction = function (sew) {
+                $('#myModal').modal();
+            }
         }
     );
