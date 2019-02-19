@@ -10,7 +10,9 @@ public interface ProposerMapper {
 
     void deleteProposerById(Proposer p);
 
-    List selectProposerById(SysUser currentSysUser);
+    List<Proposer> selectProposerById(Proposer p);
 
-    List selectProposerByIdUndeleted(SysUser currentSysUser);
+    List<Proposer> selectProposerByIdUndeleted(SysUser currentSysUser);
+
+    List<Proposer> selectProposerByIdDisapproved(SysUser currentSysUser);
 }

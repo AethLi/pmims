@@ -53,4 +53,10 @@ public class SysUser {
 
     public SysUser() {
     }
+
+    public SysUser(String userId, int userPermission, int status) {
+        this.userId = userId;
+        this.userPermission = userPermission;
+        this.status = status;
+    }
 }

@@ -77,4 +77,9 @@ public class Proposer {
         this.status = status;
         this.index = type;
     }
+
+    public Proposer(String userId, int status) {
+        this.userId = userId;
+        this.status = status;
+    }
 }

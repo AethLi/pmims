@@ -36,6 +36,7 @@
                     <td>{{x.userId}}</td>
                     <td>{{x.count}}</td>
                     <td>{{x.countN}}</td>
+                    <td>{{x.classInfo}}</td>
                     <td><input type="button" value="查看详情" ng-click="tableAction(x.userId)"></td>
                     <td><input type="button" value="审核" style="display: none"></td>
                 </tr>
@@ -45,7 +46,7 @@
                 <span>
                     {{proposerCount}}
                 </span>
-                <span style="float: right">
+                <span style="float: right;cursor: pointer">
                     <a>上一页</a>
                     <a>下一页</a>
                 </span>
@@ -54,10 +55,10 @@
     </div>
     <div class="modal fade sewDetail" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div style="background-color: rgb(255,255,255);;width: 800px;height: 600px;position: fixed;left: 50%;top: 50%; margin: -300px 0 0 -400px;overflow: auto;padding: 10px">
-            <div>
+            <div style="margin-left: 10px">
                 <span>姓名：{{model.name}}</span>
                 <span>学号：{{model.id}}</span>
-                <span>班级：{{model.classAndGrade}}</span>
+                <span>班级：{{model.classInfo}}</span>
             </div>
             <div style="margin-top: 50px" class="well">申请书（图片）已上传文件列表</div>
             <table class="table" style="background: #b3b3b3">

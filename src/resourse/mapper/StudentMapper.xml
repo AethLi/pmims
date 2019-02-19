@@ -12,4 +12,13 @@
     <select id="selectStudentById" parameterType="pmim.model.Student" resultType="pmim.model.Student">
         select * from student where userId=#{userId};
     </select>
+
+
+    <select id="selectStudentByIds" resultType="pmim.model.Student">
+        select * from student where userId in
+        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+    <!-->弃用<-->
 </mapper>

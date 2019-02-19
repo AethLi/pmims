@@ -1,7 +1,10 @@
 package pmim.mapper;
 
 import java.util.List;
+import java.util.Map;
 
+import pmim.model.PageAble;
+import pmim.model.Proposer;
 import pmim.model.SysUser;
 
 public interface UserMapper {
@@ -14,4 +17,8 @@ public interface UserMapper {
     SysUser selectUser_withNoPwd(SysUser u);
 
     void updateUserPath(SysUser u);
+
+    List<Map<String,Object>> selectUsersByPage(PageAble p);
+
+    Proposer selectUsersById(SysUser u);
 }

@@ -4,65 +4,11 @@ angular.module('managerPageApp', [])
             $scope.upload0Instruction = "";
             $scope.upload1Instruction = "";
 
-            $scope.allProposers = [
-                {
-                    name: "阿瑟东",
-                    userId: 201510,
-                    count: 20,
-                    countN: 5
-                }, {
-                    name: "阿瑟东",
-                    userId: 201510,
-                    count: 20,
-                    countN: 5
-                }, {
-                    name: "阿瑟东",
-                    userId: 201510,
-                    count: 20,
-                    countN: 5
-                }, {
-                    name: "阿瑟东",
-                    userId: 201510,
-                    count: 20,
-                    countN: 5
-                }, {
-                    name: "阿瑟东",
-                    userId: 201510,
-                    count: 20,
-                    countN: 5
-                }, {
-                    name: "阿瑟东",
-                    userId: 201510,
-                    count: 20,
-                    countN: 5
-                }, {
-                    name: "阿瑟东",
-                    userId: 201510,
-                    count: 20,
-                    countN: 5
-                }, {
-                    name: "阿瑟东",
-                    userId: 201510,
-                    count: 20,
-                    countN: 5
-                }, {
-                    name: "阿瑟东",
-                    userId: 201510,
-                    count: 20,
-                    countN: 5
-                }, {
-                    name: "阿瑟东",
-                    userId: 201510,
-                    count: 20,
-                    countN: 5
-                }, {
-                    name: "阿瑟东",
-                    userId: 201510,
-                    count: 20,
-                    countN: 5
-                },
-            ];
+            $scope.allProposers;
             $scope.proposerCount = "0/0";
+
+
+            $scope.model;
             $scope.saveUploadInstruction = function (index) {
                 var uploadInstruction = "";
                 if (index === 0) {
@@ -94,7 +40,7 @@ angular.module('managerPageApp', [])
                 url: '/managerCtrl/init.do',
                 data: JSON.stringify({
                     "code": "0",
-                    "action":"uploadInstruction"
+                    "action": "uploadInstruction"
                 }),
                 success: function (result) {
                     for (uploadInstruction of result.model) {
@@ -107,8 +53,44 @@ angular.module('managerPageApp', [])
                     }
                 }
             });
-            $scope.tableAction = function (sew) {
+            $.ajax({
+                type: 'post',
+                contentType: 'application/json;charset=utf-8',
+                dataType: "json",
+                async: true,
+                url: '/managerCtrl/init.do',
+                data: JSON.stringify({
+                    "desPage": 0,
+                    "userType":0,
+                    "action":"listOfThis"
+
+                }),
+                success: function (result) {
+                    if (result.status===0){
+                        $scope.allProposers=result.model.users;
+                        $scope.$digest();
+                    }
+                }
+            });
+            $scope.tableAction = function (userId) {
+                $scope.clearProposerModel();
+                $.ajax({
+                    type: 'post',
+                    contentType: 'application/json;charset=utf-8',
+                    dataType: "json",
+                    async: true,
+                    url: '/managerCtrl/proposer.do',
+                    data: JSON.stringify({
+                        "desId":userId
+                    }),
+                    success:function (result) {
+                        $scope.model=result.model;
+                    }
+                });
                 $('#myModal').modal();
+            };
+            $scope.clearProposerModel=function () {
+                $scope.model=undefined;
             }
         }
     );
