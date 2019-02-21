@@ -11,6 +11,7 @@ public class Activist {
     int status;
     int index;
 
+
     public String getActivistId() {
         return activistId;
     }
@@ -70,5 +71,10 @@ public class Activist {
         this.date = new Timestamp(date);
         this.status = status;
         this.index = index;
+    }
+
+    public Activist(String userId, int status) {
+        this.userId = userId;
+        this.status = status;
     }
 }

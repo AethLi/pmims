@@ -33,9 +33,9 @@ public class ManagerCtrl {
             if (pcs.permissionCheck(5) || pcs.permissionCheck(6)) {
                 return JSONObject.fromObject(new ResponseMessage(0, "", ms.initManagerPages(Integer.valueOf(ra.getCode())))).toString();
             }
-        }else if ("listOfThis".equals(ra.getAction())){
+        } else if ("listOfThis".equals(ra.getAction())) {
             if (pcs.permissionCheck(5) || pcs.permissionCheck(6)) {
-                PageAble pa=(PageAble) JSONObject.toBean(JSONObject.fromObject(jsonstr),PageAble.class);
+                PageAble pa = (PageAble) JSONObject.toBean(JSONObject.fromObject(jsonstr), PageAble.class);
                 return JSONObject.fromObject(new ResponseMessage(0, "", ms.initTablePages(pa))).toString();
             }
         }
@@ -51,13 +51,25 @@ public class ManagerCtrl {
         }
         return JSONObject.fromObject(new ResponseMessage(0, "权限存在问题", null)).toString();
     }
-    @RequestMapping(value = "/proposer.do",produces = "text/html;charset=UTF-8")
+
+    @RequestMapping(value = "/proposer.do", produces = "text/html;charset=UTF-8")
     public @ResponseBody
-    Object proposerModal(HttpServletRequest request,@RequestBody String jsonstr){
+    Object proposerModal(HttpServletRequest request, @RequestBody String jsonstr) {
         RequestAction ra = (RequestAction) JSONObject.toBean(JSONObject.fromObject(jsonstr), RequestAction.class);
         if (pcs.permissionCheck(5) || pcs.permissionCheck(6)) {
             return JSONObject.fromObject(new ResponseMessage(0, null, ms.proposerModal(ra.getDesId()))).toString();
         }
         return JSONObject.fromObject(new ResponseMessage(0, "权限存在问题", null)).toString();
     }
+
+    @RequestMapping(value = "/activit.do", produces = "text/html;charset=UTF-8")
+    public @ResponseBody
+    Object activisModal(HttpServletRequest request, @RequestBody String jsonstr){
+        RequestAction ra = (RequestAction) JSONObject.toBean(JSONObject.fromObject(jsonstr), RequestAction.class);
+        if (pcs.permissionCheck(5) || pcs.permissionCheck(6)) {
+            return JSONObject.fromObject(new ResponseMessage(0, null, ms.activistModal(ra.getDesId()))).toString();
+        }
+        return JSONObject.fromObject(new ResponseMessage(0, "权限存在问题", null)).toString();
+    }
+
 }

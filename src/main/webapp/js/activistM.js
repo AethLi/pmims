@@ -9,69 +9,22 @@ angular.module('managerPageApp', [])
         $scope.upload5Instruction = "";
         $scope.upload6Instruction = "";
         $scope.upload7Instruction = "";
+
+        $scope.activistFile0 = [];
+        $scope.activistFile1 = [];
+        $scope.activistFile2 = [];
+        $scope.activistFile3 = [];
+        $scope.activistFile4 = [];
+        $scope.activistFile5 = [];
+        $scope.activistFile6 = [];
+        $scope.activistFile7 = [];
+
         $scope.activistCount = "0/0";
-        $scope.linkMan0="";
-        $scope.linkMan1="";
-        $scope.linkNumber0="";
-        $scope.linkNumber1="";
-        $scope.allActivists = [
-            {
-                name: "阿瑟东",
-                userId: 201510,
-                count: 20,
-                countN: 5
-            }, {
-                name: "阿瑟东",
-                userId: 201510,
-                count: 20,
-                countN: 5
-            }, {
-                name: "阿瑟东",
-                userId: 201510,
-                count: 20,
-                countN: 5
-            }, {
-                name: "阿瑟东",
-                userId: 201510,
-                count: 20,
-                countN: 5
-            }, {
-                name: "阿瑟东",
-                userId: 201510,
-                count: 20,
-                countN: 5
-            }, {
-                name: "阿瑟东",
-                userId: 201510,
-                count: 20,
-                countN: 5
-            }, {
-                name: "阿瑟东",
-                userId: 201510,
-                count: 20,
-                countN: 5
-            }, {
-                name: "阿瑟东",
-                userId: 201510,
-                count: 20,
-                countN: 5
-            }, {
-                name: "阿瑟东",
-                userId: 201510,
-                count: 20,
-                countN: 5
-            }, {
-                name: "阿瑟东",
-                userId: 201510,
-                count: 20,
-                countN: 5
-            }, {
-                name: "阿瑟东",
-                userId: 201510,
-                count: 20,
-                countN: 5
-            },
-        ];
+        $scope.linkMan0 = "";
+        $scope.linkMan1 = "";
+        $scope.linkNumber0 = "";
+        $scope.linkNumber1 = "";
+        $scope.allActivists = [];
 
         $scope.saveUploadInstruction = function (index) {
             var uploadInstruction = "";
@@ -116,7 +69,7 @@ angular.module('managerPageApp', [])
             url: '/managerCtrl/init.do',
             data: JSON.stringify({
                 "code": "1",
-                "action":"uploadInstruction"
+                "action": "uploadInstruction"
             }),
             success: function (result) {
                 for (uploadInstruction of result.model) {
@@ -141,7 +94,29 @@ angular.module('managerPageApp', [])
                 }
             }
         });
-        $scope.tableAction = function (sew) {
-            $('#myModal').modal();
-        }
+        $scope.tableAction = function (userId) {
+            $scope.clearProposerModel();
+            $.ajax({
+                type: 'post',
+                contentType: 'application/json;charset=utf-8',
+                dataType: "json",
+                async: true,
+                url: '/managerCtrl/activist.do',
+                data: JSON.stringify({
+                    "desId": userId
+                }),
+                success: function (result) {
+                    $scope.model = result.model;
+                    for (activist of $scope.model.activists) {
+                        if (activist.index === 0) {
+                            $scope.activistFile0.push(activist);
+                        } else if (activist.index === 1) {
+                            $scope.activistFile1.push(activist);
+                        }
+                    }
+                    $scope.$digest();
+                    $('#myModal').modal();
+                }
+            });
+        };
     });

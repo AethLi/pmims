@@ -55,30 +55,66 @@
     </div>
     <div class="modal fade sewDetail" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div style="background-color: rgb(255,255,255);;width: 800px;height: 600px;position: fixed;left: 50%;top: 50%; margin: -300px 0 0 -400px;overflow: auto;padding: 10px">
-            <div style="margin-left: 10px">
-                <span>姓名：{{model.name}}</span>
-                <span>学号：{{model.id}}</span>
-                <span>班级：{{model.classInfo}}</span>
+            <div style="margin-left: 10px;font-size: 30px">
+                <span>姓名：{{model.student.name}}</span>
+                <span>学号：{{model.student.id}}</span>
+                <span>班级：{{model.student.classInfo}}</span>
             </div>
             <div style="margin-top: 50px" class="well">申请书（图片）已上传文件列表</div>
             <table class="table" style="background: #b3b3b3">
                 <thead>
                 <tr>
-                    <td style="width: 50%">文件名</td>
-                    <td style="width: 30%">上传时间</td>
-                    <td style="width: 20%">删除</td>
+                    <td style="width: 200px">文件名</td>
+                    <td style="width: 100px">上传时间</td>
+                    <td style="width: 50px">状态</td>
+                    <td style="width: 60px">审核</td>
                 </tr>
                 </thead>
+                <tbody>
+                <tr ng-repeat="x in proposerFile0">
+                    <td style="text-overflow:ellipsis;width: 200px">
+                        {{x.fileName}}
+                    </td>
+                    <td>
+                        {{timeConvert(x.date.time)}}
+                    </td>
+                    <td>
+                        {{statusConvert(x.status)}}
+                    </td>
+                    <td>
+                        <input type="button" ng-click="accept(x.proposerId)" value="通过">
+                        <input type="button" ng-click="disAccept(x.proposerId)" value="不通过">
+                    </td>
+                </tr>
+                </tbody>
             </table>
             <div style="margin-top: 50px" class="well">申请书（Word）已上传文件列表</div>
             <table class="table" style="background: #b3b3b3">
                 <thead>
                 <tr>
-                    <td style="width: 50%">文件名</td>
-                    <td style="width: 30%">上传时间</td>
-                    <td style="width: 20%">删除</td>
+                    <td style="width: 200px">文件名</td>
+                    <td style="width: 100px">上传时间</td>
+                    <td style="width: 50px">状态</td>
+                    <td style="width: 60px">审核</td>
                 </tr>
                 </thead>
+                <tbody>
+                <tr ng-repeat="x in proposerFile1">
+                    <td style="text-overflow:ellipsis">
+                        {{x.fileName}}
+                    </td>
+                    <td>
+                        {{timeConvert(x.date.time)}}
+                    </td>
+                    <td>
+                        {{statusConvert(x.status)}}
+                    </td>
+                    <td>
+                        <input type="button" ng-click="accept(x.proposerId)" value="通过">
+                        <input type="button" ng-click="disAccept(x.proposerId)" value="不通过">
+                    </td>
+                </tr>
+                </tbody>
             </table>
         </div>
     </div>
