@@ -97,4 +97,31 @@ public class ManagerService {
 //        result.put("activists", activists);
 //        return result;
 //    }
+//        Map<String, Object> result = new HashMap<>();
+//        Student student = sm.selectStudentById(new SysUser(desId));
+//        result.put("student", student);
+//        List<Development> developments = developmentMapper(new SysUser(desId));
+//        result.put("activists", activists);
+//        return result;
+        return null;
+    }
+
+    public Object probationaryModal(String desId) {
+        return null;
+    }
+
+    public String acceptItem(String desId, String code, int i) {
+        if (i == 0) {
+
+        } else if (i == 1) {
+
+        } else if (i == 2) {
+
+        } else if (i == 3) {
+
+        } else if (i == 4) {
+
+        }
+        return null;
+    }
 }

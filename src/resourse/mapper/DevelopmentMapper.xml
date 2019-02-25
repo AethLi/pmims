@@ -15,4 +15,10 @@
     <select id="selectDevelopmentByIdUndeleted" parameterType="pmim.model.SysUser" resultType="pmim.model.Development">
         select * from Development where userId=#{userId} and status != -1;
     </select>
+    <update id="acceptDevelopmentById" parameterType="pmim.model.Development">
+        update Development set status=1 where DevelopmentId=#{DevelopmentId};
+    </update>
+    <update id="disAcceptDevelopmentById" parameterType="pmim.model.Development">
+        update Development set status=2 where DevelopmentId=#{DevelopmentId};
+    </update>
 </mapper>

@@ -15,4 +15,9 @@ public interface ProposerMapper {
     List<Proposer> selectProposerByIdUndeleted(SysUser currentSysUser);
 
     List<Proposer> selectProposerByIdDisapproved(SysUser currentSysUser);
+
+    void acceptProposerById(Proposer p);
+
+    void disAcceptProposerById(Proposer p);
+
 }

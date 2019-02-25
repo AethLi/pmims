@@ -72,8 +72,8 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="x in proposerFile0">
-                    <td style="text-overflow:ellipsis;width: 200px">
-                        {{x.fileName}}
+                    <td style="text-overflow:ellipsis;width: 200px;cursor: pointer">
+                        <a ng-click="fileAction(0,x.proposerId)">{{x.fileName}}</a>
                     </td>
                     <td>
                         {{timeConvert(x.date.time)}}
@@ -100,8 +100,8 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="x in proposerFile1">
-                    <td style="text-overflow:ellipsis">
-                        {{x.fileName}}
+                    <td style="text-overflow:ellipsis;width: 200px;cursor: pointer">
+                        <a ng-click="fileAction(1,x.proposerId)">{{x.fileName}}</a>
                     </td>
                     <td>
                         {{timeConvert(x.date.time)}}
