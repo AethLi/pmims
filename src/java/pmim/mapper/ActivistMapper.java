@@ -11,4 +11,11 @@ public interface ActivistMapper {
     List<Activist> selectActivistById(Activist activist);
 
     List<Activist> selectActivistByIdUndeleted(SysUser activist);
+
+    void acceptActivistById(Activist p);
+
+    void disAcceptActivistById(Activist p);
+
+    void deleteActivistById(Activist p);
+
 }

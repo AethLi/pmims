@@ -15,4 +15,10 @@
     <select id="selectProbationaryByIdUndeleted" parameterType="pmim.model.SysUser" resultType="pmim.model.Probationary">
         select * from Probationary where userId=#{userId} and status != -1;
     </select>
+    <update id="acceptProbationaryById" parameterType="pmim.model.Probationary">
+        update Probationary set status=1 where ProbationaryId=#{ProbationaryId};
+    </update>
+    <update id="disAcceptProbationaryById" parameterType="pmim.model.Probationary">
+        update Probationary set status=2 where ProbationaryId=#{ProbationaryId};
+    </update>
 </mapper>

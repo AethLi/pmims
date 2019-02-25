@@ -106,10 +106,55 @@ angular.module('managerPageApp', [])
                 $scope.proposerFile1 = [];
             };
             $scope.accept = function (desId) {
-                // $.ajax()
+                $.ajax({
+                    type: 'post',
+                    contentType: 'application/json;charset=utf-8',
+                    dataType: "json",
+                    async: true,
+                    url: '/managerCtrl/proposer.do',
+                    data: JSON.stringify({
+                        "action":"accept",
+                        "desId": desId,
+                        "code": "1"
+                    }),
+                    success: function () {
+                        alert("已成功审核为通过");
+                    }
+                })
             };
             $scope.disAccept = function (desId) {
-
+                $.ajax({
+                    type: 'post',
+                    contentType: 'application/json;charset=utf-8',
+                    dataType: "json",
+                    async: true,
+                    url: '/managerCtrl/proposer.do',
+                    data: JSON.stringify({
+                        "action":"disAccept",
+                        "desId": desId,
+                        "code": "2"
+                    }),
+                    success: function () {
+                        alert("已成功审核为不通过");
+                    }
+                })
+            };
+            $scope.deleteItem = function (desId) {
+                $.ajax({
+                    type: 'post',
+                    contentType: 'application/json;charset=utf-8',
+                    dataType: "json",
+                    async: true,
+                    url: '/managerCtrl/proposer.do',
+                    data: JSON.stringify({
+                        "action":"delete",
+                        "desId": desId,
+                        "code": "-1"
+                    }),
+                    success: function () {
+                        alert("已成功删除");
+                    }
+                })
             };
             $scope.timeConvert = function (time = +new Date()) {
                 var date = new Date(time + 8 * 3600 * 1000);
@@ -122,6 +167,35 @@ angular.module('managerPageApp', [])
                     return "已通过";
                 } else if (status === 2) {
                     return "未通过";
+                }
+            }
+            $scope.fileAction=function (index,desId) {
+                if (index===0){
+                    $.ajax({
+                        type: 'post',
+                        contentType: 'application/json;charset=utf-8',
+                        dataType: "json",
+                        async: true,
+                        url: '/file/imageShowUrl.do',
+                        data: JSON.stringify({
+                            "desId": desId,
+                        }),
+                        success: function () {
+                        }
+                    })
+                } else if (index===1){
+                    $.ajax({
+                        type: 'post',
+                        contentType: 'application/json;charset=utf-8',
+                        dataType: "json",
+                        async: true,
+                        url: '/file/fileDownUrl.do',
+                        data: JSON.stringify({
+                            "desId": desId,
+                        }),
+                        success: function () {
+                        }
+                    })
                 }
             }
         }

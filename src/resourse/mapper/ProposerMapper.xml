@@ -18,4 +18,10 @@
     <select id="selectProposerByIdDisapproved" parameterType="pmim.model.SysUser" resultType="pmim.model.Proposer">
         select * from proposer where userId=#{userId} and status = 1;
     </select>
+    <update id="acceptProposerById" parameterType="pmim.model.Proposer">
+        update Proposer set status=1 where ProposerId=#{ProposerId};
+    </update>
+    <update id="disAcceptProposerById" parameterType="pmim.model.Proposer">
+        update Proposer set status=2 where ProposerId=#{ProposerId};
+    </update>
 </mapper>

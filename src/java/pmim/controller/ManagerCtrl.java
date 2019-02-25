@@ -4,7 +4,6 @@ package pmim.controller;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -56,18 +55,59 @@ public class ManagerCtrl {
     public @ResponseBody
     Object proposerModal(HttpServletRequest request, @RequestBody String jsonstr) {
         RequestAction ra = (RequestAction) JSONObject.toBean(JSONObject.fromObject(jsonstr), RequestAction.class);
+        if ("accept".equals(ra.getAction())) {
+            if (pcs.permissionCheck(5) || pcs.permissionCheck(6)) {
+                return JSONObject.fromObject(new ResponseMessage(0,ms.acceptItem(ra.getDesId(),ra.getCode(),0),null)).toString();
+            }
+            return JSONObject.fromObject(new ResponseMessage(0, "权限存在问题", null)).toString();
+
+        } else if ("disAccept".equals(ra.getAction())) {
+            if (pcs.permissionCheck(5) || pcs.permissionCheck(6)) {
+
+            }
+            return JSONObject.fromObject(new ResponseMessage(0, "权限存在问题", null)).toString();
+
+        } else if ("delete".equals(ra.getAction())) {
+            if (pcs.permissionCheck(5) || pcs.permissionCheck(6)) {
+
+            }
+            return JSONObject.fromObject(new ResponseMessage(0, "权限存在问题", null)).toString();
+
+        } else if ("modal".equals(ra.getAction())) {
+            if (pcs.permissionCheck(5) || pcs.permissionCheck(6)) {
+                return JSONObject.fromObject(new ResponseMessage(0, null, ms.proposerModal(ra.getDesId()))).toString();
+            }
+            return JSONObject.fromObject(new ResponseMessage(0, "权限存在问题", null)).toString();
+        }
+        return JSONObject.fromObject(new ResponseMessage(0, "请求错误", null)).toString();
+    }
+
+    @RequestMapping(value = "/activist.do", produces = "text/html;charset=UTF-8")
+    public @ResponseBody
+    Object activistModal(HttpServletRequest request, @RequestBody String jsonstr) {
+        RequestAction ra = (RequestAction) JSONObject.toBean(JSONObject.fromObject(jsonstr), RequestAction.class);
         if (pcs.permissionCheck(5) || pcs.permissionCheck(6)) {
-            return JSONObject.fromObject(new ResponseMessage(0, null, ms.proposerModal(ra.getDesId()))).toString();
+            return JSONObject.fromObject(new ResponseMessage(0, null, ms.activistModal(ra.getDesId()))).toString();
         }
         return JSONObject.fromObject(new ResponseMessage(0, "权限存在问题", null)).toString();
     }
 
-    @RequestMapping(value = "/activit.do", produces = "text/html;charset=UTF-8")
+    @RequestMapping(value = "/development.do", produces = "text/html;charset=UTF-8")
     public @ResponseBody
-    Object activisModal(HttpServletRequest request, @RequestBody String jsonstr){
+    Object developmentModal(HttpServletRequest request, @RequestBody String jsonstr) {
         RequestAction ra = (RequestAction) JSONObject.toBean(JSONObject.fromObject(jsonstr), RequestAction.class);
         if (pcs.permissionCheck(5) || pcs.permissionCheck(6)) {
-            return JSONObject.fromObject(new ResponseMessage(0, null, ms.activistModal(ra.getDesId()))).toString();
+            return JSONObject.fromObject(new ResponseMessage(0, null, ms.developmentModal(ra.getDesId()))).toString();
+        }
+        return JSONObject.fromObject(new ResponseMessage(0, "权限存在问题", null)).toString();
+    }
+
+    @RequestMapping(value = "/probationary.do", produces = "text/html;charset=UTF-8")
+    public @ResponseBody
+    Object probationaryModal(HttpServletRequest request, @RequestBody String jsonstr) {
+        RequestAction ra = (RequestAction) JSONObject.toBean(JSONObject.fromObject(jsonstr), RequestAction.class);
+        if (pcs.permissionCheck(5) || pcs.permissionCheck(6)) {
+            return JSONObject.fromObject(new ResponseMessage(0, null, ms.probationaryModal(ra.getDesId()))).toString();
         }
         return JSONObject.fromObject(new ResponseMessage(0, "权限存在问题", null)).toString();
     }
