@@ -22,6 +22,10 @@ public class ManagerService {
     ProposerMapper proposerMapper;
     @Autowired
     ActivistMapper activistMapper;
+    @Autowired
+    DevelopmentMapper developmentMapper;
+    @Autowired
+    ProbationaryMapper probationaryMapper;
 
     public Object initManagerPages(Integer position) {
         UploadInstruction uploadInstruction = new UploadInstruction();
@@ -66,4 +70,31 @@ public class ManagerService {
         result.put("activists", activists);
         return result;
     }
+
+    public Object developmentModal(String desId) {
+        Map<String, Object> result = new HashMap<>();
+        Student student = sm.selectStudentById(new SysUser(desId));
+        result.put("student", student);
+        List<Development> developments = developmentMapper.selectDevelopmentByIdUndeleted(new SysUser(desId));
+        result.put("developments", developments);
+        return result;
+    }
+
+//    public Object activistModal(String desId) {
+//        Map<String, Object> result = new HashMap<>();
+//        Student student = sm.selectStudentById(new SysUser(desId));
+//        result.put("student", student);
+//        List<Activist> activists = activistMapper.selectActivistByIdUndeleted(new SysUser(desId));
+//        result.put("activists", activists);
+//        return result;
+//    }
+//
+//    public Object activistModal(String desId) {
+//        Map<String, Object> result = new HashMap<>();
+//        Student student = sm.selectStudentById(new SysUser(desId));
+//        result.put("student", student);
+//        List<Activist> activists = activistMapper.selectActivistByIdUndeleted(new SysUser(desId));
+//        result.put("activists", activists);
+//        return result;
+//    }
 }
