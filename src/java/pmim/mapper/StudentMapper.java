@@ -12,6 +12,4 @@ public interface StudentMapper {
 
     Student selectStudentById(SysUser currentSysUser);
 
-    List<Student> selectStudentByIds(List<String> list);
-    //弃用
 }

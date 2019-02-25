@@ -103,8 +103,6 @@ public class ManagerService {
 //        List<Development> developments = developmentMapper(new SysUser(desId));
 //        result.put("activists", activists);
 //        return result;
-        return null;
-    }
 
     public Object probationaryModal(String desId) {
         return null;

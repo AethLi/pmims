@@ -10,15 +10,19 @@
                 <div class="col-md-8" style="padding: 0">
                     <div style="overflow-x: auto; overflow-y: auto; height: 180px;width: 800px">
                         <table class="" align="center" style="width: 500px;max-width: 500px;text-overflow:ellipsis;">
+                            <thead>
                             <tr>
-                                <td style="width: 50%">文件名</td>
-                                <td style="width: 30%">上传时间</td>
-                                <td style="width: 20%">删除</td>
+                                <th style="width: 50%">文件名</th>
+                                <th style="width: 30%">上传时间</th>
+                                <th style="width: 10%">状态</th>
+                                <th style="width: 10%">删除</th>
                             </tr>
+                            </thead>
                             <tr ng-repeat="x in proposerImageFileList">
                                 <td style="width: 50%"><a ng-click="ImageShow(this)" style="cursor:pointer">{{x.fileName}}</a>
                                 </td>
                                 <td style="width: 30%">{{x.date}}</td>
+                                <td style="width: 30%">{{x.status}}</td>
                                 <td style="width: 20%">
                                     <button ng-click="delete(x.proposerId)">删除</button>
                                 </td>
