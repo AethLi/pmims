@@ -23,23 +23,23 @@ angular.module('mainPageApp', [])
         $scope.file6Name = "未选择文件";
         $scope.file7Name = "未选择文件";
 
-        $scope.ChooseFileChange = function (id,index) {
+        $scope.ChooseFileChange = function (id, index) {
             var file = document.getElementById(id).files[0];
-            if (index===0){
+            if (index === 0) {
                 $scope.file0Name = file.name;
-            } else if (index===1){
+            } else if (index === 1) {
                 $scope.file1Name = file.name;
-            } else if (index===2){
+            } else if (index === 2) {
                 $scope.file2Name = file.name;
-            } else if (index===3){
+            } else if (index === 3) {
                 $scope.file3Name = file.name;
-            } else if (index===4){
+            } else if (index === 4) {
                 $scope.file4Name = file.name;
-            } else if (index===5){
+            } else if (index === 5) {
                 $scope.file5Name = file.name;
-            } else if (index===6){
+            } else if (index === 6) {
                 $scope.file6Name = file.name;
-            } else if (index===7){
+            } else if (index === 7) {
                 $scope.file7Name = file.name;
             }
             $scope.$digest();
@@ -91,5 +91,26 @@ angular.module('mainPageApp', [])
                     $scope.$digest();
                 }
             }
-        })
+        });
+
+
+        $scope.timeConvert = function (time = +new Date()) {
+            var date = new Date(time + 8 * 3600 * 1000);
+            return date.toJSON().substr(0, 19).replace('T', ' ').substring(0, 10);
+        };
+        $scope.statusConvert = function (status) {
+            if (status === 0) {
+                return "未审核";
+            } else if (status === 1) {
+                return "已通过";
+            } else if (status === 2) {
+                return "未通过";
+            }
+        };
+        $scope.statusCheck = function (status) {
+            if (status === 1) {
+                return false;
+            }
+            return true;
+        };
     });

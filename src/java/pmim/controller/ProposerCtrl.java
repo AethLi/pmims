@@ -26,9 +26,9 @@ public class ProposerCtrl {
     Object proposerUserCtrl(HttpServletRequest request, @RequestBody String jsonstr, Model model) {
         RequestAction ra = (RequestAction) JSONObject.toBean(JSONObject.fromObject(jsonstr), RequestAction.class);
         if ("initProposerUserPage".equals(ra.getAction())) {
-            return ps.initProposerUserPage((SysUser) request.getSession().getAttribute("currentUser"));
+            return ps.initProposerUserPage((SysUser) request.getSession().getAttribute("currentSysUser"));
         } else if ("getFileList".equals(ra.getAction())) {
-            return ps.getFileList((SysUser) request.getSession().getAttribute("currentUser"));
+            return ps.getFileList((SysUser) request.getSession().getAttribute("currentSysUser"));
         }
         return null;
     }

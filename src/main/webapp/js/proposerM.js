@@ -84,7 +84,8 @@ angular.module('managerPageApp', [])
                     async: true,
                     url: '/managerCtrl/proposer.do',
                     data: JSON.stringify({
-                        "desId": userId
+                        "desId": userId,
+                        "action":"modal"
                     }),
                     success: function (result) {
                         $scope.model = result.model;
@@ -168,7 +169,7 @@ angular.module('managerPageApp', [])
                 } else if (status === 2) {
                     return "未通过";
                 }
-            }
+            };
             $scope.fileAction=function (index,desId) {
                 if (index===0){
                     $.ajax({
@@ -178,7 +179,8 @@ angular.module('managerPageApp', [])
                         async: true,
                         url: '/file/imageShowUrl.do',
                         data: JSON.stringify({
-                            "desId": desId,
+                            desId: desId,
+                            action:"proposer"
                         }),
                         success: function () {
                         }

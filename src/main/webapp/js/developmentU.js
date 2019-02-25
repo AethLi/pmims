@@ -87,4 +87,24 @@ angular.module('mainPageApp', [])
             })
         };
 
+
+        $scope.timeConvert = function (time = +new Date()) {
+            var date = new Date(time + 8 * 3600 * 1000);
+            return date.toJSON().substr(0, 19).replace('T', ' ').substring(0, 10);
+        };
+        $scope.statusConvert = function (status) {
+            if (status === 0) {
+                return "未审核";
+            } else if (status === 1) {
+                return "已通过";
+            } else if (status === 2) {
+                return "未通过";
+            }
+        };
+        $scope.statusCheck = function (status) {
+            if (status === 1) {
+                return false;
+            }
+            return true;
+        };
     });

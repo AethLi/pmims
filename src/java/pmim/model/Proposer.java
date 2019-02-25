@@ -82,4 +82,5 @@ public class Proposer {
         this.userId = userId;
         this.status = status;
     }
+
 }

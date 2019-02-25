@@ -24,4 +24,7 @@
     <update id="disAcceptProposerById" parameterType="pmim.model.Proposer">
         update Proposer set status=2 where ProposerId=#{ProposerId};
     </update>
+    <select id="selectProposerByProposerId" parameterType="pmim.model.Proposer" resultType="pmim.model.Proposer">
+        select * from Proposer where proposerId=#{proposerId};
+    </select>
 </mapper>

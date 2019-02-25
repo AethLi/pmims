@@ -8,8 +8,25 @@ angular.module('mainPageApp', [])
         $scope.proposerImageFileList = [];
         $scope.proposerWordFileList = [];
 
-        $scope.ImageShow = function (whoAction) {
+        $scope.ImageShow = function (desId) {
+            $.ajax({
+                type: 'post',
+                url: '/file/imageShowUrl.do',
+                data: JSON.stringify({
+                    action:"proposer",
+                    desId: desId,
+                }),
+                contentType: 'application/json;charset=utf-8',
+                dataType: "json",
+                async: true,
+                success: function (result) {
+                    if (result.status===0){
+                        window.open("/html/imageShow.html?imagePath="+result.message);
+                    } else {
 
+                    }
+                }
+            })
         };
 
         $scope.proposerImageFileUploadChoose = function () {
@@ -105,14 +122,23 @@ angular.module('mainPageApp', [])
             })
         };
 
-        $scope.timestampToTime = function (timestamp) {
-            // var date = new Date(timestamp * 1000);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
-            var Y = date.getFullYear() + '-';
-            var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
-            var D = date.getDate() + ' ';
-            var h = date.getHours() + ':';
-            var m = date.getMinutes() + ':';
-            var s = date.getSeconds();
-            return Y + M + D + h + m + s;
+        $scope.timeConvert = function (time = +new Date()) {
+            var date = new Date(time + 8 * 3600 * 1000);
+            return date.toJSON().substr(0, 19).replace('T', ' ').substring(0, 10);
+        };
+        $scope.statusConvert = function (status) {
+            if (status === 0) {
+                return "未审核";
+            } else if (status === 1) {
+                return "已通过";
+            } else if (status === 2) {
+                return "未通过";
+            }
+        };
+        $scope.statusCheck=function (status) {
+            if (status===1){
+                return false;
+            }
+            return true;
         };
     });

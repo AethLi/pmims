@@ -20,4 +20,6 @@ public interface ProposerMapper {
 
     void disAcceptProposerById(Proposer p);
 
+    Proposer selectProposerByProposerId(Proposer p);
+
 }
