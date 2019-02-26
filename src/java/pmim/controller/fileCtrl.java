@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import pmim.mapper.ActivistMapper;
 import pmim.mapper.DevelopmentMapper;
@@ -14,16 +15,15 @@ import pmim.mapper.ProposerMapper;
 import pmim.model.Proposer;
 import pmim.model.RequestAction;
 import pmim.model.ResponseMessage;
+import pmim.service.UserPathService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
 
 
 @Controller
-@RequestMapping(value = "file")
+@RequestMapping(value = "/file")
 public class fileCtrl {
     @Autowired
     ProposerMapper proposerMapper;
@@ -33,34 +33,23 @@ public class fileCtrl {
     DevelopmentMapper developmentMapper;
     @Autowired
     ProbationaryMapper probationaryMapper;
+    @Autowired
+    UserPathService userPathService;
 
-
-    @RequestMapping(value = "/imageShowUrl.do", produces = "text/html;charset=UTF-8")
-    public @ResponseBody
-    Object imageShowUrl(HttpServletRequest request, @RequestBody String jsonstr) {
-        RequestAction ra = (RequestAction) JSONObject.toBean(JSONObject.fromObject(jsonstr), RequestAction.class);
-        if ("proposer".equals(ra.getAction())) {
-            String path = null;
-            path = proposerMapper.selectProposerByProposerId(new Proposer(ra.getDesId())).getFileName();
-            return JSONObject.fromObject(new ResponseMessage(0, path, null)).toString();
-        } else if ("activist".equals(ra.getAction())) {
-
-        } else if ("development".equals(ra.getAction())) {
-
-        } else if ("probationary".equals(ra.getAction())) {
-
-        }
-        return JSONObject.fromObject(new ResponseMessage(1, "请求错误", null)).toString();
-    }
-
-    @RequestMapping(value = "/imageShow.do")
+    @RequestMapping(value = "/imageShow.do", method = RequestMethod.GET)
     @ResponseBody
-    public String imageShow(HttpServletRequest request, HttpServletResponse response, Model model) {
-
+    public String imageShow(HttpServletRequest request, HttpServletResponse response) {
+        String path = null;
+        String desId = request.getParameter("desId");
+        if (request.getParameter("type").equals("proposer")) {
+            Proposer p = proposerMapper.selectProposerByProposerId(new Proposer(desId));
+            path = userPathService.checkUserPath(p.getUserId());
+            path += "Proposer/" + p.getFileName();
+        }
         FileInputStream fis = null;
         OutputStream os = null;
         try {
-            fis = new FileInputStream("/");
+            fis = new FileInputStream(path);
             os = response.getOutputStream();
             int count = 0;
             byte[] buffer = new byte[1024 * 8];
@@ -80,21 +69,59 @@ public class fileCtrl {
         return "ok";
     }
 
-    @RequestMapping(value = "fileDownUrl.do")
+    @RequestMapping(value = "/fileDownload.do")
     public @ResponseBody
-    Object fileDownUrl(HttpServletRequest request, @RequestBody String jsonstr) {
-        RequestAction ra = (RequestAction) JSONObject.toBean(JSONObject.fromObject(jsonstr), RequestAction.class);
-        if (ra.getDesId() != null) {
-
+    Object fileDown(HttpServletRequest request, HttpServletResponse response) {
+        String path = null;
+        String fileName = null;
+        String desId = request.getParameter("desId");
+        if (request.getParameter("type").equals("proposer")) {
+            Proposer p = proposerMapper.selectProposerByProposerId(new Proposer(desId));
+            path = userPathService.checkUserPath(p.getUserId());
+            path += "Proposer/" + p.getFileName();
+            fileName = p.getFileName();
+        }
+        if (path != null) {
+            File file = new File(path);
+            if (file.exists()) {
+                response.setContentType("application/force-download");// 设置强制下载不打开
+                response.addHeader("Content-Disposition",
+                        "attachment;fileName=" + fileName);// 设置文件名
+                byte[] buffer = new byte[1024];
+                FileInputStream fis = null;
+                BufferedInputStream bis = null;
+                try {
+                    fis = new FileInputStream(file);
+                    bis = new BufferedInputStream(fis);
+                    OutputStream os = response.getOutputStream();
+                    int i = bis.read(buffer);
+                    while (i != -1) {
+                        os.write(buffer, 0, i);
+                        i = bis.read(buffer);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    if (bis != null) {
+                        try {
+                            bis.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    if (fis != null) {
+                        try {
+                            fis.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
         }
         return null;
     }
 
-    @RequestMapping(value = "fileDown.do")
-    public @ResponseBody
-    Object fileDown(HttpServletRequest request) {
-        return null;
-    }
 }
 
 

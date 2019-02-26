@@ -73,4 +73,13 @@ public class Probationary {
         this.status = status;
         this.index = index;
     }
+
+    public Probationary(String userId, int status) {
+        this.userId = userId;
+        this.status = status;
+    }
+
+    public Probationary(String probationaryId) {
+        ProbationaryId = probationaryId;
+    }
 }

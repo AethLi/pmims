@@ -66,19 +66,22 @@
             <div style="height: 200px">
                 <div class="col-md-8" style="padding: 0">
                     <div style="overflow-x: auto; overflow-y: auto; height: 180px;width: 800px">
-                        <table class="" border="1" align="center"
-                               width="500px">
+                        <table class="table" align="center" style="width: 700px;">
+                            <thead>
                             <tr>
-                                <td>文件名</td>
-                                <td>状态</td>
-                                <td>操作</td>
+                                <th style="width: 50%">文件名</th>
+                                <th style="width: 30%">上传时间</th>
+                                <th style="width: 10%">状态</th>
+                                <th style="width: 10%">删除</th>
                             </tr>
+                            </thead>
                             <tr ng-repeat="x in proposerWordFileList">
-                                <td style="width: 50%"><a ng-click="ImageShow(this)" style="cursor:pointer">{{x.fileName}}</a>
+                                <td style="width: 50%"><a ng-click="fileDownload(x.proposerId)" style="cursor:pointer">{{x.fileName}}</a>
                                 </td>
-                                <td style="width: 30%">{{x.date}}</td>
-                                <td style="width: 20%">
-                                    <button ng-click="delete(this.x)">删除</button>
+                                <td style="width: 30%">{{timeConvert(x.date.time)}}</td>
+                                <td style="width: 10%">{{statusConvert(x.status)}}</td>
+                                <td style="width: 10%">
+                                    <button ng-click="delete(x.proposerId)" ng-if="statusCheck(x.status)">删除</button>
                                 </td>
                             </tr>
                         </table>

@@ -1,5 +1,7 @@
 package pmim.model;
 
+
+//暂未使用
 public class PageAble {
     int desPage;
     int resLimit;

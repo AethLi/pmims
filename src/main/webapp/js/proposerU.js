@@ -9,24 +9,10 @@ angular.module('mainPageApp', [])
         $scope.proposerWordFileList = [];
 
         $scope.ImageShow = function (desId) {
-            $.ajax({
-                type: 'post',
-                url: '/file/imageShowUrl.do',
-                data: JSON.stringify({
-                    action:"proposer",
-                    desId: desId,
-                }),
-                contentType: 'application/json;charset=utf-8',
-                dataType: "json",
-                async: true,
-                success: function (result) {
-                    if (result.status===0){
-                        window.open("/html/imageShow.html?imagePath="+result.message);
-                    } else {
-
-                    }
-                }
-            })
+            window.open("/html/imageShow.html?desId=" + desId + "&type=proposer");
+        };
+        $scope.fileDownload=function(desId){
+            window.open("/file/fileDownload.do?desId=" + desId + "&type=proposer");
         };
 
         $scope.proposerImageFileUploadChoose = function () {
@@ -135,8 +121,8 @@ angular.module('mainPageApp', [])
                 return "未通过";
             }
         };
-        $scope.statusCheck=function (status) {
-            if (status===1){
+        $scope.statusCheck = function (status) {
+            if (status === 1) {
                 return false;
             }
             return true;

@@ -22,6 +22,14 @@ angular.module('mainPageApp', [])
         $scope.file5Name = "未选择文件";
         $scope.file6Name = "未选择文件";
         $scope.file7Name = "未选择文件";
+        $scope.fileList0 = [];
+        $scope.fileList1 = [];
+        $scope.fileList2 = [];
+        $scope.fileList3 = [];
+        $scope.fileList4 = [];
+        $scope.fileList5 = [];
+        $scope.fileList6 = [];
+        $scope.fileList7 = [];
 
         $scope.ChooseFileChange = function (id, index) {
             var file = document.getElementById(id).files[0];
@@ -55,11 +63,54 @@ angular.module('mainPageApp', [])
                 contentType: false,
                 processData: false,
                 success: function (result) {
-
+                    alert(result.message);
+                    $.ajax({
+                        type: 'post',
+                        contentType: 'application/json;charset=utf-8',
+                        dataType: "json",
+                        async: true,
+                        url: '/activist/user.do',
+                        data: JSON.stringify({
+                            "action": "getFileList"
+                        }),
+                        success: function (result) {
+                            $scope.refreshTable(result.model);
+                        }
+                    })
                 }
             })
         };
-
+        $scope.refreshTable = function (currentActivists) {
+            console.log("refresh proposer tables");
+            $scope.fileList0 = [];
+            $scope.fileList1 = [];
+            $scope.fileList2 = [];
+            $scope.fileList3 = [];
+            $scope.fileList4 = [];
+            $scope.fileList5 = [];
+            $scope.fileList6 = [];
+            $scope.fileList7 = [];
+            for (var activist of currentActivists) {
+                if (activist.index === 0) {
+                    $scope.fileList0.push(activist)
+                } else if (activist.index === 1) {
+                    $scope.fileList1.push(activist)
+                } else if (activist.index === 2) {
+                    $scope.fileList2.push(activist)
+                } else if (activist.index === 3) {
+                    $scope.fileList3.push(activist)
+                } else if (activist.index === 4) {
+                    $scope.fileList4.push(activist)
+                } else if (activist.index === 5) {
+                    $scope.fileList5.push(activist)
+                } else if (activist.index === 6) {
+                    $scope.fileList6.push(activist)
+                } else if (activist.index === 7) {
+                    $scope.fileList7.push(activist)
+                }
+            }
+            $scope.$digest();
+        };
         $.ajax({
             type: 'post',
             contentType: 'application/json;charset=utf-8',
@@ -67,7 +118,7 @@ angular.module('mainPageApp', [])
             async: true,
             url: '/activist/user.do',
             data: JSON.stringify({
-                "action": "init"
+                "action": "initActivistUserPage"
             }),
             success: function (result) {
                 for (var uploadInstruction of result.model.uploadInstructions) {
@@ -88,6 +139,7 @@ angular.module('mainPageApp', [])
                     } else if (uploadInstruction.index === 7) {
                         $scope.activistU7Instruction = uploadInstruction.instruction;
                     }
+                    $scope.refreshTable(result.model.currentActivist);
                     $scope.$digest();
                 }
             }

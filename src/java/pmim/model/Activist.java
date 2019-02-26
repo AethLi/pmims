@@ -1,6 +1,5 @@
 package pmim.model;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 
 public class Activist {
@@ -10,15 +9,6 @@ public class Activist {
     Timestamp date;
     int status;
     int index;
-
-
-    public String getActivistId() {
-        return activistId;
-    }
-
-    public void setActivistId(String activistId) {
-        this.activistId = activistId;
-    }
 
     public String getUserId() {
         return userId;
@@ -36,13 +26,12 @@ public class Activist {
         this.fileName = fileName;
     }
 
-    public void setDate(long date) {
-        this.date = new Timestamp(date);
-    }
-
-
     public Timestamp getDate() {
         return date;
+    }
+
+    public void setDate(long date) {
+        this.date = new Timestamp(date);
     }
 
     public int getStatus() {
@@ -57,20 +46,36 @@ public class Activist {
         return index;
     }
 
-    public void setIndex(int index) {
-        this.index = index;
+    public void setIndex(int type) {
+        this.index = type;
+    }
+
+    public String getActivistId() {
+        return activistId;
+    }
+
+    public void setActivistId(String activistId) {
+        this.activistId = activistId;
+    }
+
+    public void setDate(Timestamp date) {
+        this.date = date;
+    }
+
+    public Activist(String activistId) {
+        this.activistId = activistId;
     }
 
     public Activist() {
     }
 
-    public Activist(String activistId, String userId, String fileName, long date, int status, int index) {
+    public Activist(String activistId, String userId, String fileName, long date, int status, int type) {
         this.activistId = activistId;
         this.userId = userId;
         this.fileName = fileName;
         this.date = new Timestamp(date);
         this.status = status;
-        this.index = index;
+        this.index = type;
     }
 
     public Activist(String userId, int status) {

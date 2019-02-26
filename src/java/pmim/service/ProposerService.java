@@ -48,24 +48,19 @@ public class ProposerService {
         }
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(
                 request.getSession().getServletContext());
-        //检查form中是否有enctype="multipart/form-data"
         if (multipartResolver.isMultipart(request)) {
-            //将request变成多部分request
             MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;
-            //获取multiRequest 中所有的文件名
             Iterator iter = multiRequest.getFileNames();
             if (!iter.hasNext()) {
                 return JSONObject.fromObject(new ResponseMessage(1, "网络错误", null)).toString();
             }
             while (iter.hasNext()) {
-                //一次遍历所有文件
                 MultipartFile file = multiRequest.getFile(iter.next().toString());
                 if (file != null) {
                     if (new File(proposerPath + "/" + file.getOriginalFilename()).exists()) {
                         return JSONObject.fromObject(new ResponseMessage(1, "已上传过同名文件", null)).toString();
                     }
                     String path = proposerPath.getPath() + "/" + file.getOriginalFilename();
-                    //上传
                     try {
                         file.transferTo(new File(path));
                         pm.insertProposer(new Proposer(UUID.randomUUID().toString().replace("-", "0"), currentUser, file.getOriginalFilename(), Calendar.getInstance().getTimeInMillis(), 0, Integer.valueOf(index)));
