@@ -13,8 +13,6 @@ import pmim.mapper.DevelopmentMapper;
 import pmim.mapper.ProbationaryMapper;
 import pmim.mapper.ProposerMapper;
 import pmim.model.Proposer;
-import pmim.model.RequestAction;
-import pmim.model.ResponseMessage;
 import pmim.service.UserPathService;
 
 import javax.servlet.http.HttpServletRequest;

@@ -10,6 +10,10 @@ angular.module('mainPageApp', [])
         $scope.file1Name = "未选择文件";
         $scope.file2Name = "未选择文件";
         $scope.file3Name = "未选择文件";
+        $scope.fileList0=[];
+        $scope.fileList1=[];
+        $scope.fileList2=[];
+        $scope.fileList3=[];
 
 
         $scope.timeConvert = function (time = +new Date()) {

@@ -29,9 +29,9 @@ public class DevelopmentService {
     UploadInfoMapper uifm;
 
     public Object uploadFile(HttpServletRequest request, String currentUserId, String userPath, String index) {
-        File proposerPath = new File(userPath + "Development/");
-        if (!proposerPath.exists()) {
-            proposerPath.mkdir();
+        File developmentPath = new File(userPath + "Development/");
+        if (!developmentPath.exists()) {
+            developmentPath.mkdir();
         }
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(
                 request.getSession().getServletContext());
@@ -44,10 +44,10 @@ public class DevelopmentService {
             while (iter.hasNext()) {
                 MultipartFile file = multiRequest.getFile(iter.next().toString());
                 if (file != null) {
-                    if (new File(proposerPath + "/" + file.getOriginalFilename()).exists()) {
+                    if (new File(developmentPath + "/" + file.getOriginalFilename()).exists()) {
                         return JSONObject.fromObject(new ResponseMessage(1, "已上传过同名文件", null)).toString();
                     }
-                    String path = proposerPath.getPath() + "/" + file.getOriginalFilename();
+                    String path = developmentPath.getPath() + "/" + file.getOriginalFilename();
                     //上传
                     try {
                         file.transferTo(new File(path));

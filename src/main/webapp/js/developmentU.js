@@ -1,22 +1,22 @@
 angular.module('mainPageApp', [])
     .controller("developmentUCtrl", function ($scope) {
         console.log("developmentU.js onload!");
-        $scope.development0Instruction = "加载中";
-        $scope.development1Instruction = "加载中";
-        $scope.development2Instruction = "加载中";
-        $scope.development3Instruction = "加载中";
-        $scope.development4Instruction = "加载中";
-        $scope.development5Instruction = "加载中";
-        $scope.development6Instruction = "加载中";
-        $scope.development7Instruction = "加载中";
-        $scope.development8Instruction = "加载中";
-        $scope.development9Instruction = "加载中";
-        $scope.development10Instruction = "加载中";
-        $scope.development11Instruction = "加载中";
-        $scope.development12Instruction = "加载中";
-        $scope.development13Instruction = "加载中";
-        $scope.development14Instruction = "加载中";
-        $scope.development15Instruction = "加载中";
+        $scope.upload0Instruction = "加载中";
+        $scope.upload1Instruction = "加载中";
+        $scope.upload2Instruction = "加载中";
+        $scope.upload3Instruction = "加载中";
+        $scope.upload4Instruction = "加载中";
+        $scope.upload5Instruction = "加载中";
+        $scope.upload6Instruction = "加载中";
+        $scope.upload7Instruction = "加载中";
+        $scope.upload8Instruction = "加载中";
+        $scope.upload9Instruction = "加载中";
+        $scope.upload10Instruction = "加载中";
+        $scope.upload11Instruction = "加载中";
+        $scope.upload12Instruction = "加载中";
+        $scope.upload13Instruction = "加载中";
+        $scope.upload14Instruction = "加载中";
+        $scope.upload15Instruction = "加载中";
         $scope.file0Name = "未选择文件";
         $scope.file1Name = "未选择文件";
         $scope.file2Name = "未选择文件";
@@ -33,6 +33,23 @@ angular.module('mainPageApp', [])
         $scope.file13Name = "未选择文件";
         $scope.file14Name = "未选择文件";
         $scope.file15Name = "未选择文件";
+        $scope.fileList0 = [];
+        $scope.fileList1 = [];
+        $scope.fileList2 = [];
+        $scope.fileList3 = [];
+        $scope.fileList4 = [];
+        $scope.fileList5 = [];
+        $scope.fileList6 = [];
+        $scope.fileList7 = [];
+        $scope.fileList8 = [];
+        $scope.fileList9 = [];
+        $scope.fileList10 = [];
+        $scope.fileList11 = [];
+        $scope.fileList12 = [];
+        $scope.fileList13 = [];
+        $scope.fileList14 = [];
+        $scope.fileList15 = [];
+
 
         $scope.ChooseFileChange = function (id, index) {
             var file = document.getElementById(id).files[0];
@@ -87,6 +104,54 @@ angular.module('mainPageApp', [])
             })
         };
 
+        $.ajax({
+            type: 'post',
+            contentType: 'application/json;charset=utf-8',
+            dataType: "json",
+            async: true,
+            url: '/proposer/user.do',
+            data: JSON.stringify({
+                "action": "initActivistUserPage"
+            }),
+            success: function (result) {
+                if (result.status === 0) {
+                    for (var uploadInstruction of result.model.uploadInstructions) {
+                        if (uploadInstruction.index === 1) {
+                            $scope.upload1Instruction = uploadInstruction.instruction;
+                        } else if (uploadInstruction.index === 2) {
+                            $scope.upload2Instruction = uploadInstruction.instruction;
+                        } else if (uploadInstruction.index === 3) {
+                            $scope.upload3Instruction = uploadInstruction.instruction;
+                        } else if (uploadInstruction.index === 4) {
+                            $scope.upload4Instruction = uploadInstruction.instruction;
+                        } else if (uploadInstruction.index === 5) {
+                            $scope.upload5Instruction = uploadInstruction.instruction;
+                        } else if (uploadInstruction.index === 6) {
+                            $scope.upload6Instruction = uploadInstruction.instruction;
+                        } else if (uploadInstruction.index === 7) {
+                            $scope.upload7Instruction = uploadInstruction.instruction;
+                        } else if (uploadInstruction.index === 8) {
+                            $scope.upload8Instruction = uploadInstruction.instruction;
+                        } else if (uploadInstruction.index === 9) {
+                            $scope.upload9Instruction = uploadInstruction.instruction;
+                        } else if (uploadInstruction.index === 10) {
+                            $scope.upload10Instruction = uploadInstruction.instruction;
+                        } else if (uploadInstruction.index === 11) {
+                            $scope.upload11Instruction = uploadInstruction.instruction;
+                        } else if (uploadInstruction.index === 12) {
+                            $scope.upload12Instruction = uploadInstruction.instruction;
+                        } else if (uploadInstruction.index === 13) {
+                            $scope.upload13Instruction = uploadInstruction.instruction;
+                        } else if (uploadInstruction.index === 14) {
+                            $scope.upload14Instruction = uploadInstruction.instruction;
+                        } else if (uploadInstruction.index === 15) {
+                            $scope.upload15Instruction = uploadInstruction.instruction;
+                        }
+                    }
+                    $scope.refreshTable(result.model.currentProposer);
+                }
+            }
+        });
 
         $scope.timeConvert = function (time = +new Date()) {
             var date = new Date(time + 8 * 3600 * 1000);
