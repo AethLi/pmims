@@ -1,10 +1,7 @@
 package pmim.controller;
 
-import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -12,6 +9,9 @@ import pmim.mapper.ActivistMapper;
 import pmim.mapper.DevelopmentMapper;
 import pmim.mapper.ProbationaryMapper;
 import pmim.mapper.ProposerMapper;
+import pmim.model.Activist;
+import pmim.model.Development;
+import pmim.model.Probationary;
 import pmim.model.Proposer;
 import pmim.service.UserPathService;
 
@@ -41,6 +41,18 @@ public class fileCtrl {
         String desId = request.getParameter("desId");
         if (request.getParameter("type").equals("proposer")) {
             Proposer p = proposerMapper.selectProposerByProposerId(new Proposer(desId));
+            path = userPathService.checkUserPath(p.getUserId());
+            path += "Proposer/" + p.getFileName();
+        } else if (request.getParameter("type").equals("activist")) {
+            Activist a = activistMapper.selectActivistByActivistId(new Activist(desId));
+            path = userPathService.checkUserPath(a.getUserId());
+            path += "Activist/" + a.getFileName();
+        } else if (request.getParameter("type").equals("development")) {
+            Development d = developmentMapper.selectDevelopmentByDevelopmentId(new Development(desId));
+            path = userPathService.checkUserPath(d.getUserId());
+            path += "Development/" + d.getFileName();
+        } else if (request.getParameter("type").equals("probationary")) {
+            Probationary p = probationaryMapper.selectProbationaryByProbationaryId(new Probationary(desId));
             path = userPathService.checkUserPath(p.getUserId());
             path += "Proposer/" + p.getFileName();
         }
@@ -75,6 +87,21 @@ public class fileCtrl {
         String desId = request.getParameter("desId");
         if (request.getParameter("type").equals("proposer")) {
             Proposer p = proposerMapper.selectProposerByProposerId(new Proposer(desId));
+            path = userPathService.checkUserPath(p.getUserId());
+            path += "Proposer/" + p.getFileName();
+            fileName = p.getFileName();
+        } else if (request.getParameter("type").equals("activist")) {
+            Activist a = activistMapper.selectActivistByActivistId(new Activist(desId));
+            path = userPathService.checkUserPath(a.getUserId());
+            path += "Activist/" + a.getFileName();
+            fileName = a.getFileName();
+        } else if (request.getParameter("type").equals("development")) {
+            Development d = developmentMapper.selectDevelopmentByDevelopmentId(new Development(desId));
+            path = userPathService.checkUserPath(d.getUserId());
+            path += "Development/" + d.getFileName();
+            fileName = d.getFileName();
+        } else if (request.getParameter("type").equals("probationary")) {
+            Probationary p = probationaryMapper.selectProbationaryByProbationaryId(new Probationary(desId));
             path = userPathService.checkUserPath(p.getUserId());
             path += "Proposer/" + p.getFileName();
             fileName = p.getFileName();

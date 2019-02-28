@@ -15,5 +15,7 @@ public interface ProbationaryMapper {
     void disAcceptProbationaryById(Probationary p);
 
     void deleteProbationaryById(Probationary p);
+    Probationary selectProbationaryByProbationaryId(Probationary p);
+
 
 }

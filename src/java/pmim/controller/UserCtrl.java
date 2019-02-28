@@ -35,17 +35,22 @@ public class UserCtrl {
         } else if ("login".equals(ra.getAction())) {
             SysUser u = (SysUser) JSONObject.toBean(JSONObject.fromObject(jsonstr), SysUser.class);
             if (!ra.getCode().toLowerCase().equals(request.getSession().getAttribute("identifyingCode"))) {
+                request.getSession().setAttribute("identifyingCode", "oishfioasdhfdsofhiodshfasoifhoadhfasohoidsaf");
                 return JSONObject.fromObject(new ResponseMessage(1, "验证码错误", null)).toString();
             }
             u = us.login(u, request.getSession().getAttribute("identifyingCode").toString());
             if (u == null) {
+                request.getSession().setAttribute("identifyingCode", "sdfbhsadfsaiofhsadiohfoiashfoisahdfoiashfosi");
                 return JSONObject.fromObject(new ResponseMessage(1, "账号或用户名错误错误", null)).toString();
             }
             model.addAttribute("currentSysUser", u);
-            if (u.getUserPermission() == 5 || u.getUserPermission() == 6)
+            if (u.getUserPermission() == 5 || u.getUserPermission() == 6) {
+                request.getSession().setAttribute("identifyingCode", "sdafsadfdsafsadfdsjfsajflasjflskjfksljflsddd");
                 return JSONObject.fromObject(new ResponseMessage(0, "html/managerPage.html", null)).toString();
-            else
+            } else {
+                request.getSession().setAttribute("identifyingCode", "fhwqiefhwibibcviashdoasfhoasifhosafdaosfasoj");
                 return JSONObject.fromObject(new ResponseMessage(0, "html/mainPage.html", null)).toString();
+            }
         }
         return null;
     }

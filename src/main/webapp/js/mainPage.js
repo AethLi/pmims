@@ -6,6 +6,11 @@ angular.module('mainPageApp', ['ui.router', 'oc.lazyLoad'])
         $scope.iAmActive = function (who) {
             $scope.whoIsActive = who;
         };
+
+        $scope.permissionChecked=function (desPermission) {
+            if () 
+        };
+
         $scope.logout = function () {
             $.ajax({
                 type: 'post',

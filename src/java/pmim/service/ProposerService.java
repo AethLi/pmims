@@ -1,6 +1,7 @@
 package pmim.service;
 
 import net.sf.json.JSONObject;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -16,6 +17,7 @@ import pmim.model.SysUser;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
@@ -61,6 +63,7 @@ public class ProposerService {
                         return JSONObject.fromObject(new ResponseMessage(1, "已上传过同名文件", null)).toString();
                     }
                     String path = proposerPath.getPath() + "/" + file.getOriginalFilename();
+//                    String fileRandomName = RandomStringUtils.randomAlphabetic(5) + new SimpleDateFormat("yyyyMMddhhmmss").format(new Date(System.currentTimeMillis()));
                     try {
                         file.transferTo(new File(path));
                         pm.insertProposer(new Proposer(UUID.randomUUID().toString().replace("-", "0"), currentUser, file.getOriginalFilename(), Calendar.getInstance().getTimeInMillis(), 0, Integer.valueOf(index)));

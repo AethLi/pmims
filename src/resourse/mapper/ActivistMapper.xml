@@ -21,4 +21,7 @@
     <update id="disAcceptActivistById" parameterType="pmim.model.Activist">
         update Activist set status=2 where ActivistId=#{ActivistId};
     </update>
+    <select id="selectActivistByActivistId" parameterType="pmim.model.Activist" resultType="pmim.model.Activist">
+        select * from Activist where ActivistId=#{ActivistId};
+    </select>
 </mapper>

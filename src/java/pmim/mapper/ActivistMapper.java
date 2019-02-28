@@ -18,4 +18,6 @@ public interface ActivistMapper {
 
     void deleteActivistById(Activist p);
 
+    Activist selectActivistByActivistId(Activist p);
+
 }

@@ -7,7 +7,9 @@ angular.module('managerPageApp', [])
             $scope.proposerFile0 = [];
             $scope.proposerFile1 = [];
 
-            $scope.allProposers;
+        $scope.isSuperAdmin=false;
+
+        $scope.allProposers;
             $scope.proposerCount = "0/0";
 
 
@@ -71,6 +73,7 @@ angular.module('managerPageApp', [])
                 success: function (result) {
                     if (result.status === 0) {
                         $scope.allProposers = result.model.users;
+                        $scope.isSuperAdmin=result.model.isSuperAdmin;
                         $scope.$digest();
                     }
                 }

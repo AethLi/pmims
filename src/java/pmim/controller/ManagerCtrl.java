@@ -29,13 +29,13 @@ public class ManagerCtrl {
     Object initManagerPages(HttpServletRequest request, @RequestBody String jsonstr) {
         RequestAction ra = (RequestAction) JSONObject.toBean(JSONObject.fromObject(jsonstr), RequestAction.class);
         if ("uploadInstruction".equals(ra.getAction())) {
-            if (pcs.permissionCheck(5) || pcs.permissionCheck(6)) {
+            if (pcs.permissionCheck(5,request) || pcs.permissionCheck(6,request)) {
                 return JSONObject.fromObject(new ResponseMessage(0, "", ms.initManagerPages(Integer.valueOf(ra.getCode())))).toString();
             }
         } else if ("listOfThis".equals(ra.getAction())) {
-            if (pcs.permissionCheck(5) || pcs.permissionCheck(6)) {
+            if (pcs.permissionCheck(5,request) || pcs.permissionCheck(6,request)) {
                 PageAble pa = (PageAble) JSONObject.toBean(JSONObject.fromObject(jsonstr), PageAble.class);
-                return JSONObject.fromObject(new ResponseMessage(0, "", ms.initTablePages(pa))).toString();
+                return JSONObject.fromObject(new ResponseMessage(0, "", ms.initTablePages(pa,request))).toString();
             }
         }
         return JSONObject.fromObject(new ResponseMessage(0, "权限存在问题", null)).toString();
@@ -45,7 +45,7 @@ public class ManagerCtrl {
     public @ResponseBody
     Object saveUploadInstruction(HttpServletRequest request, @RequestBody String jsonstr) {
         UploadInstruction ui = (UploadInstruction) JSONObject.toBean(JSONObject.fromObject(jsonstr), UploadInstruction.class);
-        if (pcs.permissionCheck(5) || pcs.permissionCheck(6)) {
+        if (pcs.permissionCheck(5,request) || pcs.permissionCheck(6,request)) {
             return JSONObject.fromObject(new ResponseMessage(0, ms.saveUploadInstruction(ui), null)).toString();
         }
         return JSONObject.fromObject(new ResponseMessage(0, "权限存在问题", null)).toString();
@@ -56,25 +56,25 @@ public class ManagerCtrl {
     Object proposerModal(HttpServletRequest request, @RequestBody String jsonstr) {
         RequestAction ra = (RequestAction) JSONObject.toBean(JSONObject.fromObject(jsonstr), RequestAction.class);
         if ("accept".equals(ra.getAction())) {
-            if (pcs.permissionCheck(5) || pcs.permissionCheck(6)) {
+            if (pcs.permissionCheck(5,request) || pcs.permissionCheck(6,request)) {
                 return JSONObject.fromObject(new ResponseMessage(0,ms.acceptItem(ra.getDesId(),ra.getCode(),0),null)).toString();
             }
             return JSONObject.fromObject(new ResponseMessage(0, "权限存在问题", null)).toString();
 
         } else if ("disAccept".equals(ra.getAction())) {
-            if (pcs.permissionCheck(5) || pcs.permissionCheck(6)) {
+            if (pcs.permissionCheck(5,request) || pcs.permissionCheck(6,request)) {
 
             }
             return JSONObject.fromObject(new ResponseMessage(0, "权限存在问题", null)).toString();
 
         } else if ("delete".equals(ra.getAction())) {
-            if (pcs.permissionCheck(5) || pcs.permissionCheck(6)) {
+            if (pcs.permissionCheck(5,request) || pcs.permissionCheck(6,request)) {
 
             }
             return JSONObject.fromObject(new ResponseMessage(0, "权限存在问题", null)).toString();
 
         } else if ("modal".equals(ra.getAction())) {
-            if (pcs.permissionCheck(5) || pcs.permissionCheck(6)) {
+             if (pcs.permissionCheck(5,request) || pcs.permissionCheck(6,request)) {
                 return JSONObject.fromObject(new ResponseMessage(0, null, ms.proposerModal(ra.getDesId()))).toString();
             }
             return JSONObject.fromObject(new ResponseMessage(0, "权限存在问题", null)).toString();
@@ -86,7 +86,7 @@ public class ManagerCtrl {
     public @ResponseBody
     Object activistModal(HttpServletRequest request, @RequestBody String jsonstr) {
         RequestAction ra = (RequestAction) JSONObject.toBean(JSONObject.fromObject(jsonstr), RequestAction.class);
-        if (pcs.permissionCheck(5) || pcs.permissionCheck(6)) {
+         if (pcs.permissionCheck(5,request) || pcs.permissionCheck(6,request)) {
             return JSONObject.fromObject(new ResponseMessage(0, null, ms.activistModal(ra.getDesId()))).toString();
         }
         return JSONObject.fromObject(new ResponseMessage(0, "权限存在问题", null)).toString();
@@ -96,7 +96,7 @@ public class ManagerCtrl {
     public @ResponseBody
     Object developmentModal(HttpServletRequest request, @RequestBody String jsonstr) {
         RequestAction ra = (RequestAction) JSONObject.toBean(JSONObject.fromObject(jsonstr), RequestAction.class);
-        if (pcs.permissionCheck(5) || pcs.permissionCheck(6)) {
+         if (pcs.permissionCheck(5,request) || pcs.permissionCheck(6,request)) {
             return JSONObject.fromObject(new ResponseMessage(0, null, ms.developmentModal(ra.getDesId()))).toString();
         }
         return JSONObject.fromObject(new ResponseMessage(0, "权限存在问题", null)).toString();
@@ -106,7 +106,7 @@ public class ManagerCtrl {
     public @ResponseBody
     Object probationaryModal(HttpServletRequest request, @RequestBody String jsonstr) {
         RequestAction ra = (RequestAction) JSONObject.toBean(JSONObject.fromObject(jsonstr), RequestAction.class);
-        if (pcs.permissionCheck(5) || pcs.permissionCheck(6)) {
+         if (pcs.permissionCheck(5,request) || pcs.permissionCheck(6,request)) {
             return JSONObject.fromObject(new ResponseMessage(0, null, ms.probationaryModal(ra.getDesId()))).toString();
         }
         return JSONObject.fromObject(new ResponseMessage(0, "权限存在问题", null)).toString();

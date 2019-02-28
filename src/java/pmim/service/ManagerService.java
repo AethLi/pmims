@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import pmim.mapper.*;
 import pmim.model.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,6 +27,8 @@ public class ManagerService {
     DevelopmentMapper developmentMapper;
     @Autowired
     ProbationaryMapper probationaryMapper;
+    @Autowired
+    PermissionCheckService pcs;
 
     public Object initManagerPages(Integer position) {
         UploadInstruction uploadInstruction = new UploadInstruction();
@@ -38,7 +41,7 @@ public class ManagerService {
         return "修改成功";
     }
 
-    public Object initTablePages(PageAble pa) {
+    public Object initTablePages(PageAble pa, HttpServletRequest request) {
         Map<String, Object> result = new HashMap<>();
         List<Map<String, Object>> users = um.selectUsersByPage(pa);
         if (pa.getUserType() == 0) {
@@ -50,6 +53,11 @@ public class ManagerService {
             }
         }
         result.put("users", users);
+        if (pcs.permissionCheck(6,request)) {
+            result.put("isSuperAdmin", true);
+        } else {
+            result.put("isSuperAdmin", false);
+        }
         return result;
     }
 

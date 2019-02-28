@@ -16,4 +16,7 @@ public interface DevelopmentMapper {
 
     void deleteDevelopmentById(Development p);
 
+    Development selectDevelopmentByDevelopmentId(Development p);
+
+
 }

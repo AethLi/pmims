@@ -21,4 +21,7 @@
     <update id="disAcceptProbationaryById" parameterType="pmim.model.Probationary">
         update Probationary set status=2 where ProbationaryId=#{ProbationaryId};
     </update>
+    <select id="selectProbationaryByProbationaryId" parameterType="pmim.model.Probationary" resultType="pmim.model.Probationary">
+        select * from Probationary where ProbationaryId=#{ProbationaryId};
+    </select>
 </mapper>
