@@ -1,8 +1,8 @@
 angular.module('mainPageApp', [])
     .controller("proposerUCtrl", function ($scope) {
         console.log("proposerU.js onload!");
+        $scope.upload0Instruction = "加载失败";
         $scope.upload1Instruction = "加载失败";
-        $scope.upload2Instruction = "加载失败";
         $scope.imageFileChose = "未选择文件";
         $scope.wordFileChose = "未选择文件";
         $scope.proposerImageFileList = [];
@@ -81,10 +81,10 @@ angular.module('mainPageApp', [])
             success: function (result) {
                 if (result.status === 0) {
                     for (var uploadInstruction of result.model.uploadInstructions) {
-                        if (uploadInstruction.index === 1) {
+                        if (uploadInstruction.index === 0) {
+                            $scope.upload0Instruction = uploadInstruction.instruction;
+                        } else if (uploadInstruction.index === 1) {
                             $scope.upload1Instruction = uploadInstruction.instruction;
-                        } else if (uploadInstruction.index === 2) {
-                            $scope.upload2Instruction = uploadInstruction.instruction;
                         }
                     }
                     $scope.refreshTable(result.model.currentProposer);

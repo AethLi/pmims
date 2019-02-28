@@ -58,12 +58,12 @@ public class ActivistService {
         return JSONObject.fromObject(new ResponseMessage(0, "上传成功", null)).toString();
     }
 
-    public Object initProposerUserPage(SysUser currentSysUser) {
+    public Object initUserPage(SysUser currentSysUser) {
         List ul;
         List al;
         Map result = new HashMap();
         try {
-            ul = uism.selectUploadInstructionByPosition(new UploadInstruction(0));
+            ul = uism.selectUploadInstructionByPosition(new UploadInstruction(1));
             al=am.selectActivistByIdUndeleted(currentSysUser);
             result.put("uploadInstructions", ul);
             result.put("currentActivist", al);

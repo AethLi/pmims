@@ -4,7 +4,7 @@
         <div style="width: 100%;margin-top: 10px">
             <div style="height: 450px">
                 <span style="font-size: 20px;font-weight: bold">思想汇报（图片）：</span><br/>
-                <textarea style="width: 60%" rows="5" readonly>{{probationary0Instruction}}</textarea>
+                <textarea style="width: 60%" rows="5" readonly>{{upload0Instruction}}</textarea>
                 <div class="col-md-8" style="overflow-x: auto; overflow-y: auto; height: 300px">
                     <table class="table" align="center" style="width: 700px;">
                         <thead>
@@ -28,11 +28,7 @@
                 </div>
                 <div class="col-md-4">
                     <div>
-                        <button type="button" class="btn btn-default btn-lg" style="width: 150px;">
-                        <span class="glyphicon glyphicon-ok" aria-hidden="true"
-                              style="font-size: 20px;color: green"></span>
-                            <span style="font-size: 20px">审核通过</span>
-                        </button>
+
                     </div>
                     <div>
                         <label for="probationary0FileChoose" class="btn btn-primary btn-lg"
@@ -56,6 +52,7 @@
                     <input name="index" value="0">
                     <input type="file" id="probationary0FileChoose"
                            onchange="angular.element(this).scope().ChooseFileChange('probationary0FileChoose',0)"
+                           accept="image/*"
                            ng-model="probationary0FileChoose" name="file"/>
                     <input id="probationary0FileUpload" type="button" ng-click="upload('probationaryForm0')">
                 </form>
@@ -64,7 +61,7 @@
         <div style="width: 100%;margin-top: 10px">
             <div style="height: 450px">
                 <span style="font-size: 20px;font-weight: bold">思想汇报（Word）：</span><br/>
-                <textarea style="width: 60%" rows="5" readonly>{{probationary1Instruction}}</textarea>
+                <textarea style="width: 60%" rows="5" readonly>{{upload1Instruction}}</textarea>
                 <div class="col-md-8" style="overflow-x: auto; overflow-y: auto; height: 300px">
                     <table class="table" align="center" style="width: 700px;">
                         <thead>
@@ -88,11 +85,7 @@
                 </div>
                 <div class="col-md-4">
                     <div>
-                        <button type="button" class="btn btn-default btn-lg" style="width: 150px;">
-                        <span class="glyphicon glyphicon-ok" aria-hidden="true"
-                              style="font-size: 20px;color: green"></span>
-                            <span style="font-size: 20px">审核通过</span>
-                        </button>
+
                     </div>
                     <div>
                         <label for="probationary1FileChoose" class="btn btn-primary btn-lg"
@@ -124,7 +117,7 @@
         <div style="width: 100%;margin-top: 10px">
             <div style="height: 450px">
                 <span style="font-size: 20px;font-weight: bold">转正申请书（图片）：</span><br/>
-                <textarea style="width: 60%" rows="5" readonly>{{probationary2Instruction}}</textarea>
+                <textarea style="width: 60%" rows="5" readonly>{{upload2Instruction}}</textarea>
                 <div class="col-md-8" style="overflow-x: auto; overflow-y: auto; height: 300px">
                     <table class="table" align="center" style="width: 700px;">
                         <thead>
@@ -148,11 +141,7 @@
                 </div>
                 <div class="col-md-4">
                     <div>
-                        <button type="button" class="btn btn-default btn-lg" style="width: 150px;">
-                        <span class="glyphicon glyphicon-ok" aria-hidden="true"
-                              style="font-size: 20px;color: green"></span>
-                            <span style="font-size: 20px">审核通过</span>
-                        </button>
+
                     </div>
                     <div>
                         <label for="probationary2FileChoose" class="btn btn-primary btn-lg"
@@ -176,6 +165,7 @@
                     <input name="index" value="2">
                     <input type="file" id="probationary2FileChoose"
                            onchange="angular.element(this).scope().ChooseFileChange('probationary2FileChoose',2)"
+                           accept="image/*"
                            ng-model="probationary2FileChoose" name="file"/>
                     <input id="probationary2FileUpload" type="button" ng-click="upload('probationaryForm2')">
                 </form>
@@ -184,7 +174,7 @@
         <div style="width: 100%;margin-top: 10px">
             <div style="height: 450px">
                 <span style="font-size: 20px;font-weight: bold">其他资料（图片）：</span><br/>
-                <textarea style="width: 60%" rows="5" readonly>{{probationary3Instruction}}</textarea>
+                <textarea style="width: 60%" rows="5" readonly>{{upload3Instruction}}</textarea>
                 <div class="col-md-8" style="overflow-x: auto; overflow-y: auto; height: 300px">
                     <table class="table" align="center" style="width: 700px;">
                         <thead>
@@ -208,11 +198,7 @@
                 </div>
                 <div class="col-md-4">
                     <div>
-                        <button type="button" class="btn btn-default btn-lg" style="width: 150px;">
-                        <span class="glyphicon glyphicon-ok" aria-hidden="true"
-                              style="font-size: 20px;color: green"></span>
-                            <span style="font-size: 20px">审核通过</span>
-                        </button>
+
                     </div>
                     <div>
                         <label for="probationary3FileChoose" class="btn btn-primary btn-lg"
@@ -236,6 +222,7 @@
                     <input name="index" value="3">
                     <input type="file" id="probationary3FileChoose"
                            onchange="angular.element(this).scope().ChooseFileChange('probationary3FileChoose',3)"
+                           accept="image/*"
                            ng-model="probationary3FileChoose" name="file"/>
                     <input id="probationary3FileUpload" type="button" ng-click="upload('probationaryForm3')">
                 </form>

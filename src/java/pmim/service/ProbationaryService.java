@@ -69,6 +69,16 @@ public class ProbationaryService {
         result.put("uploadInstructions", uploadInstructions);
         List uploadInfos = uifm.selectUploadInfoById(currentSysUser);
         result.put("uploadInfos", uploadInfos);
+        List pl=pm.selectProbationaryByIdUndeleted(currentSysUser);
+        result.put("currentProbationary",pl);
         return JSONObject.fromObject(new ResponseMessage(0, "", result)).toString();
+    }
+    public Object getFileList(SysUser currentSysUser) {
+        try {
+            return JSONObject.fromObject(new ResponseMessage(0, "", pm.selectProbationaryByIdUndeleted(currentSysUser))).toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

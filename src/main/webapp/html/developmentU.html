@@ -5,7 +5,7 @@
         <div style="width: 100%;margin-top: 10px">
             <div style="height: 450px">
                 <span style="font-size: 20px;font-weight: bold">自传（图片）：</span><br/>
-                <textarea style="width: 60%" rows="5"readonly>{{upload0Instruction}}</textarea>
+                <textarea style="width: 60%" rows="5" readonly>{{upload0Instruction}}</textarea>
                 <div class="col-md-8" style="overflow-x: auto; overflow-y: auto; height: 300px">
                     <table class="table" align="center" style="width: 700px;">
                         <thead>
@@ -29,11 +29,7 @@
                 </div>
                 <div class="col-md-4">
                     <div>
-                        <button type="button" class="btn btn-default btn-lg" style="width: 150px;">
-                        <span class="glyphicon glyphicon-ok" aria-hidden="true"
-                              style="font-size: 20px;color: green"></span>
-                            <span style="font-size: 20px">审核通过</span>
-                        </button>
+
                     </div>
                     <div>
                         <label for="development0FileChoose" class="btn btn-primary btn-lg"
@@ -54,9 +50,10 @@
                     </div>
                 </div>
                 <form id="developmentForm0" style="display: none">
-                    <input name="index" value="1">
+                    <input name="index" value="0">
                     <input type="file" id="development0FileChoose"
                            onchange="angular.element(this).scope().ChooseFileChange('development0FileChoose',0)"
+                           accept="image/*"
                            ng-model="development0FileChoose" name="file"/>
                     <input id="development0FileUpload" type="button" ng-click="upload('developmentForm0')">
                 </form>
@@ -65,7 +62,7 @@
         <div style="width: 100%;margin-top: 10px">
             <div style="height: 450px">
                 <span style="font-size: 20px;font-weight: bold">自传（word）：</span><br/>
-                <textarea style="width: 60%" rows="5"readonly>{{upload1Instruction}}</textarea>
+                <textarea style="width: 60%" rows="5" readonly>{{upload1Instruction}}</textarea>
                 <div class="col-md-8" style="overflow-x: auto; overflow-y: auto; height: 300px">
                     <table class="table" align="center" style="width: 700px;">
                         <thead>
@@ -89,11 +86,7 @@
                 </div>
                 <div class="col-md-4">
                     <div>
-                        <button type="button" class="btn btn-default btn-lg" style="width: 150px;">
-                        <span class="glyphicon glyphicon-ok" aria-hidden="true"
-                              style="font-size: 20px;color: green"></span>
-                            <span style="font-size: 20px">审核通过</span>
-                        </button>
+
                     </div>
                     <div>
                         <label for="development1FileChoose" class="btn btn-primary btn-lg"
@@ -114,7 +107,7 @@
                     </div>
                 </div>
                 <form id="developmentForm1" style="display: none">
-                    <input name="index" value="0">
+                    <input name="index" value="1">
                     <input type="file" id="development1FileChoose"
                            onchange="angular.element(this).scope().ChooseFileChange('development1FileChoose',1)"
                            ng-model="development1FileChoose" name="file"/>
@@ -125,7 +118,7 @@
         <div style="width: 100%;margin-top: 10px">
             <div style="height: 450px">
                 <span style="font-size: 20px;font-weight: bold">入党申请书（图片）：</span><br/>
-                <textarea style="width: 60%" rows="5"readonly>{{upload2Instruction}}</textarea>
+                <textarea style="width: 60%" rows="5" readonly>{{upload2Instruction}}</textarea>
                 <div class="col-md-8" style="overflow-x: auto; overflow-y: auto; height: 300px">
                     <table class="table" align="center" style="width: 700px;">
                         <thead>
@@ -149,11 +142,7 @@
                 </div>
                 <div class="col-md-4">
                     <div>
-                        <button type="button" class="btn btn-default btn-lg" style="width: 150px;">
-                        <span class="glyphicon glyphicon-ok" aria-hidden="true"
-                              style="font-size: 20px;color: green"></span>
-                            <span style="font-size: 20px">审核通过</span>
-                        </button>
+
                     </div>
                     <div>
                         <label for="development2FileChoose" class="btn btn-primary btn-lg"
@@ -177,6 +166,7 @@
                     <input name="index" value="2">
                     <input type="file" id="development2FileChoose"
                            onchange="angular.element(this).scope().ChooseFileChange('development2FileChoose',2)"
+                           accept="image/*"
                            ng-model="development2FileChoose" name="file"/>
                     <input id="development2FileUpload" type="button" ng-click="upload('developmentForm2')">
                 </form>
@@ -185,7 +175,7 @@
         <div style="width: 100%;margin-top: 10px">
             <div style="height: 450px">
                 <span style="font-size: 20px;font-weight: bold">直系亲属政审（图片）：</span><br/>
-                <textarea style="width: 60%" rows="5"readonly>{{upload3Instruction}}</textarea>
+                <textarea style="width: 60%" rows="5" readonly>{{upload3Instruction}}</textarea>
                 <div class="col-md-8" style="overflow-x: auto; overflow-y: auto; height: 300px">
                     <table class="table" align="center" style="width: 700px;">
                         <thead>
@@ -209,11 +199,7 @@
                 </div>
                 <div class="col-md-4">
                     <div>
-                        <button type="button" class="btn btn-default btn-lg" style="width: 150px;">
-                        <span class="glyphicon glyphicon-ok" aria-hidden="true"
-                              style="font-size: 20px;color: green"></span>
-                            <span style="font-size: 20px">审核通过</span>
-                        </button>
+
                     </div>
                     <div>
                         <label for="development3FileChoose" class="btn btn-primary btn-lg"
@@ -237,6 +223,7 @@
                     <input name="index" value="3">
                     <input type="file" id="development3FileChoose"
                            onchange="angular.element(this).scope().ChooseFileChange('development3FileChoose',3)"
+                           accept="image/*"
                            ng-model="development3FileChoose" name="file"/>
                     <input id="development3FileUpload" type="button" ng-click="upload('developmentForm3')">
                 </form>
@@ -245,7 +232,7 @@
         <div style="width: 100%;margin-top: 10px">
             <div style="height: 450px">
                 <span style="font-size: 20px;font-weight: bold">直系亲属政审（word）：</span><br/>
-                <textarea style="width: 60%" rows="5"readonly>{{upload4Instruction}}</textarea>
+                <textarea style="width: 60%" rows="5" readonly>{{upload4Instruction}}</textarea>
                 <div class="col-md-8" style="overflow-x: auto; overflow-y: auto; height: 300px">
                     <table class="table" align="center" style="width: 700px;">
                         <thead>
@@ -269,11 +256,7 @@
                 </div>
                 <div class="col-md-4">
                     <div>
-                        <button type="button" class="btn btn-default btn-lg" style="width: 150px;">
-                        <span class="glyphicon glyphicon-ok" aria-hidden="true"
-                              style="font-size: 20px;color: green"></span>
-                            <span style="font-size: 20px">审核通过</span>
-                        </button>
+
                     </div>
                     <div>
                         <label for="development4FileChoose" class="btn btn-primary btn-lg"
@@ -305,7 +288,7 @@
         <div style="width: 100%;margin-top: 10px">
             <div style="height: 450px">
                 <span style="font-size: 20px;font-weight: bold">党校培训心得（图片）：</span><br/>
-                <textarea style="width: 60%" rows="5"readonly>{{upload5Instruction}}</textarea>
+                <textarea style="width: 60%" rows="5" readonly>{{upload5Instruction}}</textarea>
                 <div class="col-md-8" style="overflow-x: auto; overflow-y: auto; height: 300px">
                     <table class="table" align="center" style="width: 700px;">
                         <thead>
@@ -329,11 +312,7 @@
                 </div>
                 <div class="col-md-4">
                     <div>
-                        <button type="button" class="btn btn-default btn-lg" style="width: 150px;">
-                        <span class="glyphicon glyphicon-ok" aria-hidden="true"
-                              style="font-size: 20px;color: green"></span>
-                            <span style="font-size: 20px">审核通过</span>
-                        </button>
+
                     </div>
                     <div>
                         <label for="development5FileChoose" class="btn btn-primary btn-lg"
@@ -357,6 +336,7 @@
                     <input name="index" value="5">
                     <input type="file" id="development5FileChoose"
                            onchange="angular.element(this).scope().ChooseFileChange('development5FileChoose',5)"
+                           accept="image/*"
                            ng-model="development5FileChoose" name="file"/>
                     <input id="development5FileUpload" type="button" ng-click="upload('developmentForm5')">
                 </form>
@@ -365,7 +345,7 @@
         <div style="width: 100%;margin-top: 10px">
             <div style="height: 450px">
                 <span style="font-size: 20px;font-weight: bold">党校培训心得（word）：</span><br/>
-                <textarea style="width: 60%" rows="5"readonly>{{upload6Instruction}}</textarea>
+                <textarea style="width: 60%" rows="5" readonly>{{upload6Instruction}}</textarea>
                 <div class="col-md-8" style="overflow-x: auto; overflow-y: auto; height: 300px">
                     <table class="table" align="center" style="width: 700px;">
                         <thead>
@@ -389,11 +369,7 @@
                 </div>
                 <div class="col-md-4">
                     <div>
-                        <button type="button" class="btn btn-default btn-lg" style="width: 150px;">
-                        <span class="glyphicon glyphicon-ok" aria-hidden="true"
-                              style="font-size: 20px;color: green"></span>
-                            <span style="font-size: 20px">审核通过</span>
-                        </button>
+
                     </div>
                     <div>
                         <label for="development6FileChoose" class="btn btn-primary btn-lg"
@@ -425,7 +401,7 @@
         <div style="width: 100%;margin-top: 10px">
             <div style="height: 450px">
                 <span style="font-size: 20px;font-weight: bold">思想汇报一（图片）：</span><br/>
-                <textarea style="width: 60%" rows="5"readonly>{{upload7Instruction}}</textarea>
+                <textarea style="width: 60%" rows="5" readonly>{{upload7Instruction}}</textarea>
                 <div class="col-md-8" style="overflow-x: auto; overflow-y: auto; height: 300px">
                     <table class="table" align="center" style="width: 700px;">
                         <thead>
@@ -449,11 +425,7 @@
                 </div>
                 <div class="col-md-4">
                     <div>
-                        <button type="button" class="btn btn-default btn-lg" style="width: 150px;">
-                        <span class="glyphicon glyphicon-ok" aria-hidden="true"
-                              style="font-size: 20px;color: green"></span>
-                            <span style="font-size: 20px">审核通过</span>
-                        </button>
+
                     </div>
                     <div>
                         <label for="development7FileChoose" class="btn btn-primary btn-lg"
@@ -477,6 +449,7 @@
                     <input name="index" value="7">
                     <input type="file" id="development7FileChoose"
                            onchange="angular.element(this).scope().ChooseFileChange('development7FileChoose',7)"
+                           accept="image/*"
                            ng-model="development7FileChoose" name="file"/>
                     <input id="development7FileUpload" type="button" ng-click="upload('developmentForm7')">
                 </form>
@@ -485,7 +458,7 @@
         <div style="width: 100%;margin-top: 10px">
             <div style="height: 450px">
                 <span style="font-size: 20px;font-weight: bold">思想汇报一（word）：</span><br/>
-                <textarea style="width: 60%" rows="5"readonly>{{upload8Instruction}}</textarea>
+                <textarea style="width: 60%" rows="5" readonly>{{upload8Instruction}}</textarea>
                 <div class="col-md-8" style="overflow-x: auto; overflow-y: auto; height: 300px">
                     <table class="table" align="center" style="width: 700px;">
                         <thead>
@@ -509,11 +482,7 @@
                 </div>
                 <div class="col-md-4">
                     <div>
-                        <button type="button" class="btn btn-default btn-lg" style="width: 150px;">
-                        <span class="glyphicon glyphicon-ok" aria-hidden="true"
-                              style="font-size: 20px;color: green"></span>
-                            <span style="font-size: 20px">审核通过</span>
-                        </button>
+
                     </div>
                     <div>
                         <label for="development8FileChoose" class="btn btn-primary btn-lg"
@@ -545,7 +514,7 @@
         <div style="width: 100%;margin-top: 10px">
             <div style="height: 450px">
                 <span style="font-size: 20px;font-weight: bold">思想汇报二（图片）：</span><br/>
-                <textarea style="width: 60%" rows="5"readonly>{{upload9Instruction}}</textarea>
+                <textarea style="width: 60%" rows="5" readonly>{{upload9Instruction}}</textarea>
                 <div class="col-md-8" style="overflow-x: auto; overflow-y: auto; height: 300px">
                     <table class="table" align="center" style="width: 700px;">
                         <thead>
@@ -569,11 +538,7 @@
                 </div>
                 <div class="col-md-4">
                     <div>
-                        <button type="button" class="btn btn-default btn-lg" style="width: 150px;">
-                        <span class="glyphicon glyphicon-ok" aria-hidden="true"
-                              style="font-size: 20px;color: green"></span>
-                            <span style="font-size: 20px">审核通过</span>
-                        </button>
+
                     </div>
                     <div>
                         <label for="development9FileChoose" class="btn btn-primary btn-lg"
@@ -597,6 +562,7 @@
                     <input name="index" value="9">
                     <input type="file" id="development9FileChoose"
                            onchange="angular.element(this).scope().ChooseFileChange('development9FileChoose',9)"
+                           accept="image/*"
                            ng-model="development9FileChoose" name="file"/>
                     <input id="development9FileUpload" type="button" ng-click="upload('developmentForm9')">
                 </form>
@@ -605,7 +571,7 @@
         <div style="width: 100%;margin-top: 10px">
             <div style="height: 450px">
                 <span style="font-size: 20px;font-weight: bold">思想汇报二（word）：</span><br/>
-                <textarea style="width: 60%" rows="5"readonly>{{upload10Instruction}}</textarea>
+                <textarea style="width: 60%" rows="5" readonly>{{upload10Instruction}}</textarea>
                 <div class="col-md-8" style="overflow-x: auto; overflow-y: auto; height: 300px">
                     <table class="table" align="center" style="width: 700px;">
                         <thead>
@@ -629,11 +595,7 @@
                 </div>
                 <div class="col-md-4">
                     <div>
-                        <button type="button" class="btn btn-default btn-lg" style="width: 150px;">
-                        <span class="glyphicon glyphicon-ok" aria-hidden="true"
-                              style="font-size: 20px;color: green"></span>
-                            <span style="font-size: 20px">审核通过</span>
-                        </button>
+
                     </div>
                     <div>
                         <label for="development10FileChoose" class="btn btn-primary btn-lg"
@@ -665,7 +627,7 @@
         <div style="width: 100%;margin-top: 10px">
             <div style="height: 450px">
                 <span style="font-size: 20px;font-weight: bold">思想汇报三（图片）：</span><br/>
-                <textarea style="width: 60%" rows="5"readonly>{{upload11Instruction}}</textarea>
+                <textarea style="width: 60%" rows="5" readonly>{{upload11Instruction}}</textarea>
                 <div class="col-md-8" style="overflow-x: auto; overflow-y: auto; height: 300px">
                     <table class="table" align="center" style="width: 700px;">
                         <thead>
@@ -689,11 +651,7 @@
                 </div>
                 <div class="col-md-4">
                     <div>
-                        <button type="button" class="btn btn-default btn-lg" style="width: 150px;">
-                        <span class="glyphicon glyphicon-ok" aria-hidden="true"
-                              style="font-size: 20px;color: green"></span>
-                            <span style="font-size: 20px">审核通过</span>
-                        </button>
+
                     </div>
                     <div>
                         <label for="development11FileChoose" class="btn btn-primary btn-lg"
@@ -717,6 +675,7 @@
                     <input name="index" value="11">
                     <input type="file" id="development11FileChoose"
                            onchange="angular.element(this).scope().ChooseFileChange('development11FileChoose',11)"
+                           accept="image/*"
                            ng-model="development11FileChoose" name="file"/>
                     <input id="development11FileUpload" type="button" ng-click="upload('developmentForm11')">
                 </form>
@@ -725,7 +684,7 @@
         <div style="width: 100%;margin-top: 10px">
             <div style="height: 450px">
                 <span style="font-size: 20px;font-weight: bold">思想汇报三（word）：</span><br/>
-                <textarea style="width: 60%" rows="5"readonly>{{upload12Instruction}}</textarea>
+                <textarea style="width: 60%" rows="5" readonly>{{upload12Instruction}}</textarea>
                 <div class="col-md-8" style="overflow-x: auto; overflow-y: auto; height: 300px">
                     <table class="table" align="center" style="width: 700px;">
                         <thead>
@@ -749,11 +708,7 @@
                 </div>
                 <div class="col-md-4">
                     <div>
-                        <button type="button" class="btn btn-default btn-lg" style="width: 150px;">
-                        <span class="glyphicon glyphicon-ok" aria-hidden="true"
-                              style="font-size: 20px;color: green"></span>
-                            <span style="font-size: 20px">审核通过</span>
-                        </button>
+
                     </div>
                     <div>
                         <label for="development12FileChoose" class="btn btn-primary btn-lg"
@@ -785,7 +740,7 @@
         <div style="width: 100%;margin-top: 10px">
             <div style="height: 450px">
                 <span style="font-size: 20px;font-weight: bold">思想汇报四（图片）：</span><br/>
-                <textarea style="width: 60%" rows="5"readonly>{{upload13Instruction}}</textarea>
+                <textarea style="width: 60%" rows="5" readonly>{{upload13Instruction}}</textarea>
                 <div class="col-md-8" style="overflow-x: auto; overflow-y: auto; height: 300px">
                     <table class="table" align="center" style="width: 700px;">
                         <thead>
@@ -809,11 +764,7 @@
                 </div>
                 <div class="col-md-4">
                     <div>
-                        <button type="button" class="btn btn-default btn-lg" style="width: 150px;">
-                        <span class="glyphicon glyphicon-ok" aria-hidden="true"
-                              style="font-size: 20px;color: green"></span>
-                            <span style="font-size: 20px">审核通过</span>
-                        </button>
+
                     </div>
                     <div>
                         <label for="development13FileChoose" class="btn btn-primary btn-lg"
@@ -837,6 +788,7 @@
                     <input name="index" value="13">
                     <input type="file" id="development13FileChoose"
                            onchange="angular.element(this).scope().ChooseFileChange('development13FileChoose',13)"
+                           accept="image/*"
                            ng-model="development13FileChoose" name="file"/>
                     <input id="development13FileUpload" type="button" ng-click="upload('developmentForm13')">
                 </form>
@@ -845,7 +797,7 @@
         <div style="width: 100%;margin-top: 10px">
             <div style="height: 450px">
                 <span style="font-size: 20px;font-weight: bold">思想汇报四（word）：</span><br/>
-                <textarea style="width: 60%" rows="5"readonly>{{upload14Instruction}}</textarea>
+                <textarea style="width: 60%" rows="5" readonly>{{upload14Instruction}}</textarea>
                 <div class="col-md-8" style="overflow-x: auto; overflow-y: auto; height: 300px">
                     <table class="table" align="center" style="width: 700px;">
                         <thead>
@@ -869,11 +821,7 @@
                 </div>
                 <div class="col-md-4">
                     <div>
-                        <button type="button" class="btn btn-default btn-lg" style="width: 150px;">
-                        <span class="glyphicon glyphicon-ok" aria-hidden="true"
-                              style="font-size: 20px;color: green"></span>
-                            <span style="font-size: 20px">审核通过</span>
-                        </button>
+
                     </div>
                     <div>
                         <label for="development14FileChoose" class="btn btn-primary btn-lg"
@@ -905,7 +853,7 @@
         <div style="width: 100%;margin-top: 10px">
             <div style="height: 450px">
                 <span style="font-size: 20px;font-weight: bold">其他资料：</span><br/>
-                <textarea style="width: 60%" rows="5"readonly>{{upload15Instruction}}</textarea>
+                <textarea style="width: 60%" rows="5" readonly>{{upload15Instruction}}</textarea>
                 <div class="col-md-8" style="overflow-x: auto; overflow-y: auto; height: 300px">
                     <table class="table" align="center" style="width: 700px;">
                         <thead>
@@ -929,11 +877,7 @@
                 </div>
                 <div class="col-md-4">
                     <div>
-                        <button type="button" class="btn btn-default btn-lg" style="width: 150px;">
-                        <span class="glyphicon glyphicon-ok" aria-hidden="true"
-                              style="font-size: 20px;color: green"></span>
-                            <span style="font-size: 20px">审核通过</span>
-                        </button>
+
                     </div>
                     <div>
                         <label for="development15FileChoose" class="btn btn-primary btn-lg"

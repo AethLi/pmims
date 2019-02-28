@@ -6,14 +6,14 @@ angular.module('mainPageApp', [])
         $scope.phoneNumber1 = "加载中";
         $scope.linkman2 = "加载中";
         $scope.phoneNumber2 = "加载中";
-        $scope.activistU0Instruction = "加载中";
-        $scope.activistU1Instruction = "加载中";
-        $scope.activistU2Instruction = "加载中";
-        $scope.activistU3Instruction = "加载中";
-        $scope.activistU4Instruction = "加载中";
-        $scope.activistU5Instruction = "加载中";
-        $scope.activistU6Instruction = "加载中";
-        $scope.activistU7Instruction = "加载中";
+        $scope.upload0Instruction = "";
+        $scope.upload1Instruction = "";
+        $scope.upload2Instruction = "";
+        $scope.upload3Instruction = "";
+        $scope.upload4Instruction = "";
+        $scope.upload5Instruction = "";
+        $scope.upload6Instruction = "";
+        $scope.upload7Instruction = "";
         $scope.file0Name = "未选择文件";
         $scope.file1Name = "未选择文件";
         $scope.file2Name = "未选择文件";
@@ -123,21 +123,21 @@ angular.module('mainPageApp', [])
             success: function (result) {
                 for (var uploadInstruction of result.model.uploadInstructions) {
                     if (uploadInstruction.index === 0) {
-                        $scope.activistU0Instruction = uploadInstruction.instruction;
+                        $scope.upload0Instruction = uploadInstruction.instruction;
                     } else if (uploadInstruction.index === 1) {
-                        $scope.activistU1Instruction = uploadInstruction.instruction;
+                        $scope.upload1Instruction = uploadInstruction.instruction;
                     } else if (uploadInstruction.index === 2) {
-                        $scope.activistU2Instruction = uploadInstruction.instruction;
+                        $scope.upload2Instruction = uploadInstruction.instruction;
                     } else if (uploadInstruction.index === 3) {
-                        $scope.activistU3Instruction = uploadInstruction.instruction;
+                        $scope.upload3Instruction = uploadInstruction.instruction;
                     } else if (uploadInstruction.index === 4) {
-                        $scope.activistU4Instruction = uploadInstruction.instruction;
+                        $scope.upload4Instruction = uploadInstruction.instruction;
                     } else if (uploadInstruction.index === 5) {
-                        $scope.activistU5Instruction = uploadInstruction.instruction;
+                        $scope.upload5Instruction = uploadInstruction.instruction;
                     } else if (uploadInstruction.index === 6) {
-                        $scope.activistU6Instruction = uploadInstruction.instruction;
+                        $scope.upload6Instruction = uploadInstruction.instruction;
                     } else if (uploadInstruction.index === 7) {
-                        $scope.activistU7Instruction = uploadInstruction.instruction;
+                        $scope.upload7Instruction = uploadInstruction.instruction;
                     }
                     $scope.refreshTable(result.model.currentActivist);
                     $scope.$digest();

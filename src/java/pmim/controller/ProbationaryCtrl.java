@@ -25,11 +25,14 @@ public class ProbationaryCtrl {
     public @ResponseBody
     Object activistUser(HttpServletRequest request, @RequestBody String jsonstr) {
         RequestAction ra = (RequestAction) JSONObject.toBean(JSONObject.fromObject(jsonstr), RequestAction.class);
-        if ("init".equals(ra.getAction())) {
+        if ("initProbationaryUserPage".equals(ra.getAction())) {
             return ps.initUserPage((SysUser) request.getSession().getAttribute("currentUser"));
+        } else if ("getFileList".equals(ra.getAction())) {
+            return ps.getFileList((SysUser) request.getSession().getAttribute("currentSysUser"));
         }
         return null;
     }
+
     @RequestMapping(value = "/fileUpload.do", produces = "text/html;charset=UTF-8")
     public @ResponseBody
     Object fileUpload(HttpServletRequest request) {

@@ -99,7 +99,20 @@ angular.module('mainPageApp', [])
                 contentType: false,
                 processData: false,
                 success: function (result) {
-
+                    alert(result.message);
+                    $.ajax({
+                        type: 'post',
+                        contentType: 'application/json;charset=utf-8',
+                        dataType: "json",
+                        async: true,
+                        url: '/development/user.do',
+                        data: JSON.stringify({
+                            "action": "getFileList"
+                        }),
+                        success: function (result) {
+                            $scope.refreshTable(result.model);
+                        }
+                    })
                 }
             })
         };
@@ -109,14 +122,16 @@ angular.module('mainPageApp', [])
             contentType: 'application/json;charset=utf-8',
             dataType: "json",
             async: true,
-            url: '/proposer/user.do',
+            url: '/development/user.do',
             data: JSON.stringify({
-                "action": "initActivistUserPage"
+                "action": "initDevelopmentUserPage"
             }),
             success: function (result) {
                 if (result.status === 0) {
                     for (var uploadInstruction of result.model.uploadInstructions) {
-                        if (uploadInstruction.index === 1) {
+                        if (uploadInstruction.index === 0) {
+                            $scope.upload0Instruction = uploadInstruction.instruction;
+                        } else if (uploadInstruction.index === 1) {
                             $scope.upload1Instruction = uploadInstruction.instruction;
                         } else if (uploadInstruction.index === 2) {
                             $scope.upload2Instruction = uploadInstruction.instruction;
@@ -148,11 +163,67 @@ angular.module('mainPageApp', [])
                             $scope.upload15Instruction = uploadInstruction.instruction;
                         }
                     }
-                    $scope.refreshTable(result.model.currentProposer);
+                    $scope.refreshTable(result.model.currentDevelopment);
                 }
             }
         });
-
+        $scope.refreshTable = function (currentActivists) {
+            console.log("refresh proposer tables");
+            $scope.fileList0 = [];
+            $scope.fileList1 = [];
+            $scope.fileList2 = [];
+            $scope.fileList3 = [];
+            $scope.fileList4 = [];
+            $scope.fileList5 = [];
+            $scope.fileList6 = [];
+            $scope.fileList7 = [];
+            $scope.fileList8 = [];
+            $scope.fileList9 = [];
+            $scope.fileList10 = [];
+            $scope.fileList11 = [];
+            $scope.fileList12 = [];
+            $scope.fileList13 = [];
+            $scope.fileList14 = [];
+            $scope.fileList15 = [];
+            for (var activist of currentActivists) {
+                if (activist.index === 0) {
+                    $scope.fileList0.push(activist)
+                } else if (activist.index === 1) {
+                    $scope.fileList1.push(activist)
+                } else if (activist.index === 2) {
+                    $scope.fileList2.push(activist)
+                } else if (activist.index === 3) {
+                    $scope.fileList3.push(activist)
+                } else if (activist.index === 4) {
+                    $scope.fileList4.push(activist)
+                } else if (activist.index === 5) {
+                    $scope.fileList5.push(activist)
+                } else if (activist.index === 6) {
+                    $scope.fileList6.push(activist)
+                } else if (activist.index === 7) {
+                    $scope.fileList7.push(activist)
+                } else if (activist.index === 7) {
+                    $scope.fileList7.push(activist)
+                } else if (activist.index === 8) {
+                    $scope.fileList8.push(activist)
+                } else if (activist.index === 9) {
+                    $scope.fileList9.push(activist)
+                } else if (activist.index === 10) {
+                    $scope.fileList10.push(activist)
+                } else if (activist.index === 11) {
+                    $scope.fileList11.push(activist)
+                } else if (activist.index === 12) {
+                    $scope.fileList12.push(activist)
+                } else if (activist.index === 13) {
+                    $scope.fileList13.push(activist)
+                } else if (activist.index === 14) {
+                    $scope.fileList14.push(activist)
+                } else if (activist.index === 15) {
+                    $scope.fileList15.push(activist)
+                }
+            }
+            $scope.$digest();
+        };
         $scope.timeConvert = function (time = +new Date()) {
             var date = new Date(time + 8 * 3600 * 1000);
             return date.toJSON().substr(0, 19).replace('T', ' ').substring(0, 10);

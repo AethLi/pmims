@@ -25,8 +25,10 @@ public class DevelopmentCtrl {
     public @ResponseBody
     Object activistUser(HttpServletRequest request, @RequestBody String jsonstr) {
         RequestAction ra = (RequestAction) JSONObject.toBean(JSONObject.fromObject(jsonstr), RequestAction.class);
-        if ("init".equals(ra.getAction())) {
+        if ("initDevelopmentUserPage".equals(ra.getAction())) {
             return ds.initUserPage((SysUser) request.getSession().getAttribute("currentUser"));
+        } else if ("getFileList".equals(ra.getAction())) {
+            return ds.getFileList((SysUser) request.getSession().getAttribute("currentSysUser"));
         }
         return null;
     }

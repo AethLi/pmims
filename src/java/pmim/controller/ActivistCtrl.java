@@ -28,7 +28,7 @@ public class ActivistCtrl {
     Object activistUser(HttpServletRequest request, @RequestBody String jsonstr) {
         RequestAction ra = (RequestAction) JSONObject.toBean(JSONObject.fromObject(jsonstr), RequestAction.class);
         if ("initActivistUserPage".equals(ra.getAction())) {
-            return as.initProposerUserPage((SysUser) request.getSession().getAttribute("currentSysUser"));
+            return as.initUserPage((SysUser) request.getSession().getAttribute("currentSysUser"));
         } else if ("getFileList".equals(ra.getAction())) {
             return as.getFileList((SysUser) request.getSession().getAttribute("currentSysUser"));
         }

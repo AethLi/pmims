@@ -25,7 +25,7 @@ public class ProposerService {
     @Autowired
     UploadInstructionMapper upm;
 
-    public Object initProposerUserPage(SysUser currentSysUser) {
+    public Object initUserPage(SysUser currentSysUser) {
         List ul;
         List pl;
         Map result = new HashMap();

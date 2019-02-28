@@ -65,10 +65,21 @@ public class DevelopmentService {
 
     public Object initUserPage(SysUser currentSysUser) {
         Map result = new HashMap();
-        List uploadInstructions = uism.selectUploadInstructionByPosition(new UploadInstruction(3));
+        List uploadInstructions = uism.selectUploadInstructionByPosition(new UploadInstruction(2));
         result.put("uploadInstructions", uploadInstructions);
         List uploadInfos = uifm.selectUploadInfoById(currentSysUser);
         result.put("uploadInfos", uploadInfos);
+        List dl=dm.selectDevelopmentByIdUndeleted(currentSysUser);
+        result.put("currentDevelopment",dl);
         return JSONObject.fromObject(new ResponseMessage(0, "", result)).toString();
+    }
+
+    public Object getFileList(SysUser currentSysUser) {
+        try {
+            return JSONObject.fromObject(new ResponseMessage(0, "", dm.selectDevelopmentByIdUndeleted(currentSysUser))).toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

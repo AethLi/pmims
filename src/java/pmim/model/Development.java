@@ -3,20 +3,12 @@ package pmim.model;
 import java.sql.Timestamp;
 
 public class Development {
-    String developmentId;
+    String DevelopmentId;
     String userId;
     String fileName;
     Timestamp date;
     int status;
     int index;
-
-    public String getDevelopmentId() {
-        return developmentId;
-    }
-
-    public void setDevelopmentId(String developmentId) {
-        this.developmentId = developmentId;
-    }
 
     public String getUserId() {
         return userId;
@@ -38,10 +30,6 @@ public class Development {
         return date;
     }
 
-    public void setDate(Timestamp date) {
-        this.date = date;
-    }
-
     public void setDate(long date) {
         this.date = new Timestamp(date);
     }
@@ -58,20 +46,40 @@ public class Development {
         return index;
     }
 
-    public void setIndex(int index) {
-        this.index = index;
+    public void setIndex(int type) {
+        this.index = type;
+    }
+
+    public String getDevelopmentId() {
+        return DevelopmentId;
+    }
+
+    public void setDevelopmentId(String DevelopmentId) {
+        this.DevelopmentId = DevelopmentId;
+    }
+
+    public void setDate(Timestamp date) {
+        this.date = date;
+    }
+
+    public Development(String DevelopmentId) {
+        this.DevelopmentId = DevelopmentId;
     }
 
     public Development() {
     }
 
-    public Development(String developmentId, String userId, String fileName, long date, int status, int index) {
-        this.developmentId = developmentId;
+    public Development(String DevelopmentId, String userId, String fileName, long date, int status, int type) {
+        this.DevelopmentId = DevelopmentId;
         this.userId = userId;
         this.fileName = fileName;
         this.date = new Timestamp(date);
         this.status = status;
-        this.index = index;
+        this.index = type;
     }
 
+    public Development(String userId, int status) {
+        this.userId = userId;
+        this.status = status;
+    }
 }
