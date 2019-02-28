@@ -18,64 +18,7 @@ angular.module('managerPageApp', [])
         $scope.upload14Instruction = "";
         $scope.upload15Instruction = "";
         $scope.proposerCount = "0/0";
-        $scope.allDevelpment = [
-            {
-                name: "阿瑟东",
-                userId: 201510,
-                count: 20,
-                countN: 5
-            }, {
-                name: "阿瑟东",
-                userId: 201510,
-                count: 20,
-                countN: 5
-            }, {
-                name: "阿瑟东",
-                userId: 201510,
-                count: 20,
-                countN: 5
-            }, {
-                name: "阿瑟东",
-                userId: 201510,
-                count: 20,
-                countN: 5
-            }, {
-                name: "阿瑟东",
-                userId: 201510,
-                count: 20,
-                countN: 5
-            }, {
-                name: "阿瑟东",
-                userId: 201510,
-                count: 20,
-                countN: 5
-            }, {
-                name: "阿瑟东",
-                userId: 201510,
-                count: 20,
-                countN: 5
-            }, {
-                name: "阿瑟东",
-                userId: 201510,
-                count: 20,
-                countN: 5
-            }, {
-                name: "阿瑟东",
-                userId: 201510,
-                count: 20,
-                countN: 5
-            }, {
-                name: "阿瑟东",
-                userId: 201510,
-                count: 20,
-                countN: 5
-            }, {
-                name: "阿瑟东",
-                userId: 201510,
-                count: 20,
-                countN: 5
-            },
-        ];
+        $scope.allDevelpment = [];
         $scope.saveUploadInstruction = function (index) {
             var uploadInstruction = "";
             if (index === 0) {

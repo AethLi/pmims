@@ -11,7 +11,7 @@ angular.module('mainPageApp', [])
         $scope.ImageShow = function (desId) {
             window.open("/html/imageShow.html?desId=" + desId + "&type=proposer");
         };
-        $scope.fileDownload=function(desId){
+        $scope.fileDownload = function (desId) {
             window.open("/file/fileDownload.do?desId=" + desId + "&type=proposer");
         };
 

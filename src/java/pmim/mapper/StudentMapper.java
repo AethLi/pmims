@@ -12,4 +12,8 @@ public interface StudentMapper {
 
     Student selectStudentById(SysUser currentSysUser);
 
+    void updateStudentById_forFill(Student s);
+
+    void insertStudentById_forFill(Student s);
+
 }

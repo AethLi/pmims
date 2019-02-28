@@ -11,6 +11,8 @@ public class Student {
     int status;
     String IDcardNum;
     String name;
+    String headImg;
+    String position;
 
     public String getUserId() {
         return userId;
@@ -74,5 +76,21 @@ public class Student {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getHeadImg() {
+        return headImg;
+    }
+
+    public void setHeadImg(String headImg) {
+        this.headImg = headImg;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
     }
 }

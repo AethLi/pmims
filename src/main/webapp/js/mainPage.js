@@ -3,14 +3,16 @@ angular.module('mainPageApp', ['ui.router', 'oc.lazyLoad'])
         $scope.userName = "加载中";
         $scope.userPermission = "加载中";
         $scope.whoIsActive = 0;
+        $scope.PermissionCode = undefined;
         $scope.iAmActive = function (who) {
             $scope.whoIsActive = who;
         };
-
-        $scope.permissionChecked=function (desPermission) {
-            if () 
+        $scope.permissionCheck = function (desPermission) {
+            if ($scope.PermissionCode < desPermission) {
+                return false;
+            } else
+                return true;
         };
-
         $scope.logout = function () {
             $.ajax({
                 type: 'post',
@@ -55,6 +57,7 @@ angular.module('mainPageApp', ['ui.router', 'oc.lazyLoad'])
                     window.location.href = "../index.html";
                 } else if (result.status === 0) {
                     $scope.userName = result.model.student.name;
+                    $scope.PermissionCode = result.model.user.userPermission;
                     switch (result.model.user.userPermission) {
                         case 0:
                             $scope.userPermission = "申请人";

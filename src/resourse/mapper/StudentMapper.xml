@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="pmim.mapper.StudentMapper">
     <insert id="insertStudent" parameterType="pmim.model.Student">
-        insert into student (`userId`,`classInfo`,`sex`,`birthday`,`homeAddress`,`status`,`IDcardNum`,`name`) values (#{userId},#{classInfo},#{sex},#{birthday},#{homeAddress},#{status},#{IDcardNum},#{name})
+        insert into student (`userId`,`classInfo`,`sex`,`birthday`,`homeAddress`,`status`,`IDcardNum`,`name`,`headImg`) values (#{userId},#{classInfo},#{sex},#{birthday},#{homeAddress},#{status},#{IDcardNum},#{name},#{headImg})
     </insert>
     <delete id="deleteStudentById" parameterType="pmim.model.SysUser">
         delete from student where userId=#{userId};
@@ -12,13 +12,10 @@
     <select id="selectStudentById" parameterType="pmim.model.Student" resultType="pmim.model.Student">
         select * from student where userId=#{userId};
     </select>
-
-
-    <select id="selectStudentByIds" resultType="pmim.model.Student">
-        select * from student where userId in
-        <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
-            #{item}
-        </foreach>
-    </select>
-    <!-->弃用<-->
+    <update id="updateStudentById_forFill" parameterType="pmim.model.Student">
+        update student set name=#{name},classInfo=#{classInfo}, sex=#{sex},birthday=#{birthday},homeAddress=#{homeAddress},IDcardNum=#{IDcardNum},position=#{position} where userId=#{userId};
+    </update>
+    <insert id="insertStudentById_forFill" parameterType="pmim.model.Student">
+        insert into student (`userId`,`classInfo`,`sex`,`birthday`,`homeAddress`,`IDcardNum`,`name`) values (#{userId},#{classInfo},#{sex},#{birthday},#{homeAddress},#{IDcardNum},#{name})
+ </insert>
 </mapper>

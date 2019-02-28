@@ -74,6 +74,7 @@
                 <span>姓名：{{model.name}}</span>
                 <span>学号：{{model.id}}</span>
                 <span>班级：{{model.classAndGrade}}</span>
+                <span><input type="button" value="通过申请" ng-if="isSuperAdmin"></span>
             </div>
             <div style="margin-top: 50px" class="well">思想汇报（图片）已上传文件列表</div>
             <table class="table" style="background: #b3b3b3">
