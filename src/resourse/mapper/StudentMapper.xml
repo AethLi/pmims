@@ -17,5 +17,11 @@
     </update>
     <insert id="insertStudentById_forFill" parameterType="pmim.model.Student">
         insert into student (`userId`,`classInfo`,`sex`,`birthday`,`homeAddress`,`IDcardNum`,`name`) values (#{userId},#{classInfo},#{sex},#{birthday},#{homeAddress},#{IDcardNum},#{name})
- </insert>
+   </insert>
+    <select id="selectAllStudent_forAdminPage" resultType="java.util.Map">
+        SELECT student.userId,classInfo,sex,birthday,homeAddress,`name`,`user`.userPermission FROM student INNER JOIN `user` ON student.userId = `user`.userId;
+    </select>
+    <select id="selectAllAdmin_forAdminPage" resultType="java.util.Map">
+        SELECT userId, status from `user` where userPermission=5;
+    </select>
 </mapper>

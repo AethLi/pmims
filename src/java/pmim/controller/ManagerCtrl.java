@@ -38,7 +38,7 @@ public class ManagerCtrl {
                 return JSONObject.fromObject(new ResponseMessage(0, "", ms.initTablePages(pa, request))).toString();
             }
         }
-        return JSONObject.fromObject(new ResponseMessage(0, "权限存在问题", null)).toString();
+        return JSONObject.fromObject(new ResponseMessage(1, "权限存在问题", null)).toString();
     }
 
     @RequestMapping(value = "/saveUploadInstruction.do", produces = "text/html;charset=UTF-8")
@@ -48,7 +48,7 @@ public class ManagerCtrl {
         if (pcs.permissionCheck(5, request) || pcs.permissionCheck(6, request)) {
             return JSONObject.fromObject(new ResponseMessage(0, ms.saveUploadInstruction(ui), null)).toString();
         }
-        return JSONObject.fromObject(new ResponseMessage(0, "权限存在问题", null)).toString();
+        return JSONObject.fromObject(new ResponseMessage(1, "权限存在问题", null)).toString();
     }
 
     @RequestMapping(value = "/proposer.do", produces = "text/html;charset=UTF-8")
@@ -59,25 +59,25 @@ public class ManagerCtrl {
             if (pcs.permissionCheck(5, request) || pcs.permissionCheck(6, request)) {
                 return JSONObject.fromObject(new ResponseMessage(0, ms.acceptItem(ra.getDesId(), ra.getCode(), 0), null)).toString();
             }
-            return JSONObject.fromObject(new ResponseMessage(0, "权限存在问题", null)).toString();
+            return JSONObject.fromObject(new ResponseMessage(1, "权限存在问题", null)).toString();
 
         } else if ("disAccept".equals(ra.getAction())) {
             if (pcs.permissionCheck(5, request) || pcs.permissionCheck(6, request)) {
 
             }
-            return JSONObject.fromObject(new ResponseMessage(0, "权限存在问题", null)).toString();
+            return JSONObject.fromObject(new ResponseMessage(1, "权限存在问题", null)).toString();
 
         } else if ("delete".equals(ra.getAction())) {
             if (pcs.permissionCheck(5, request) || pcs.permissionCheck(6, request)) {
 
             }
-            return JSONObject.fromObject(new ResponseMessage(0, "权限存在问题", null)).toString();
+            return JSONObject.fromObject(new ResponseMessage(1, "权限存在问题", null)).toString();
 
         } else if ("modal".equals(ra.getAction())) {
             if (pcs.permissionCheck(5, request) || pcs.permissionCheck(6, request)) {
                 return JSONObject.fromObject(new ResponseMessage(0, null, ms.proposerModal(ra.getDesId()))).toString();
             }
-            return JSONObject.fromObject(new ResponseMessage(0, "权限存在问题", null)).toString();
+            return JSONObject.fromObject(new ResponseMessage(1, "权限存在问题", null)).toString();
         }
         return JSONObject.fromObject(new ResponseMessage(0, "请求错误", null)).toString();
     }
@@ -89,7 +89,7 @@ public class ManagerCtrl {
         if (pcs.permissionCheck(5, request) || pcs.permissionCheck(6, request)) {
             return JSONObject.fromObject(new ResponseMessage(0, null, ms.activistModal(ra.getDesId()))).toString();
         }
-        return JSONObject.fromObject(new ResponseMessage(0, "权限存在问题", null)).toString();
+        return JSONObject.fromObject(new ResponseMessage(1, "权限存在问题", null)).toString();
     }
 
     @RequestMapping(value = "/development.do", produces = "text/html;charset=UTF-8")
@@ -99,7 +99,7 @@ public class ManagerCtrl {
         if (pcs.permissionCheck(5, request) || pcs.permissionCheck(6, request)) {
             return JSONObject.fromObject(new ResponseMessage(0, null, ms.developmentModal(ra.getDesId()))).toString();
         }
-        return JSONObject.fromObject(new ResponseMessage(0, "权限存在问题", null)).toString();
+        return JSONObject.fromObject(new ResponseMessage(1, "权限存在问题", null)).toString();
     }
 
     @RequestMapping(value = "/probationary.do", produces = "text/html;charset=UTF-8")
@@ -109,7 +109,7 @@ public class ManagerCtrl {
         if (pcs.permissionCheck(5, request) || pcs.permissionCheck(6, request)) {
             return JSONObject.fromObject(new ResponseMessage(0, null, ms.probationaryModal(ra.getDesId()))).toString();
         }
-        return JSONObject.fromObject(new ResponseMessage(0, "权限存在问题", null)).toString();
+        return JSONObject.fromObject(new ResponseMessage(1, "权限存在问题", null)).toString();
     }
 
 }

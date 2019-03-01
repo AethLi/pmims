@@ -22,10 +22,26 @@ angular.module('managerPageApp', ['ui.router', 'oc.lazyLoad'])
                 alert("点这个没用的;");
                 eggCount = 0;
             }
-        }
+        };
+        $scope.logout = function () {
+            $.ajax({
+                type: 'post',
+                contentType: 'application/json;charset=utf-8',
+                dataType: "json",
+                async: true,
+                url: '/user/logout.do',
+                data: JSON.stringify({
+                    "action": "logout"
+                }),
+                success: function (result) {
+                    if (result.status === 0)
+                        window.location.href = "../index.html";
+                }
+            })
+        };
     })
     .config(function ($stateProvider, $urlRouterProvider) {
-        $urlRouterProvider.when("", "userOverview");
+        $urlRouterProvider.when("", "userManagement");
         $stateProvider
             .state("userOverview", {
                 url: "/userOverview",
@@ -99,4 +115,16 @@ angular.module('managerPageApp', ['ui.router', 'oc.lazyLoad'])
                     }]
                 }
             })
+            .state("userManagement", {
+            url: "/userManagement",
+            templateUrl: "./userManagement.html",
+            resolve: {
+                loadMyCtrl: ["$ocLazyLoad", function ($ocLazyLoad) {
+                    return $ocLazyLoad.load({
+                        name: 'managerPageApp',
+                        files: ['../js/userManagement.js']
+                    })
+                }]
+            }
+        })
     });

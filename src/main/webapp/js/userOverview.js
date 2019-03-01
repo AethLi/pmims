@@ -50,7 +50,7 @@ angular.module('managerPageApp', [])
                 contentType: false,
                 processData: false,
                 success: function (result) {
-
+                    alert(result.message);
                 }
             })
         }

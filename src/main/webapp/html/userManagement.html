@@ -1,0 +1,50 @@
+<div ng-controller="userManagementCtrl">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="well adminList">管理员</div>
+        <div class="adminList">
+            <table class="table table-hover" style="width: 100%">
+                <thead>
+                <tr>
+                    <th>账号</th>
+                    <th>状态</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="x in admins">
+                    <td>{{x.userId}}</td>
+                    <td>{{adminStatusConvert(x.status)}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="well">学生信息</div>
+        <div>
+            <table class="table table-hover" style="width: 100%">
+                <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>性别</th>
+                    <th>学号</th>
+                    <th>身份</th>
+                    <th>班级</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-click="detailForStudent(x.userId)" ng-repeat="x in students">
+                    <td>{{x.name}}</td>
+                    <td>{{sexConvert(x.sex)}}</td>
+                    <td>{{x.userId}}</td>
+                    <td>{{permissionConvert(x.userPermission)}}</td>
+                    <td>{{x.classInfo}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<style>
+    table td{
+        cursor: pointer;
+    }
+</style>
