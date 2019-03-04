@@ -8,6 +8,14 @@ angular.module('managerPageApp', [])
         $scope.upload4Instruction = "";
         $scope.proposerCount = "0/0";
         $scope.allProbationary = [];
+        $scope.isSuperAdmin = false;
+
+        $scope.probationaryFile0 = [];
+        $scope.probationaryFile1 = [];
+        $scope.probationaryFile2 = [];
+        $scope.probationaryFile3 = [];
+        $scope.probationaryFile4 = [];
+
         $scope.saveUploadInstruction = function (index) {
             var uploadInstruction = "";
             if (index === 0) {
@@ -64,7 +72,65 @@ angular.module('managerPageApp', [])
                 }
             }
         });
-        $scope.tableAction = function (sew) {
+
+        $scope.clearProbationaryModel = function () {
+            $scope.probationaryFile0 = [];
+            $scope.probationaryFile1 = [];
+            $scope.probationaryFile2 = [];
+            $scope.probationaryFile3 = [];
+            $scope.probationaryFile4 = [];
+        };
+        $scope.tableAction = function (userId) {
+            $scope.clearProbationaryModel();
+            $.ajax({
+                type: 'post',
+                contentType: 'application/json;charset=utf-8',
+                dataType: "json",
+                async: true,
+                url: '/managerCtrl/Probationary.do',
+                data: JSON.stringify({
+                    "action": "modal",
+                    "desId": userId
+                }),
+                success: function (result) {
+                    $scope.model = result.model;
+                    for (probationary of $scope.model.probationaries) {
+                        if (probationary.index === 0) {
+                            $scope.probationaryFile0.push(probationary);
+                        } else if (probationary.index === 1) {
+                            $scope.probationaryFile1.push(probationary);
+                        } else if (probationary.index === 2) {
+                            $scope.probationaryFile2.push(probationary);
+                        } else if (probationary.index === 3) {
+                            $scope.probationaryFile3.push(probationary);
+                        } else if (probationary.index === 4) {
+                            $scope.probationaryFile4.push(probationary);
+                        }
+                    }
+                    $scope.$digest();
+                    $('#myModal').modal();
+                }
+            });
             $('#myModal').modal();
-        }
+        };
+        $.ajax({
+            type: 'post',
+            contentType: 'application/json;charset=utf-8',
+            dataType: "json",
+            async: true,
+            url: '/managerCtrl/init.do',
+            data: JSON.stringify({
+                "desPage": 0,
+                "userType": 3,
+                "action": "listOfThis"
+
+            }),
+            success: function (result) {
+                if (result.status === 0) {
+                    $scope.allProbationary = result.model.users;
+                    $scope.isSuperAdmin = result.model.isSuperAdmin;
+                    $scope.$digest();
+                }
+            }
+        });
     });

@@ -18,4 +18,5 @@ public interface ProbationaryMapper {
     Probationary selectProbationaryByProbationaryId(Probationary p);
 
 
+    List<Probationary> selectProbationaryByIdDisapproved(SysUser userId);
 }

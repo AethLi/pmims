@@ -26,6 +26,8 @@ angular.module('managerPageApp', [])
         $scope.linkNumber1 = "";
         $scope.allActivists = [];
 
+        $scope.isSuperAdmin = false;
+
         $scope.saveUploadInstruction = function (index) {
             var uploadInstruction = "";
             if (index === 0) {
@@ -94,8 +96,18 @@ angular.module('managerPageApp', [])
                 }
             }
         });
+        $scope.clearActivistModel = function () {
+            $scope.activistFile0 = [];
+            $scope.activistFile1 = [];
+            $scope.activistFile2 = [];
+            $scope.activistFile3 = [];
+            $scope.activistFile4 = [];
+            $scope.activistFile5 = [];
+            $scope.activistFile6 = [];
+            $scope.activistFile7 = [];
+        };
         $scope.tableAction = function (userId) {
-            $scope.clearProposerModel();
+            $scope.clearActivistModel();
             $.ajax({
                 type: 'post',
                 contentType: 'application/json;charset=utf-8',
@@ -103,6 +115,7 @@ angular.module('managerPageApp', [])
                 async: true,
                 url: '/managerCtrl/activist.do',
                 data: JSON.stringify({
+                    "action": "modal",
                     "desId": userId
                 }),
                 success: function (result) {
@@ -119,4 +132,24 @@ angular.module('managerPageApp', [])
                 }
             });
         };
+        $.ajax({
+            type: 'post',
+            contentType: 'application/json;charset=utf-8',
+            dataType: "json",
+            async: true,
+            url: '/managerCtrl/init.do',
+            data: JSON.stringify({
+                "desPage": 0,
+                "userType": 1,
+                "action": "listOfThis"
+
+            }),
+            success: function (result) {
+                if (result.status === 0) {
+                    $scope.allActivists = result.model.users;
+                    $scope.isSuperAdmin = result.model.isSuperAdmin;
+                    $scope.$digest();
+                }
+            }
+        });
     });

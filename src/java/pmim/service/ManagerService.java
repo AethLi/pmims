@@ -51,9 +51,37 @@ public class ManagerService {
                 proposers = proposerMapper.selectProposerByIdDisapproved(new SysUser(m.get("userId").toString()));
                 m.put("countN", proposers.size());
             }
+        } else if (pa.getUserType() == 1) {
+            for (Map<String, Object> m : users) {
+                List<Activist> activists = activistMapper.selectActivistByIdUndeleted(new SysUser(m.get("userId").toString()));
+                m.put("count", activists.size());
+                activists = activistMapper.selectActivistByIdDisapproved(new SysUser(m.get("userId").toString()));
+                m.put("countN", activists.size());
+            }
+        } else if (pa.getUserType() == 2) {
+            for (Map<String, Object> m : users) {
+                List<Development> developments = developmentMapper.selectDevelopmentByIdUndeleted(new SysUser(m.get("userId").toString()));
+                m.put("count", developments.size());
+                developments = developmentMapper.selectDevelopmentByIdDisapproved(new SysUser(m.get("userId").toString()));
+                m.put("countN", developments.size());
+            }
+        } else if (pa.getUserType() == 3) {
+            for (Map<String, Object> m : users) {
+                List<Probationary> probationaries = probationaryMapper.selectProbationaryByIdUndeleted(new SysUser(m.get("userId").toString()));
+                m.put("count", probationaries.size());
+                probationaries = probationaryMapper.selectProbationaryByIdDisapproved(new SysUser(m.get("userId").toString()));
+                m.put("countN", probationaries.size());
+            }
+        } else if (pa.getUserType() == 4) {
+            for (Map<String, Object> m : users) {
+                List<Activist> activists = activistMapper.selectActivistByIdUndeleted(new SysUser(m.get("userId").toString()));
+                m.put("count", activists.size());
+                activists = activistMapper.selectActivistByIdDisapproved(new SysUser(m.get("userId").toString()));
+                m.put("countN", activists.size());
+            }
         }
         result.put("users", users);
-        if (pcs.permissionCheck(6,request)) {
+        if (pcs.permissionCheck(6, request)) {
             result.put("isSuperAdmin", true);
         } else {
             result.put("isSuperAdmin", false);
@@ -88,32 +116,14 @@ public class ManagerService {
         return result;
     }
 
-//    public Object activistModal(String desId) {
-//        Map<String, Object> result = new HashMap<>();
-//        Student student = sm.selectStudentById(new SysUser(desId));
-//        result.put("student", student);
-//        List<Activist> activists = activistMapper.selectActivistByIdUndeleted(new SysUser(desId));
-//        result.put("activists", activists);
-//        return result;
-//    }
-//
-//    public Object activistModal(String desId) {
-//        Map<String, Object> result = new HashMap<>();
-//        Student student = sm.selectStudentById(new SysUser(desId));
-//        result.put("student", student);
-//        List<Activist> activists = activistMapper.selectActivistByIdUndeleted(new SysUser(desId));
-//        result.put("activists", activists);
-//        return result;
-//    }
-//        Map<String, Object> result = new HashMap<>();
-//        Student student = sm.selectStudentById(new SysUser(desId));
-//        result.put("student", student);
-//        List<Development> developments = developmentMapper(new SysUser(desId));
-//        result.put("activists", activists);
-//        return result;
 
     public Object probationaryModal(String desId) {
-        return null;
+        Map<String, Object> result = new HashMap<>();
+        Student student = sm.selectStudentById(new SysUser(desId));
+        result.put("student", student);
+        List<Probationary> probationaries = probationaryMapper.selectProbationaryByIdUndeleted(new SysUser(desId));
+        result.put("probationaries", probationaries);
+        return result;
     }
 
     public String acceptItem(String desId, String code, int i) {

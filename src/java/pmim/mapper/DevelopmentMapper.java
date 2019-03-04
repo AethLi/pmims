@@ -19,4 +19,6 @@ public interface DevelopmentMapper {
     Development selectDevelopmentByDevelopmentId(Development p);
 
 
+
+    List<Development> selectDevelopmentByIdDisapproved(SysUser userId);
 }

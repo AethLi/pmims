@@ -24,4 +24,7 @@
     <select id="selectActivistByActivistId" parameterType="pmim.model.Activist" resultType="pmim.model.Activist">
         select * from Activist where ActivistId=#{ActivistId};
     </select>
+    <select id="selectActivistByIdDisapproved" parameterType="pmim.model.SysUser" resultType="pmim.model.Activist">
+        select * from Activist where userId=#{userId} and status = 1;
+    </select>
 </mapper>

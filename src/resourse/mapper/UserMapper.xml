@@ -19,7 +19,8 @@
         update user set userPath=#{userPath} where userId=#{userId};
     </update>
     <select id="selectUsersByPage" parameterType="pmim.model.PageAble" resultType="java.util.Map">
-        select * from basalInfo where status !=-1 and userPermission=#{userType} limit #{resLimit},#{desLimit};
+        <!-->select * from basalInfo where status !=-1 and userPermission=#{userType} limit #{resLimit},#{desLimit};<-->
+        select * from basalInfo where status !=-1 and userPermission=#{userType};
     </select>
     <select id="selectUsersById" parameterType="pmim.model.SysUser" resultType="pmim.model.Proposer">
         select * from basalInfo where status !=-1 and userId=#{userId};

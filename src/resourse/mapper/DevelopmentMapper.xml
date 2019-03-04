@@ -24,4 +24,7 @@
     <select id="selectDevelopmentByDevelopmentId" parameterType="pmim.model.Development" resultType="pmim.model.Development">
         select * from Development where DevelopmentId=#{DevelopmentId};
     </select>
+    <select id="selectDevelopmentByIdDisapproved" parameterType="pmim.model.SysUser" resultType="pmim.model.Development">
+        select * from Development where userId=#{userId} and status = 1;
+    </select>
 </mapper>

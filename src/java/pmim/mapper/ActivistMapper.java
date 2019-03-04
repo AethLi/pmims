@@ -20,4 +20,5 @@ public interface ActivistMapper {
 
     Activist selectActivistByActivistId(Activist p);
 
+    List<Activist> selectActivistByIdDisapproved(SysUser userId);
 }

@@ -19,6 +19,25 @@ angular.module('managerPageApp', [])
         $scope.upload15Instruction = "";
         $scope.proposerCount = "0/0";
         $scope.allDevelpment = [];
+        $scope.isSuperAdmin = false;
+
+        $scope.developmentFile0 = [];
+        $scope.developmentFile1 = [];
+        $scope.developmentFile2 = [];
+        $scope.developmentFile3 = [];
+        $scope.developmentFile4 = [];
+        $scope.developmentFile5 = [];
+        $scope.developmentFile6 = [];
+        $scope.developmentFile7 = [];
+        $scope.developmentFile8 = [];
+        $scope.developmentFile9 = [];
+        $scope.developmentFile10 = [];
+        $scope.developmentFile11 = [];
+        $scope.developmentFile12 = [];
+        $scope.developmentFile13 = [];
+        $scope.developmentFile14 = [];
+        $scope.developmentFile15 = [];
+
         $scope.saveUploadInstruction = function (index) {
             var uploadInstruction = "";
             if (index === 0) {
@@ -78,7 +97,7 @@ angular.module('managerPageApp', [])
             url: '/managerCtrl/init.do',
             data: JSON.stringify({
                 "code": "2",
-                "action":"uploadInstruction"
+                "action": "uploadInstruction"
             }),
             success: function (result) {
                 for (uploadInstruction of result.model) {
@@ -119,7 +138,96 @@ angular.module('managerPageApp', [])
                 }
             }
         });
-        $scope.tableAction = function (sew) {
+        $scope.clearDevelopmentModel = function () {
+            $scope.developmentFile0 = [];
+            $scope.developmentFile1 = [];
+            $scope.developmentFile2 = [];
+            $scope.developmentFile3 = [];
+            $scope.developmentFile4 = [];
+            $scope.developmentFile5 = [];
+            $scope.developmentFile6 = [];
+            $scope.developmentFile7 = [];
+            $scope.developmentFile8 = [];
+            $scope.developmentFile9 = [];
+            $scope.developmentFile10 = [];
+            $scope.developmentFile11 = [];
+            $scope.developmentFile12 = [];
+            $scope.developmentFile13 = [];
+            $scope.developmentFile14 = [];
+            $scope.developmentFile15 = [];
+        };
+        $scope.tableAction = function (userId) {
+            $scope.clearDevelopmentModel();
+            $.ajax({
+                type: 'post',
+                contentType: 'application/json;charset=utf-8',
+                dataType: "json",
+                async: true,
+                url: '/managerCtrl/Development.do',
+                data: JSON.stringify({
+                    "action": "modal",
+                    "desId": userId
+                }),
+                success: function (result) {
+                    $scope.model = result.model;
+                    for (development of $scope.model.developments) {
+                        if (development.index === 0) {
+                            $scope.developmentFile0.push(development);
+                        } else if (development.index === 1) {
+                            $scope.developmentFile1.push(development);
+                        } else if (development.index === 2) {
+                            $scope.developmentFile2.push(development);
+                        } else if (development.index === 3) {
+                            $scope.developmentFile3.push(development);
+                        } else if (development.index === 4) {
+                            $scope.developmentFile4.push(development);
+                        } else if (development.index === 5) {
+                            $scope.developmentFile5.push(development);
+                        } else if (development.index === 6) {
+                            $scope.developmentFile6.push(development);
+                        } else if (development.index === 7) {
+                            $scope.developmentFile7.push(development);
+                        } else if (development.index === 8) {
+                            $scope.developmentFile8.push(development);
+                        } else if (development.index === 9) {
+                            $scope.developmentFile9.push(development);
+                        } else if (development.index === 10) {
+                            $scope.developmentFile10.push(development);
+                        } else if (development.index === 11) {
+                            $scope.developmentFile11.push(development);
+                        } else if (development.index === 12) {
+                            $scope.developmentFile12.push(development);
+                        } else if (development.index === 13) {
+                            $scope.developmentFile13.push(development);
+                        } else if (development.index === 14) {
+                            $scope.developmentFile14.push(development);
+                        } else if (development.index === 15) {
+                            $scope.developmentFile15.push(development);
+                        }
+                    }
+                    $scope.$digest();
+                    $('#myModal').modal();
+                }
+            });
             $('#myModal').modal();
-        }
+        };
+        $.ajax({
+            type: 'post',
+            contentType: 'application/json;charset=utf-8',
+            dataType: "json",
+            async: true,
+            url: '/managerCtrl/init.do',
+            data: JSON.stringify({
+                "desPage": 0,
+                "userType": 2,
+                "action": "listOfThis"
+            }),
+            success: function (result) {
+                if (result.status === 0) {
+                    $scope.allDevelpment = result.model.users;
+                    $scope.isSuperAdmin = result.model.isSuperAdmin;
+                    $scope.$digest();
+                }
+            }
+        });
     });

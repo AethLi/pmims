@@ -24,4 +24,7 @@
     <select id="selectProbationaryByProbationaryId" parameterType="pmim.model.Probationary" resultType="pmim.model.Probationary">
         select * from Probationary where ProbationaryId=#{ProbationaryId};
     </select>
+    <select id="selectProbationaryByIdDisapproved" parameterType="pmim.model.SysUser" resultType="pmim.model.Probationary">
+        select * from Probationary where userId=#{userId} and status = 1;
+    </select>
 </mapper>
