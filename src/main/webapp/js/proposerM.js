@@ -7,12 +7,10 @@ angular.module('managerPageApp', [])
             $scope.proposerFile0 = [];
             $scope.proposerFile1 = [];
 
-        $scope.isSuperAdmin=false;
+            $scope.isSuperAdmin = false;
 
-        $scope.allProposers;
+            $scope.allProposers;
             $scope.proposerCount = "0/0";
-
-
             $scope.model;
             $scope.saveUploadInstruction = function (index) {
                 var uploadInstruction = "";
@@ -73,7 +71,7 @@ angular.module('managerPageApp', [])
                 success: function (result) {
                     if (result.status === 0) {
                         $scope.allProposers = result.model.users;
-                        $scope.isSuperAdmin=result.model.isSuperAdmin;
+                        $scope.isSuperAdmin = result.model.isSuperAdmin;
                         $scope.$digest();
                     }
                 }
@@ -88,7 +86,7 @@ angular.module('managerPageApp', [])
                     url: '/managerCtrl/proposer.do',
                     data: JSON.stringify({
                         "desId": userId,
-                        "action":"modal"
+                        "action": "modal"
                     }),
                     success: function (result) {
                         $scope.model = result.model;
@@ -117,12 +115,13 @@ angular.module('managerPageApp', [])
                     async: true,
                     url: '/managerCtrl/proposer.do',
                     data: JSON.stringify({
-                        "action":"accept",
+                        "action": "accept",
                         "desId": desId,
-                        "code": "1"
                     }),
-                    success: function () {
-                        alert("已成功审核为通过");
+                    success: function (result) {
+                        if (result.status===0){
+                            alert(result.message);
+                        }
                     }
                 })
             };
@@ -134,12 +133,13 @@ angular.module('managerPageApp', [])
                     async: true,
                     url: '/managerCtrl/proposer.do',
                     data: JSON.stringify({
-                        "action":"disAccept",
+                        "action": "disAccept",
                         "desId": desId,
-                        "code": "2"
                     }),
-                    success: function () {
-                        alert("已成功审核为不通过");
+                    success: function (result) {
+                        if (result.status===0){
+                            alert(result.message);
+                        }
                     }
                 })
             };
@@ -151,12 +151,13 @@ angular.module('managerPageApp', [])
                     async: true,
                     url: '/managerCtrl/proposer.do',
                     data: JSON.stringify({
-                        "action":"delete",
+                        "action": "delete",
                         "desId": desId,
-                        "code": "-1"
                     }),
-                    success: function () {
-                        alert("已成功删除");
+                    success: function (result) {
+                        if (result.status===0){
+                            alert(result.message);
+                        }
                     }
                 })
             };
@@ -173,8 +174,8 @@ angular.module('managerPageApp', [])
                     return "未通过";
                 }
             };
-            $scope.fileAction=function (index,desId) {
-                if (index===0){
+            $scope.fileAction = function (index, desId) {
+                if (index === 0) {
                     $.ajax({
                         type: 'post',
                         contentType: 'application/json;charset=utf-8',
@@ -183,12 +184,12 @@ angular.module('managerPageApp', [])
                         url: '/file/imageShowUrl.do',
                         data: JSON.stringify({
                             desId: desId,
-                            action:"proposer"
+                            action: "proposer"
                         }),
                         success: function () {
                         }
                     })
-                } else if (index===1){
+                } else if (index === 1) {
                     $.ajax({
                         type: 'post',
                         contentType: 'application/json;charset=utf-8',

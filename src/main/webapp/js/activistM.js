@@ -27,6 +27,7 @@ angular.module('managerPageApp', [])
         $scope.allActivists = [];
 
         $scope.isSuperAdmin = false;
+        $scope.model;
 
         $scope.saveUploadInstruction = function (index) {
             var uploadInstruction = "";
@@ -152,4 +153,58 @@ angular.module('managerPageApp', [])
                 }
             }
         });
+        $scope.accept = function (desId) {
+            $.ajax({
+                type: 'post',
+                contentType: 'application/json;charset=utf-8',
+                dataType: "json",
+                async: true,
+                url: '/managerCtrl/activist.do',
+                data: JSON.stringify({
+                    "action": "accept",
+                    "desId": desId,
+                }),
+                success: function (result) {
+                    if (result.status===0){
+                        alert(result.message);
+                    }
+                }
+            })
+        };
+        $scope.disAccept = function (desId) {
+            $.ajax({
+                type: 'post',
+                contentType: 'application/json;charset=utf-8',
+                dataType: "json",
+                async: true,
+                url: '/managerCtrl/activist.do',
+                data: JSON.stringify({
+                    "action": "disAccept",
+                    "desId": desId,
+                }),
+                success: function (result) {
+                    if (result.status===0){
+                        alert(result.message);
+                    }
+                }
+            })
+        };
+        $scope.deleteItem = function (desId) {
+            $.ajax({
+                type: 'post',
+                contentType: 'application/json;charset=utf-8',
+                dataType: "json",
+                async: true,
+                url: '/managerCtrl/activist.do',
+                data: JSON.stringify({
+                    "action": "delete",
+                    "desId": desId,
+                }),
+                success: function (result) {
+                    if (result.status===0){
+                        alert(result.message);
+                    }
+                }
+            })
+        };
     });

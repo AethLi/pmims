@@ -76,9 +76,9 @@
     <div class="modal fade sewDetail" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div style="background-color: rgb(255,255,255);;width: 800px;height: 600px;position: fixed;left: 50%;top: 50%; margin: -300px 0 0 -400px;overflow: auto;padding: 10px">
             <div>
-                <span>姓名：{{model.name}}</span>
-                <span>学号：{{model.id}}</span>
-                <span>班级：{{model.classAndGrade}}</span>
+                <span>姓名：{{model.student.name}}</span>
+                <span>学号：{{model.student.id}}</span>
+                <span>班级：{{model.student.classInfo}}</span>
                 <span><input type="button" value="通过申请" ng-if="isSuperAdmin"></span>
             </div>
             <div style="margin-top: 50px" class="well">思想汇报（图片）已上传文件列表</div>

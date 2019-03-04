@@ -16,6 +16,7 @@ angular.module('managerPageApp', [])
         $scope.probationaryFile3 = [];
         $scope.probationaryFile4 = [];
 
+        $scope.model;
         $scope.saveUploadInstruction = function (index) {
             var uploadInstruction = "";
             if (index === 0) {
@@ -87,7 +88,7 @@ angular.module('managerPageApp', [])
                 contentType: 'application/json;charset=utf-8',
                 dataType: "json",
                 async: true,
-                url: '/managerCtrl/Probationary.do',
+                url: '/managerCtrl/probationary.do',
                 data: JSON.stringify({
                     "action": "modal",
                     "desId": userId
@@ -133,4 +134,58 @@ angular.module('managerPageApp', [])
                 }
             }
         });
+        $scope.accept = function (desId) {
+            $.ajax({
+                type: 'post',
+                contentType: 'application/json;charset=utf-8',
+                dataType: "json",
+                async: true,
+                url: '/managerCtrl/probationary.do',
+                data: JSON.stringify({
+                    "action": "accept",
+                    "desId": desId,
+                }),
+                success: function (result) {
+                    if (result.status===0){
+                        alert(result.message);
+                    }
+                }
+            })
+        };
+        $scope.disAccept = function (desId) {
+            $.ajax({
+                type: 'post',
+                contentType: 'application/json;charset=utf-8',
+                dataType: "json",
+                async: true,
+                url: '/managerCtrl/probationary.do',
+                data: JSON.stringify({
+                    "action": "disAccept",
+                    "desId": desId,
+                }),
+                success: function (result) {
+                    if (result.status===0){
+                        alert(result.message);
+                    }
+                }
+            })
+        };
+        $scope.deleteItem = function (desId) {
+            $.ajax({
+                type: 'post',
+                contentType: 'application/json;charset=utf-8',
+                dataType: "json",
+                async: true,
+                url: '/managerCtrl/probationary.do',
+                data: JSON.stringify({
+                    "action": "delete",
+                    "desId": desId,
+                }),
+                success: function (result) {
+                    if (result.status===0){
+                        alert(result.message);
+                    }
+                }
+            })
+        };
     });

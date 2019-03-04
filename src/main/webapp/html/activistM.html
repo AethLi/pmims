@@ -108,9 +108,9 @@
     <div class="modal fade sewDetail" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div style="background-color: rgb(255,255,255);;width: 800px;height: 600px;position: fixed;left: 50%;top: 50%; margin: -300px 0 0 -400px;overflow: auto;padding: 10px">
             <div>
-                <span>姓名：{{model.name}}</span>
-                <span>学号：{{model.id}}</span>
-                <span>班级：{{model.classAndGrade}}</span>
+                <span>姓名：{{model.student.name}}</span>
+                <span>学号：{{model.student.id}}</span>
+                <span>班级：{{model.student.classInfo}}</span>
                 <span><input type="button" value="通过申请" ng-if="isSuperAdmin"></span>
             </div>
             <br>
@@ -140,81 +140,225 @@
             <table class="table" style="background: #b3b3b3">
                 <thead>
                 <tr>
-                    <td style="width: 50%">文件名</td>
-                    <td style="width: 30%">上传时间</td>
-                    <td style="width: 20%">删除</td>
+                    <td style="width: 200px">文件名</td>
+                    <td style="width: 100px">上传时间</td>
+                    <td style="width: 50px">状态</td>
+                    <td style="width: 60px">审核</td>
                 </tr>
                 </thead>
+                <tbody>
+                <tr ng-repeat="x in activistFile0">
+                    <td style="text-overflow:ellipsis;width: 200px;cursor: pointer">
+                        <a ng-click="fileAction(0,x.proposerId)">{{x.fileName}}</a>
+                    </td>
+                    <td>
+                        {{timeConvert(x.date.time)}}
+                    </td>
+                    <td>
+                        {{statusConvert(x.status)}}
+                    </td>
+                    <td>
+                        <input type="button" ng-click="accept(x.proposerId)" value="通过">
+                        <input type="button" ng-click="disAccept(x.proposerId)" value="不通过">
+                    </td>
+                </tr>
+                </tbody>
             </table>
             <div style="margin-top: 50px" class="well">思想汇报一图片上传说明已上传文件列表</div>
             <table class="table" style="background: #b3b3b3">
                 <thead>
                 <tr>
-                    <td style="width: 50%">文件名</td>
-                    <td style="width: 30%">上传时间</td>
-                    <td style="width: 20%">删除</td>
+                    <td style="width: 200px">文件名</td>
+                    <td style="width: 100px">上传时间</td>
+                    <td style="width: 50px">状态</td>
+                    <td style="width: 60px">审核</td>
                 </tr>
                 </thead>
+                <tbody>
+                <tr ng-repeat="x in activistFile1">
+                    <td style="text-overflow:ellipsis;width: 200px;cursor: pointer">
+                        <a ng-click="fileAction(0,x.proposerId)">{{x.fileName}}</a>
+                    </td>
+                    <td>
+                        {{timeConvert(x.date.time)}}
+                    </td>
+                    <td>
+                        {{statusConvert(x.status)}}
+                    </td>
+                    <td>
+                        <input type="button" ng-click="accept(x.proposerId)" value="通过">
+                        <input type="button" ng-click="disAccept(x.proposerId)" value="不通过">
+                    </td>
+                </tr>
+                </tbody>
             </table>
             <div style="margin-top: 50px" class="well">思想汇报一文档上传说明已上传文件列表</div>
             <table class="table" style="background: #b3b3b3">
                 <thead>
                 <tr>
-                    <td style="width: 50%">文件名</td>
-                    <td style="width: 30%">上传时间</td>
-                    <td style="width: 20%">删除</td>
+                    <td style="width: 200px">文件名</td>
+                    <td style="width: 100px">上传时间</td>
+                    <td style="width: 50px">状态</td>
+                    <td style="width: 60px">审核</td>
                 </tr>
                 </thead>
+                <tbody>
+                <tr ng-repeat="x in activistFile2">
+                    <td style="text-overflow:ellipsis;width: 200px;cursor: pointer">
+                        <a ng-click="fileAction(0,x.proposerId)">{{x.fileName}}</a>
+                    </td>
+                    <td>
+                        {{timeConvert(x.date.time)}}
+                    </td>
+                    <td>
+                        {{statusConvert(x.status)}}
+                    </td>
+                    <td>
+                        <input type="button" ng-click="accept(x.proposerId)" value="通过">
+                        <input type="button" ng-click="disAccept(x.proposerId)" value="不通过">
+                    </td>
+                </tr>
+                </tbody>
             </table>
             <div style="margin-top: 50px" class="well">思想汇报二图片上传说明已上传文件列表</div>
             <table class="table" style="background: #b3b3b3">
                 <thead>
                 <tr>
-                    <td style="width: 50%">文件名</td>
-                    <td style="width: 30%">上传时间</td>
-                    <td style="width: 20%">删除</td>
+                    <td style="width: 200px">文件名</td>
+                    <td style="width: 100px">上传时间</td>
+                    <td style="width: 50px">状态</td>
+                    <td style="width: 60px">审核</td>
                 </tr>
                 </thead>
+                <tbody>
+                <tr ng-repeat="x in activistFile3">
+                    <td style="text-overflow:ellipsis;width: 200px;cursor: pointer">
+                        <a ng-click="fileAction(0,x.proposerId)">{{x.fileName}}</a>
+                    </td>
+                    <td>
+                        {{timeConvert(x.date.time)}}
+                    </td>
+                    <td>
+                        {{statusConvert(x.status)}}
+                    </td>
+                    <td>
+                        <input type="button" ng-click="accept(x.proposerId)" value="通过">
+                        <input type="button" ng-click="disAccept(x.proposerId)" value="不通过">
+                    </td>
+                </tr>
+                </tbody>
             </table>
             <div style="margin-top: 50px" class="well">思想汇报二文档上传说明已上传文件列表</div>
             <table class="table" style="background: #b3b3b3">
                 <thead>
                 <tr>
-                    <td style="width: 50%">文件名</td>
-                    <td style="width: 30%">上传时间</td>
-                    <td style="width: 20%">删除</td>
+                    <td style="width: 200px">文件名</td>
+                    <td style="width: 100px">上传时间</td>
+                    <td style="width: 50px">状态</td>
+                    <td style="width: 60px">审核</td>
                 </tr>
                 </thead>
+                <tbody>
+                <tr ng-repeat="x in activistFile4">
+                    <td style="text-overflow:ellipsis;width: 200px;cursor: pointer">
+                        <a ng-click="fileAction(0,x.proposerId)">{{x.fileName}}</a>
+                    </td>
+                    <td>
+                        {{timeConvert(x.date.time)}}
+                    </td>
+                    <td>
+                        {{statusConvert(x.status)}}
+                    </td>
+                    <td>
+                        <input type="button" ng-click="accept(x.proposerId)" value="通过">
+                        <input type="button" ng-click="disAccept(x.proposerId)" value="不通过">
+                    </td>
+                </tr>
+                </tbody>
             </table>
             <div style="margin-top: 50px" class="well">参加入党积极分子培训班结业证图片已上传文件列表</div>
             <table class="table" style="background: #b3b3b3">
                 <thead>
                 <tr>
-                    <td style="width: 50%">文件名</td>
-                    <td style="width: 30%">上传时间</td>
-                    <td style="width: 20%">删除</td>
+                    <td style="width: 200px">文件名</td>
+                    <td style="width: 100px">上传时间</td>
+                    <td style="width: 50px">状态</td>
+                    <td style="width: 60px">审核</td>
                 </tr>
                 </thead>
+                <tbody>
+                <tr ng-repeat="x in activistFile5">
+                    <td style="text-overflow:ellipsis;width: 200px;cursor: pointer">
+                        <a ng-click="fileAction(0,x.proposerId)">{{x.fileName}}</a>
+                    </td>
+                    <td>
+                        {{timeConvert(x.date.time)}}
+                    </td>
+                    <td>
+                        {{statusConvert(x.status)}}
+                    </td>
+                    <td>
+                        <input type="button" ng-click="accept(x.proposerId)" value="通过">
+                        <input type="button" ng-click="disAccept(x.proposerId)" value="不通过">
+                    </td>
+                </tr>
+                </tbody>
             </table>
             <div style="margin-top: 50px" class="well">联系人谈话已上传文件列表</div>
             <table class="table" style="background: #b3b3b3">
                 <thead>
                 <tr>
-                    <td style="width: 50%">文件名</td>
-                    <td style="width: 30%">上传时间</td>
-                    <td style="width: 20%">删除</td>
+                    <td style="width: 200px">文件名</td>
+                    <td style="width: 100px">上传时间</td>
+                    <td style="width: 50px">状态</td>
+                    <td style="width: 60px">审核</td>
                 </tr>
                 </thead>
+                <tbody>
+                <tr ng-repeat="x in activistFile6">
+                    <td style="text-overflow:ellipsis;width: 200px;cursor: pointer">
+                        <a ng-click="fileAction(0,x.proposerId)">{{x.fileName}}</a>
+                    </td>
+                    <td>
+                        {{timeConvert(x.date.time)}}
+                    </td>
+                    <td>
+                        {{statusConvert(x.status)}}
+                    </td>
+                    <td>
+                        <input type="button" ng-click="accept(x.proposerId)" value="通过">
+                        <input type="button" ng-click="disAccept(x.proposerId)" value="不通过">
+                    </td>
+                </tr>
+                </tbody>
             </table>
             <div style="margin-top: 50px" class="well">其他资料已上传文件列表</div>
             <table class="table" style="background: #b3b3b3">
                 <thead>
                 <tr>
-                    <td style="width: 50%">文件名</td>
-                    <td style="width: 30%">上传时间</td>
-                    <td style="width: 20%">删除</td>
+                    <td style="width: 200px">文件名</td>
+                    <td style="width: 100px">上传时间</td>
+                    <td style="width: 50px">状态</td>
+                    <td style="width: 60px">审核</td>
                 </tr>
                 </thead>
+                <tbody>
+                <tr ng-repeat="x in activistFile7">
+                    <td style="text-overflow:ellipsis;width: 200px;cursor: pointer">
+                        <a ng-click="fileAction(0,x.proposerId)">{{x.fileName}}</a>
+                    </td>
+                    <td>
+                        {{timeConvert(x.date.time)}}
+                    </td>
+                    <td>
+                        {{statusConvert(x.status)}}
+                    </td>
+                    <td>
+                        <input type="button" ng-click="accept(x.proposerId)" value="通过">
+                        <input type="button" ng-click="disAccept(x.proposerId)" value="不通过">
+                    </td>
+                </tr>
+                </tbody>
             </table>
         </div>
     </div>

@@ -72,14 +72,14 @@ public class ManagerService {
                 probationaries = probationaryMapper.selectProbationaryByIdDisapproved(new SysUser(m.get("userId").toString()));
                 m.put("countN", probationaries.size());
             }
-        } else if (pa.getUserType() == 4) {
+        } /*else if (pa.getUserType() == 4) {
             for (Map<String, Object> m : users) {
                 List<Activist> activists = activistMapper.selectActivistByIdUndeleted(new SysUser(m.get("userId").toString()));
                 m.put("count", activists.size());
                 activists = activistMapper.selectActivistByIdDisapproved(new SysUser(m.get("userId").toString()));
                 m.put("countN", activists.size());
             }
-        }
+        }*/
         result.put("users", users);
         if (pcs.permissionCheck(6, request)) {
             result.put("isSuperAdmin", true);
@@ -126,18 +126,48 @@ public class ManagerService {
         return result;
     }
 
-    public String acceptItem(String desId, String code, int i) {
-        if (i == 0) {
-
-        } else if (i == 1) {
-
-        } else if (i == 2) {
-
-        } else if (i == 3) {
-
-        } else if (i == 4) {
-
+    public String acceptItem(String desId, int code) {
+        if (code == 0) {
+            proposerMapper.acceptProposerById(new Proposer(desId));
+        } else if (code == 1) {
+            activistMapper.acceptActivistById(new Activist(desId));
+        } else if (code == 2) {
+            developmentMapper.acceptDevelopmentById(new Development(desId));
+        } else if (code == 3) {
+            probationaryMapper.acceptProbationaryById(new Probationary(desId));
+        } else if (code == 4) {
         }
-        return null;
+
+        return "已成功通过该项";
+    }
+
+    public String disAcceptItem(String desId, Integer code) {
+        if (code == 0) {
+            proposerMapper.disAcceptProposerById(new Proposer(desId));
+        } else if (code == 1) {
+            activistMapper.disAcceptActivistById(new Activist(desId));
+        } else if (code == 2) {
+            developmentMapper.disAcceptDevelopmentById(new Development(desId));
+        } else if (code == 3) {
+            probationaryMapper.disAcceptProbationaryById(new Probationary(desId));
+        } else if (code == 4) {
+        }
+
+        return "已成功退回该项";
+    }
+
+    public String deleteItem(String desId, Integer code) {
+        if (code == 0) {
+            proposerMapper.deleteProposerById(new Proposer(desId));
+        } else if (code == 1) {
+            activistMapper.deleteActivistById(new Activist(desId));
+        } else if (code == 2) {
+            developmentMapper.deleteDevelopmentById(new Development(desId));
+        } else if (code == 3) {
+            probationaryMapper.deleteProbationaryById(new Probationary(desId));
+        } else if (code == 4) {
+        }
+
+        return "已成功退回该项";
     }
 }
