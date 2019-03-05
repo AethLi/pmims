@@ -6,7 +6,6 @@ import pmim.mapper.*;
 import pmim.model.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,9 +15,9 @@ public class ManagerService {
     @Autowired
     UploadInstructionMapper uim;
     @Autowired
-    UserMapper um;
+    UserMapper userMapper;
     @Autowired
-    StudentMapper sm;
+    StudentMapper studentMapper;
     @Autowired
     ProposerMapper proposerMapper;
     @Autowired
@@ -43,7 +42,7 @@ public class ManagerService {
 
     public Object initTablePages(PageAble pa, HttpServletRequest request) {
         Map<String, Object> result = new HashMap<>();
-        List<Map<String, Object>> users = um.selectUsersByPage(pa);
+        List<Map<String, Object>> users = userMapper.selectUsersByPage(pa);
         if (pa.getUserType() == 0) {
             for (Map<String, Object> m : users) {
                 List<Proposer> proposers = proposerMapper.selectProposerByIdUndeleted(new SysUser(m.get("userId").toString()));
@@ -72,14 +71,7 @@ public class ManagerService {
                 probationaries = probationaryMapper.selectProbationaryByIdDisapproved(new SysUser(m.get("userId").toString()));
                 m.put("countN", probationaries.size());
             }
-        } /*else if (pa.getUserType() == 4) {
-            for (Map<String, Object> m : users) {
-                List<Activist> activists = activistMapper.selectActivistByIdUndeleted(new SysUser(m.get("userId").toString()));
-                m.put("count", activists.size());
-                activists = activistMapper.selectActivistByIdDisapproved(new SysUser(m.get("userId").toString()));
-                m.put("countN", activists.size());
-            }
-        }*/
+        }
         result.put("users", users);
         if (pcs.permissionCheck(6, request)) {
             result.put("isSuperAdmin", true);
@@ -91,7 +83,7 @@ public class ManagerService {
 
     public Object proposerModal(String desId) {
         Map<String, Object> result = new HashMap<>();
-        Student student = sm.selectStudentById(new SysUser(desId));
+        Student student = studentMapper.selectStudentById(new SysUser(desId));
         result.put("student", student);
         List<Proposer> proposers = proposerMapper.selectProposerByIdUndeleted(new SysUser(desId));
         result.put("proposers", proposers);
@@ -100,7 +92,7 @@ public class ManagerService {
 
     public Object activistModal(String desId) {
         Map<String, Object> result = new HashMap<>();
-        Student student = sm.selectStudentById(new SysUser(desId));
+        Student student = studentMapper.selectStudentById(new SysUser(desId));
         result.put("student", student);
         List<Activist> activists = activistMapper.selectActivistByIdUndeleted(new SysUser(desId));
         result.put("activists", activists);
@@ -109,7 +101,7 @@ public class ManagerService {
 
     public Object developmentModal(String desId) {
         Map<String, Object> result = new HashMap<>();
-        Student student = sm.selectStudentById(new SysUser(desId));
+        Student student = studentMapper.selectStudentById(new SysUser(desId));
         result.put("student", student);
         List<Development> developments = developmentMapper.selectDevelopmentByIdUndeleted(new SysUser(desId));
         result.put("developments", developments);
@@ -119,7 +111,7 @@ public class ManagerService {
 
     public Object probationaryModal(String desId) {
         Map<String, Object> result = new HashMap<>();
-        Student student = sm.selectStudentById(new SysUser(desId));
+        Student student = studentMapper.selectStudentById(new SysUser(desId));
         result.put("student", student);
         List<Probationary> probationaries = probationaryMapper.selectProbationaryByIdUndeleted(new SysUser(desId));
         result.put("probationaries", probationaries);

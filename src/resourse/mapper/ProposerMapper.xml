@@ -19,10 +19,10 @@
         select * from proposer where userId=#{userId} and status = 1;
     </select>
     <update id="acceptProposerById" parameterType="pmim.model.Proposer">
-        update Proposer set status=1 where ProposerId=#{ProposerId};
+        update Proposer set status=1 where proposerId=#{proposerId};
     </update>
     <update id="disAcceptProposerById" parameterType="pmim.model.Proposer">
-        update Proposer set status=2 where ProposerId=#{ProposerId};
+        update Proposer set status=2 where proposerId=#{proposerId};
     </update>
     <select id="selectProposerByProposerId" parameterType="pmim.model.Proposer" resultType="pmim.model.Proposer">
         select * from Proposer where proposerId=#{proposerId};
