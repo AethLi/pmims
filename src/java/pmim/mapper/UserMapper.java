@@ -21,4 +21,6 @@ public interface UserMapper {
     List<Map<String,Object>> selectUsersByPage(PageAble p);
 
     Proposer selectUsersById(SysUser u);
+
+    void  updateUserById(SysUser u);
 }

@@ -162,4 +162,20 @@ public class ManagerService {
 
         return "已成功退回该项";
     }
+
+    public void insertAdmin(String desId) {
+        userMapper.insertUser_register(new SysUser(desId, 5, 0));
+    }
+
+    public void updateAdmin(String desId, String code) {
+        userMapper.updateUserById(new SysUser(desId, 5, Integer.valueOf(code)));
+    }
+
+    public void deleteAdmin(String desId) {
+        userMapper.deleteUserById(new SysUser(desId, 0, 0));
+    }
+
+    public void levelUpUser(String desId, String code) {
+        userMapper.updateUserById(new SysUser(desId, Integer.valueOf(code), 0));
+    }
 }

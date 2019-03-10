@@ -1,3 +1,20 @@
 <div ng-controller="partyMemberMCtrl">
-    申请人列表
+    <div>
+        <table class="table table-hover" style="width: 100%">
+            <thead>
+            <tr>
+                <th>学号</th>
+                <th>姓名</th>
+                <th>成为党员的时间</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="x in partyMembers">
+                <td>{{x.userId}}</td>
+                <td>{{x.name}}</td>
+                <td>{{x.date}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

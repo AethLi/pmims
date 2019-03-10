@@ -119,7 +119,7 @@ angular.module('managerPageApp', [])
                         "desId": desId,
                     }),
                     success: function (result) {
-                        if (result.status===0){
+                        if (result.status === 0) {
                             alert(result.message);
                         }
                     }
@@ -137,7 +137,7 @@ angular.module('managerPageApp', [])
                         "desId": desId,
                     }),
                     success: function (result) {
-                        if (result.status===0){
+                        if (result.status === 0) {
                             alert(result.message);
                         }
                     }
@@ -155,7 +155,7 @@ angular.module('managerPageApp', [])
                         "desId": desId,
                     }),
                     success: function (result) {
-                        if (result.status===0){
+                        if (result.status === 0) {
                             alert(result.message);
                         }
                     }
@@ -172,6 +172,27 @@ angular.module('managerPageApp', [])
                     return "已通过";
                 } else if (status === 2) {
                     return "未通过";
+                }
+            };
+            $scope.userAction = function (action, userId) {
+                if (action === 0) {
+                    $.ajax({
+                        type: 'post',
+                        contentType: 'application/json;charset=utf-8',
+                        dataType: "json",
+                        async: true,
+                        url: '/managerCtrl/user.do',
+                        data: JSON.stringify({
+                            "action": "accept",
+                            "desId": userId,
+                            code: 1
+                        }),
+                        success: function (result) {
+                            if (result.status === 0) {
+                                alert(result.message);
+                            }
+                        }
+                    })
                 }
             };
             $scope.fileAction = function (index, desId) {

@@ -1,11 +1,67 @@
 package pmim.model;
 
+import java.sql.Timestamp;
+
 public class SysUser {
     String userId;
     int userPermission;
     String userPwd;
     int status;
     String userPath;
+    Timestamp proposerDate;
+    Timestamp activistDate;
+    Timestamp developmentDate;
+    Timestamp probationaryDate;
+    Timestamp partyMenberDate;
+    Timestamp registerDate;
+
+    public Timestamp getProposerDate() {
+        return proposerDate;
+    }
+
+    public void setProposerDate(Timestamp proposerDate) {
+        this.proposerDate = proposerDate;
+    }
+
+    public Timestamp getActivistDate() {
+        return activistDate;
+    }
+
+    public void setActivistDate(Timestamp activistDate) {
+        this.activistDate = activistDate;
+    }
+
+    public Timestamp getDevelopmentDate() {
+        return developmentDate;
+    }
+
+    public void setDevelopmentDate(Timestamp developmentDate) {
+        this.developmentDate = developmentDate;
+    }
+
+    public Timestamp getProbationaryDate() {
+        return probationaryDate;
+    }
+
+    public void setProbationaryDate(Timestamp probationaryDate) {
+        this.probationaryDate = probationaryDate;
+    }
+
+    public Timestamp getPartyMenberDate() {
+        return partyMenberDate;
+    }
+
+    public void setPartyMenberDate(Timestamp partyMenberDate) {
+        this.partyMenberDate = partyMenberDate;
+    }
+
+    public Timestamp getRegisterDate() {
+        return registerDate;
+    }
+
+    public void setRegisterDate(Timestamp registerDate) {
+        this.registerDate = registerDate;
+    }
 
     public String getUserId() {
         return userId;

@@ -25,4 +25,7 @@
     <select id="selectUsersById" parameterType="pmim.model.SysUser" resultType="pmim.model.Proposer">
         select * from basalInfo where status !=-1 and userId=#{userId};
     </select>
+    <update id="updateUserById" parameterType="pmim.model.SysUser">
+        update user set status=#{status},userPermission=#{userPermission} where userId=#{userId};
+    </update>
 </mapper>

@@ -10,34 +10,51 @@
 <script src="./js/angular.min.js"></script>
 <script src="./js/index.js"></script>
 <script src="./js/md5.js"></script>
-<body ng-app="loginApp" ng-controller="loginCtrl">
-<div style="height: 90%;width: 100%">
+<body ng-app="loginApp" ng-controller="loginCtrl" style="background: rgb(179,215,242)">
+<div style="width: 100%;height: 3%;text-align: center">
+    <label style="margin-top: 20px;font-size: 50px">
+        <img src="img/smallLogo.png" style="width: 100px;height: 100px">
+        <span style="color: white">
+            数学与计算机学院&nbsp;&nbsp;|&nbsp;&nbsp;
+        </span>
+        <span style="color: rgb(42,146,223)">
+            学生党员信息管理系统
+        </span>
+    </label>
+</div>
+<div style="height: 87%;width: 100%">
     <div class="col-md-6 parent" style="height: 100%">
         <div class="parent-center child">
-            <img class="img-responsive center-block" src="./img/mainLogo.jpg" style="max-height: 60%;max-width: 60%">
+            <img class="img-responsive center-block" src="./img/mainLogo.jpg"
+                 style="max-height: 100%;max-width: 100%;position: relative;top: 90px;">
         </div>
     </div>
     <div class="col-md-6  parent">
         <div class="parent-center child">
-                <form id="loginForm" class="form-signin">
-                    <h2 class="form-signin-heading">请登录</h2>
-                    账户：<input type=""  class="form-control" placeholder="账户/学号" required="" autofocus="" ng-model="userId" style="margin-bottom: 20px" >
-                    密码：<input type="password"  class="form-control" placeholder="密码" required="" ng-model="userPwd"  style="margin-bottom: 20px" >
-                    验证码：<input type=""  class="form-control" placeholder="验证码" required=""  ng-model="code"  style="margin-bottom: 20px" >
-                    <img id="img" ng-src="/ACAPTCHA.do" style="height: 40px;width: 180px" ng-click="changeCodeImage()" >
-                    <span style="font-size: 25px;color: red" >看不清，点一点</span>
-                    <button class="btn btn-lg btn-primary btn-block" ng-click="login()" style="margin-top: 20px" >登录</button>
-                </form>
-                    <!--<button class="btn btn-lg btn-primary btn-block" ng-click="jump2Register()" >注册</button>-->
+            <form id="loginForm" class="form-signin">
+                <h2 class="form-signin-heading">请登录</h2>
+                账户：<input type="" class="form-control" placeholder="账户/学号" required="" autofocus="" ng-model="userId"
+                          style="margin-bottom: 20px">
+                密码：<input type="password" class="form-control" placeholder="密码" required="" ng-model="userPwd"
+                          style="margin-bottom: 20px">
+                验证码：<input type="" class="form-control" placeholder="验证码" required="" ng-model="code"
+                           style="margin-bottom: 20px">
+                <label ng-click="changeCodeImage()">
+                    <img id="img" ng-src="/ACAPTCHA.do" style="height: 40px;width: 180px">
+                    <span style="font-size: 25px;color: red;cursor: pointer">看不清楚，换一张</span>
+                </label>
+                <button class="btn btn-lg btn-primary btn-block" ng-click="login()" style="margin-top: 20px">登录</button>
+            </form>
+            <!--<button class="btn btn-lg btn-primary btn-block" ng-click="jump2Register()" >注册</button>-->
 
         </div>
     </div>
 </div>
-<div class="parent" style="height: 10%;text-align: center">
+<!--<div class="parent" style="height: 10%;text-align: center">
     <div class="parent-center child">
-        <img src="img/githubLogo.png" style="width: 40px;height: 40px">
+        <img src="img/smallLogo.png" style="width: 40px;height: 40px">
         <span style="color: #2b542c;font-size: 15px;font-weight: bold">right&nbsp;information</span>
     </div>
-</div>
+</div>-->
 </body>
 </html>

@@ -1,19 +1,30 @@
 <div ng-controller="userManagementCtrl">
     <div class="col-md-2"></div>
     <div class="col-md-8">
-        <div class="well adminList">管理员</div>
+        <div class="well adminList">
+            管理员
+            <span style="float: right;">
+                <button class="btn btn-default">添加</button>
+            </span>
+        </div>
         <div class="adminList">
             <table class="table table-hover" style="width: 100%">
                 <thead>
                 <tr>
                     <th>账号</th>
                     <th>状态</th>
+                    <th>操作</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr ng-repeat="x in admins">
                     <td>{{x.userId}}</td>
                     <td>{{adminStatusConvert(x.status)}}</td>
+                    <td>
+                        <button class="btn btn-default" ng-click="actionAdminUsers(x.userId,0)">启用</button>
+                        <button class="btn btn-default" ng-click="actionAdminUsers(x.userId,1)">停用</button>
+                        <button class="btn btn-default" ng-click="actionAdminUsers(x.userId,2)">删除</button>
+                    </td>
                 </tr>
                 </tbody>
             </table>
@@ -44,7 +55,7 @@
     </div>
 </div>
 <style>
-    table td{
+    table td {
         cursor: pointer;
     }
 </style>

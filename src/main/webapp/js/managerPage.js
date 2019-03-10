@@ -2,6 +2,7 @@ angular.module('managerPageApp', ['ui.router', 'oc.lazyLoad'])
     .controller('managerPageCtrl', function ($scope) {
         var eggCount = 0;
         $scope.whoIsActive = 0;
+        $scope.userName = "加载中";
         $scope.iAmActive = function (who) {
             $scope.whoIsActive = who;
         };

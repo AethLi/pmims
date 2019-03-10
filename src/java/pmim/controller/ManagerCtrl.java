@@ -1,6 +1,7 @@
 package pmim.controller;
 
 
+import jdk.nashorn.internal.ir.IfNode;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,7 +36,7 @@ public class ManagerCtrl {
         } else if ("listOfThis".equals(ra.getAction())) {
             if (pcs.permissionCheck(5, request) || pcs.permissionCheck(6, request)) {
                 PageAble pa = (PageAble) JSONObject.toBean(JSONObject.fromObject(jsonstr), PageAble.class);
-                return JSONObject.fromObject(new ResponseMessage(0, "", ms.initTablePages(pa, request))).toString();
+                return JSONObject.fromObject(new ResponseMessage(0, "", ms.initTablePages(  pa, request))).toString();
             }
         }
         return JSONObject.fromObject(new ResponseMessage(1, "权限存在问题", null)).toString();
@@ -175,4 +176,37 @@ public class ManagerCtrl {
         return JSONObject.fromObject(new ResponseMessage(1, "权限存在问题", null)).toString();
     }
 
+    @RequestMapping(value = "/admin.do", produces = "text/html;charset=UTF-8")
+    public @ResponseBody
+    Object adminCtrl(HttpServletRequest request, @RequestBody String jsonstr) {
+        RequestAction ra = (RequestAction) JSONObject.toBean(JSONObject.fromObject(jsonstr), RequestAction.class);
+        if (pcs.permissionCheck(6, request)) {
+            if ("insert".equals(ra.getAction())) {
+                ms.insertAdmin(ra.getDesId());
+            } else if ("update".equals(ra.getAction())) {
+                ms.updateAdmin(ra.getDesId(), ra.getCode());
+            } else if ("delete".equals(ra.getAction())) {
+                ms.deleteAdmin(ra.getDesId());
+            }
+            return JSONObject.fromObject(new ResponseMessage(0, "操作成功", null)).toString();
+        }
+        return JSONObject.fromObject(new ResponseMessage(1, "权限存在问题", null)).toString();
+    }
+
+    @RequestMapping(value = "/user.do", produces = "text/html;charset=UTF-8")
+    public @ResponseBody
+    Object userCtrl(HttpServletRequest request, @RequestBody String jsonstr) {
+        RequestAction ra = (RequestAction) JSONObject.toBean(JSONObject.fromObject(jsonstr), RequestAction.class);
+        if (pcs.permissionCheck(6, request)) {
+            if ("accept".equals(ra.getAction())) {
+                ms.levelUpUser(ra.getDesId(), ra.getCode());
+            } else if ("disAccept".equals(ra.getAction())) {
+
+            } else if ("delete".equals(ra.getAction())) {
+
+            }
+            return JSONObject.fromObject(new ResponseMessage(0, "操作成功", null)).toString();
+        }
+        return JSONObject.fromObject(new ResponseMessage(1, "权限存在问题", null)).toString();
+    }
 }
