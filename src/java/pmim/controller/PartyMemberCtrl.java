@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping(value = "/partyMember")
-public class partyMember {
+public class PartyMemberCtrl {
     @RequestMapping(value = "/user.do")
     public Object partyMemberUserCtrl(HttpServletRequest request, @RequestBody String jsonstr) {
         RequestAction ra = (RequestAction) JSONObject.toBean(JSONObject.fromObject(jsonstr), RequestAction.class);

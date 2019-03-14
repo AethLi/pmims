@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pmim.mapper.ActivistHelperMapper">
+    <insert id="insertActivistHelperById" parameterType="pmim.model.ActivistHelper">
+        INSERT INTO activisthelper (`phoneNum0`, `phoneNum1`, `name0`, `name1`, `userId`, `status`) VALUES (#{phoneNum0}, #{phoneNum1}, #{name0},#{name1}, #{userId}, #{status});
+    </insert>
+    <update id="updateActivistHelperById" parameterType="pmim.model.ActivistHelper">
+    UPDATE activisthelper SET `phoneNum0`=#{phoneNum0}, `phoneNum1`=#{phoneNum1}, `name0`=#{name0}, `name1`=#{name1}, `status`=#{status} WHERE userId=#{userId};
+    </update>
+    <select id="selectActivistHelperById" parameterType="pmim.model.SysUser" resultType="pmim.model.ActivistHelper">
+        select * from activisthelper where userId=#{userId}
+    </select>
+</mapper>
