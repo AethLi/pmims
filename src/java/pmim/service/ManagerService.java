@@ -6,6 +6,7 @@ import pmim.mapper.*;
 import pmim.model.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +29,8 @@ public class ManagerService {
     ProbationaryMapper probationaryMapper;
     @Autowired
     PermissionCheckService pcs;
+    @Autowired
+    ActivistHelperMapper activistHelperMapper;
 
     public Object initManagerPages(Integer position) {
         UploadInstruction uploadInstruction = new UploadInstruction();
@@ -96,6 +99,8 @@ public class ManagerService {
         result.put("student", student);
         List<Activist> activists = activistMapper.selectActivistByIdUndeleted(new SysUser(desId));
         result.put("activists", activists);
+        ActivistHelper activistHelper = activistHelperMapper.selectActivistHelperById(new SysUser(desId));
+        result.put("activistHelper", activistHelper);
         return result;
     }
 
@@ -176,6 +181,21 @@ public class ManagerService {
     }
 
     public void levelUpUser(String desId, String code) {
-        userMapper.updateUserById(new SysUser(desId, Integer.valueOf(code), 0));
+        SysUser user = new SysUser(desId, Integer.valueOf(code), 0);
+        if ("1".equals(code)) {
+            user.setActivistDate(new Timestamp(System.currentTimeMillis()));
+            userMapper.update2Activist(user);
+        } else if ("2".equals(code)) {
+            user.setDevelopmentDate(new Timestamp(System.currentTimeMillis()));
+            userMapper.update2Development(user);
+        } else if ("3".equals(code)) {
+            user.setProbationaryDate(new Timestamp(System.currentTimeMillis()));
+            userMapper.update2Probationary(user);
+        } else if ("4".equals(code)) {
+            user.setPartyMemberDate(new Timestamp(System.currentTimeMillis()));
+            userMapper.update2PartyMember(user);
+        } else {
+
+        }
     }
 }

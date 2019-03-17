@@ -1,10 +1,10 @@
 <div ng-controller="userManagementCtrl">
     <div class="col-md-2"></div>
     <div class="col-md-8">
-        <div class="well adminList">
+        <div class="well adminList" style="background: rgb(179,215,242)">
             管理员
             <span style="float: right;">
-                <button class="btn btn-default">添加</button>
+                <button class="btn btn-default"style="position:relative;bottom: 10px">添加</button>
             </span>
         </div>
         <div class="adminList">
@@ -29,7 +29,15 @@
                 </tbody>
             </table>
         </div>
-        <div class="well">学生信息</div>
+        <div class="well" style="background: rgb(179,215,242)">
+            学生信息
+            <form class="navbar-form navbar-right" role="search" style="position:relative;bottom: 15px">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="按学号搜索" ng-model="searchUserId">
+                </div>
+                <button class="btn btn-default">搜索</button>
+            </form>
+        </div>
         <div>
             <table class="table table-hover" style="width: 100%">
                 <thead>

@@ -151,9 +151,9 @@
                     <td>{{x.classInfo}}</td>
                     <td>
                         <input type="button" value="查看详情" ng-click="tableAction(x.userId)">
-                        <input type="button" value="通过申请" ng-if="isSuperAdmin" class="superAdminButton">
-                        <input type="button" value="驳回申请" ng-if="isSuperAdmin" class="superAdminButton">
-                        <input type="button" value="删除此人" ng-if="isSuperAdmin" class="superAdminButton">
+                        <input type="button" value="通过申请" ng-if="isSuperAdmin" class="superAdminButton" ng-click="userAction(0,x.userId)">
+                        <input type="button" value="驳回申请" ng-if="isSuperAdmin" class="superAdminButton" ng-click="userAction(1,x.userId)">
+                        <input type="button" value="删除此人" ng-if="isSuperAdmin" class="superAdminButton" ng-click="userAction(2,x.userId)">
                     </td>
                 </tr>
                 </tbody>

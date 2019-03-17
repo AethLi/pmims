@@ -20,10 +20,10 @@ angular.module('managerPageApp', [])
         $scope.activistFile7 = [];
 
         $scope.activistCount = "0/0";
-        $scope.linkMan0 = "";
-        $scope.linkMan1 = "";
-        $scope.linkNumber0 = "";
-        $scope.linkNumber1 = "";
+        $scope.name0 = "";
+        $scope.name1 = "";
+        $scope.phoneNum0 = "";
+        $scope.phoneNum1 = "";
         $scope.allActivists = [];
 
         $scope.isSuperAdmin = false;
@@ -121,13 +121,29 @@ angular.module('managerPageApp', [])
                 }),
                 success: function (result) {
                     $scope.model = result.model;
-                    for (activist of $scope.model.activists) {
+                    for (let activist of $scope.model.activists) {
                         if (activist.index === 0) {
                             $scope.activistFile0.push(activist);
                         } else if (activist.index === 1) {
                             $scope.activistFile1.push(activist);
+                        } else if (activist.index === 2) {
+                            $scope.activistFile2.push(activist);
+                        } else if (activist.index === 3) {
+                            $scope.activistFile3.push(activist);
+                        } else if (activist.index === 4) {
+                            $scope.activistFile4.push(activist);
+                        } else if (activist.index === 5) {
+                            $scope.activistFile5.push(activist);
+                        } else if (activist.index === 6) {
+                            $scope.activistFile6.push(activist);
+                        } else if (activist.index === 7) {
+                            $scope.activistFile7.push(activist);
                         }
                     }
+                    $scope.name0 = result.model.activistHelper.name0;
+                    $scope.name1 = result.model.activistHelper.name1;
+                    $scope.phoneNum0 = result.model.activistHelper.phoneNum0;
+                    $scope.phoneNum1 = result.model.activistHelper.phoneNum1;
                     $scope.$digest();
                     $('#myModal').modal();
                 }
@@ -165,7 +181,7 @@ angular.module('managerPageApp', [])
                     "desId": desId,
                 }),
                 success: function (result) {
-                    if (result.status===0){
+                    if (result.status === 0) {
                         alert(result.message);
                     }
                 }
@@ -183,7 +199,7 @@ angular.module('managerPageApp', [])
                     "desId": desId,
                 }),
                 success: function (result) {
-                    if (result.status===0){
+                    if (result.status === 0) {
                         alert(result.message);
                     }
                 }
@@ -201,10 +217,31 @@ angular.module('managerPageApp', [])
                     "desId": desId,
                 }),
                 success: function (result) {
-                    if (result.status===0){
+                    if (result.status === 0) {
                         alert(result.message);
                     }
                 }
             })
+        };
+        $scope.userAction = function (action, userId) {
+            if (action === 0) {
+                $.ajax({
+                    type: 'post',
+                    contentType: 'application/json;charset=utf-8',
+                    dataType: "json",
+                    async: true,
+                    url: '/managerCtrl/user.do',
+                    data: JSON.stringify({
+                        "action": "accept",
+                        "desId": userId,
+                        code: 2
+                    }),
+                    success: function (result) {
+                        if (result.status === 0) {
+                            alert(result.message);
+                        }
+                    }
+                })
+            }
         };
     });

@@ -12,7 +12,7 @@ public class SysUser {
     Timestamp activistDate;
     Timestamp developmentDate;
     Timestamp probationaryDate;
-    Timestamp partyMenberDate;
+    Timestamp partyMemberDate;
     Timestamp registerDate;
 
     public Timestamp getProposerDate() {
@@ -47,12 +47,8 @@ public class SysUser {
         this.probationaryDate = probationaryDate;
     }
 
-    public Timestamp getPartyMenberDate() {
-        return partyMenberDate;
-    }
-
-    public void setPartyMenberDate(Timestamp partyMenberDate) {
-        this.partyMenberDate = partyMenberDate;
+    public Timestamp getPartyMemberDate() {
+        return partyMemberDate;
     }
 
     public Timestamp getRegisterDate() {
@@ -89,6 +85,10 @@ public class SysUser {
 
     public int getStatus() {
         return status;
+    }
+
+    public void setPartyMemberDate(Timestamp partyMemberDate) {
+        this.partyMemberDate = partyMemberDate;
     }
 
     public void setStatus(int status) {

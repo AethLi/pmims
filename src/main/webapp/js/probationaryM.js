@@ -188,4 +188,25 @@ angular.module('managerPageApp', [])
                 }
             })
         };
+        $scope.userAction = function (action, userId) {
+            if (action === 0) {
+                $.ajax({
+                    type: 'post',
+                    contentType: 'application/json;charset=utf-8',
+                    dataType: "json",
+                    async: true,
+                    url: '/managerCtrl/user.do',
+                    data: JSON.stringify({
+                        "action": "accept",
+                        "desId": userId,
+                        code: 4
+                    }),
+                    success: function (result) {
+                        if (result.status === 0) {
+                            alert(result.message);
+                        }
+                    }
+                })
+            }
+        };
     });

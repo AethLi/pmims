@@ -12,7 +12,7 @@
             <tr ng-repeat="x in partyMembers">
                 <td>{{x.userId}}</td>
                 <td>{{x.name}}</td>
-                <td>{{x.date}}</td>
+                <td>{{timeConvert(x.partyMemberDate)}}</td>
             </tr>
             </tbody>
         </table>

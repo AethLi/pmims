@@ -25,12 +25,6 @@
                 <li ng-class="{4:'active'}[whoIsActive]"><a href="#!/probationaryM" ng-click="iAmActive(4)">预备党员</a>
                 </li>
                 <li ng-class="{5:'active'}[whoIsActive]"><a href="#!/partyMemberM" ng-click="iAmActive(5)">党员</a></li>
-                <form class="navbar-form navbar-left" role="search">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="按学号搜索" ng-model="searchUserId">
-                    </div>
-                    <button class="btn btn-default">搜索</button>
-                </form>
             </ul>
             <ul class="nav navbar-nav" style="float: right">
                 <li><a style="cursor:pointer;">{{userPermission}}</a></li>

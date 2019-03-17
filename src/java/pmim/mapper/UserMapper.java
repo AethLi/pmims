@@ -18,9 +18,19 @@ public interface UserMapper {
 
     void updateUserPath(SysUser u);
 
-    List<Map<String,Object>> selectUsersByPage(PageAble p);
+    List<Map<String, Object>> selectUsersByPage(PageAble p);
 
     Proposer selectUsersById(SysUser u);
 
-    void  updateUserById(SysUser u);
+    void updateUserById(SysUser u);
+
+    void update2Proposer(SysUser u);
+
+    void update2Activist(SysUser u);
+
+    void update2Development(SysUser u);
+
+    void update2Probationary(SysUser u);
+
+    void update2PartyMember(SysUser u);
 }

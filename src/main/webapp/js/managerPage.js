@@ -1,6 +1,7 @@
 angular.module('managerPageApp', ['ui.router', 'oc.lazyLoad'])
     .controller('managerPageCtrl', function ($scope) {
         var eggCount = 0;
+        $scope.userPermission = "加载中";
         $scope.whoIsActive = 0;
         $scope.userName = "加载中";
         $scope.iAmActive = function (who) {
@@ -24,6 +25,32 @@ angular.module('managerPageApp', ['ui.router', 'oc.lazyLoad'])
                 eggCount = 0;
             }
         };
+        $.ajax({
+            type: 'post',
+            contentType: 'application/json;charset=utf-8',
+            dataType: "json",
+            async: true,
+            url: '/user/initPage.do',
+            data: JSON.stringify({
+                "action": "initPage"
+            }),
+            success: function (result) {
+                if (result.status === 1) {
+                    window.location.href = "../index.html";
+                } else if (result.status === 0) {
+                    $scope.userName = result.model.user.userId;
+                    $scope.PermissionCode = result.model.user.userPermission;
+                    switch (result.model.user.userPermission) {
+                        case 5:
+                            $scope.userPermission = "管理员";
+                            break;
+                        case 6:
+                            $scope.userPermission = "系统管理员";
+                            break;
+                    }
+                }
+            }
+        });
         $scope.logout = function () {
             $.ajax({
                 type: 'post',
@@ -117,15 +144,15 @@ angular.module('managerPageApp', ['ui.router', 'oc.lazyLoad'])
                 }
             })
             .state("userManagement", {
-            url: "/userManagement",
-            templateUrl: "./userManagement.html",
-            resolve: {
-                loadMyCtrl: ["$ocLazyLoad", function ($ocLazyLoad) {
-                    return $ocLazyLoad.load({
-                        name: 'managerPageApp',
-                        files: ['../js/userManagement.js']
-                    })
-                }]
-            }
-        })
+                url: "/userManagement",
+                templateUrl: "./userManagement.html",
+                resolve: {
+                    loadMyCtrl: ["$ocLazyLoad", function ($ocLazyLoad) {
+                        return $ocLazyLoad.load({
+                            name: 'managerPageApp',
+                            files: ['../js/userManagement.js']
+                        })
+                    }]
+                }
+            })
     });

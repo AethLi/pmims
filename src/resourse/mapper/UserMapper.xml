@@ -28,4 +28,19 @@
     <update id="updateUserById" parameterType="pmim.model.SysUser">
         update user set status=#{status},userPermission=#{userPermission} where userId=#{userId};
     </update>
+    <update id="update2Proposer" parameterType="pmim.model.SysUser">
+        update user set userPermission=#{userPermission},proposerDate=#{proposerDate} where userId=#{userId};
+    </update>
+    <update id="update2Activist" parameterType="pmim.model.SysUser">
+        update user set userPermission=#{userPermission}, activistDate=#{activistDate} where userId=#{userId};
+    </update>
+    <update id="update2Development" parameterType="pmim.model.SysUser">
+        update user set userPermission=#{userPermission},developmentDate=#{developmentDate} where userId=#{userId};
+    </update>
+    <update id="update2Probationary" parameterType="pmim.model.SysUser">
+        update user set userPermission=#{userPermission},probationaryDate=#{probationaryDate} where userId=#{userId};
+    </update>
+    <update id="update2PartyMember" parameterType="pmim.model.SysUser">
+        update user set userPermission=#{userPermission},partyMemberDate=#{partyMemberDate} where userId=#{userId};
+    </update>
 </mapper>

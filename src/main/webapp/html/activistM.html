@@ -87,9 +87,12 @@
                     <td>{{x.classInfo}}</td>
                     <td>
                         <input type="button" value="查看详情" ng-click="tableAction(x.userId)">
-                        <input type="button" value="通过申请" ng-if="isSuperAdmin" class="superAdminButton">
-                        <input type="button" value="驳回申请" ng-if="isSuperAdmin" class="superAdminButton">
-                        <input type="button" value="删除此人" ng-if="isSuperAdmin" class="superAdminButton">
+                        <input type="button" value="通过申请" ng-if="isSuperAdmin" class="superAdminButton"
+                               ng-click="userAction(0,x.userId)">
+                        <input type="button" value="驳回申请" ng-if="isSuperAdmin" class="superAdminButton"
+                               ng-click="userAction(1,x.userId)">
+                        <input type="button" value="删除此人" ng-if="isSuperAdmin" class="superAdminButton"
+                               ng-click="userAction(2,x.userId)">
                     </td>
                 </tr>
                 </tbody>
@@ -111,7 +114,7 @@
                 <span>姓名：{{model.student.name}}</span>
                 <span>学号：{{model.student.id}}</span>
                 <span>班级：{{model.student.classInfo}}</span>
-</div>
+            </div>
             <br>
             <div>
             <span style="font-weight: bold">
@@ -120,19 +123,19 @@
                 <span style="font-weight: bold">
                 姓名：
             </span>
-                <input ng-model="linkMan0" style="width: 100px">
+                <input style="width: 100px" ng-model="name0">
                 <span style="font-weight: bold">
                 电话：
             </span>
-                <input ng-model="linkNumber0" style="width: 100px">
+                <input style="width: 100px" ng-model="phoneNum0">
                 <span style="font-weight: bold">
                 姓名：
             </span>
-                <input ng-model="linkMan1" style="width: 100px">
+                <input style="width: 100px" ng-model="name1">
                 <span style="font-weight: bold">
                 电话：
             </span>
-                <input ng-model="linkNumber1" style="width: 100px">
+                <input style="width: 100px" ng-model="phoneNum1">
                 <input type="button" value="保存">
             </div>
             <div style="margin-top: 50px" class="well">入党积极分子考察表图片已上传文件列表</div>
