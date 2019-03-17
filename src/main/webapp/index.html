@@ -26,12 +26,12 @@
     <div class="col-md-6 parent" style="height: 100%">
         <div class="parent-center child">
             <img class="img-responsive center-block" src="./img/mainLogo.jpg"
-                 style="max-height: 100%;max-width: 100%;position: relative;top: 90px;">
+                 style="max-height: 100%;max-width: 100%;position: relative;top: 70px;left: 185px">
         </div>
     </div>
     <div class="col-md-6  parent">
         <div class="parent-center child">
-            <form id="loginForm" class="form-signin">
+            <form id="loginForm" class="form-signin" style="position: relative;right: 86px;width: 353px">
                 <h2 class="form-signin-heading">请登录</h2>
                 账户：<input type="" class="form-control" placeholder="账户/学号" required="" autofocus="" ng-model="userId"
                           style="margin-bottom: 20px">
@@ -41,9 +41,14 @@
                            style="margin-bottom: 20px">
                 <label ng-click="changeCodeImage()">
                     <img id="img" ng-src="/ACAPTCHA.do" style="height: 40px;width: 180px">
-                    <span style="font-size: 25px;color: red;cursor: pointer">看不清楚，换一张</span>
+                    <span style="font-size: 20px;color: red;cursor: pointer">看不清楚，换一张</span>
                 </label>
-                <button class="btn btn-lg btn-primary btn-block" ng-click="login()" style="margin-top: 20px">登录</button>
+                <button class="btn btn-lg btn-primary btn-block" ng-click="login()"
+                        style="margin-top: 20px;width: 160px;position: relative;left: 20%">登录
+                </button>
+                <panel>
+
+                </panel>
             </form>
             <!--<button class="btn btn-lg btn-primary btn-block" ng-click="jump2Register()" >注册</button>-->
 
