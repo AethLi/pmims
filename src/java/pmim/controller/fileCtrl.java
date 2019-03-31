@@ -18,6 +18,7 @@ import pmim.service.UserPathService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.net.URLEncoder;
 
 
 @Controller
@@ -103,15 +104,19 @@ public class fileCtrl {
         } else if (request.getParameter("type").equals("probationary")) {
             Probationary p = probationaryMapper.selectProbationaryByProbationaryId(new Probationary(desId));
             path = userPathService.checkUserPath(p.getUserId());
-            path += "Proposer/" + p.getFileName();
+            path += "probationary/" + p.getFileName();
             fileName = p.getFileName();
         }
         if (path != null) {
             File file = new File(path);
             if (file.exists()) {
                 response.setContentType("application/force-download");// 设置强制下载不打开
-                response.addHeader("Content-Disposition",
-                        "attachment;fileName=" + fileName);// 设置文件名
+                try {
+                    response.addHeader("Content-Disposition",
+                            "attachment; fileName=" + URLEncoder.encode(fileName, "utf-8"));// 设置文件名
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
                 byte[] buffer = new byte[1024];
                 FileInputStream fis = null;
                 BufferedInputStream bis = null;

@@ -31,6 +31,13 @@ angular.module('mainPageApp', [])
         $scope.fileList6 = [];
         $scope.fileList7 = [];
 
+        $scope.ImageShow = function (desId) {
+            window.open("/html/imageShow.html?desId=" + desId + "&type=activist");
+        };
+        $scope.fileDownload = function (desId) {
+            window.open("/file/fileDownload.do?desId=" + desId + "&type=activist");
+        };
+
         $scope.ChooseFileChange = function (id, index) {
             var file = document.getElementById(id).files[0];
             if (index === 0) {

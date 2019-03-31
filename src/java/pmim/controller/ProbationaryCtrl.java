@@ -26,7 +26,7 @@ public class ProbationaryCtrl {
     Object activistUser(HttpServletRequest request, @RequestBody String jsonstr) {
         RequestAction ra = (RequestAction) JSONObject.toBean(JSONObject.fromObject(jsonstr), RequestAction.class);
         if ("initProbationaryUserPage".equals(ra.getAction())) {
-            return ps.initUserPage((SysUser) request.getSession().getAttribute("currentUser"));
+            return ps.initUserPage((SysUser) request.getSession().getAttribute("currentSysUser"));
         } else if ("getFileList".equals(ra.getAction())) {
             return ps.getFileList((SysUser) request.getSession().getAttribute("currentSysUser"));
         }

@@ -11,46 +11,48 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<context:component-scan base-package="pmim.controller" />
-	<context:component-scan base-package="pmim.service" />
+    <context:component-scan base-package="pmim.controller"/>
+    <context:component-scan base-package="pmim.service"/>
 
-	<mvc:annotation-driven />
+    <mvc:annotation-driven/>
 
-	<bean id="dataSource"
-		  class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName"
-				  value="com.mysql.jdbc.Driver" />
-		<property name="url"
-				  value="jdbc:mysql://127.0.0.1/pmims?serverTimezone=UTC&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=true" />
-		<property name="username" value="root" />
-		<property name="password" value="mysqlpasswd" />
-		<!--<property name="password" value="333333" />-->
-	</bean>
+    <bean id="dataSource"
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName"
+                  value="com.mysql.jdbc.Driver"/>
+        <property name="url"
+                  value="jdbc:mysql://127.0.0.1/pmims?serverTimezone=UTC&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=true"/>
+        <property name="username" value="root"/>
+        <property name="password" value="mysqlpasswd"/>
+        <!--<property name="password" value="333333" />-->
+    </bean>
 
-	<!-- spring + mybatis 整合配置 -->
-	<bean id="sqlSessionFactory"
-		  class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		<property name="configLocation" value="classpath:mybatis.xml"></property>
-		<property name="mapperLocations"
-				  value="classpath:mapper/*.xml" />
-	</bean>
-	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="pmim.mapper" />
-		<property name="sqlSessionFactoryBeanName"
-				  value="sqlSessionFactory" />
-	</bean>
-	<!-- end 整合 -->
+    <!-- spring + mybatis 整合配置 -->
+    <bean id="sqlSessionFactory"
+          class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:mybatis.xml"></property>
+        <property name="mapperLocations"
+                  value="classpath:mapper/*.xml"/>
+    </bean>
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="pmim.mapper"/>
+        <property name="sqlSessionFactoryBeanName"
+                  value="sqlSessionFactory"/>
+    </bean>
+    <!-- end 整合 -->
 
-	<bean id="multipartResolver"
-		  class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
-          p:defaultEncoding="UTF-8" >
-		<!-- set the max upload size100MB -->
-		<property name="maxUploadSize">
-			<value>104857600</value>
-		</property>
-		<property name="maxInMemorySize">
-			<value>4096</value>
-		</property>
-	</bean>
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+          p:defaultEncoding="UTF-8">
+        <!-- set the max upload size100MB -->
+        <property name="maxUploadSize">
+            <value>104857600</value>
+        </property>
+        <property name="maxInMemorySize">
+            <value>4096</value>
+        </property>
+    </bean>
+
+    <bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter"/>
 </beans>

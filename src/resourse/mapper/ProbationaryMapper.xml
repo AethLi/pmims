@@ -16,13 +16,13 @@
         select * from Probationary where userId=#{userId} and status != -1;
     </select>
     <update id="acceptProbationaryById" parameterType="pmim.model.Probationary">
-        update Probationary set status=1 where ProbationaryId=#{ProbationaryId};
+        update Probationary set status=1 where probationaryId=#{probationaryId};
     </update>
     <update id="disAcceptProbationaryById" parameterType="pmim.model.Probationary">
-        update Probationary set status=2 where ProbationaryId=#{ProbationaryId};
+        update Probationary set status=2 where probationaryId=#{probationaryId};
     </update>
     <select id="selectProbationaryByProbationaryId" parameterType="pmim.model.Probationary" resultType="pmim.model.Probationary">
-        select * from Probationary where ProbationaryId=#{ProbationaryId};
+        select * from Probationary where probationaryId=#{probationaryId};
     </select>
     <select id="selectProbationaryByIdDisapproved" parameterType="pmim.model.SysUser" resultType="pmim.model.Probationary">
         select * from Probationary where userId=#{userId} and status = 1;

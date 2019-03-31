@@ -2,6 +2,9 @@ angular.module('managerPageApp', [])
     .controller("userOverviewCtrl", function ($scope) {
         console.log("userOverview.js onload!");
         $scope.me = undefined;
+        $scope.oldPassword = "";
+        $scope.newPassword0 = "";
+        $scope.newPassword1 = "";
 
         $.ajax({
             type: 'post',
@@ -40,7 +43,7 @@ angular.module('managerPageApp', [])
                 }
             })
         };
-        $scope.uploadHeadImg=function () {
+        $scope.uploadHeadImg = function () {
             var form = new FormData(document.getElementById("headImgForm"));
             $.ajax({
                 type: 'post',
@@ -53,5 +56,28 @@ angular.module('managerPageApp', [])
                     alert(result.message);
                 }
             })
+        }
+        $scope.changePassword = function () {
+            if ($scope.newPassword0 != $scope.newPassword1) {
+                $scope.newPassword0 = "";
+                $scope.newPassword1 = "";
+                alert("两次密码输入不一致");
+                return;
+            } else {
+                $.ajax({
+                    async: true,
+                    type: 'post',
+                    url: '/user/changePassword.do',
+                    contentType: 'application/json;charset=utf-8',
+                    data: JSON.stringify({
+                        "oldPassword": $scope.oldPassword,
+                        "newPassword": $scope.newPassword0
+                    }),
+                    dataType: "json",
+                    success: function (result) {
+                        alert(result.message);
+                    }
+                })
+            }
         }
     });

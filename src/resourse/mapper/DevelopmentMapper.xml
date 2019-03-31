@@ -16,13 +16,13 @@
         select * from Development where userId=#{userId} and status != -1;
     </select>
     <update id="acceptDevelopmentById" parameterType="pmim.model.Development">
-        update Development set status=1 where DevelopmentId=#{DevelopmentId};
+        update Development set status=1 where developmentId=#{developmentId};
     </update>
     <update id="disAcceptDevelopmentById" parameterType="pmim.model.Development">
-        update Development set status=2 where DevelopmentId=#{DevelopmentId};
+        update Development set status=2 where developmentId=#{developmentId};
     </update>
     <select id="selectDevelopmentByDevelopmentId" parameterType="pmim.model.Development" resultType="pmim.model.Development">
-        select * from Development where DevelopmentId=#{DevelopmentId};
+        select * from Development where developmentId=#{developmentId};
     </select>
     <select id="selectDevelopmentByIdDisapproved" parameterType="pmim.model.SysUser" resultType="pmim.model.Development">
         select * from Development where userId=#{userId} and status = 1;

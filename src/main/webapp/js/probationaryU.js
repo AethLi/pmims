@@ -14,6 +14,14 @@ angular.module('mainPageApp', [])
         $scope.fileList1 = [];
         $scope.fileList2 = [];
         $scope.fileList3 = [];
+
+        $scope.ImageShow = function (desId) {
+            window.open("/html/imageShow.html?desId=" + desId + "&type=probationary");
+        };
+        $scope.fileDownload = function (desId) {
+            window.open("/file/fileDownload.do?desId=" + desId + "&type=probationary");
+        };
+
         $scope.ChooseFileChange = function (id, index) {
             var file = document.getElementById(id).files[0];
             if (index === 0) {

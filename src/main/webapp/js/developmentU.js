@@ -50,6 +50,12 @@ angular.module('mainPageApp', [])
         $scope.fileList14 = [];
         $scope.fileList15 = [];
 
+        $scope.ImageShow = function (desId) {
+            window.open("/html/imageShow.html?desId=" + desId + "&type=development");
+        };
+        $scope.fileDownload = function (desId) {
+            window.open("/file/fileDownload.do?desId=" + desId + "&type=development");
+        };
 
         $scope.ChooseFileChange = function (id, index) {
             var file = document.getElementById(id).files[0];

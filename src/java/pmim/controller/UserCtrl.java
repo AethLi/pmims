@@ -71,4 +71,12 @@ public class UserCtrl {
         return JSONObject.fromObject(new ResponseMessage(0, "", null)).toString();
     }
 
+    @RequestMapping(value = "/changePassword.do", produces = "text/html;charset=UTF-8")
+    public @ResponseBody
+    Object changePassword(HttpServletRequest request, @RequestBody String jsonstr) {
+        String oldPassword = (String) JSONObject.fromObject(jsonstr).get("oldPassword");
+        String newPassword = (String) JSONObject.fromObject(jsonstr).get("newPassword");
+        return JSONObject.fromObject(new ResponseMessage(0, us.changePassword(oldPassword, newPassword, (SysUser) request.getSession().getAttribute("currentSysUser")), null)).toString();
+
+    }
 }

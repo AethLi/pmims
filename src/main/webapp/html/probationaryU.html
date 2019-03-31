@@ -73,7 +73,7 @@
                         </tr>
                         </thead>
                         <tr ng-repeat="x in fileList1">
-                            <td style="width: 50%"><a ng-click="ImageShow(x.probationaryId)" style="cursor:pointer">{{x.fileName}}</a>
+                            <td style="width: 50%"><a ng-click="fileDownload(x.probationaryId)" style="cursor:pointer">{{x.fileName}}</a>
                             </td>
                             <td style="width: 30%">{{timeConvert(x.date.time)}}</td>
                             <td style="width: 10%">{{statusConvert(x.status)}}</td>
@@ -109,6 +109,7 @@
                     <input name="index" value="1">
                     <input type="file" id="probationary1FileChoose"
                            onchange="angular.element(this).scope().ChooseFileChange('probationary1FileChoose',1)"
+                           accept="application/msword,.docx"
                            ng-model="probationary1FileChoose" name="file"/>
                     <input id="probationary1FileUpload" type="button" ng-click="upload('probationaryForm1')">
                 </form>

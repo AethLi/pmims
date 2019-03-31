@@ -24,6 +24,8 @@ public interface UserMapper {
 
     void updateUserById(SysUser u);
 
+    void changePassword(SysUser u);
+
     void update2Proposer(SysUser u);
 
     void update2Activist(SysUser u);

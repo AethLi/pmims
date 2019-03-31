@@ -60,12 +60,23 @@ public class UserService {
             return JSONObject.fromObject(new ResponseMessage(0, "", m)).toString();
         else {
             try {
-                currentStudent=sm.selectStudentById(currentSysUser);
-                m.put("student",currentStudent);
+                currentStudent = sm.selectStudentById(currentSysUser);
+                m.put("student", currentStudent);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            return JSONObject.fromObject(new ResponseMessage(0,"",m)).toString();
+            return JSONObject.fromObject(new ResponseMessage(0, "", m)).toString();
+        }
+    }
+
+    public String changePassword(String oldPassword, String newPassword, SysUser sysUser) {
+        SysUser user = um.selectUser_withNoPwd(sysUser);
+        if (Tools.toMD5(oldPassword).equals(user.getUserPwd())) {
+            user.setUserPwd(Tools.toMD5(newPassword));
+            um.changePassword(user);
+            return "修改成功";
+        } else {
+            return "旧密码输入错误";
         }
     }
 }

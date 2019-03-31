@@ -31,6 +31,9 @@
     <update id="update2Proposer" parameterType="pmim.model.SysUser">
         update user set userPermission=#{userPermission},proposerDate=#{proposerDate} where userId=#{userId};
     </update>
+    <update id="updatePasswordById" parameterType="pmim.model.SysUser">
+        update user set userPwd=#{userPwd}
+    </update>
     <update id="update2Activist" parameterType="pmim.model.SysUser">
         update user set userPermission=#{userPermission}, activistDate=#{activistDate} where userId=#{userId};
     </update>
@@ -42,5 +45,8 @@
     </update>
     <update id="update2PartyMember" parameterType="pmim.model.SysUser">
         update user set userPermission=#{userPermission},partyMemberDate=#{partyMemberDate} where userId=#{userId};
+    </update>
+    <update id="changePassword" parameterType="pmim.model.SysUser">
+        update user set userPwd=#{userPwd} where userId=#{userId};
     </update>
 </mapper>
