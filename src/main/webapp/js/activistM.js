@@ -140,10 +140,10 @@ angular.module('managerPageApp', [])
                             $scope.activistFile7.push(activist);
                         }
                     }
-                    $scope.name0 = result.model.activistHelper.name0;
-                    $scope.name1 = result.model.activistHelper.name1;
-                    $scope.phoneNum0 = result.model.activistHelper.phoneNum0;
-                    $scope.phoneNum1 = result.model.activistHelper.phoneNum1;
+                    // $scope.name0 = result.model.activistHelper.name0;
+                    // $scope.name1 = result.model.activistHelper.name1;
+                    // $scope.phoneNum0 = result.model.activistHelper.phoneNum0;
+                    // $scope.phoneNum1 = result.model.activistHelper.phoneNum1;
                     $scope.$digest();
                     $('#myModal').modal();
                 }

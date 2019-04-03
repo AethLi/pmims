@@ -4,7 +4,8 @@
         <div class="well adminList" style="background: rgb(179,215,242)">
             管理员
             <span style="float: right;">
-                <button class="btn btn-default"style="position:relative;bottom: 10px">添加</button>
+                <button class="btn btn-default" style="position:relative;bottom: 10px"
+                        ng-click="addAdmin(1)">添加</button>
             </span>
         </div>
         <div class="adminList">
@@ -59,6 +60,37 @@
                 </tr>
                 </tbody>
             </table>
+        </div>
+    </div>
+    <div class="modal fade" id="addAdminModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">添加管理员</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="userId">管理员账号</label>
+                            <input class="form-control" id="userId" ng-model="addAdminUserId">
+                        </div>
+                        <div class="form-group">
+                            <label for="status">状态</label>
+                            <select class="form-control" id="status" ng-model="addAdminStatus">
+                                <option value="0" selected>启用</option>
+                                <option value="1">停用</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" ng-hide="1!=adminActionFlag">删除</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" ng-click="addAdminSave()">保存</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>

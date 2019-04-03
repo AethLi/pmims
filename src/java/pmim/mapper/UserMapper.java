@@ -35,4 +35,6 @@ public interface UserMapper {
     void update2Probationary(SysUser u);
 
     void update2PartyMember(SysUser u);
+
+    void addAdmin(SysUser user);
 }

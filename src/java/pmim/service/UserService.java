@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pmim.mapper.StudentMapper;
 import pmim.mapper.UserMapper;
+import pmim.model.RequestAction;
 import pmim.model.Student;
 import pmim.model.SysUser;
 import pmim.model.ResponseMessage;
@@ -78,5 +79,13 @@ public class UserService {
         } else {
             return "旧密码输入错误";
         }
+    }
+
+    public Object addAdmin(RequestAction ra) {
+        SysUser sysUser = new SysUser();
+        sysUser.setUserId(ra.getDesId());
+        sysUser.setStatus(Integer.parseInt(ra.getCode()));
+        um.addAdmin(sysUser);
+        return JSONObject.fromObject(new ResponseMessage(0, "添加成功", null)).toString();
     }
 }

@@ -1,6 +1,6 @@
 var app = angular.module('registerApp', []);
 app.controller('registerCtrl', function ($scope) {
-    $scope.messageArea = null;
+    $scope.messageArea = "";
     $scope.registerSubmit = function () {
         if ($scope.userId == null && $scope.userName == null && $scope.userPwd1 == null && $scope.userPwd2 == null) {
             //return;
@@ -14,7 +14,7 @@ app.controller('registerCtrl', function ($scope) {
             contentType: 'application/json;charset=utf-8',
             dataType: "json",
             async: true,
-            url: '/AAccount.do',
+            url: '/user/AAccount.do',
             data: JSON.stringify({
                 "action": "register",
                 "userId": $scope.userId,

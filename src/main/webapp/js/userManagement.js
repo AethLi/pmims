@@ -3,6 +3,9 @@ angular.module('mainPageApp', [])
         console.log("userManagementCtrl.js onload!");
         $scope.students = [];
         $scope.admins = [];
+        $scope.adminActionFlag = 0;
+        $scope.addAdminUserId = "";
+        $scope.addAdminStatus = 0;
 
         $.ajax({
             type: 'post',
@@ -67,6 +70,25 @@ angular.module('mainPageApp', [])
         };
         $scope.detailForStudent = function (userId) {
             console.log("click on " + userId);
+        };
+        $scope.addAdmin = function () {
+            $('#addAdminModal').modal("show");
+        };
+        $scope.addAdminSave = function () {
+            $.ajax({
+                type: 'post',
+                contentType: 'application/json;charset=utf-8',
+                dataType: "json",
+                async: true,
+                url: '/user/addAdmin.do',
+                data: JSON.stringify({
+                    desId: $scope.addAdminUserId,
+                    code: $scope.addAdminStatus
+                }),
+                success: function (result) {
+                    alert(result.message);
+                }
+            });
         };
         $scope.actionAdminUsers = function (userId, code) {
             if (code === 0) {

@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import pmim.mapper.UserMapper;
 import pmim.model.RequestAction;
 import pmim.model.ResponseMessage;
 import pmim.model.Student;
@@ -43,6 +44,9 @@ public class UserCtrl {
                 request.getSession().setAttribute("identifyingCode", "sdfbhsadfsaiofhsadiohfoiashfoisahdfoiashfosi");
                 return JSONObject.fromObject(new ResponseMessage(1, "账号或用户名错误错误", null)).toString();
             }
+            if (u.getStatus() != 0) {
+                return JSONObject.fromObject(new ResponseMessage(1, "账户停用", null)).toString();
+            }
             model.addAttribute("currentSysUser", u);
             if (u.getUserPermission() == 5 || u.getUserPermission() == 6) {
                 request.getSession().setAttribute("identifyingCode", "sdafsadfdsafsadfdsjfsajflasjflskjfksljflsddd");
@@ -78,5 +82,12 @@ public class UserCtrl {
         String newPassword = (String) JSONObject.fromObject(jsonstr).get("newPassword");
         return JSONObject.fromObject(new ResponseMessage(0, us.changePassword(oldPassword, newPassword, (SysUser) request.getSession().getAttribute("currentSysUser")), null)).toString();
 
+    }
+
+    @RequestMapping(value = "/addAdmin.do", produces = "text/html;charset=UTF-8")
+    public @ResponseBody
+    Object addAdmin(HttpServletRequest request, @RequestBody String jsonstr) {
+        RequestAction ra = (RequestAction) JSONObject.toBean(JSONObject.fromObject(jsonstr), RequestAction.class);
+        return us.addAdmin(ra);
     }
 }
