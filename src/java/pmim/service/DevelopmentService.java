@@ -1,6 +1,7 @@
 package pmim.service;
 
 import net.sf.json.JSONObject;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,6 +18,8 @@ import pmim.model.UploadInstruction;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
@@ -44,14 +47,15 @@ public class DevelopmentService {
             while (iter.hasNext()) {
                 MultipartFile file = multiRequest.getFile(iter.next().toString());
                 if (file != null) {
-                    if (new File(developmentPath + "/" + file.getOriginalFilename()).exists()) {
+                    String fileRandomName = RandomStringUtils.randomAlphabetic(5) + new SimpleDateFormat("yyyyMMddhhmmss").format(new Date(System.currentTimeMillis())) + file.getOriginalFilename();
+                    if (new File(developmentPath + "/" +fileRandomName).exists()) {
                         return JSONObject.fromObject(new ResponseMessage(1, "已上传过同名文件", null)).toString();
                     }
-                    String path = developmentPath.getPath() + "/" + file.getOriginalFilename();
+                    String path = developmentPath.getPath() + "/" + fileRandomName;
                     //上传
                     try {
                         file.transferTo(new File(path));
-                        dm.insertDevelopment(new Development(UUID.randomUUID().toString().replace("-", "0"), currentUserId, file.getOriginalFilename(), Calendar.getInstance().getTimeInMillis(), 0, Integer.valueOf(index)));
+                        dm.insertDevelopment(new Development(UUID.randomUUID().toString().replace("-", "0"), currentUserId, fileRandomName, Calendar.getInstance().getTimeInMillis(), 0, Integer.valueOf(index)));
 
                     } catch (IOException e) {
                         e.printStackTrace();

@@ -1,6 +1,7 @@
 package pmim.service;
 
 import net.sf.json.JSONObject;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,6 +18,8 @@ import pmim.model.UploadInstruction;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
@@ -44,14 +47,15 @@ public class ProbationaryService {
             while (iter.hasNext()) {
                 MultipartFile file = multiRequest.getFile(iter.next().toString());
                 if (file != null) {
-                    if (new File(probationaryPath + "/" + file.getOriginalFilename()).exists()) {
+                    String fileRandomName = RandomStringUtils.randomAlphabetic(5) + new SimpleDateFormat("yyyyMMddhhmmss").format(new Date(System.currentTimeMillis())) + file.getOriginalFilename();
+                    if (new File(probationaryPath + "/" + fileRandomName).exists()) {
                         return JSONObject.fromObject(new ResponseMessage(1, "已上传过同名文件", null)).toString();
                     }
-                    String path = probationaryPath.getPath() + "/" + file.getOriginalFilename();
+                    String path = probationaryPath.getPath() + "/" + fileRandomName;
                     //上传
                     try {
                         file.transferTo(new File(path));
-                        pm.insertProbationary(new Probationary(UUID.randomUUID().toString().replace("-", "0"), currentUserId, file.getOriginalFilename(), Calendar.getInstance().getTimeInMillis(), 0, Integer.valueOf(index)));
+                        pm.insertProbationary(new Probationary(UUID.randomUUID().toString().replace("-", "0"), currentUserId, fileRandomName, Calendar.getInstance().getTimeInMillis(), 0, Integer.valueOf(index)));
 
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -69,10 +73,11 @@ public class ProbationaryService {
         result.put("uploadInstructions", uploadInstructions);
         List uploadInfos = uifm.selectUploadInfoById(currentSysUser);
         result.put("uploadInfos", uploadInfos);
-        List pl=pm.selectProbationaryByIdUndeleted(currentSysUser);
-        result.put("currentProbationary",pl);
+        List pl = pm.selectProbationaryByIdUndeleted(currentSysUser);
+        result.put("currentProbationary", pl);
         return JSONObject.fromObject(new ResponseMessage(0, "", result)).toString();
     }
+
     public Object getFileList(SysUser currentSysUser) {
         try {
             return JSONObject.fromObject(new ResponseMessage(0, "", pm.selectProbationaryByIdUndeleted(currentSysUser))).toString();

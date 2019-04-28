@@ -1,0 +1,33 @@
+<div ng-controller="exportPartyMemberCtrl">
+    <div class="col-lg-2">
+
+    </div>
+    <div class="col-lg-8">
+        <div>
+            <table class="table table-hover" style="width: 100%">
+                <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-click="detailForStudent(x.userId)" ng-repeat="x in exportPartyMembers">
+                    <td>{{x.name}}</td>
+                    <td>
+                        <button ng-click="formAction(x.userId,0)">
+                            通过
+                        </button>
+                        <button ng-click="formAction(x.userId,1)">
+                            退回
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>

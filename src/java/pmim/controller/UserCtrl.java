@@ -4,12 +4,16 @@ import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import pmim.mapper.UserMapper;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import pmim.model.RequestAction;
 import pmim.model.ResponseMessage;
 import pmim.model.Student;
 import pmim.model.SysUser;
+import pmim.service.PermissionCheckService;
+import pmim.service.UserPathService;
 import pmim.service.UserService;
 import pmim.tools.Tools;
 
@@ -21,6 +25,10 @@ import javax.servlet.http.HttpServletRequest;
 public class UserCtrl {
     @Autowired
     private UserService us;
+    @Autowired
+    private UserPathService ups;
+    @Autowired
+    PermissionCheckService pcs;
 
     @RequestMapping(value = "/AAccount.do", produces = "text/html;charset=UTF-8")
     public @ResponseBody
@@ -89,5 +97,44 @@ public class UserCtrl {
     Object addAdmin(HttpServletRequest request, @RequestBody String jsonstr) {
         RequestAction ra = (RequestAction) JSONObject.toBean(JSONObject.fromObject(jsonstr), RequestAction.class);
         return us.addAdmin(ra);
+    }
+
+    @RequestMapping(value = "/fileUpload.do", produces = "text/html;charset=UTF-8")
+    public @ResponseBody
+    Object fileUpload(HttpServletRequest request) {
+        SysUser currentSysUser = (SysUser) request.getSession().getAttribute("currentSysUser");
+        String userPath = ups.checkUserPath(currentSysUser.getUserId());
+        return us.uploadFile(request, currentSysUser.getUserId(), userPath);
+    }
+
+    @RequestMapping(value = "/getImportedStatus.do", produces = "text/html;charset=UTF-8")
+    public @ResponseBody
+    Object getImportedStatus(HttpServletRequest request, Model model) {
+        SysUser currentSysUser = (SysUser) model.asMap().get("currentSysUser");
+        try {
+            return us.getImportedStatus(currentSysUser);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return JSONObject.fromObject(new ResponseMessage(1, e.getMessage(), null)).toString();
+        }
+
+    }
+
+    @RequestMapping(value = "/importNewUsers.do", produces = "text/html;charset=UTF-8")
+    public @ResponseBody
+    Object importNewUsers(HttpServletRequest request) {
+        String userPath = "D:/idea project/pmims/uploadPath/user/";
+        return us.importNewUsers(request, userPath);
+    }
+
+    @RequestMapping(value = "deleteById", produces = "text/html;charset=UTF-8")
+    public @ResponseBody
+    Object deleteById(@RequestBody String jsonstr, HttpServletRequest request) {
+        RequestAction ra = (RequestAction) JSONObject.toBean(JSONObject.fromObject(jsonstr), RequestAction.class);
+        if (pcs.permissionCheck(5, request) || pcs.permissionCheck(6, request)) {
+            return us.deleteById(ra);
+        } else {
+            return JSONObject.fromObject(new ResponseMessage(1, "权限存在问题", null)).toString();
+        }
     }
 }

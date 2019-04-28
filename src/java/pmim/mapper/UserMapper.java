@@ -1,11 +1,10 @@
 package pmim.mapper;
 
+import pmim.model.PageAble;
+import pmim.model.SysUser;
+
 import java.util.List;
 import java.util.Map;
-
-import pmim.model.PageAble;
-import pmim.model.Proposer;
-import pmim.model.SysUser;
 
 public interface UserMapper {
     void insertUser_register(SysUser u);
@@ -20,7 +19,7 @@ public interface UserMapper {
 
     List<Map<String, Object>> selectUsersByPage(PageAble p);
 
-    Proposer selectUsersById(SysUser u);
+    SysUser selectUsersById(Map m);
 
     void updateUserById(SysUser u);
 
@@ -37,4 +36,8 @@ public interface UserMapper {
     void update2PartyMember(SysUser u);
 
     void addAdmin(SysUser user);
+
+    SysUser selectByUserId_Name(Map map);
+
+    void updatePermissionById(SysUser user);
 }

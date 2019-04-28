@@ -18,14 +18,34 @@
         </div>
         <div>
             <ul class="nav navbar-nav">
-                <li ng-class="{0:'active'}[whoIsActive]"><a href="#!/userManagement" ng-click="iAmActive(0)">用户</a></li>
-                <li ng-class="{1:'active'}[whoIsActive]"><a href="#!/proposerM" ng-click="iAmActive(1)">申请人</a></li>
-                <li ng-class="{2:'active'}[whoIsActive]"><a href="#!/activistM" ng-click="iAmActive(2)">积极分子</a></li>
-                <li ng-class="{3:'active'}[whoIsActive]"><a href="#!/developmentM" ng-click="iAmActive(3)">发展对象</a></li>
-                <li ng-class="{4:'active'}[whoIsActive]"><a href="#!/probationaryM" ng-click="iAmActive(4)">预备党员</a>
+                <li ng-class="{0:'active'}[whoIsActive]">
+                    <a href="#!/userManagement" ng-click="iAmActive(0)">用户</a>
                 </li>
-                <li ng-class="{5:'active'}[whoIsActive]"><a href="#!/partyMemberM" ng-click="iAmActive(5)">党员</a></li>
-            </ul>
+                <li ng-class="{1:'active'}[whoIsActive]">
+                    <a href="#!/proposerM" ng-click="iAmActive(1)">申请人</a>
+                </li>
+                <li ng-class="{2:'active'}[whoIsActive]">
+                    <a href="#!/activistM" ng-click="iAmActive(2)">积极分子</a>
+                </li>
+                <li ng-class="{3:'active'}[whoIsActive]">
+                    <a href="#!/developmentM" ng-click="iAmActive(3)">发展对象</a>
+                </li>
+                <li ng-class="{4:'active'}[whoIsActive]">
+                    <a href="#!/probationaryM" ng-click="iAmActive(4)">预备党员</a>
+                </li>
+                <li ng-class="{5:'active'}[whoIsActive]">
+                    <a href="#!/partyMemberM" ng-click="iAmActive(5)">党员</a>
+                </li>
+                <li ng-class="{6:'active'}[whoIsActive]">
+                    <a href="#!/partyMemberShipDues" ng-click="iAmActive(6)">党费记录</a>
+                </li>
+                <li ng-class="{7:'active'}[whoIsActive]">
+                    <a href="#!/importPartyMemberFile" ng-click="iAmActive(7)">转入党员</a>
+                </li>
+                <li ng-class="{8:'active'}[whoIsActive]">
+                    <a href="#!/exportPartyMember" ng-click="iAmActive(8)">转出党员</a>
+                </li>
+            </ul>   
             <ul class="nav navbar-nav" style="float: right">
                 <li><a style="cursor:pointer;">{{userPermission}}</a></li>
                 <li><a ng-click="iAmActive(0)">{{userName}}</a></li>

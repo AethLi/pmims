@@ -1,0 +1,52 @@
+<div ng-controller="PartyMemberShipDuesCtrl">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div>
+            <table class="table table-hover" style="width: 100%">
+                <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>缴费日期</th>
+                    <th>缴费金额</th>
+                    <th>收费人</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-click="detailForStudent(x.userId)" ng-repeat="x in partyMembers">
+                    <td>{{x.name}}</td>
+                    <td>{{timeConvert(x.date.time)}}</td>
+                    <td>{{x.amount}}</td>
+                    <td>{{x.createBy}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-lg-2">
+
+        <div>
+            <div class="well">
+                导入缴费记录
+            </div>
+            <div>
+                <form>
+                    <div class="form-group">
+                        <label for="fileName">文件名</label>
+                        <input readonly class="form-control" id="fileName" ng-model="fileName">
+                    </div>
+                    <label for="fileSelect" class="btn btn-primary">选择文件</label>
+                    <label class="btn btn-primary" ng-click="uploadFile()">上传</label>
+                    <a class="btn btn-primary" href="/template/缴费记录.xlsx" ng-click="downLoadTemplate()">下载模板</a>
+                    <input type="file" id="fileSelect" style="display: none" name="file"
+                           accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                           onchange="angular.element(this).scope().ChooseFileChange()">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    table td {
+        cursor: pointer;
+    }
+</style>

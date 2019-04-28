@@ -155,4 +155,40 @@ angular.module('managerPageApp', ['ui.router', 'oc.lazyLoad'])
                     }]
                 }
             })
+            .state("partyMemberShipDues", {
+                url: "/partyMemberShipDues",
+                templateUrl: "./partyMemberShipDues.html",
+                resolve: {
+                    loadMyCtrl: ["$ocLazyLoad", function ($ocLazyLoad) {
+                        return $ocLazyLoad.load({
+                            name: 'managerPageApp',
+                            files: ['../js/partyMemberShipDues.js']
+                        })
+                    }]
+                }
+            })
+            .state("importPartyMemberFile", {
+                url: "/importPartyMemberFile",
+                templateUrl: "./importPartyMemberFile.html",
+                resolve: {
+                    loadMyCtrl: ["$ocLazyLoad", function ($ocLazyLoad) {
+                        return $ocLazyLoad.load({
+                            name: 'managerPageApp',
+                            files: ['../js/importPartyMemberFile.js']
+                        })
+                    }]
+                }
+            })
+            .state("exportPartyMember", {
+                url: "/exportPartyMember",
+                templateUrl: "./exportPartyMember.html",
+                resolve: {
+                    loadMyCtrl: ["$ocLazyLoad", function ($ocLazyLoad) {
+                        return $ocLazyLoad.load({
+                            name: 'managerPageApp',
+                            files: ['../js/exportPartyMember.js']
+                        })
+                    }]
+                }
+            })
     });

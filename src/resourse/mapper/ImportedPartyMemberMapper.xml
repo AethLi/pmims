@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pmim.mapper.ImportedPartyMemberMapper">
+    <insert id="insertImportedPartyMember" parameterType="java.util.Map">
+        insert into ImportedPartyMember (`id`, `userId`, `fileName`, `date`, `status`) VALUES (#{id},#{userId},#{fileName},#{date},#{status});
+    </insert>
+    <select id="selectByUserId" parameterType="java.util.Map" resultType="pmim.model.ImportedPartyMember">
+      select * from ImportedPartyMember where `userId`=#{userId};
+    </select>
+    <select id="selectWithAll" resultType="pmim.model.ImportedPartyMember">
+        select * from ImportedPartyMember;
+    </select>
+    <insert id="updateWithStatus" parameterType="java.util.Map">
+        update ImportedPartyMember set status=#{status} where userId=#{userId};
+    </insert>
+    <select id="selectWithAll_New" resultType="pmim.model.ImportedPartyMember">
+        select * from ImportedPartyMember where status=0;
+    </select>
+    <select id="selectById" parameterType="java.util.Map" resultType="pmim.model.ImportedPartyMember">
+        select * from ImportedPartyMember where id=#{id};
+    </select>
+</mapper>

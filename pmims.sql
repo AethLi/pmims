@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : local
-Source Server Version : 50724
+Source Server         : local MySql server
+Source Server Version : 50723
 Source Host           : localhost:3306
 Source Database       : pmims
 
 Target Server Type    : MYSQL
-Target Server Version : 50724
+Target Server Version : 50723
 File Encoding         : 65001
 
-Date: 2019-03-01 17:24:56
+Date: 2019-04-28 11:56:40
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,24 +32,28 @@ CREATE TABLE `activist` (
 -- ----------------------------
 -- Records of activist
 -- ----------------------------
+INSERT INTO `activist` VALUES ('7d73db5c0c783041920ac0706c27a122a97f', '201689', 'ぼくら.jpg', '2019-03-31', '0', '0');
+INSERT INTO `activist` VALUES ('9afe06a702a2f04472095a3050495c76e176', '201555', '思想汇报一.docx', '2019-04-03', '0', '2');
+INSERT INTO `activist` VALUES ('a0a29ad70b30c04862089f5091fe031d2135', '201510', 'ぼくら.jpg', '2019-03-31', '0', '0');
 INSERT INTO `activist` VALUES ('fb9a7e3b0f454041e809af90232652dd4fcd', '201510', '7a6a15d5gy1fd67pmg15tj21hc0xcas1.jpg', '2019-02-28', '0', '0');
 
 -- ----------------------------
--- Table structure for activisthelp
+-- Table structure for activisthelper
 -- ----------------------------
-DROP TABLE IF EXISTS `activisthelp`;
-CREATE TABLE `activisthelp` (
+DROP TABLE IF EXISTS `activisthelper`;
+CREATE TABLE `activisthelper` (
   `phoneNum0` varchar(255) DEFAULT NULL,
   `phoneNum1` varchar(255) DEFAULT NULL,
   `name0` varchar(255) DEFAULT NULL,
   `name1` varchar(255) DEFAULT NULL,
   `userId` int(11) DEFAULT NULL,
-  `index` varchar(255) DEFAULT NULL
+  `status` int(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of activisthelp
+-- Records of activisthelper
 -- ----------------------------
+INSERT INTO `activisthelper` VALUES ('1', '1', '1', '1', '1', '1');
 
 -- ----------------------------
 -- Table structure for development
@@ -72,6 +76,23 @@ INSERT INTO `development` VALUES ('3b0309e5033ea04ed90bee904b5432d62d3d', '20151
 INSERT INTO `development` VALUES ('d242b10b09d4904ea70808f09894443e6fbb', '201510', '7a6a15d5gy1fd67pmg15tj21hc0xcas1.jpg', '2019-02-28', '0', '1');
 
 -- ----------------------------
+-- Table structure for importedpartymember
+-- ----------------------------
+DROP TABLE IF EXISTS `importedpartymember`;
+CREATE TABLE `importedpartymember` (
+  `id` varchar(36) DEFAULT NULL,
+  `userId` varchar(36) DEFAULT NULL,
+  `fileName` varchar(255) DEFAULT NULL,
+  `date` datetime DEFAULT NULL,
+  `status` int(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of importedpartymember
+-- ----------------------------
+INSERT INTO `importedpartymember` VALUES ('10fa5ba00e0c904b1409e230acd094abc1e4', '201510', 'KzFXf20190427084756router.txt', '2019-04-27 00:47:56', '1');
+
+-- ----------------------------
 -- Table structure for partymember
 -- ----------------------------
 DROP TABLE IF EXISTS `partymember`;
@@ -90,6 +111,23 @@ CREATE TABLE `partymember` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for partymembershipdues
+-- ----------------------------
+DROP TABLE IF EXISTS `partymembershipdues`;
+CREATE TABLE `partymembershipdues` (
+  `userId` varchar(36) NOT NULL,
+  `amount` varchar(36) DEFAULT NULL,
+  `date` datetime DEFAULT NULL,
+  `createBy` varchar(36) DEFAULT NULL,
+  PRIMARY KEY (`userId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of partymembershipdues
+-- ----------------------------
+INSERT INTO `partymembershipdues` VALUES ('201510', '10', '2019-04-24 05:31:54', 'admin');
+
+-- ----------------------------
 -- Table structure for probationary
 -- ----------------------------
 DROP TABLE IF EXISTS `probationary`;
@@ -106,6 +144,9 @@ CREATE TABLE `probationary` (
 -- ----------------------------
 -- Records of probationary
 -- ----------------------------
+INSERT INTO `probationary` VALUES ('444dcb9e0489404994089790c67d98948bd5', '201689', '新建 Microsoft Word 文档.docx', '2019-03-31', '0', '1');
+INSERT INTO `probationary` VALUES ('5e1bae9b0d73104a060ba9f0a7c8c261351e', '201689', 'ぼくら.jpg', '2019-03-31', '0', '0');
+INSERT INTO `probationary` VALUES ('a2d65f6c01091042b70891a0588407bc603d', '201510', 'ぼくら.jpg', '2019-03-31', '0', '0');
 INSERT INTO `probationary` VALUES ('e9d71583094a4046fb0a1870165f1695a337', '201510', 'system-20190226142543.zip', '2019-02-28', '0', '0');
 
 -- ----------------------------
@@ -125,7 +166,17 @@ CREATE TABLE `proposer` (
 -- ----------------------------
 -- Records of proposer
 -- ----------------------------
-INSERT INTO `proposer` VALUES ('39c5744c0ea03049320ae540cc9ba8d9cfcf', '201510', '7a6a15d5gy1fd67pmg15tj21hc0xcas1.jpg', '2019-02-28', '0', '0');
+INSERT INTO `proposer` VALUES ('09940d83077fa040e0092350ef72f74794f8', '201510', 'ESNZb20190427015411ぼくら.jpg', '2019-04-27', '0', '0');
+INSERT INTO `proposer` VALUES ('33f443e40ce0b0425d0beaa078eecc3396e1', '201565', '入党申请书.docx', '2019-04-03', '0', '1');
+INSERT INTO `proposer` VALUES ('3420fad805cfd049e50800b0b94c585d2a0a', '201754', '入党申请书.docx', '2019-04-03', '0', '1');
+INSERT INTO `proposer` VALUES ('39c5744c0ea03049320ae540cc9ba8d9cfcf', '201510', '7a6a15d5gy1fd67pmg15tj21hc0xcas1.jpg', '2019-02-28', '1', '0');
+INSERT INTO `proposer` VALUES ('961bcb0404e9c04d7109fd60c79a1f96980b', '201925', 'ぼくら.jpg', '2019-03-04', '0', '0');
+INSERT INTO `proposer` VALUES ('9b30e32e0a89504d090be6b0ccccc9ce5b1a', '201510', 'ぼくら.jpg', '2019-04-27', '0', '0');
+INSERT INTO `proposer` VALUES ('c1dd59510def904e780bb2d0494745be7f07', '201689', 'ぼくら.jpg', '2019-03-31', '0', '0');
+INSERT INTO `proposer` VALUES ('c29f727b059ba04c0a088980bbf9ad129453', '201510', 'ぼくら.jpg', '2019-03-05', '-1', '0');
+INSERT INTO `proposer` VALUES ('e756ab6408a7104f3608285084f80c2890d9', '201510', '新建 Microsoft Word 文档.docx', '2019-04-27', '0', '1');
+INSERT INTO `proposer` VALUES ('ecab4e1c0317304b8608aca019506a1f3a00', '201510', 'index.html', '2019-03-05', '-1', '1');
+INSERT INTO `proposer` VALUES ('fde743cc015c40469e0b99301281cd635111', '201555', '入党申请书.docx', '2019-04-03', '0', '1');
 
 -- ----------------------------
 -- Table structure for student
@@ -148,7 +199,8 @@ CREATE TABLE `student` (
 -- ----------------------------
 -- Records of student
 -- ----------------------------
-INSERT INTO `student` VALUES ('201510', '2015级网络工程', '0', null, '美国白宫', '0', 'dfsfsdafdsa', '特朗普', '美国', null);
+INSERT INTO `student` VALUES ('201510', '20111', '0', null, '美国白宫', '0', 'dfsfsdafdsa', '特朗普', '美国', null);
+INSERT INTO `student` VALUES ('201510803070', '102班', '0', null, 'ds', null, 'dfsfsdafdsa', '测试', null, null);
 INSERT INTO `student` VALUES ('201511', '2015级网络工程', '1', null, '美国白宫', '0', '123', '安德森', '美国', null);
 INSERT INTO `student` VALUES ('201512', '2015级网络工程', '1', null, '美国白宫', '0', '123', '安德森', '美国', null);
 INSERT INTO `student` VALUES ('201513', '2015级网络工程', '1', null, '美国白宫', '0', '123', '安德森', '美国', null);
@@ -582,29 +634,7 @@ INSERT INTO `student` VALUES ('201941', '2015级网络工程', '1', null, '美�
 INSERT INTO `student` VALUES ('201942', '2015级网络工程', '1', null, '美国白宫', '0', '123', '安德森', '美国', null);
 INSERT INTO `student` VALUES ('201943', '2015级网络工程', '1', null, '美国白宫', '0', '123', '安德森', '美国', null);
 INSERT INTO `student` VALUES ('201944', '2015级网络工程', '1', null, '美国白宫', '0', '123', '安德森', '美国', null);
-
--- ----------------------------
--- Table structure for uploadinfo
--- ----------------------------
-DROP TABLE IF EXISTS `uploadinfo`;
-CREATE TABLE `uploadinfo` (
-  `userId` varchar(255) NOT NULL,
-  `index` varchar(255) DEFAULT NULL,
-  `position` varchar(255) DEFAULT NULL,
-  `status` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of uploadinfo
--- ----------------------------
-INSERT INTO `uploadinfo` VALUES ('201510', '1', '1', '1');
-INSERT INTO `uploadinfo` VALUES ('201510', '0', '1', '1');
-INSERT INTO `uploadinfo` VALUES ('201510', '2', '1', '1');
-INSERT INTO `uploadinfo` VALUES ('201510', '3', '1', '1');
-INSERT INTO `uploadinfo` VALUES ('201510', null, null, null);
-INSERT INTO `uploadinfo` VALUES ('201510', '5', '1', '1');
-INSERT INTO `uploadinfo` VALUES ('201510', '6', '1', '1');
-INSERT INTO `uploadinfo` VALUES ('201510', '7', '1', '1');
+INSERT INTO `student` VALUES ('21142', '发射点发', '0', null, null, null, null, '士大夫撒', null, null);
 
 -- ----------------------------
 -- Table structure for uploadinstruction
@@ -661,449 +691,474 @@ CREATE TABLE `user` (
   `userPermission` int(11) NOT NULL,
   `status` int(11) DEFAULT NULL,
   `userPath` varchar(255) DEFAULT NULL,
+  `proposerDate` datetime DEFAULT NULL,
+  `activistDate` datetime DEFAULT NULL,
+  `developmentDate` datetime DEFAULT NULL,
+  `probationaryDate` datetime DEFAULT NULL,
+  `partyMemberDate` datetime DEFAULT NULL,
+  `registerDate` datetime DEFAULT NULL,
   PRIMARY KEY (`userId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('201510', '96e79218965eb72c92a549dd5a330112', '0', '0', '3ec73daeabe5354471f6e2c53a70bc39201510_201957');
-INSERT INTO `user` VALUES ('201511', '96e79218965eb72c92a549dd5a330112', '0', '0', null);
-INSERT INTO `user` VALUES ('201512', '96e79218965eb72c92a549dd5a330112', '0', '0', null);
-INSERT INTO `user` VALUES ('201513', '96e79218965eb72c92a549dd5a330112', '0', '0', null);
-INSERT INTO `user` VALUES ('201514', '96e79218965eb72c92a549dd5a330112', '0', '0', null);
-INSERT INTO `user` VALUES ('201515', '96e79218965eb72c92a549dd5a330112', '0', '0', null);
-INSERT INTO `user` VALUES ('201516', '96e79218965eb72c92a549dd5a330112', '0', '0', null);
-INSERT INTO `user` VALUES ('201517', '96e79218965eb72c92a549dd5a330112', '0', '0', null);
-INSERT INTO `user` VALUES ('201518', '96e79218965eb72c92a549dd5a330112', '0', '0', null);
-INSERT INTO `user` VALUES ('201519', '96e79218965eb72c92a549dd5a330112', '0', '0', null);
-INSERT INTO `user` VALUES ('201520', '96e79218965eb72c92a549dd5a330112', '0', '0', null);
-INSERT INTO `user` VALUES ('201521', '96e79218965eb72c92a549dd5a330112', '0', '0', null);
-INSERT INTO `user` VALUES ('201522', '96e79218965eb72c92a549dd5a330112', '0', '0', null);
-INSERT INTO `user` VALUES ('201523', '96e79218965eb72c92a549dd5a330112', '0', '0', null);
-INSERT INTO `user` VALUES ('201524', '96e79218965eb72c92a549dd5a330112', '0', '0', null);
-INSERT INTO `user` VALUES ('201525', '96e79218965eb72c92a549dd5a330112', '0', '0', null);
-INSERT INTO `user` VALUES ('201526', '96e79218965eb72c92a549dd5a330112', '0', '0', null);
-INSERT INTO `user` VALUES ('201527', '96e79218965eb72c92a549dd5a330112', '0', '0', null);
-INSERT INTO `user` VALUES ('201528', '96e79218965eb72c92a549dd5a330112', '0', '0', null);
-INSERT INTO `user` VALUES ('201529', '96e79218965eb72c92a549dd5a330112', '0', '0', null);
-INSERT INTO `user` VALUES ('201530', '96e79218965eb72c92a549dd5a330112', '0', '0', null);
-INSERT INTO `user` VALUES ('201531', '96e79218965eb72c92a549dd5a330112', '0', '0', null);
-INSERT INTO `user` VALUES ('201532', '96e79218965eb72c92a549dd5a330112', '0', '0', null);
-INSERT INTO `user` VALUES ('201533', '96e79218965eb72c92a549dd5a330112', '0', '0', null);
-INSERT INTO `user` VALUES ('201534', '96e79218965eb72c92a549dd5a330112', '0', '0', null);
-INSERT INTO `user` VALUES ('201535', '96e79218965eb72c92a549dd5a330112', '0', '0', null);
-INSERT INTO `user` VALUES ('201536', '96e79218965eb72c92a549dd5a330112', '0', '0', null);
-INSERT INTO `user` VALUES ('201537', '96e79218965eb72c92a549dd5a330112', '0', '0', null);
-INSERT INTO `user` VALUES ('201538', '96e79218965eb72c92a549dd5a330112', '0', '0', null);
-INSERT INTO `user` VALUES ('201539', '96e79218965eb72c92a549dd5a330112', '0', '0', null);
-INSERT INTO `user` VALUES ('201540', '96e79218965eb72c92a549dd5a330112', '0', '0', null);
-INSERT INTO `user` VALUES ('201541', '96e79218965eb72c92a549dd5a330112', '0', '0', null);
-INSERT INTO `user` VALUES ('201542', '96e79218965eb72c92a549dd5a330112', '0', '0', null);
-INSERT INTO `user` VALUES ('201543', '96e79218965eb72c92a549dd5a330112', '0', '0', null);
-INSERT INTO `user` VALUES ('201544', '96e79218965eb72c92a549dd5a330112', '0', '0', null);
-INSERT INTO `user` VALUES ('201545', '96e79218965eb72c92a549dd5a330112', '0', '0', null);
-INSERT INTO `user` VALUES ('201546', '96e79218965eb72c92a549dd5a330112', '0', '0', null);
-INSERT INTO `user` VALUES ('201547', '96e79218965eb72c92a549dd5a330112', '0', '0', null);
-INSERT INTO `user` VALUES ('201548', '96e79218965eb72c92a549dd5a330112', '0', '0', null);
-INSERT INTO `user` VALUES ('201549', '96e79218965eb72c92a549dd5a330112', '0', '0', null);
-INSERT INTO `user` VALUES ('201550', '96e79218965eb72c92a549dd5a330112', '0', '0', null);
-INSERT INTO `user` VALUES ('201551', '96e79218965eb72c92a549dd5a330112', '0', '0', null);
-INSERT INTO `user` VALUES ('201552', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201553', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201554', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201555', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201556', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201557', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201558', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201559', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201560', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201561', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201562', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201563', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201564', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201565', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201566', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201567', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201568', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201569', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201570', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201571', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201572', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201573', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201574', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201575', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201576', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201577', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201578', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201579', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201580', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201581', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201582', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201583', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201584', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201585', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201586', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201587', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201588', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201589', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201590', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201591', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201592', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201593', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201594', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201595', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201596', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201597', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201598', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201599', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201600', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201601', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201602', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201603', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201604', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201605', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201606', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201607', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201608', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201609', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201610', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201611', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201612', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201613', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201614', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201615', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201616', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201617', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201618', '96e79218965eb72c92a549dd5a330112', '1', '0', null);
-INSERT INTO `user` VALUES ('201619', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201620', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201621', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201622', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201623', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201624', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201625', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201626', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201627', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201628', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201629', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201630', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201631', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201632', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201633', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201634', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201635', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201636', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201637', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201638', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201639', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201640', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201641', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201642', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201643', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201644', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201645', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201646', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201647', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201648', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201649', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201650', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201651', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201652', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201653', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201654', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201655', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201656', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201657', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201658', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201659', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201660', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201661', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201662', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201663', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201664', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201665', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201666', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201667', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201668', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201669', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201670', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201671', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201672', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201673', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201674', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201675', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201676', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201677', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201678', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201679', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201680', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201681', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201682', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201683', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201684', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201685', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201686', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201687', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201688', '96e79218965eb72c92a549dd5a330112', '2', '0', null);
-INSERT INTO `user` VALUES ('201689', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201690', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201691', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201692', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201693', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201694', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201695', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201696', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201697', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201698', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201699', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201700', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201701', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201702', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201703', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201704', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201705', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201706', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201707', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201708', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201709', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201710', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201711', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201712', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201713', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201714', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201715', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201716', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201717', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201718', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201719', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201720', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201721', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201722', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201723', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201724', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201725', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201726', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201727', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201728', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201729', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201730', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201731', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201732', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201733', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201734', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201735', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201736', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201737', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201738', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201739', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201740', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201741', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201742', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201743', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201744', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201745', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201746', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201747', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201748', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201749', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201750', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201751', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201752', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201753', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201754', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201755', '96e79218965eb72c92a549dd5a330112', '3', '0', null);
-INSERT INTO `user` VALUES ('201756', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201757', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201758', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201759', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201760', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201761', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201762', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201763', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201764', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201765', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201766', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201767', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201768', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201769', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201770', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201771', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201772', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201773', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201774', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201775', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201776', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201777', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201778', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201779', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201780', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201781', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201782', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201783', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201784', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201785', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201786', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201787', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201788', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201789', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201790', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201791', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201792', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201793', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201794', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201795', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201796', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201797', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201798', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201799', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201800', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201801', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201802', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201803', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201804', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201805', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201806', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201807', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201808', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201809', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201810', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201811', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201812', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201813', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201814', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201815', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201816', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201817', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201818', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201819', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201820', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201821', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201822', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201823', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201824', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201825', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201826', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201827', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201828', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201829', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201830', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201831', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201832', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201833', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201834', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201835', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201836', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201837', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201838', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201839', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201840', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201841', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201842', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201843', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201844', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201845', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201846', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201847', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201848', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201849', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201850', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201851', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201852', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201853', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201854', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201855', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201856', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201857', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201858', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201859', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201860', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201861', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201862', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201863', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201864', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201865', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201866', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201867', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201868', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201869', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201870', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201871', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201872', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201873', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201874', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201875', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201876', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201877', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201878', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201879', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201880', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201881', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201882', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201883', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201884', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201885', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201886', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201887', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201888', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201889', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201890', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201891', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201892', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201893', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201894', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201895', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201896', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201897', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201898', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201899', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201900', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201901', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201902', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201903', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201904', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201905', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201906', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201907', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201908', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201909', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201910', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201911', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201912', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201913', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201914', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201915', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201916', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201917', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201918', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201919', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201920', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201921', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201922', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201923', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201924', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201925', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201926', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201927', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201928', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201929', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201930', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201931', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201932', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201933', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201934', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201935', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201936', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201937', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201938', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201939', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201940', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201941', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201942', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201943', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('201944', '96e79218965eb72c92a549dd5a330112', '4', '0', null);
-INSERT INTO `user` VALUES ('a001', '96e79218965eb72c92a549dd5a330112', '5', '0', null);
-INSERT INTO `user` VALUES ('admin', '96e79218965eb72c92a549dd5a330112', '6', '0', null);
+INSERT INTO `user` VALUES ('201510', '96e79218965eb72c92a549dd5a330112', '11', '0', '3ec73daeabe5354471f6e2c53a70bc39201510_201957', null, null, null, '2019-03-17 03:25:47', '2019-04-27 02:08:50', null);
+INSERT INTO `user` VALUES ('201510803070', '96e79218965eb72c92a549dd5a330112', '0', '0', 'ff13f7f55f7154f6984d9a26d8a317f9201510803070_201983', null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201510803071', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201510803072', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201510803073', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201510803074', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201510803075', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201510803076', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201510803077', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201510803078', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201510803079', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201510803080', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201510803081', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201510803082', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201510803083', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201510803084', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201510803085', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201510803086', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201510803087', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201511', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, '2019-03-17 03:11:56', null, null, null);
+INSERT INTO `user` VALUES ('201512', '96e79218965eb72c92a549dd5a330112', '0', '0', '3ec73daeabe5354471f6e2c53a70bc39201512_201974', null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201513', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201514', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201516', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201517', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201518', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201519', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201520', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201521', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201522', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201523', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201524', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201525', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201526', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201527', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201528', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201529', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201530', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201531', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201532', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201533', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201534', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201535', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201536', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201537', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201538', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201539', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201540', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201541', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201542', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201543', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201544', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201545', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201546', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201547', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201548', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201549', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201550', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201551', '96e79218965eb72c92a549dd5a330112', '0', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201552', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201553', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201554', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201555', '96e79218965eb72c92a549dd5a330112', '1', '0', '3ec73daeabe5354471f6e2c53a70bc39201555_201915', null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201556', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201557', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201558', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201559', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201560', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201561', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201562', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201563', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201564', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201565', '96e79218965eb72c92a549dd5a330112', '1', '0', '3ec73daeabe5354471f6e2c53a70bc39201565_201976', null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201566', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201567', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201568', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201569', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201570', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201571', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201572', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201573', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201574', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201575', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201576', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201577', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201578', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201579', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201580', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201581', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201582', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201583', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201584', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, '2019-04-03 13:16:22', null, null, null);
+INSERT INTO `user` VALUES ('201585', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201586', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201587', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201588', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201589', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201590', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201591', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201592', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201593', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201594', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201595', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201596', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201597', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201598', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201599', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201600', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201601', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201602', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201603', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201604', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201605', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201606', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201607', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201608', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201609', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201610', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201611', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201612', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201613', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201614', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201615', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201616', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201617', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201618', '96e79218965eb72c92a549dd5a330112', '1', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201619', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201620', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201621', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201622', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201623', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201624', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201625', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201626', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201627', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201628', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201629', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201630', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201631', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201632', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201633', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201634', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201635', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201636', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201637', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201638', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201639', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201640', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201641', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201642', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201643', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201644', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201645', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201646', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201647', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201648', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201649', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201650', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201651', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201652', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201653', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201654', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201655', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201656', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201657', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201658', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201659', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201660', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201661', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201662', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201663', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201664', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201665', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201666', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201667', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201668', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201669', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201670', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201671', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201672', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201673', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201674', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201675', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201676', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201677', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201678', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201679', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201680', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201681', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201682', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201683', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201684', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201685', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201686', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201687', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201688', '96e79218965eb72c92a549dd5a330112', '2', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201689', '96e79218965eb72c92a549dd5a330112', '3', '0', '3ec73daeabe5354471f6e2c53a70bc39201689_201910', null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201690', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201691', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201692', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201693', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201694', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201695', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201696', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201697', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201698', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201699', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201700', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201701', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201702', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201703', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201704', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201705', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201706', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201707', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201708', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201709', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201710', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201711', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201712', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201713', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201714', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201715', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201716', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201717', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201718', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201719', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201720', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201721', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201722', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201723', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201724', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201725', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201726', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201727', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201728', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201729', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201730', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201731', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201732', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201733', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201734', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201735', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201736', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201737', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201738', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201739', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201740', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201741', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201742', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201743', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201744', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201745', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201746', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201747', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201748', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201749', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201750', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201751', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201752', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201753', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201754', '96e79218965eb72c92a549dd5a330112', '3', '0', '3ec73daeabe5354471f6e2c53a70bc39201754_201999', null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201755', '96e79218965eb72c92a549dd5a330112', '3', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201756', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201757', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201758', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201759', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201760', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201761', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201762', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201763', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201764', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201765', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201766', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201767', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201768', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201769', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201770', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201771', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201772', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201773', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201774', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201775', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201776', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201777', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201778', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201779', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201780', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201781', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201782', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201783', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201784', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201785', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201786', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201787', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201788', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201789', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201790', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201791', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201792', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201793', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201794', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201795', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201796', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201797', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201798', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201799', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201800', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201801', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201802', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201803', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201804', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201805', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201806', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201807', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201808', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201809', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201810', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201811', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201812', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201813', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201814', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201815', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201816', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201817', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201818', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201819', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201820', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201821', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201822', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201823', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201824', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201825', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201826', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201827', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201828', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201829', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201830', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201831', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201832', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201833', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201834', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201835', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201836', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201837', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201838', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201839', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201840', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201841', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201842', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201843', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201844', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201845', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201846', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201847', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201848', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201849', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201850', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201851', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201852', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201853', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201854', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201855', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201856', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201857', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201858', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201859', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201860', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201861', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201862', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201863', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201864', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201865', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201866', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201867', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201868', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201869', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201870', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201871', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201872', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201873', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201874', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201875', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201876', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201877', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201878', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201879', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201880', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201881', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201882', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201883', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201884', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201885', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201886', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201887', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201888', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201889', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201890', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201891', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201892', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201893', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201894', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201895', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201896', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201897', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201898', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201899', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201900', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201901', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201902', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201903', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201904', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201905', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201906', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201907', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201908', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201909', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201910', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201911', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201912', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201913', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201914', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201915', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201916', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201917', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201918', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201919', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201920', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201921', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201922', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201923', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201924', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201925', '96e79218965eb72c92a549dd5a330112', '4', '0', '3ec73daeabe5354471f6e2c53a70bc39201925_201970', null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201926', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201927', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201928', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201929', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201930', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201931', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201932', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201933', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201934', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201935', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201936', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201937', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201938', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201939', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201940', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201941', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201942', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201943', '96e79218965eb72c92a549dd5a330112', '4', '0', '3ec73daeabe5354471f6e2c53a70bc39201943_201973', null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('201944', '96e79218965eb72c92a549dd5a330112', '4', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('21142', '96e79218965eb72c92a549dd5a330112', '0', '0', '445c85996e23e54d2867b18ab8231c6c21142_201954', null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('adas', '96e79218965eb72c92a549dd5a330112', '5', '1', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('admin', '96e79218965eb72c92a549dd5a330112', '6', '0', null, null, null, null, null, null, null);
+INSERT INTO `user` VALUES ('studentadmin0001', '96e79218965eb72c92a549dd5a330112', '5', '0', null, null, null, null, null, null, null);
 
 -- ----------------------------
 -- View structure for basalinfo

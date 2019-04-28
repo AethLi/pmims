@@ -1,5 +1,5 @@
 angular.module('mainPageApp', ['ui.router', 'oc.lazyLoad'])
-    .controller('mainPageCtrl', function ($scope) {
+    .controller('mainPageCtrl', function ($scope, $state) {
         $scope.userName = "加载中";
         $scope.userPermission = "加载中";
         $scope.whoIsActive = 0;
@@ -13,6 +13,9 @@ angular.module('mainPageApp', ['ui.router', 'oc.lazyLoad'])
             } else
                 return true;
         };
+        // $scope.importPartyMemberFile = function () {
+        //     $state.go("importPartyMemberFile");
+        // };
         $scope.logout = function () {
             $.ajax({
                 type: 'post',
@@ -144,6 +147,17 @@ angular.module('mainPageApp', ['ui.router', 'oc.lazyLoad'])
                     loadMyCtrl: ["$ocLazyLoad", function ($ocLazyLoad) {
                         return $ocLazyLoad.load({
                             files: ['../js/partyMemberU.js']
+                        })
+                    }]
+                }
+            })
+            .state("importPartyMemberFile", {
+                url: "/importPartyMemberFile",
+                templateUrl: "./importPartyMemberFile.html",
+                resolve: {
+                    loadMyCtrl: ["$ocLazyLoad", function ($ocLazyLoad) {
+                        return $ocLazyLoad.load({
+                            files: ['../js/importPartyMemberFile.js']
                         })
                     }]
                 }

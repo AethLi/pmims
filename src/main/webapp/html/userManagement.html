@@ -62,37 +62,59 @@
             </table>
         </div>
     </div>
-    <div class="modal fade" id="addAdminModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title">添加管理员</h4>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="userId">管理员账号</label>
-                            <input class="form-control" id="userId" ng-model="addAdminUserId">
-                        </div>
-                        <div class="form-group">
-                            <label for="status">状态</label>
-                            <select class="form-control" id="status" ng-model="addAdminStatus">
-                                <option value="0" selected>启用</option>
-                                <option value="1">停用</option>
-                            </select>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" ng-hide="1!=adminActionFlag">删除</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary" ng-click="addAdminSave()">保存</button>
-                </div>
+    <div class="col-md-2">
+        <div>
+            <div class="well">
+                导入学生
+            </div>
+            <div>
+                <form>
+                    <div class="form-group">
+                        <label for="fileName">文件名</label>
+                        <input readonly class="form-control" id="fileName" ng-model="fileName">
+                    </div>
+                    <label for="fileSelect" class="btn btn-primary">选择文件</label>
+                    <label class="btn btn-primary" ng-click="uploadFile()">上传</label>
+                    <a class="btn btn-primary" href="/template/学生导入.xlsx" ng-click="downLoadTemplate()">下载模板</a>
+                    <input type="file" id="fileSelect" style="display: none" name="file"
+                           accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                           onchange="angular.element(this).scope().ChooseFileChange()">
+                </form>
             </div>
         </div>
     </div>
+</div>
+<div class="modal fade" id="addAdminModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">添加管理员</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="userId">管理员账号</label>
+                        <input class="form-control" id="userId" ng-model="addAdminUserId">
+                    </div>
+                    <div class="form-group">
+                        <label for="status">状态</label>
+                        <select class="form-control" id="status" ng-model="addAdminStatus">
+                            <option value="0" selected>启用</option>
+                            <option value="1">停用</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-hide="1!=adminActionFlag">删除</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" ng-click="addAdminSave()">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
 </div>
 <style>
     table td {

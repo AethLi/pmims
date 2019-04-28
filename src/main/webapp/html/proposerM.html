@@ -39,9 +39,12 @@
                     <td>{{x.classInfo}}</td>
                     <td>
                         <input type="button" value="查看详情" ng-click="tableAction(x.userId)">
-                        <input type="button" value="通过申请" ng-if="isSuperAdmin" class="superAdminButton" ng-click="userAction(0,x.userId)">
-                        <input type="button" value="驳回申请" ng-if="isSuperAdmin" class="superAdminButton" ng-click="userAction(1,x.userId)">
-                        <input type="button" value="删除此人" ng-if="isSuperAdmin" class="superAdminButton" ng-click="userAction(2,x.userId)">
+                        <input type="button" value="通过申请" ng-if="isSuperAdmin" class="superAdminButton"
+                               ng-click="userAction(0,x.userId)">
+                        <input type="button" value="驳回申请" ng-if="isSuperAdmin" class="superAdminButton"
+                               ng-click="userAction(1,x.userId)">
+                        <input type="button" value="删除此人" ng-if="isSuperAdmin" class="superAdminButton"
+                               ng-click="userAction(2,x.userId)">
                     </td>
                 </tr>
                 </tbody>
@@ -63,7 +66,7 @@
                 <span>姓名：{{model.student.name}}</span>
                 <span>学号：{{model.student.id}}</span>
                 <span>班级：{{model.student.classInfo}}</span>
-</div>
+            </div>
             <div style="margin-top: 50px" class="well">申请书（图片）已上传文件列表</div>
             <table class="table" style="background: #b3b3b3">
                 <thead>

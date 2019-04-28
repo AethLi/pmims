@@ -22,7 +22,7 @@
         <!-->select * from basalInfo where status !=-1 and userPermission=#{userType} limit #{resLimit},#{desLimit};<-->
         select * from basalInfo where status !=-1 and userPermission=#{userType};
     </select>
-    <select id="selectUsersById" parameterType="pmim.model.SysUser" resultType="pmim.model.Proposer">
+    <select id="selectUsersById" parameterType="java.util.Map" resultType="pmim.model.SysUser">
         select * from basalInfo where status !=-1 and userId=#{userId};
     </select>
     <update id="updateUserById" parameterType="pmim.model.SysUser">
@@ -52,4 +52,10 @@
     <update id="addAdmin" parameterType="pmim.model.SysUser">
          insert into user (`userId`,`userPwd`,`userPermission`,`status`,`userPath`) values (#{userId},'96e79218965eb72c92a549dd5a330112',5,#{status},null);
  </update>
+    <select id="selectByUserId_Name" parameterType="java.util.Map">
+        select * from user where userId=#{userId} and userName=#{userName};
+    </select>
+    <update id="updatePermissionById" parameterType="java.util.Map">
+        update user set userPermission=#{userPermission} where userId=#{userId};
+    </update>
 </mapper>

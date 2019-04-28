@@ -1,7 +1,19 @@
 <div ng-controller="partyMemberUCtrl">
-    <div style="height: 100%;width: 100%;text-align: center;position: absolute;top: 25%">
+    <div class="col-lg-10">
+        <div style="height: 100%;width: 100%;text-align: center;position: absolute;top: 25%">
         <span style="font-size: 100px">
             你已成为党员{{partyMemberDays}}天
         </span>
+        </div>
+    </div>
+    <div class="col-lg-2">
+        <div class="well">
+            转出党员
+        </div>
+        <div>
+            <button class="btn btn-primary" ng-click="exportPM()">转出党员</button>
+        </div>
+    </div>
+    <div class="modal fade sewDetail" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     </div>
 </div>

@@ -1,11 +1,39 @@
 angular.module('managerPageApp', [])
-    .controller("userOverviewCtrl", function ($scope) {
+    .controller("userOverviewCtrl", function ($scope, $http) {
         console.log("userOverview.js onload!");
         $scope.me = undefined;
         $scope.oldPassword = "";
         $scope.newPassword0 = "";
         $scope.newPassword1 = "";
+        $scope.importMenu = false;
+        $scope.fileName = "未选择文件";
+        $http({
+            url: "/user/getImportedStatus.do"
+        }).then(function s(result) {
 
+        });
+        $scope.importPartyMemberFile = function () {
+            $scope.importMenu = true;
+        };
+        $scope.ChooseFileChange = function () {
+            $scope.fileName = $("#fileSelect")[0].files[0].name;
+            $scope.$digest();
+        };
+        $scope.uploadFile = function () {
+            let form = new FormData();
+            form.append("file", $("#fileSelect")[0].files[0]);
+            $.ajax({
+                type: 'post',
+                url: '/user/fileUpload.do',
+                data: form,
+                dataType: "json",
+                contentType: false,
+                processData: false,
+                success: function (result) {
+                    alert(result.message);
+                }
+            })
+        };
         $.ajax({
             type: 'post',
             contentType: 'application/json;charset=utf-8',
@@ -44,7 +72,8 @@ angular.module('managerPageApp', [])
             })
         };
         $scope.uploadHeadImg = function () {
-            var form = new FormData(document.getElementById("headImgForm"));
+            let form = new FormData();
+            form.append("file", $("#headImgSelect")[0].files[0]);
             $.ajax({
                 type: 'post',
                 url: '/student/headImgUpload.do',
@@ -56,7 +85,7 @@ angular.module('managerPageApp', [])
                     alert(result.message);
                 }
             })
-        }
+        };
         $scope.changePassword = function () {
             if ($scope.newPassword0 != $scope.newPassword1) {
                 $scope.newPassword0 = "";

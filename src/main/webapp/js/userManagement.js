@@ -7,6 +7,26 @@ angular.module('mainPageApp', [])
         $scope.addAdminUserId = "";
         $scope.addAdminStatus = 0;
 
+        $scope.uploadFile = function () {
+            let form = new FormData();
+            form.append("file", $("#fileSelect")[0].files[0]);
+            $.ajax({
+                type: 'post',
+                url: '/user/importNewUsers.do',
+                data: form,
+                dataType: "json",
+                contentType: false,
+                processData: false,
+                success: function (result) {
+                    alert(result.message);
+                }
+            })
+        };
+        $scope.ChooseFileChange = function () {
+            $scope.fileName = $("#fileSelect")[0].files[0].name;
+            $scope.$digest();
+        };
+
         $.ajax({
             type: 'post',
             contentType: 'application/json;charset=utf-8',
