@@ -59,7 +59,7 @@ public class UserCtrl {
             if (u.getUserPermission() == 5 || u.getUserPermission() == 6) {
                 request.getSession().setAttribute("identifyingCode", "sdafsadfdsafsadfdsjfsajflasjflskjfksljflsddd");
                 return JSONObject.fromObject(new ResponseMessage(0, "html/managerPage.html", null)).toString();
-            } else {
+            } else if (u.getUserPermission() == 0 || u.getUserPermission() == 1 || u.getUserPermission() == 2 || u.getUserPermission() == 3 || u.getUserPermission() == 4 || u.getUserPermission() == 7 || u.getUserPermission() == 8 || u.getUserPermission() == 9 || u.getUserPermission() == 10) {
                 request.getSession().setAttribute("identifyingCode", "fhwqiefhwibibcviashdoasfhoasifhosafdaosfasoj");
                 return JSONObject.fromObject(new ResponseMessage(0, "html/mainPage.html", null)).toString();
             }
