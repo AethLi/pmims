@@ -13,6 +13,7 @@ import pmim.service.ProposerService;
 import pmim.service.UserPathService;
 
 import javax.servlet.http.HttpServletRequest;
+
 //用户申请人相关请求
 @RequestMapping(value = "/proposer")
 @Controller
@@ -26,9 +27,12 @@ public class ProposerCtrl {
     @RequestMapping(value = "/user.do", produces = "text/html;charset=UTF-8")
     public @ResponseBody
     Object proposerUserCtrl(HttpServletRequest request, @RequestBody String jsonstr, Model model) {
+        //获取请求内容
         RequestAction ra = (RequestAction) JSONObject.toBean(JSONObject.fromObject(jsonstr), RequestAction.class);
+        //判断是否是初始化用户页面
         if ("initProposerUserPage".equals(ra.getAction())) {
             return ps.initUserPage((SysUser) request.getSession().getAttribute("currentSysUser"));
+            //判读是否是初始化文件列表
         } else if ("getFileList".equals(ra.getAction())) {
             return ps.getFileList((SysUser) request.getSession().getAttribute("currentSysUser"));
         }
@@ -55,8 +59,11 @@ public class ProposerCtrl {
     @RequestMapping(value = "/fileDelete.do", produces = "text/html;charset=UTF-8")
     public @ResponseBody
     Object fileDelete(HttpServletRequest request, @RequestBody String jsonstr) {
+        //获取当前登录用户
         SysUser currentSysUser = (SysUser) request.getSession().getAttribute("currentSysUser");
+        //获取当前请求信息
         RequestAction ra = (RequestAction) JSONObject.toBean(JSONObject.fromObject(jsonstr), RequestAction.class);
+        //执行ps.deleteFile方法进行删除
         return ps.deleteFile(ra.getDesId(), currentSysUser);
     }
 }

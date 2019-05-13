@@ -25,6 +25,13 @@ public class PartyMemberCtrl {
     @Autowired
     PermissionCheckService pcs;
 
+    /**
+     * 初始化当前页面
+     *
+     * @param request
+     * @param jsonstr
+     * @return
+     */
     @RequestMapping(value = "/user.do")
     public Object partyMemberUserCtrl(HttpServletRequest request, @RequestBody String jsonstr) {
         RequestAction ra = (RequestAction) JSONObject.toBean(JSONObject.fromObject(jsonstr), RequestAction.class);
@@ -34,6 +41,12 @@ public class PartyMemberCtrl {
         return null;
     }
 
+    /**
+     * 获取党费记录
+     *
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/getShipDues.do", produces = "text/html;charset=UTF-8")
     public Object getShipDue(HttpServletRequest request) {
         try {
@@ -44,6 +57,12 @@ public class PartyMemberCtrl {
         }
     }
 
+    /**
+     * 导入党费记录，类似于导入用户
+     *
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/fileUpload.do", produces = "text/html;charset=UTF-8")
     public @ResponseBody
     Object fileUpload(HttpServletRequest request) {
