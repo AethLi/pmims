@@ -48,7 +48,7 @@ public class DevelopmentService {
                 MultipartFile file = multiRequest.getFile(iter.next().toString());
                 if (file != null) {
                     String fileRandomName = RandomStringUtils.randomAlphabetic(5) + new SimpleDateFormat("yyyyMMddhhmmss").format(new Date(System.currentTimeMillis())) + file.getOriginalFilename();
-                    if (new File(developmentPath + "/" +fileRandomName).exists()) {
+                    if (new File(developmentPath + "/" + fileRandomName).exists()) {
                         return JSONObject.fromObject(new ResponseMessage(1, "已上传过同名文件", null)).toString();
                     }
                     String path = developmentPath.getPath() + "/" + fileRandomName;
@@ -73,8 +73,8 @@ public class DevelopmentService {
         result.put("uploadInstructions", uploadInstructions);
         List uploadInfos = uifm.selectUploadInfoById(currentSysUser);
         result.put("uploadInfos", uploadInfos);
-        List dl=dm.selectDevelopmentByIdUndeleted(currentSysUser);
-        result.put("currentDevelopment",dl);
+        List dl = dm.selectDevelopmentByIdUndeleted(currentSysUser);
+        result.put("currentDevelopment", dl);
         return JSONObject.fromObject(new ResponseMessage(0, "", result)).toString();
     }
 
@@ -85,5 +85,11 @@ public class DevelopmentService {
             e.printStackTrace();
             return null;
         }
+    }
+
+    //删除文件
+    public Object deleteFile(String desId, SysUser currentSysUser) {
+        dm.deleteDevelopmentById(new Development(desId));
+        return JSONObject.fromObject(new ResponseMessage(0, "删除成功", dm.selectDevelopmentByIdUndeleted(currentSysUser))).toString();
     }
 }

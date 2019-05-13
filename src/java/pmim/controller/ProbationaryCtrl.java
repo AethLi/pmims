@@ -12,7 +12,7 @@ import pmim.service.ProbationaryService;
 import pmim.service.UserPathService;
 
 import javax.servlet.http.HttpServletRequest;
-
+//用户的预备党员相关请求
 @RequestMapping(value = "/probationary")
 @Controller
 public class ProbationaryCtrl {
@@ -40,5 +40,13 @@ public class ProbationaryCtrl {
         SysUser currentSysUser = (SysUser) request.getSession().getAttribute("currentSysUser");
         String userPath = ups.checkUserPath(currentSysUser.getUserId());
         return ps.uploadFile(request, currentSysUser.getUserId(), userPath, index);
+    }
+
+    @RequestMapping(value = "/fileDelete.do", produces = "text/html;charset=UTF-8")
+    public @ResponseBody
+    Object fileDelete(HttpServletRequest request, @RequestBody String jsonstr) {
+        SysUser currentSysUser = (SysUser) request.getSession().getAttribute("currentSysUser");
+        RequestAction ra = (RequestAction) JSONObject.toBean(JSONObject.fromObject(jsonstr), RequestAction.class);
+        return ps.deleteFile(ra.getDesId(), currentSysUser);
     }
 }

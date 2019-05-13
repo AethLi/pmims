@@ -16,7 +16,7 @@
                         </tr>
                         </thead>
                         <tr ng-repeat="x in fileList0">
-                            <td style="width: 50%"><a ng-click="ImageShow(x.probationaryId)" style="cursor:pointer">{{x.fileName}}</a>
+                            <td style="width: 50%"><a ng-click="ImageShow(x.probationaryId)" style="cursor:pointer">{{x.fileName.substring(19)}}</a>
                             </td>
                             <td style="width: 30%">{{timeConvert(x.date.time)}}</td>
                             <td style="width: 10%">{{statusConvert(x.status)}}</td>
@@ -73,7 +73,7 @@
                         </tr>
                         </thead>
                         <tr ng-repeat="x in fileList1">
-                            <td style="width: 50%"><a ng-click="fileDownload(x.probationaryId)" style="cursor:pointer">{{x.fileName}}</a>
+                            <td style="width: 50%"><a ng-click="fileDownload(x.probationaryId)" style="cursor:pointer">{{x.fileName.substring(19)}}</a>
                             </td>
                             <td style="width: 30%">{{timeConvert(x.date.time)}}</td>
                             <td style="width: 10%">{{statusConvert(x.status)}}</td>
@@ -130,7 +130,7 @@
                         </tr>
                         </thead>
                         <tr ng-repeat="x in fileList2">
-                            <td style="width: 50%"><a ng-click="ImageShow(x.probationaryId)" style="cursor:pointer">{{x.fileName}}</a>
+                            <td style="width: 50%"><a ng-click="ImageShow(x.probationaryId)" style="cursor:pointer">{{x.fileName.substring(19)}}</a>
                             </td>
                             <td style="width: 30%">{{timeConvert(x.date.time)}}</td>
                             <td style="width: 10%">{{statusConvert(x.status)}}</td>
@@ -187,7 +187,7 @@
                         </tr>
                         </thead>
                         <tr ng-repeat="x in fileList3">
-                            <td style="width: 50%"><a ng-click="ImageShow(x.probationaryId)" style="cursor:pointer">{{x.fileName}}</a>
+                            <td style="width: 50%"><a ng-click="ImageShow(x.probationaryId)" style="cursor:pointer">{{x.fileName.substring(19)}}</a>
                             </td>
                             <td style="width: 30%">{{timeConvert(x.date.time)}}</td>
                             <td style="width: 10%">{{statusConvert(x.status)}}</td>

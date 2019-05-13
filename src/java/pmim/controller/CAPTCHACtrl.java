@@ -31,6 +31,13 @@ public class CAPTCHACtrl {
     char[] codeSequence = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X',
             'Y', 'Z', '2', '3', '4', '5', '6', '7', '8', '9'};
 
+    /**
+     * 显示验证码
+     * @param model
+     * @param resp
+     * @param request
+     * @throws IOException
+     */
     @RequestMapping(value = "/ACAPTCHA.do")
     public void getCode(Model model, HttpServletResponse resp, HttpServletRequest request) throws IOException {
         request.getSession();
@@ -75,7 +82,7 @@ public class CAPTCHACtrl {
             // 将产生的四个随机数组合在一起。
             randomCode.append(code);
         }
-        // 将四位数字的验证码保存到Session中。
+        // 将四位数字或者字母（转化为小写）的验证码保存到Session中。
         model.addAttribute("identifyingCode", randomCode.toString().toLowerCase());
         // 禁止图像缓存。
         resp.setHeader("Pragma", "no-cache");

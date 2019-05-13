@@ -124,7 +124,8 @@ angular.module('mainPageApp', [])
                         code: 0
                     }),
                     success: function (result) {
-
+                        alert(result.message);
+                        window.location.reload();
                     }
                 });
             } else if (code === 1) {
@@ -140,7 +141,8 @@ angular.module('mainPageApp', [])
                         code: 1
                     }),
                     success: function (result) {
-
+                        alert(result.message);
+                        window.location.reload();
                     }
                 });
             } else if (code === 2) {
@@ -155,7 +157,8 @@ angular.module('mainPageApp', [])
                         desId: userId,
                     }),
                     success: function (result) {
-
+                        alert(result.message);
+                        window.location.reload();
                     }
                 });
             }

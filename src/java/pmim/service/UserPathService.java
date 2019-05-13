@@ -27,23 +27,29 @@ public class UserPathService {
         SysUser currentSysUser = new SysUser(userId);
         currentSysUser = um.selectUser_withNoPwd(currentSysUser);
         if (currentSysUser.getUserPath() == null) {
-            Student currentStudent = sm.selectStudentById(currentSysUser);
-            String userPath = Tools.toMD5(currentStudent.getName()) + currentSysUser.getUserId() + "_" + Calendar.getInstance().get(Calendar.YEAR) + (new RandomDataGenerator()).nextInt(0, 100);
+//            Student currentStudent = sm.selectStudentById(currentSysUser);
+//            if (currentStudent == null) {
+//                Student student = new Student();
+//                student.setUserId(currentSysUser.getUserId());
+//                sm.insertStudent(student);
+//            }
+            String userPath = Tools.toMD5(currentSysUser.getUserId()) + currentSysUser.getUserId() + "_" + Calendar.getInstance().get(Calendar.YEAR) + (new RandomDataGenerator()).nextInt(0, 100);
             currentSysUser.setUserPath(userPath);
             um.updateUserPath(currentSysUser);
             File file = new File("D:/idea project/pmims/uploadPath/" + userPath + "/");
             if (!file.exists()) {
                 file.mkdir();
             }
-            return file.getPath()+"/";
+            return file.getPath() + "/";
         } else {
             return "D:/idea project/pmims/uploadPath/" + currentSysUser.getUserPath() + "/";
         }
     }
+
     public String getExtensionName(String filename) {
         if ((filename != null) && (filename.length() > 0)) {
             int dot = filename.lastIndexOf('.');
-            if ((dot >-1) && (dot < (filename.length() - 1))) {
+            if ((dot > -1) && (dot < (filename.length() - 1))) {
                 return filename.substring(dot + 1);
             }
         }

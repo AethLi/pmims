@@ -86,4 +86,10 @@ public class ProbationaryService {
             return null;
         }
     }
+
+    //删除文件
+    public Object deleteFile(String desId, SysUser currentSysUser) {
+        pm.deleteProbationaryById(new Probationary(desId));
+        return JSONObject.fromObject(new ResponseMessage(0, "删除成功", pm.selectProbationaryByIdUndeleted(currentSysUser))).toString();
+    }
 }

@@ -1,9 +1,9 @@
 angular.module('managerPageApp', ['ui.router', 'oc.lazyLoad'])
     .controller('managerPageCtrl', function ($scope) {
         var eggCount = 0;
-        $scope.userPermission = "加载中";
+        $scope.userPermission = "";
         $scope.whoIsActive = 0;
-        $scope.userName = "加载中";
+        $scope.userName = "";
         $scope.iAmActive = function (who) {
             $scope.whoIsActive = who;
         };

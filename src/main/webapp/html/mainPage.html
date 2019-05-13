@@ -23,7 +23,7 @@
                 <li ng-class="{2:'active'}[whoIsActive]" ng-show="permissionCheck(1)"><a href="#!/activistU" ng-click="iAmActive(2)">积极分子</a></li>
                 <li ng-class="{3:'active'}[whoIsActive]" ng-show="permissionCheck(2)"><a href="#!/developmentU" ng-click="iAmActive(3)">发展对象</a></li>
                 <li ng-class="{4:'active'}[whoIsActive]" ng-show="permissionCheck(3)"><a href="#!/probationaryU" ng-click="iAmActive(4)">预备党员</a></li>
-                <li ng-class="{5:'active'}[whoIsActive]" ng-show="permissionCheck(4)"><a href="#!/partyMemberU" ng-click="iAmActive(5)">党员</a></li>
+                <li ng-class="{5:'active'}[whoIsActive]" ng-show="permissionCheckP(4)"><a href="#!/partyMemberU" ng-click="iAmActive(5)">党员</a></li>
             </ul>
             <ul class="nav navbar-nav" style="float: right">
                 <li><a style="cursor:pointer;">{{userPermission}}</a></li>

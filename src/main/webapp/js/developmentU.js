@@ -1,22 +1,22 @@
 angular.module('mainPageApp', [])
     .controller("developmentUCtrl", function ($scope) {
         console.log("developmentU.js onload!");
-        $scope.upload0Instruction = "加载中";
-        $scope.upload1Instruction = "加载中";
-        $scope.upload2Instruction = "加载中";
-        $scope.upload3Instruction = "加载中";
-        $scope.upload4Instruction = "加载中";
-        $scope.upload5Instruction = "加载中";
-        $scope.upload6Instruction = "加载中";
-        $scope.upload7Instruction = "加载中";
-        $scope.upload8Instruction = "加载中";
-        $scope.upload9Instruction = "加载中";
-        $scope.upload10Instruction = "加载中";
-        $scope.upload11Instruction = "加载中";
-        $scope.upload12Instruction = "加载中";
-        $scope.upload13Instruction = "加载中";
-        $scope.upload14Instruction = "加载中";
-        $scope.upload15Instruction = "加载中";
+        $scope.upload0Instruction = "";
+        $scope.upload1Instruction = "";
+        $scope.upload2Instruction = "";
+        $scope.upload3Instruction = "";
+        $scope.upload4Instruction = "";
+        $scope.upload5Instruction = "";
+        $scope.upload6Instruction = "";
+        $scope.upload7Instruction = "";
+        $scope.upload8Instruction = "";
+        $scope.upload9Instruction = "";
+        $scope.upload10Instruction = "";
+        $scope.upload11Instruction = "";
+        $scope.upload12Instruction = "";
+        $scope.upload13Instruction = "";
+        $scope.upload14Instruction = "";
+        $scope.upload15Instruction = "";
         $scope.file0Name = "未选择文件";
         $scope.file1Name = "未选择文件";
         $scope.file2Name = "未选择文件";
@@ -50,6 +50,21 @@ angular.module('mainPageApp', [])
         $scope.fileList14 = [];
         $scope.fileList15 = [];
 
+        $scope.delete = function (fileId) {
+            $.ajax({
+                type: 'post',
+                contentType: 'application/json;charset=utf-8',
+                dataType: "json",
+                async: true,
+                url: '/development/fileDelete.do',
+                data: JSON.stringify({
+                    "desId": fileId
+                }),
+                success: function (result) {
+                    $scope.refreshTable(result.model);
+                }
+            })
+        };
         $scope.ImageShow = function (desId) {
             window.open("/html/imageShow.html?desId=" + desId + "&type=development");
         };

@@ -33,14 +33,14 @@
                 <span style="font-size: 20px" ng-click="saveUploadInstruction(3)">保存</span>
             </label>
         </div>
-        <div style="width: 100%">
-            <span style="font-size: 20px;font-weight: bold">直系亲属政审（word）：</span><br/>
-            <textarea style="width: 60%" rows="5" ng-model="upload4Instruction"></textarea><br/>
-            <label class="btn btn-default btn-lg"
-                   style="background: #3e58c7;width: 140px;color: white">
-                <span style="font-size: 20px" ng-click="saveUploadInstruction(4)">保存</span>
-            </label>
-        </div>
+        <!--<div style="width: 100%">-->
+            <!--<span style="font-size: 20px;font-weight: bold">直系亲属政审（word）：</span><br/>-->
+            <!--<textarea style="width: 60%" rows="5" ng-model="upload4Instruction"></textarea><br/>-->
+            <!--<label class="btn btn-default btn-lg"-->
+                   <!--style="background: #3e58c7;width: 140px;color: white">-->
+                <!--<span style="font-size: 20px" ng-click="saveUploadInstruction(4)">保存</span>-->
+            <!--</label>-->
+        <!--</div>-->
         <div style="width: 100%">
             <span style="font-size: 20px;font-weight: bold">党校培训心得（图片）：</span><br/>
             <textarea style="width: 60%" rows="5" ng-model="upload5Instruction"></textarea><br/>
@@ -137,7 +137,7 @@
                     <th>姓名</th>
                     <th>学号</th>
                     <th>已上传</th>
-                    <th>未通过</th>
+                    <th>已通过</th>
                     <th>操作</th>
                     <th style="display: none">审核</th>
                 </tr>
@@ -148,7 +148,6 @@
                     <td>{{x.userId}}</td>
                     <td>{{x.count}}</td>
                     <td>{{x.countN}}</td>
-                    <td>{{x.classInfo}}</td>
                     <td>
                         <input type="button" value="查看详情" ng-click="tableAction(x.userId)">
                         <input type="button" value="通过申请" ng-if="isSuperAdmin" class="superAdminButton" ng-click="userAction(0,x.userId)">
@@ -189,7 +188,7 @@
                 <tbody>
                 <tr ng-repeat="x in developmentFile0">
                     <td style="text-overflow:ellipsis;width: 200px;cursor: pointer">
-                        <a ng-click="fileAction(0,x.developmentId)">{{x.fileName}}</a>
+                        <a ng-click="fileAction(0,x.developmentId)">{{x.fileName.substring(19)}}</a>
                     </td>
                     <td>
                         {{timeConvert(x.date.time)}}
@@ -217,7 +216,7 @@
                 <tbody>
                 <tr ng-repeat="x in developmentFile1">
                     <td style="text-overflow:ellipsis;width: 200px;cursor: pointer">
-                        <a ng-click="fileAction(0,x.developmentId)">{{x.fileName}}</a>
+                        <a ng-click="fileAction(0,x.developmentId)">{{x.fileName.substring(19)}}</a>
                     </td>
                     <td>
                         {{timeConvert(x.date.time)}}
@@ -245,7 +244,7 @@
                 <tbody>
                 <tr ng-repeat="x in developmentFile2">
                     <td style="text-overflow:ellipsis;width: 200px;cursor: pointer">
-                        <a ng-click="fileAction(0,x.developmentId)">{{x.fileName}}</a>
+                        <a ng-click="fileAction(0,x.developmentId)">{{x.fileName.substring(19)}}</a>
                     </td>
                     <td>
                         {{timeConvert(x.date.time)}}
@@ -273,7 +272,7 @@
                 <tbody>
                 <tr ng-repeat="x in developmentFile3">
                     <td style="text-overflow:ellipsis;width: 200px;cursor: pointer">
-                        <a ng-click="fileAction(0,x.developmentId)">{{x.fileName}}</a>
+                        <a ng-click="fileAction(0,x.developmentId)">{{x.fileName.substring(19)}}</a>
                     </td>
                     <td>
                         {{timeConvert(x.date.time)}}
@@ -288,34 +287,34 @@
                 </tr>
                 </tbody>
             </table>
-            <div style="margin-top: 50px" class="well">直系亲属政审（word）已上传文件列表</div>
-            <table class="table" style="background: #b3b3b3">
-                <thead>
-                <tr>
-                    <td style="width: 200px">文件名</td>
-                    <td style="width: 100px">上传时间</td>
-                    <td style="width: 50px">状态</td>
-                    <td style="width: 60px">审核</td>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="x in developmentFile4">
-                    <td style="text-overflow:ellipsis;width: 200px;cursor: pointer">
-                        <a ng-click="fileAction(0,x.developmentId)">{{x.fileName}}</a>
-                    </td>
-                    <td>
-                        {{timeConvert(x.date.time)}}
-                    </td>
-                    <td>
-                        {{statusConvert(x.status)}}
-                    </td>
-                    <td>
-                        <input type="button" ng-click="accept(x.developmentId)" value="通过">
-                        <input type="button" ng-click="disAccept(x.developmentId)" value="不通过">
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+            <!--<div style="margin-top: 50px" class="well">直系亲属政审（word）已上传文件列表</div>-->
+            <!--<table class="table" style="background: #b3b3b3">-->
+                <!--<thead>-->
+                <!--<tr>-->
+                    <!--<td style="width: 200px">文件名</td>-->
+                    <!--<td style="width: 100px">上传时间</td>-->
+                    <!--<td style="width: 50px">状态</td>-->
+                    <!--<td style="width: 60px">审核</td>-->
+                <!--</tr>-->
+                <!--</thead>-->
+                <!--<tbody>-->
+                <!--<tr ng-repeat="x in developmentFile4">-->
+                    <!--<td style="text-overflow:ellipsis;width: 200px;cursor: pointer">-->
+                        <!--<a ng-click="fileAction(0,x.developmentId)">{{x.fileName.substring(19)}}</a>-->
+                    <!--</td>-->
+                    <!--<td>-->
+                        <!--{{timeConvert(x.date.time)}}-->
+                    <!--</td>-->
+                    <!--<td>-->
+                        <!--{{statusConvert(x.status)}}-->
+                    <!--</td>-->
+                    <!--<td>-->
+                        <!--<input type="button" ng-click="accept(x.developmentId)" value="通过">-->
+                        <!--<input type="button" ng-click="disAccept(x.developmentId)" value="不通过">-->
+                    <!--</td>-->
+                <!--</tr>-->
+                <!--</tbody>-->
+            <!--</table>-->
             <div style="margin-top: 50px" class="well">党校培训心得（图片）已上传文件列表</div>
             <table class="table" style="background: #b3b3b3">
                 <thead>
@@ -329,7 +328,7 @@
                 <tbody>
                 <tr ng-repeat="x in developmentFile5">
                     <td style="text-overflow:ellipsis;width: 200px;cursor: pointer">
-                        <a ng-click="fileAction(0,x.developmentId)">{{x.fileName}}</a>
+                        <a ng-click="fileAction(0,x.developmentId)">{{x.fileName.substring(19)}}</a>
                     </td>
                     <td>
                         {{timeConvert(x.date.time)}}
@@ -357,7 +356,7 @@
                 <tbody>
                 <tr ng-repeat="x in developmentFile6">
                     <td style="text-overflow:ellipsis;width: 200px;cursor: pointer">
-                        <a ng-click="fileAction(0,x.developmentId)">{{x.fileName}}</a>
+                        <a ng-click="fileAction(0,x.developmentId)">{{x.fileName.substring(19)}}</a>
                     </td>
                     <td>
                         {{timeConvert(x.date.time)}}
@@ -385,7 +384,7 @@
                 <tbody>
                 <tr ng-repeat="x in developmentFile7">
                     <td style="text-overflow:ellipsis;width: 200px;cursor: pointer">
-                        <a ng-click="fileAction(0,x.developmentId)">{{x.fileName}}</a>
+                        <a ng-click="fileAction(0,x.developmentId)">{{x.fileName.substring(19)}}</a>
                     </td>
                     <td>
                         {{timeConvert(x.date.time)}}
@@ -413,7 +412,7 @@
                 <tbody>
                 <tr ng-repeat="x in developmentFile8">
                     <td style="text-overflow:ellipsis;width: 200px;cursor: pointer">
-                        <a ng-click="fileAction(0,x.developmentId)">{{x.fileName}}</a>
+                        <a ng-click="fileAction(0,x.developmentId)">{{x.fileName.substring(19)}}</a>
                     </td>
                     <td>
                         {{timeConvert(x.date.time)}}
@@ -441,7 +440,7 @@
                 <tbody>
                 <tr ng-repeat="x in developmentFile9">
                     <td style="text-overflow:ellipsis;width: 200px;cursor: pointer">
-                        <a ng-click="fileAction(0,x.developmentId)">{{x.fileName}}</a>
+                        <a ng-click="fileAction(0,x.developmentId)">{{x.fileName.substring(19)}}</a>
                     </td>
                     <td>
                         {{timeConvert(x.date.time)}}
@@ -469,7 +468,7 @@
                 <tbody>
                 <tr ng-repeat="x in developmentFile10">
                     <td style="text-overflow:ellipsis;width: 200px;cursor: pointer">
-                        <a ng-click="fileAction(0,x.developmentId)">{{x.fileName}}</a>
+                        <a ng-click="fileAction(0,x.developmentId)">{{x.fileName.substring(19)}}</a>
                     </td>
                     <td>
                         {{timeConvert(x.date.time)}}
@@ -497,7 +496,7 @@
                 <tbody>
                 <tr ng-repeat="x in developmentFile11">
                     <td style="text-overflow:ellipsis;width: 200px;cursor: pointer">
-                        <a ng-click="fileAction(0,x.developmentId)">{{x.fileName}}</a>
+                        <a ng-click="fileAction(0,x.developmentId)">{{x.fileName.substring(19)}}</a>
                     </td>
                     <td>
                         {{timeConvert(x.date.time)}}
@@ -525,7 +524,7 @@
                 <tbody>
                 <tr ng-repeat="x in developmentFile12">
                     <td style="text-overflow:ellipsis;width: 200px;cursor: pointer">
-                        <a ng-click="fileAction(0,x.developmentId)">{{x.fileName}}</a>
+                        <a ng-click="fileAction(0,x.developmentId)">{{x.fileName.substring(19)}}</a>
                     </td>
                     <td>
                         {{timeConvert(x.date.time)}}
@@ -553,7 +552,7 @@
                 <tbody>
                 <tr ng-repeat="x in developmentFile13">
                     <td style="text-overflow:ellipsis;width: 200px;cursor: pointer">
-                        <a ng-click="fileAction(0,x.developmentId)">{{x.fileName}}</a>
+                        <a ng-click="fileAction(0,x.developmentId)">{{x.fileName.substring(19)}}</a>
                     </td>
                     <td>
                         {{timeConvert(x.date.time)}}
@@ -581,7 +580,7 @@
                 <tbody>
                 <tr ng-repeat="x in developmentFile14">
                     <td style="text-overflow:ellipsis;width: 200px;cursor: pointer">
-                        <a ng-click="fileAction(0,x.developmentId)">{{x.fileName}}</a>
+                        <a ng-click="fileAction(0,x.developmentId)">{{x.fileName.substring(19)}}</a>
                     </td>
                     <td>
                         {{timeConvert(x.date.time)}}
@@ -609,7 +608,7 @@
                 <tbody>
                 <tr ng-repeat="x in developmentFile15">
                     <td style="text-overflow:ellipsis;width: 200px;cursor: pointer">
-                        <a ng-click="fileAction(0,x.developmentId)">{{x.fileName}}</a>
+                        <a ng-click="fileAction(0,x.developmentId)">{{x.fileName.substring(19)}}</a>
                     </td>
                     <td>
                         {{timeConvert(x.date.time)}}

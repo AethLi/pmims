@@ -25,6 +25,7 @@ public class ManagerCtrl {
     @Autowired
     PermissionCheckService pcs;
 
+    //初始化管理页面，包含各个页面的上传说明和用户
     @RequestMapping(value = "/init.do", produces = "text/html;charset=UTF-8")
     public @ResponseBody
     Object initManagerPages(HttpServletRequest request, @RequestBody String jsonstr) {
@@ -42,6 +43,12 @@ public class ManagerCtrl {
         return JSONObject.fromObject(new ResponseMessage(1, "权限存在问题", null)).toString();
     }
 
+    /**
+     * 保存管理员的上传说明
+     * @param request
+     * @param jsonstr
+     * @return
+     */
     @RequestMapping(value = "/saveUploadInstruction.do", produces = "text/html;charset=UTF-8")
     public @ResponseBody
     Object saveUploadInstruction(HttpServletRequest request, @RequestBody String jsonstr) {

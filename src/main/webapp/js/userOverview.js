@@ -1,7 +1,8 @@
 angular.module('managerPageApp', [])
     .controller("userOverviewCtrl", function ($scope, $http) {
         console.log("userOverview.js onload!");
-        $scope.me = undefined;
+        $scope.me = "";
+        $scope.sex;
         $scope.oldPassword = "";
         $scope.newPassword0 = "";
         $scope.newPassword1 = "";
@@ -46,6 +47,7 @@ angular.module('managerPageApp', [])
             success: function (result) {
                 if (result.status === 0) {
                     $scope.me = result.model;
+                    $scope.sex = $scope.me.sex.toString();
                 }
                 $scope.$digest();
             }
@@ -64,10 +66,11 @@ angular.module('managerPageApp', [])
                     "IDcardNum": $scope.me.IDcardNum,
                     "position": $scope.me.position,
                     "homeAddress": $scope.me.homeAddress,
-
+                    "sex": $scope.sex
                 }),
                 success: function (result) {
                     alert(result.message);
+                    window.location.reload();
                 }
             })
         };
@@ -83,6 +86,7 @@ angular.module('managerPageApp', [])
                 processData: false,
                 success: function (result) {
                     alert(result.message);
+                    window.location.reload();
                 }
             })
         };
@@ -105,6 +109,20 @@ angular.module('managerPageApp', [])
                     dataType: "json",
                     success: function (result) {
                         alert(result.message);
+                        $.ajax({
+                            type: 'post',
+                            contentType: 'application/json;charset=utf-8',
+                            dataType: "json",
+                            async: true,
+                            url: '/user/logout.do',
+                            data: JSON.stringify({
+                                "action": "logout"
+                            }),
+                            success: function (result) {
+                                if (result.status === 0)
+                                    window.location.href = "../index.html";
+                            }
+                        })
                     }
                 })
             }

@@ -73,7 +73,7 @@
                     <th>姓名</th>
                     <th>学号</th>
                     <th>已上传</th>
-                    <th>未通过</th>
+                    <th>已通过</th>
                     <th>操作</th>
                     <th style="display: none">审核</th>
                 </tr>
@@ -84,7 +84,6 @@
                     <td>{{x.userId}}</td>
                     <td>{{x.count}}</td>
                     <td>{{x.countN}}</td>
-                    <td>{{x.classInfo}}</td>
                     <td>
                         <input type="button" value="查看详情" ng-click="tableAction(x.userId)">
                         <input type="button" value="通过申请" ng-if="isSuperAdmin" class="superAdminButton"
@@ -151,7 +150,7 @@
                 <tbody>
                 <tr ng-repeat="x in activistFile0">
                     <td style="text-overflow:ellipsis;width: 200px;cursor: pointer">
-                        <a ng-click="fileAction(0,x.proposerId)">{{x.fileName}}</a>
+                        <a ng-click="fileAction(0,x.activistId)">{{x.fileName.substring(19)}}</a>
                     </td>
                     <td>
                         {{timeConvert(x.date.time)}}
@@ -160,8 +159,8 @@
                         {{statusConvert(x.status)}}
                     </td>
                     <td>
-                        <input type="button" ng-click="accept(x.proposerId)" value="通过">
-                        <input type="button" ng-click="disAccept(x.proposerId)" value="不通过">
+                        <input type="button" ng-click="accept(x.activistId)" value="通过">
+                        <input type="button" ng-click="disAccept(x.activistId)" value="不通过">
                     </td>
                 </tr>
                 </tbody>
@@ -179,7 +178,7 @@
                 <tbody>
                 <tr ng-repeat="x in activistFile1">
                     <td style="text-overflow:ellipsis;width: 200px;cursor: pointer">
-                        <a ng-click="fileAction(0,x.proposerId)">{{x.fileName}}</a>
+                        <a ng-click="fileAction(0,x.activistId)">{{x.fileName.substring(19)}}</a>
                     </td>
                     <td>
                         {{timeConvert(x.date.time)}}
@@ -188,8 +187,8 @@
                         {{statusConvert(x.status)}}
                     </td>
                     <td>
-                        <input type="button" ng-click="accept(x.proposerId)" value="通过">
-                        <input type="button" ng-click="disAccept(x.proposerId)" value="不通过">
+                        <input type="button" ng-click="accept(x.activistId)" value="通过">
+                        <input type="button" ng-click="disAccept(x.activistId)" value="不通过">
                     </td>
                 </tr>
                 </tbody>
@@ -207,7 +206,7 @@
                 <tbody>
                 <tr ng-repeat="x in activistFile2">
                     <td style="text-overflow:ellipsis;width: 200px;cursor: pointer">
-                        <a ng-click="fileAction(0,x.proposerId)">{{x.fileName}}</a>
+                        <a ng-click="fileAction(0,x.activistId)">{{x.fileName.substring(19)}}</a>
                     </td>
                     <td>
                         {{timeConvert(x.date.time)}}
@@ -216,8 +215,8 @@
                         {{statusConvert(x.status)}}
                     </td>
                     <td>
-                        <input type="button" ng-click="accept(x.proposerId)" value="通过">
-                        <input type="button" ng-click="disAccept(x.proposerId)" value="不通过">
+                        <input type="button" ng-click="accept(x.activistId)" value="通过">
+                        <input type="button" ng-click="disAccept(x.activistId)" value="不通过">
                     </td>
                 </tr>
                 </tbody>
@@ -235,7 +234,7 @@
                 <tbody>
                 <tr ng-repeat="x in activistFile3">
                     <td style="text-overflow:ellipsis;width: 200px;cursor: pointer">
-                        <a ng-click="fileAction(0,x.proposerId)">{{x.fileName}}</a>
+                        <a ng-click="fileAction(0,x.activistId)">{{x.fileName.substring(19)}}</a>
                     </td>
                     <td>
                         {{timeConvert(x.date.time)}}
@@ -244,8 +243,8 @@
                         {{statusConvert(x.status)}}
                     </td>
                     <td>
-                        <input type="button" ng-click="accept(x.proposerId)" value="通过">
-                        <input type="button" ng-click="disAccept(x.proposerId)" value="不通过">
+                        <input type="button" ng-click="accept(x.activistId)" value="通过">
+                        <input type="button" ng-click="disAccept(x.activistId)" value="不通过">
                     </td>
                 </tr>
                 </tbody>
@@ -263,7 +262,7 @@
                 <tbody>
                 <tr ng-repeat="x in activistFile4">
                     <td style="text-overflow:ellipsis;width: 200px;cursor: pointer">
-                        <a ng-click="fileAction(0,x.proposerId)">{{x.fileName}}</a>
+                        <a ng-click="fileAction(0,x.activistId)">{{x.fileName.substring(19)}}</a>
                     </td>
                     <td>
                         {{timeConvert(x.date.time)}}
@@ -272,8 +271,8 @@
                         {{statusConvert(x.status)}}
                     </td>
                     <td>
-                        <input type="button" ng-click="accept(x.proposerId)" value="通过">
-                        <input type="button" ng-click="disAccept(x.proposerId)" value="不通过">
+                        <input type="button" ng-click="accept(x.activistId)" value="通过">
+                        <input type="button" ng-click="disAccept(x.activistId)" value="不通过">
                     </td>
                 </tr>
                 </tbody>
@@ -291,7 +290,7 @@
                 <tbody>
                 <tr ng-repeat="x in activistFile5">
                     <td style="text-overflow:ellipsis;width: 200px;cursor: pointer">
-                        <a ng-click="fileAction(0,x.proposerId)">{{x.fileName}}</a>
+                        <a ng-click="fileAction(0,x.activistId)">{{x.fileName.substring(19)}}</a>
                     </td>
                     <td>
                         {{timeConvert(x.date.time)}}
@@ -300,8 +299,8 @@
                         {{statusConvert(x.status)}}
                     </td>
                     <td>
-                        <input type="button" ng-click="accept(x.proposerId)" value="通过">
-                        <input type="button" ng-click="disAccept(x.proposerId)" value="不通过">
+                        <input type="button" ng-click="accept(x.activistId)" value="通过">
+                        <input type="button" ng-click="disAccept(x.activistId)" value="不通过">
                     </td>
                 </tr>
                 </tbody>
@@ -319,7 +318,7 @@
                 <tbody>
                 <tr ng-repeat="x in activistFile6">
                     <td style="text-overflow:ellipsis;width: 200px;cursor: pointer">
-                        <a ng-click="fileAction(0,x.proposerId)">{{x.fileName}}</a>
+                        <a ng-click="fileAction(0,x.activistId)">{{x.fileName.substring(19)}}</a>
                     </td>
                     <td>
                         {{timeConvert(x.date.time)}}
@@ -328,8 +327,8 @@
                         {{statusConvert(x.status)}}
                     </td>
                     <td>
-                        <input type="button" ng-click="accept(x.proposerId)" value="通过">
-                        <input type="button" ng-click="disAccept(x.proposerId)" value="不通过">
+                        <input type="button" ng-click="accept(x.activistId)" value="通过">
+                        <input type="button" ng-click="disAccept(x.activistId)" value="不通过">
                     </td>
                 </tr>
                 </tbody>
@@ -347,7 +346,7 @@
                 <tbody>
                 <tr ng-repeat="x in activistFile7">
                     <td style="text-overflow:ellipsis;width: 200px;cursor: pointer">
-                        <a ng-click="fileAction(0,x.proposerId)">{{x.fileName}}</a>
+                        <a ng-click="fileAction(0,x.activistId)">{{x.fileName.substring(19)}}</a>
                     </td>
                     <td>
                         {{timeConvert(x.date.time)}}
@@ -356,8 +355,8 @@
                         {{statusConvert(x.status)}}
                     </td>
                     <td>
-                        <input type="button" ng-click="accept(x.proposerId)" value="通过">
-                        <input type="button" ng-click="disAccept(x.proposerId)" value="不通过">
+                        <input type="button" ng-click="accept(x.activistId)" value="通过">
+                        <input type="button" ng-click="disAccept(x.activistId)" value="不通过">
                     </td>
                 </tr>
                 </tbody>

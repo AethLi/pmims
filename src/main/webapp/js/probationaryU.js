@@ -2,10 +2,10 @@ angular.module('mainPageApp', [])
     .controller("probationaryUCtrl", function ($scope) {
         console.log("probationaryU.js onload!");
 
-        $scope.upload0Instruction = "加载中";
-        $scope.upload1Instruction = "加载中";
-        $scope.upload2Instruction = "加载中";
-        $scope.upload3Instruction = "加载中";
+        $scope.upload0Instruction = "";
+        $scope.upload1Instruction = "";
+        $scope.upload2Instruction = "";
+        $scope.upload3Instruction = "";
         $scope.file0Name = "未选择文件";
         $scope.file1Name = "未选择文件";
         $scope.file2Name = "未选择文件";
@@ -34,6 +34,21 @@ angular.module('mainPageApp', [])
                 $scope.file3Name = file.name;
             }
             $scope.$digest();
+        };
+        $scope.delete = function (fileId) {
+            $.ajax({
+                type: 'post',
+                contentType: 'application/json;charset=utf-8',
+                dataType: "json",
+                async: true,
+                url: '/probationary/fileDelete.do',
+                data: JSON.stringify({
+                    "desId": fileId
+                }),
+                success: function (result) {
+                    $scope.refreshTable(result.model);
+                }
+            })
         };
         $.ajax({
             type: 'post',

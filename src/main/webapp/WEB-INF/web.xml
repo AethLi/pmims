@@ -21,6 +21,7 @@
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
+  <!--无对应文件时，所有.do的请求，会去controller里面找RequestMapping，其他都会丢弃-->
   <servlet-mapping>
     <servlet-name>dispatcher</servlet-name>
     <url-pattern>*.do</url-pattern>

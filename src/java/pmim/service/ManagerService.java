@@ -74,6 +74,18 @@ public class ManagerService {
                 probationaries = probationaryMapper.selectProbationaryByIdDisapproved(new SysUser(m.get("userId").toString()));
                 m.put("countN", probationaries.size());
             }
+        } else if (pa.getUserType() == 10) {
+
+        }
+        for (Map<String, Object> m : users) {
+            SysUser user = new SysUser();
+            user.setUserId((String) m.get("userId"));
+            Student student = studentMapper.selectStudentById(user);
+            try {
+                m.put("name", student.getName());
+            } catch (Exception e) {
+
+            }
         }
         result.put("users", users);
         if (pcs.permissionCheck(6, request)) {
@@ -165,7 +177,7 @@ public class ManagerService {
         } else if (code == 4) {
         }
 
-        return "已成功退回该项";
+        return "已成功删除该项";
     }
 
     public void insertAdmin(String desId) {

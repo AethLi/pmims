@@ -31,6 +31,13 @@ public class fileCtrl {
     @Autowired
     ImportedPartyMemberMapper importedPartyMemberMapper;
 
+    /**
+     * 显示图片
+     *
+     * @param request
+     * @param response
+     * @return
+     */
     @RequestMapping(value = "/imageShow.do", method = RequestMethod.GET)
     @ResponseBody
     public String imageShow(HttpServletRequest request, HttpServletResponse response) {
@@ -51,7 +58,7 @@ public class fileCtrl {
         } else if (request.getParameter("type").equals("probationary")) {
             Probationary p = probationaryMapper.selectProbationaryByProbationaryId(new Probationary(desId));
             path = userPathService.checkUserPath(p.getUserId());
-            path += "Proposer/" + p.getFileName();
+            path += "Probationary/" + p.getFileName();
         }
         FileInputStream fis = null;
         OutputStream os = null;
@@ -76,6 +83,13 @@ public class fileCtrl {
         return "ok";
     }
 
+    /**
+     * 文件下载
+     *
+     * @param request
+     * @param response
+     * @return
+     */
     @RequestMapping(value = "/fileDownload.do")
     public @ResponseBody
     Object fileDown(HttpServletRequest request, HttpServletResponse response) {
@@ -116,7 +130,7 @@ public class fileCtrl {
                 response.setContentType("application/force-download");// 设置强制下载不打开
                 try {
                     response.addHeader("Content-Disposition",
-                            "attachment; fileName=" + URLEncoder.encode(fileName, "utf-8"));// 设置文件名
+                            "attachment; fileName=" + URLEncoder.encode(fileName.substring(19), "utf-8"));// 设置文件名
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }

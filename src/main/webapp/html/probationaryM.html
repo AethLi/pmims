@@ -41,7 +41,7 @@
                     <th>姓名</th>
                     <th>学号</th>
                     <th>已上传</th>
-                    <th>未通过</th>
+                    <th>已通过</th>
                     <th>操作</th>
                     <th style="display: none">审核</th>
                 </tr>
@@ -52,12 +52,14 @@
                     <td>{{x.userId}}</td>
                     <td>{{x.count}}</td>
                     <td>{{x.countN}}</td>
-                    <td>{{x.classInfo}}</td>
                     <td>
                         <input type="button" value="查看详情" ng-click="tableAction(x.userId)">
-                        <input type="button" value="通过申请" ng-if="isSuperAdmin" class="superAdminButton" ng-click="userAction(0,x.userId)">
-                        <input type="button" value="驳回申请" ng-if="isSuperAdmin" class="superAdminButton" ng-click="userAction(1,x.userId)">
-                        <input type="button" value="删除此人" ng-if="isSuperAdmin" class="superAdminButton" ng-click="userAction(2,x.userId)">
+                        <input type="button" value="通过申请" ng-if="isSuperAdmin" class="superAdminButton"
+                               ng-click="userAction(0,x.userId)">
+                        <input type="button" value="驳回申请" ng-if="isSuperAdmin" class="superAdminButton"
+                               ng-click="userAction(1,x.userId)">
+                        <input type="button" value="删除此人" ng-if="isSuperAdmin" class="superAdminButton"
+                               ng-click="userAction(2,x.userId)">
                     </td>
                 </tr>
                 </tbody>
@@ -84,41 +86,112 @@
             <table class="table" style="background: #b3b3b3">
                 <thead>
                 <tr>
-                    <td style="width: 50%">文件名</td>
-                    <td style="width: 30%">上传时间</td>
-                    <td style="width: 20%">删除</td>
+                    <td style="width: 200px">文件名</td>
+                    <td style="width: 100px">上传时间</td>
+                    <td style="width: 50px">状态</td>
+                    <td style="width: 60px">审核</td>
                 </tr>
                 </thead>
+                <tbody>
+                <tr ng-repeat="x in probationaryFile0">
+                    <td style="text-overflow:ellipsis;width: 200px;cursor: pointer">
+                        <a ng-click="fileAction(0,x.probationaryId)">{{x.fileName.substring(19)}}</a>
+                    </td>
+                    <td>
+                        {{timeConvert(x.date.time)}}
+                    </td>
+                    <td>
+                        {{statusConvert(x.status)}}
+                    </td>
+                    <td>
+                        <input type="button" ng-click="accept(x.probationaryId)" value="通过">
+                        <input type="button" ng-click="disAccept(x.probationaryId)" value="不通过">
+                    </td>
+                </tr>
+                </tbody>
             </table>
             <div style="margin-top: 50px" class="well">思想汇报（Word）已上传文件列表</div>
             <table class="table" style="background: #b3b3b3">
                 <thead>
                 <tr>
-                    <td style="width: 50%">文件名</td>
-                    <td style="width: 30%">上传时间</td>
-                    <td style="width: 20%">删除</td>
+                    <td style="width: 200px">文件名</td>
+                    <td style="width: 100px">上传时间</td>
+                    <td style="width: 50px">状态</td>
+                    <td style="width: 60px">审核</td>
                 </tr>
                 </thead>
+                <tbody>
+                <tr ng-repeat="x in probationaryFile1">
+                    <td style="text-overflow:ellipsis;width: 200px;cursor: pointer">
+                        <a ng-click="fileAction(0,x.probationaryId)">{{x.fileName.substring(19)}}</a>
+                    </td>
+                    <td>
+                        {{timeConvert(x.date.time)}}
+                    </td>
+                    <td>
+                        {{statusConvert(x.status)}}
+                    </td>
+                    <td>
+                        <input type="button" ng-click="accept(x.probationaryId)" value="通过">
+                        <input type="button" ng-click="disAccept(x.probationaryId)" value="不通过">
+                    </td>
+                </tr>
+                </tbody>
             </table>
             <div style="margin-top: 50px" class="well">转正申请书（图片）已上传文件列表</div>
             <table class="table" style="background: #b3b3b3">
                 <thead>
                 <tr>
-                    <td style="width: 50%">文件名</td>
-                    <td style="width: 30%">上传时间</td>
-                    <td style="width: 20%">删除</td>
+                    <td style="width: 200px">文件名</td>
+                    <td style="width: 100px">上传时间</td>
+                    <td style="width: 50px">状态</td>
+                    <td style="width: 60px">审核</td>
                 </tr>
                 </thead>
+            <tbody>
+            <tr ng-repeat="x in probationaryFile2">
+                <td style="text-overflow:ellipsis;width: 200px;cursor: pointer">
+                    <a ng-click="fileAction(0,x.probationaryId)">{{x.fileName.substring(19)}}</a>
+                </td>
+                <td>
+                    {{timeConvert(x.date.time)}}
+                </td>
+                <td>
+                    {{statusConvert(x.status)}}
+                </td>
+                <td>
+                    <input type="button" ng-click="accept(x.probationaryId)" value="通过">
+                    <input type="button" ng-click="disAccept(x.probationaryId)" value="不通过">
+                </td>
+            </tr>
+            </tbody>
             </table>
             <div style="margin-top: 50px" class="well">其他资料（图片）已上传文件列表</div>
             <table class="table" style="background: #b3b3b3">
                 <thead>
                 <tr>
-                    <td style="width: 50%">文件名</td>
-                    <td style="width: 30%">上传时间</td>
-                    <td style="width: 20%">删除</td>
+                    <td style="width: 200px">文件名</td>
+                    <td style="width: 100px">上传时间</td>
+                    <td style="width: 50px">状态</td>
+                    <td style="width: 60px">审核</td>
                 </tr>
-                </thead>
+                <tbody>
+            <tr ng-repeat="x in probationaryFile3">
+                <td style="text-overflow:ellipsis;width: 200px;cursor: pointer">
+                    <a ng-click="fileAction(0,x.probationaryId)">{{x.fileName.substring(19)}}</a>
+                </td>
+                <td>
+                    {{timeConvert(x.date.time)}}
+                </td>
+                <td>
+                    {{statusConvert(x.status)}}
+                </td>
+                <td>
+                    <input type="button" ng-click="accept(x.probationaryId)" value="通过">
+                    <input type="button" ng-click="disAccept(x.probationaryId)" value="不通过">
+                </td>
+            </tr>
+            </tbody>
             </table>
         </div>
     </div>

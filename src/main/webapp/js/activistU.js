@@ -2,10 +2,10 @@ angular.module('mainPageApp', [])
     .controller("activistUCtrl", function ($scope) {
         console.log("activistU.js onload!");
 
-        $scope.linkman1 = "加载中";
-        $scope.phoneNumber1 = "加载中";
-        $scope.linkman2 = "加载中";
-        $scope.phoneNumber2 = "加载中";
+        $scope.linkman1 = "";
+        $scope.phoneNumber1 = "";
+        $scope.linkman2 = "";
+        $scope.phoneNumber2 = "";
         $scope.upload0Instruction = "";
         $scope.upload1Instruction = "";
         $scope.upload2Instruction = "";
@@ -152,7 +152,21 @@ angular.module('mainPageApp', [])
             }
         });
 
-
+        $scope.delete = function (fileId) {
+            $.ajax({
+                type: 'post',
+                contentType: 'application/json;charset=utf-8',
+                dataType: "json",
+                async: true,
+                url: '/activist/fileDelete.do',
+                data: JSON.stringify({
+                    "desId": fileId
+                }),
+                success: function (result) {
+                    $scope.refreshTable(result.model);
+                }
+            })
+        };
         $scope.timeConvert = function (time = +new Date()) {
             var date = new Date(time + 8 * 3600 * 1000);
             return date.toJSON().substr(0, 19).replace('T', ' ').substring(0, 10);

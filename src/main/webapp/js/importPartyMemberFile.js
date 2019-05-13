@@ -22,24 +22,26 @@ angular.module('mainPageApp', [])
             if (desCode === 0) {
                 $http({
                     url: "/partyMember/acceptImportPartyMember.do",
-                    method:"POST",
+                    method: "POST",
                     data: {
                         "desId": userId
                     }
                 }).then(function s(result) {
                     alert(result.data.message);
+                    window.location.reload();
                 }, function e(result) {
                     alert("网络错误");
                 })
             } else if (desCode === 1) {
                 $http({
                     url: "/partyMember/disAcceptImportPartyMember.do",
-                    method:"POST",
+                    method: "POST",
                     data: {
                         "desId": userId
                     }
                 }).then(function s(result) {
                     alert(result.data.message);
+                    window.location.reload();
                 }, function e(result) {
                     alert("网络错误");
                 })

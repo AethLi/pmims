@@ -67,7 +67,7 @@ public class PartyMemberCtrl {
         }
     }
 
-    @RequestMapping(value = "acceptImportPartyMember.do", produces = "text/html;charset=UTF-8")
+    @RequestMapping(value = "/acceptImportPartyMember.do", produces = "text/html;charset=UTF-8")
     public @ResponseBody
     Object acceptImportPartyMember(HttpServletRequest request, @RequestBody String jsonstr) {
         try {
@@ -83,7 +83,7 @@ public class PartyMemberCtrl {
         }
     }
 
-    @RequestMapping(value = "disAcceptImportPartyMember.do", produces = "text/html;charset=UTF-8")
+    @RequestMapping(value = "/disAcceptImportPartyMember.do", produces = "text/html;charset=UTF-8")
     public @ResponseBody
     Object disAcceptImportPartyMember(HttpServletRequest request, @RequestBody String jsonstr) {
         try {
@@ -91,11 +91,11 @@ public class PartyMemberCtrl {
                 RequestAction ra = (RequestAction) JSONObject.toBean(JSONObject.fromObject(jsonstr), RequestAction.class);
                 return pms.disAcceptImportPartyMember(ra.getDesId());
             } else {
-                return JSONObject.fromObject(new ResponseMessage(1, "权限不足", null));
+                return JSONObject.fromObject(new ResponseMessage(1, "权限不足", null)).toString();
             }
         } catch (Exception e) {
             e.printStackTrace();
-            return JSONObject.fromObject(new ResponseMessage(1, e.getMessage(), null));
+            return JSONObject.fromObject(new ResponseMessage(1, e.getMessage(), null)).toString();
         }
     }
 
@@ -103,28 +103,30 @@ public class PartyMemberCtrl {
     public @ResponseBody
     Object getMyImport(HttpServletRequest request) {
         try {
-            return  pms.getMyImport(((SysUser) request.getSession().getAttribute("currentSysUser")));
+            return pms.getMyImport(((SysUser) request.getSession().getAttribute("currentSysUser"))).toString();
         } catch (Exception e) {
             e.printStackTrace();
-            return JSONObject.fromObject(new ResponseMessage(1, e.getMessage(), null));
+            return JSONObject.fromObject(new ResponseMessage(1, e.getMessage(), null)).toString();
         }
     }
+
     @RequestMapping(value = "/applyForExport.do", produces = "text/html;charset=UTF-8")
     public @ResponseBody
-    Object applyForExport(HttpServletRequest request){
+    Object applyForExport(HttpServletRequest request) {
         try {
-            return  pms.applyForExport(((SysUser) request.getSession().getAttribute("currentSysUser")));
+            return pms.applyForExport(((SysUser) request.getSession().getAttribute("currentSysUser"))).toString();
         } catch (Exception e) {
             e.printStackTrace();
-            return JSONObject.fromObject(new ResponseMessage(1, e.getMessage(), null));
+            return JSONObject.fromObject(new ResponseMessage(1, e.getMessage(), null)).toString();
         }
     }
+
     @RequestMapping(value = "exportPartyMemberAction.do", produces = "text/html;charset=UTF-8")
     public @ResponseBody
-    Object exportPartyMemberAction(HttpServletRequest request,@RequestBody String jsonstr){
+    Object exportPartyMemberAction(HttpServletRequest request, @RequestBody String jsonstr) {
         try {
             RequestAction ra = (RequestAction) JSONObject.toBean(JSONObject.fromObject(jsonstr), RequestAction.class);
-            return  pms.exportPartyMemberAction(ra);
+            return pms.exportPartyMemberAction(ra);
         } catch (Exception e) {
             e.printStackTrace();
             return JSONObject.fromObject(new ResponseMessage(1, e.getMessage(), null));

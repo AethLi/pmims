@@ -1,18 +1,28 @@
 angular.module('mainPageApp', ['ui.router', 'oc.lazyLoad'])
     .controller('mainPageCtrl', function ($scope, $state) {
-        $scope.userName = "加载中";
-        $scope.userPermission = "加载中";
+        $scope.userName = "";
+        $scope.userPermission = "";
         $scope.whoIsActive = 0;
         $scope.PermissionCode = undefined;
         $scope.iAmActive = function (who) {
             $scope.whoIsActive = who;
         };
         $scope.permissionCheck = function (desPermission) {
+            if ($scope.PermissionCode >= 5) {
+                return false;
+            }
             if ($scope.PermissionCode < desPermission) {
                 return false;
             } else
                 return true;
         };
+        $scope.permissionCheckP = function () {
+            if ($scope.PermissionCode == 4 || $scope.PermissionCode == 7 || $scope.PermissionCode == 10) {
+                return true;
+            } else {
+                return false;
+            }
+        }
         // $scope.importPartyMemberFile = function () {
         //     $state.go("importPartyMemberFile");
         // };
@@ -59,7 +69,11 @@ angular.module('mainPageApp', ['ui.router', 'oc.lazyLoad'])
                 if (result.status === 1) {
                     window.location.href = "../index.html";
                 } else if (result.status === 0) {
-                    $scope.userName = result.model.student.name;
+                    try {
+                        $scope.userName = result.model.student.name;
+                    } catch (e) {
+
+                    }
                     $scope.PermissionCode = result.model.user.userPermission;
                     switch (result.model.user.userPermission) {
                         case 0:
@@ -76,6 +90,12 @@ angular.module('mainPageApp', ['ui.router', 'oc.lazyLoad'])
                             break;
                         case 4:
                             $scope.userPermission = "党员";
+                            break;
+                        case 10:
+                            $scope.userPermission = "党员";
+                            break;
+                        case 7:
+                            $scope.userPermission = "转入党员";
                             break;
                     }
                 }

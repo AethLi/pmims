@@ -17,7 +17,7 @@
                 <tr ng-click="detailForStudent(x.userId)" ng-repeat="x in importPartyMembers">
                     <td>{{x.name}}</td>
                     <td>{{timeConvert(x.date.time)}}</td>
-                    <td><a>{{x.fileName}}</a></td>
+                    <td><a>{{x.fileName.substring(19)}}</a></td>
                     <td>
                         <button ng-click="formAction(x.userId,0)">
                             通过

@@ -16,7 +16,7 @@
                         </tr>
                         </thead>
                         <tr ng-repeat="x in fileList0">
-                            <td style="width: 50%"><a ng-click="ImageShow(x.developmentId)" style="cursor:pointer">{{x.fileName}}</a>
+                            <td style="width: 50%"><a ng-click="ImageShow(x.developmentId)" style="cursor:pointer">{{x.fileName.substring(19)}}</a>
                             </td>
                             <td style="width: 30%">{{timeConvert(x.date.time)}}</td>
                             <td style="width: 10%">{{statusConvert(x.status)}}</td>
@@ -73,7 +73,7 @@
                         </tr>
                         </thead>
                         <tr ng-repeat="x in fileList1">
-                            <td style="width: 50%"><a ng-click="ImageShow(x.developmentId)" style="cursor:pointer">{{x.fileName}}</a>
+                            <td style="width: 50%"><a ng-click="fileDownload(x.developmentId)" style="cursor:pointer">{{x.fileName.substring(19)}}</a>
                             </td>
                             <td style="width: 30%">{{timeConvert(x.date.time)}}</td>
                             <td style="width: 10%">{{statusConvert(x.status)}}</td>
@@ -130,7 +130,7 @@
                         </tr>
                         </thead>
                         <tr ng-repeat="x in fileList2">
-                            <td style="width: 50%"><a ng-click="ImageShow(x.developmentId)" style="cursor:pointer">{{x.fileName}}</a>
+                            <td style="width: 50%"><a ng-click="ImageShow(x.developmentId)" style="cursor:pointer">{{x.fileName.substring(19)}}</a>
                             </td>
                             <td style="width: 30%">{{timeConvert(x.date.time)}}</td>
                             <td style="width: 10%">{{statusConvert(x.status)}}</td>
@@ -187,7 +187,7 @@
                         </tr>
                         </thead>
                         <tr ng-repeat="x in fileList3">
-                            <td style="width: 50%"><a ng-click="ImageShow(x.developmentId)" style="cursor:pointer">{{x.fileName}}</a>
+                            <td style="width: 50%"><a ng-click="ImageShow(x.developmentId)" style="cursor:pointer">{{x.fileName.substring(19)}}</a>
                             </td>
                             <td style="width: 30%">{{timeConvert(x.date.time)}}</td>
                             <td style="width: 10%">{{statusConvert(x.status)}}</td>
@@ -229,63 +229,63 @@
                 </form>
             </div>
         </div>
-        <div style="width: 100%;margin-top: 10px">
-            <div style="height: 450px">
-                <span style="font-size: 20px;font-weight: bold">直系亲属政审（word）：</span><br/>
-                <textarea style="width: 60%" rows="5" readonly>{{upload4Instruction}}</textarea>
-                <div class="col-md-8" style="overflow-x: auto; overflow-y: auto; height: 300px">
-                    <table class="table" align="center" style="width: 700px;">
-                        <thead>
-                        <tr>
-                            <th style="width: 50%">文件名</th>
-                            <th style="width: 30%">上传时间</th>
-                            <th style="width: 10%">状态</th>
-                            <th style="width: 10%">删除</th>
-                        </tr>
-                        </thead>
-                        <tr ng-repeat="x in fileList4">
-                            <td style="width: 50%"><a ng-click="ImageShow(x.developmentId)" style="cursor:pointer">{{x.fileName}}</a>
-                            </td>
-                            <td style="width: 30%">{{timeConvert(x.date.time)}}</td>
-                            <td style="width: 10%">{{statusConvert(x.status)}}</td>
-                            <td style="width: 10%">
-                                <button ng-click="delete(x.developmentId)" ng-if="statusCheck(x.status)">删除</button>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="col-md-4">
-                    <div>
+        <!--<div style="width: 100%;margin-top: 10px">-->
+            <!--<div style="height: 450px">-->
+                <!--<span style="font-size: 20px;font-weight: bold">直系亲属政审（word）：</span><br/>-->
+                <!--<textarea style="width: 60%" rows="5" readonly>{{upload4Instruction}}</textarea>-->
+                <!--<div class="col-md-8" style="overflow-x: auto; overflow-y: auto; height: 300px">-->
+                    <!--<table class="table" align="center" style="width: 700px;">-->
+                        <!--<thead>-->
+                        <!--<tr>-->
+                            <!--<th style="width: 50%">文件名</th>-->
+                            <!--<th style="width: 30%">上传时间</th>-->
+                            <!--<th style="width: 10%">状态</th>-->
+                            <!--<th style="width: 10%">删除</th>-->
+                        <!--</tr>-->
+                        <!--</thead>-->
+                        <!--<tr ng-repeat="x in fileList4">-->
+                            <!--<td style="width: 50%"><a ng-click="ImageShow(x.developmentId)" style="cursor:pointer">{{x.fileName.substring(19)}}</a>-->
+                            <!--</td>-->
+                            <!--<td style="width: 30%">{{timeConvert(x.date.time)}}</td>-->
+                            <!--<td style="width: 10%">{{statusConvert(x.status)}}</td>-->
+                            <!--<td style="width: 10%">-->
+                                <!--<button ng-click="delete(x.developmentId)" ng-if="statusCheck(x.status)">删除</button>-->
+                            <!--</td>-->
+                        <!--</tr>-->
+                    <!--</table>-->
+                <!--</div>-->
+                <!--<div class="col-md-4">-->
+                    <!--<div>-->
 
-                    </div>
-                    <div>
-                        <label for="development4FileChoose" class="btn btn-primary btn-lg"
-                               style="width: 150px;margin-top: 10px">
-                            <span style="font-size: 20px">选择文件</span>
-                        </label>
-                    </div>
-                    <div>
-                        <label type="button" style="width: 150px;margin-top: 10px">
-                            <span style="font-size: 10px">{{file4Name}}</span>
-                        </label>
-                    </div>
-                    <div>
-                        <label for="development4FileUpload" type="button" class="btn btn-primary btn-lg"
-                               style="width: 150px;margin-top: 10px">
-                            <span style="font-size: 20px">上传</span>
-                        </label>
-                    </div>
-                </div>
-                <form id="developmentForm4" style="display: none">
-                    <input name="index" value="4">
-                    <input type="file" id="development4FileChoose"
-                           onchange="angular.element(this).scope().ChooseFileChange('development4FileChoose',4)"
-                           accept="application/msword,.docx"
-                           ng-model="development4FileChoose" name="file"/>
-                    <input id="development4FileUpload" type="button" ng-click="upload('developmentForm4')">
-                </form>
-            </div>
-        </div>
+                    <!--</div>-->
+                    <!--<div>-->
+                        <!--<label for="development4FileChoose" class="btn btn-primary btn-lg"-->
+                               <!--style="width: 150px;margin-top: 10px">-->
+                            <!--<span style="font-size: 20px">选择文件</span>-->
+                        <!--</label>-->
+                    <!--</div>-->
+                    <!--<div>-->
+                        <!--<label type="button" style="width: 150px;margin-top: 10px">-->
+                            <!--<span style="font-size: 10px">{{file4Name}}</span>-->
+                        <!--</label>-->
+                    <!--</div>-->
+                    <!--<div>-->
+                        <!--<label for="development4FileUpload" type="button" class="btn btn-primary btn-lg"-->
+                               <!--style="width: 150px;margin-top: 10px">-->
+                            <!--<span style="font-size: 20px">上传</span>-->
+                        <!--</label>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<form id="developmentForm4" style="display: none">-->
+                    <!--<input name="index" value="4">-->
+                    <!--<input type="file" id="development4FileChoose"-->
+                           <!--onchange="angular.element(this).scope().ChooseFileChange('development4FileChoose',4)"-->
+                           <!--accept="application/msword,.docx"-->
+                           <!--ng-model="development4FileChoose" name="file"/>-->
+                    <!--<input id="development4FileUpload" type="button" ng-click="upload('developmentForm4')">-->
+                <!--</form>-->
+            <!--</div>-->
+        <!--</div>-->
         <div style="width: 100%;margin-top: 10px">
             <div style="height: 450px">
                 <span style="font-size: 20px;font-weight: bold">党校培训心得（图片）：</span><br/>
@@ -301,7 +301,7 @@
                         </tr>
                         </thead>
                         <tr ng-repeat="x in fileList5">
-                            <td style="width: 50%"><a ng-click="ImageShow(x.developmentId)" style="cursor:pointer">{{x.fileName}}</a>
+                            <td style="width: 50%"><a ng-click="ImageShow(x.developmentId)" style="cursor:pointer">{{x.fileName.substring(19)}}</a>
                             </td>
                             <td style="width: 30%">{{timeConvert(x.date.time)}}</td>
                             <td style="width: 10%">{{statusConvert(x.status)}}</td>
@@ -358,7 +358,7 @@
                         </tr>
                         </thead>
                         <tr ng-repeat="x in fileList6">
-                            <td style="width: 50%"><a ng-click="ImageShow(x.developmentId)" style="cursor:pointer">{{x.fileName}}</a>
+                            <td style="width: 50%"><a ng-click="fileDownload(x.developmentId)" style="cursor:pointer">{{x.fileName.substring(19)}}</a>
                             </td>
                             <td style="width: 30%">{{timeConvert(x.date.time)}}</td>
                             <td style="width: 10%">{{statusConvert(x.status)}}</td>
@@ -415,7 +415,7 @@
                         </tr>
                         </thead>
                         <tr ng-repeat="x in fileList7">
-                            <td style="width: 50%"><a ng-click="ImageShow(x.developmentId)" style="cursor:pointer">{{x.fileName}}</a>
+                            <td style="width: 50%"><a ng-click="ImageShow(x.developmentId)" style="cursor:pointer">{{x.fileName.substring(19)}}</a>
                             </td>
                             <td style="width: 30%">{{timeConvert(x.date.time)}}</td>
                             <td style="width: 10%">{{statusConvert(x.status)}}</td>
@@ -472,7 +472,7 @@
                         </tr>
                         </thead>
                         <tr ng-repeat="x in fileList8">
-                            <td style="width: 50%"><a ng-click="ImageShow(x.developmentId)" style="cursor:pointer">{{x.fileName}}</a>
+                            <td style="width: 50%"><a ng-click="fileDownload(x.developmentId)" style="cursor:pointer">{{x.fileName.substring(19)}}</a>
                             </td>
                             <td style="width: 30%">{{timeConvert(x.date.time)}}</td>
                             <td style="width: 10%">{{statusConvert(x.status)}}</td>
@@ -529,7 +529,7 @@
                         </tr>
                         </thead>
                         <tr ng-repeat="x in fileList9">
-                            <td style="width: 50%"><a ng-click="ImageShow(x.developmentId)" style="cursor:pointer">{{x.fileName}}</a>
+                            <td style="width: 50%"><a ng-click="ImageShow(x.developmentId)" style="cursor:pointer">{{x.fileName.substring(19)}}</a>
                             </td>
                             <td style="width: 30%">{{timeConvert(x.date.time)}}</td>
                             <td style="width: 10%">{{statusConvert(x.status)}}</td>
@@ -586,7 +586,7 @@
                         </tr>
                         </thead>
                         <tr ng-repeat="x in fileList10">
-                            <td style="width: 50%"><a ng-click="ImageShow(x.developmentId)" style="cursor:pointer">{{x.fileName}}</a>
+                            <td style="width: 50%"><a ng-click="fileDownload(x.developmentId)" style="cursor:pointer">{{x.fileName.substring(19)}}</a>
                             </td>
                             <td style="width: 30%">{{timeConvert(x.date.time)}}</td>
                             <td style="width: 10%">{{statusConvert(x.status)}}</td>
@@ -643,7 +643,7 @@
                         </tr>
                         </thead>
                         <tr ng-repeat="x in fileList11">
-                            <td style="width: 50%"><a ng-click="ImageShow(x.developmentId)" style="cursor:pointer">{{x.fileName}}</a>
+                            <td style="width: 50%"><a ng-click="ImageShow(x.developmentId)" style="cursor:pointer">{{x.fileName.substring(19)}}</a>
                             </td>
                             <td style="width: 30%">{{timeConvert(x.date.time)}}</td>
                             <td style="width: 10%">{{statusConvert(x.status)}}</td>
@@ -700,7 +700,7 @@
                         </tr>
                         </thead>
                         <tr ng-repeat="x in fileList12">
-                            <td style="width: 50%"><a ng-click="ImageShow(x.developmentId)" style="cursor:pointer">{{x.fileName}}</a>
+                            <td style="width: 50%"><a ng-click="fileDownload(x.developmentId)" style="cursor:pointer">{{x.fileName.substring(19)}}</a>
                             </td>
                             <td style="width: 30%">{{timeConvert(x.date.time)}}</td>
                             <td style="width: 10%">{{statusConvert(x.status)}}</td>
@@ -757,7 +757,7 @@
                         </tr>
                         </thead>
                         <tr ng-repeat="x in fileList13">
-                            <td style="width: 50%"><a ng-click="ImageShow(x.developmentId)" style="cursor:pointer">{{x.fileName}}</a>
+                            <td style="width: 50%"><a ng-click="ImageShow(x.developmentId)" style="cursor:pointer">{{x.fileName.substring(19)}}</a>
                             </td>
                             <td style="width: 30%">{{timeConvert(x.date.time)}}</td>
                             <td style="width: 10%">{{statusConvert(x.status)}}</td>
@@ -814,7 +814,7 @@
                         </tr>
                         </thead>
                         <tr ng-repeat="x in fileList14">
-                            <td style="width: 50%"><a ng-click="ImageShow(x.developmentId)" style="cursor:pointer">{{x.fileName}}</a>
+                            <td style="width: 50%"><a ng-click="fileDownload(x.developmentId)" style="cursor:pointer">{{x.fileName.substring(19)}}</a>
                             </td>
                             <td style="width: 30%">{{timeConvert(x.date.time)}}</td>
                             <td style="width: 10%">{{statusConvert(x.status)}}</td>
@@ -871,7 +871,7 @@
                         </tr>
                         </thead>
                         <tr ng-repeat="x in fileList15">
-                            <td style="width: 50%"><a ng-click="ImageShow(x.developmentId)" style="cursor:pointer">{{x.fileName}}</a>
+                            <td style="width: 50%"><a ng-click="fileDownload(x.developmentId)" style="cursor:pointer">{{x.fileName}}</a>
                             </td>
                             <td style="width: 30%">{{timeConvert(x.date.time)}}</td>
                             <td style="width: 10%">{{statusConvert(x.status)}}</td>

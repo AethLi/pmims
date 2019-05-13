@@ -20,10 +20,10 @@
     </update>
     <select id="selectUsersByPage" parameterType="pmim.model.PageAble" resultType="java.util.Map">
         <!-->select * from basalInfo where status !=-1 and userPermission=#{userType} limit #{resLimit},#{desLimit};<-->
-        select * from basalInfo where status !=-1 and userPermission=#{userType};
+        select * from user where status !=-1 and userPermission=#{userType};
     </select>
     <select id="selectUsersById" parameterType="java.util.Map" resultType="pmim.model.SysUser">
-        select * from basalInfo where status !=-1 and userId=#{userId};
+        select * from user where status !=-1 and userId=#{userId};
     </select>
     <update id="updateUserById" parameterType="pmim.model.SysUser">
         update user set status=#{status},userPermission=#{userPermission} where userId=#{userId};

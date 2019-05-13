@@ -41,4 +41,11 @@ public class DevelopmentCtrl {
         String userPath = ups.checkUserPath(currentSysUser.getUserId());
         return ds.uploadFile(request, currentSysUser.getUserId(), userPath, index);
     }
+    @RequestMapping(value = "/fileDelete.do", produces = "text/html;charset=UTF-8")
+    public @ResponseBody
+    Object fileDelete(HttpServletRequest request, @RequestBody String jsonstr) {
+        SysUser currentSysUser = (SysUser) request.getSession().getAttribute("currentSysUser");
+        RequestAction ra = (RequestAction) JSONObject.toBean(JSONObject.fromObject(jsonstr), RequestAction.class);
+        return ds.deleteFile(ra.getDesId(), currentSysUser);
+    }
 }

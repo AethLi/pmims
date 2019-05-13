@@ -45,11 +45,10 @@ public class PartyMemberService {
         if (currentSysUser.getUserPermission() == 5 || currentSysUser.getUserPermission() == 6) {
             List<SysUser> users = userMapper.selectUserByPermission(new SysUser("", 4, 0));
             return users;
-        } else if (currentSysUser.getUserPermission() == 4) {
+        } else {
             SysUser thisUser = userMapper.selectUser_withNoPwd(currentSysUser);
             return getDatePoor(System.currentTimeMillis(), thisUser.getPartyMemberDate().getTime());
         }
-        return null;
     }
 
     public String getDatePoor(long l1, long l2) {
@@ -178,7 +177,7 @@ public class PartyMemberService {
         ipm.setUserId(userId);
         ipm.setStatus(1);
         importedPartyMemberMapper.updateWithStatus(ipm);
-        return JSONObject.fromObject(new ResponseMessage(0, "操作成功", null));
+        return JSONObject.fromObject(new ResponseMessage(0, "操作成功", null)).toString();
     }
 
     public Object disAcceptImportPartyMember(String userId) {
@@ -186,7 +185,7 @@ public class PartyMemberService {
         ipm.setUserId(userId);
         ipm.setStatus(2);
         importedPartyMemberMapper.updateWithStatus(ipm);
-        return JSONObject.fromObject(new ResponseMessage(0, "操作成功", null));
+        return JSONObject.fromObject(new ResponseMessage(0, "操作成功", null)).toString();
     }
 
     public Object getMyImport(SysUser currentUser) {

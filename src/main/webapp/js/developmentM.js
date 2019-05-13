@@ -243,7 +243,7 @@ angular.module('managerPageApp', [])
                     "desId": desId,
                 }),
                 success: function (result) {
-                    if (result.status===0){
+                    if (result.status === 0) {
                         alert(result.message);
                     }
                 }
@@ -261,7 +261,7 @@ angular.module('managerPageApp', [])
                     "desId": desId,
                 }),
                 success: function (result) {
-                    if (result.status===0){
+                    if (result.status === 0) {
                         alert(result.message);
                     }
                 }
@@ -279,7 +279,7 @@ angular.module('managerPageApp', [])
                     "desId": desId,
                 }),
                 success: function (result) {
-                    if (result.status===0){
+                    if (result.status === 0) {
                         alert(result.message);
                     }
                 }
@@ -306,4 +306,47 @@ angular.module('managerPageApp', [])
                 })
             }
         };
+        $scope.timeConvert = function (time = +new Date()) {
+            var date = new Date(time + 8 * 3600 * 1000);
+            return date.toJSON().substr(0, 19).replace('T', ' ').substring(0, 10);
+        };
+        $scope.statusConvert = function (status) {
+            if (status === 0) {
+                return "未审核";
+            } else if (status === 1) {
+                return "已通过";
+            } else if (status === 2) {
+                return "未通过";
+            }
+        };
+        $scope.fileAction = function (index, desId) {
+            if (index === 0) {
+                $.ajax({
+                    type: 'post',
+                    contentType: 'application/json;charset=utf-8',
+                    dataType: "json",
+                    async: true,
+                    url: '/file/imageShowUrl.do',
+                    data: JSON.stringify({
+                        desId: desId,
+                        action: "proposer"
+                    }),
+                    success: function () {
+                    }
+                })
+            } else if (index === 1) {
+                $.ajax({
+                    type: 'post',
+                    contentType: 'application/json;charset=utf-8',
+                    dataType: "json",
+                    async: true,
+                    url: '/file/fileDownUrl.do',
+                    data: JSON.stringify({
+                        "desId": desId,
+                    }),
+                    success: function () {
+                    }
+                })
+            }
+        }
     });

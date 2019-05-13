@@ -30,6 +30,7 @@ angular.module('mainPageApp', [])
                 }
             }).then(function s(result) {
                 alert(result.data.message);
+                window.location.reload();
             }, function e(result) {
                 alert("网络错误");
             })

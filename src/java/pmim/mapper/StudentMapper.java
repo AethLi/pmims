@@ -20,4 +20,6 @@ public interface StudentMapper {
     List<Map<String, Object>> selectAllStudent_forAdminPage();
 
     List<Map<String, Object>> selectAllAdmin_forAdminPage();
+
+    void insertId(Student student);
 }

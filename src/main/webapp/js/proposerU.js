@@ -41,6 +41,12 @@ angular.module('mainPageApp', [])
             $scope.$digest();
         };
 
+
+        /**
+         * 上传文件
+         * 根据id来获得上传的是哪个文件，再将其打包为一个form表单，通过json的格式进行提交
+         * @param uploadId
+         */
         $scope.upload = function (uploadId) {
             var form = new FormData(document.getElementById(uploadId));
             $.ajax({
@@ -69,6 +75,9 @@ angular.module('mainPageApp', [])
             })
         };
 
+        /**
+         * 请求当前页已上传的数据和说明数据
+         */
         $.ajax({
             type: 'post',
             contentType: 'application/json;charset=utf-8',

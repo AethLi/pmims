@@ -40,6 +40,7 @@ public class UserService {
     private ImportedPartyMemberMapper ipmm;
 
     public String register(SysUser u, Student s) {
+        //捕获
         try {
             um.insertUser_register(u);
         } catch (Exception e) {
@@ -55,6 +56,9 @@ public class UserService {
             desSysUser = um.selectUser_withNoPwd(u);
         } catch (Exception e) {
             e.printStackTrace();
+            return null;
+        }
+        if (desSysUser == null) {
             return null;
         }
         if (u.getUserPwd().equals(Tools.toMD5(desSysUser.getUserPwd() + identifyingCode))) {
@@ -74,7 +78,7 @@ public class UserService {
         }
         currentSysUser.setUserPwd("已隐藏");
         m.put("user", currentSysUser);
-        if (currentSysUser.getUserPermission() >= 5)
+        if (currentSysUser.getUserPermission() >= 5 && currentSysUser.getUserPermission() < 7)
             return JSONObject.fromObject(new ResponseMessage(0, "", m)).toString();
         else {
             try {
@@ -192,12 +196,18 @@ public class UserService {
             for (int j = 0; j < data.getRow().get(i).getC().size(); j++) {
                 String text = formatter.formatCellValue(data.getRow().get(i).getC().get(j));
                 SysUser user = new SysUser();
-                user.setUserId(text);
+                user.setUserId(text.replace("\'", ""));
+                if (user.getUserId() == "") {
+                    continue;
+                }
                 user.setUserPwd("96e79218965eb72c92a549dd5a330112");
                 user.setRegisterDate(new Timestamp(System.currentTimeMillis()));
                 user.setUserPermission(0);
                 user.setStatus(0);
                 um.insertUser_register(user);
+                Student student=new Student();
+                student.setUserId(user.getUserId());
+                sm.insertId(student);
             }
         }
     }

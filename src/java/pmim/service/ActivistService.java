@@ -10,7 +10,10 @@ import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import pmim.mapper.ActivistMapper;
 import pmim.mapper.UploadInfoMapper;
 import pmim.mapper.UploadInstructionMapper;
-import pmim.model.*;
+import pmim.model.Activist;
+import pmim.model.ResponseMessage;
+import pmim.model.SysUser;
+import pmim.model.UploadInstruction;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
@@ -68,7 +71,7 @@ public class ActivistService {
         Map result = new HashMap();
         try {
             ul = uism.selectUploadInstructionByPosition(new UploadInstruction(1));
-            al=am.selectActivistByIdUndeleted(currentSysUser);
+            al = am.selectActivistByIdUndeleted(currentSysUser);
             result.put("uploadInstructions", ul);
             result.put("currentActivist", al);
         } catch (Exception e) {
@@ -85,5 +88,11 @@ public class ActivistService {
             e.printStackTrace();
             return null;
         }
+    }
+
+    //删除文件
+    public Object deleteFile(String desId, SysUser currentSysUser) {
+        am.deleteActivistById(new Activist(desId));
+        return JSONObject.fromObject(new ResponseMessage(0, "删除成功", am.selectActivistByIdUndeleted(currentSysUser))).toString();
     }
 }
