@@ -33,6 +33,7 @@ public class UserCtrl {
 
     /**
      * 处理 登录请求
+     *
      * @param request 存登录状态，取验证码
      * @param jsonstr
      * @param model
@@ -65,11 +66,10 @@ public class UserCtrl {
                 //验证码错误则返回信息
                 return JSONObject.fromObject(new ResponseMessage(1, "验证码错误", null)).toString();
             }
-            //验证验证码是否正确
-            u = us.login(u, request.getSession().getAttribute("identifyingCode").toString());
             //验证登录信息
+            u = us.login(u, request.getSession().getAttribute("identifyingCode").toString());
+            //返回值为空时是无效登录，验证码或密码错误
             if (u == null) {
-                //返回值为空时是无效登录，验证码或密码错误
                 request.getSession().setAttribute("identifyingCode", "sdfbhsadfsaiofhsadiohfoiashfoisahdfoiashfosi");
                 //
                 return JSONObject.fromObject(new ResponseMessage(1, "账号或用户名错误错误", null)).toString();
@@ -77,17 +77,19 @@ public class UserCtrl {
             if (u.getStatus() != 0) {
                 return JSONObject.fromObject(new ResponseMessage(1, "账户停用", null)).toString();
             }
-            if (u.getUserPermission()==11){
+            if (u.getUserPermission() == 11) {
                 return JSONObject.fromObject(new ResponseMessage(1, "已成功转出，不可登录", null)).toString();
             }
-            model.addAttribute("currentSysUser", u);
             //将当前登录态传入session
+            model.addAttribute("currentSysUser", u);
+            //区分管理员与其他
             if (u.getUserPermission() == 5 || u.getUserPermission() == 6) {
-                //区分管理员与其他
                 request.getSession().setAttribute("identifyingCode", "sdafsadfdsafsadfdsjfsajflasjflskjfksljflsddd");
+                //为管理员返回普通用户首页
                 return JSONObject.fromObject(new ResponseMessage(0, "html/managerPage.html", null)).toString();
             } else if (u.getUserPermission() == 0 || u.getUserPermission() == 1 || u.getUserPermission() == 2 || u.getUserPermission() == 3 || u.getUserPermission() == 4 || u.getUserPermission() == 7 || u.getUserPermission() == 8 || u.getUserPermission() == 9 || u.getUserPermission() == 10) {
                 request.getSession().setAttribute("identifyingCode", "fhwqiefhwibibcviashdoasfhoasifhosafdaosfasoj");
+                //为普通用户返回普通用户首页
                 return JSONObject.fromObject(new ResponseMessage(0, "html/mainPage.html", null)).toString();
             }
         }
@@ -97,24 +99,31 @@ public class UserCtrl {
     @RequestMapping(value = "/initPage.do", produces = "text/html;charset=UTF-8")
     public @ResponseBody
     Object initPageCtrl(HttpServletRequest request, @RequestBody String jsonstr) {
+        //判断当前是否有用户登录
         SysUser currentSysUser = (SysUser) request.getSession().getAttribute("currentSysUser");
         if (currentSysUser == null)
+            //未登录返回信息
             return JSONObject.fromObject(new ResponseMessage(1, "", null)).toString();
+        //登录调用us.initPage返回信息
         return us.initPage(currentSysUser);
     }
 
     @RequestMapping(value = "/logout.do")
     public @ResponseBody
     Object logoutCtrl(HttpServletRequest request) {
+        //清空session
         request.getSession().invalidate();
+        //返回退出成功
         return JSONObject.fromObject(new ResponseMessage(0, "", null)).toString();
     }
 
     @RequestMapping(value = "/changePassword.do", produces = "text/html;charset=UTF-8")
     public @ResponseBody
     Object changePassword(HttpServletRequest request, @RequestBody String jsonstr) {
+        //获取新旧密码的值
         String oldPassword = (String) JSONObject.fromObject(jsonstr).get("oldPassword");
         String newPassword = (String) JSONObject.fromObject(jsonstr).get("newPassword");
+        //调用us.changePassword
         return JSONObject.fromObject(new ResponseMessage(0, us.changePassword(oldPassword, newPassword, (SysUser) request.getSession().getAttribute("currentSysUser")), null)).toString();
 
     }
@@ -122,25 +131,39 @@ public class UserCtrl {
     @RequestMapping(value = "/addAdmin.do", produces = "text/html;charset=UTF-8")
     public @ResponseBody
     Object addAdmin(HttpServletRequest request, @RequestBody String jsonstr) {
+        //获取添加管理员的信息
         RequestAction ra = (RequestAction) JSONObject.toBean(JSONObject.fromObject(jsonstr), RequestAction.class);
+        //调用us.addAdmin添加管理员
         return us.addAdmin(ra);
     }
 
+    /**
+     * 申请转入党员
+     *
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/fileUpload.do", produces = "text/html;charset=UTF-8")
     public @ResponseBody
     Object fileUpload(HttpServletRequest request) {
+        //获取当前登录用户
         SysUser currentSysUser = (SysUser) request.getSession().getAttribute("currentSysUser");
+        //获取用户路径
         String userPath = ups.checkUserPath(currentSysUser.getUserId());
+        //调用us.uploadFile上传文件
         return us.uploadFile(request, currentSysUser.getUserId(), userPath);
     }
 
     @RequestMapping(value = "/getImportedStatus.do", produces = "text/html;charset=UTF-8")
     public @ResponseBody
     Object getImportedStatus(HttpServletRequest request, Model model) {
+        //获取当前登录状态
         SysUser currentSysUser = (SysUser) model.asMap().get("currentSysUser");
         try {
+            //调用us.getImportedStatus获取转入状态
             return us.getImportedStatus(currentSysUser);
         } catch (Exception e) {
+            //捕获异常并输出
             e.printStackTrace();
             return JSONObject.fromObject(new ResponseMessage(1, e.getMessage(), null)).toString();
         }
@@ -150,17 +173,30 @@ public class UserCtrl {
     @RequestMapping(value = "/importNewUsers.do", produces = "text/html;charset=UTF-8")
     public @ResponseBody
     Object importNewUsers(HttpServletRequest request) {
+        //导入用户的文件存放地址
         String userPath = "D:/idea project/pmims/uploadPath/user/";
+        //调用us.importNewUsers导入用户
         return us.importNewUsers(request, userPath);
     }
 
+    /**
+     * 通过ID删除用户
+     *
+     * @param jsonstr
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "deleteById", produces = "text/html;charset=UTF-8")
     public @ResponseBody
     Object deleteById(@RequestBody String jsonstr, HttpServletRequest request) {
+        //获取JSON数据
         RequestAction ra = (RequestAction) JSONObject.toBean(JSONObject.fromObject(jsonstr), RequestAction.class);
+        //检查当前操作的用户的权限
         if (pcs.permissionCheck(5, request) || pcs.permissionCheck(6, request)) {
+            //调用us.deleteById删除用户并返回信息
             return us.deleteById(ra);
         } else {
+            //返回错误信息
             return JSONObject.fromObject(new ResponseMessage(1, "权限存在问题", null)).toString();
         }
     }
