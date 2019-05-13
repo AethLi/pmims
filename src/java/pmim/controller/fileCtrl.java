@@ -42,7 +42,9 @@ public class fileCtrl {
     @ResponseBody
     public String imageShow(HttpServletRequest request, HttpServletResponse response) {
         String path = null;
+        //拿到前台传入的文件Id
         String desId = request.getParameter("desId");
+        //判断文件类型来选择路径
         if (request.getParameter("type").equals("proposer")) {
             Proposer p = proposerMapper.selectProposerByProposerId(new Proposer(desId));
             path = userPathService.checkUserPath(p.getUserId());
@@ -63,6 +65,7 @@ public class fileCtrl {
         FileInputStream fis = null;
         OutputStream os = null;
         try {
+            //读取文件并写入流
             fis = new FileInputStream(path);
             os = response.getOutputStream();
             int count = 0;
@@ -95,7 +98,9 @@ public class fileCtrl {
     Object fileDown(HttpServletRequest request, HttpServletResponse response) {
         String path = null;
         String fileName = null;
+        //拿到前台传入的文件Id
         String desId = request.getParameter("desId");
+        //判断文件类型来选择路径
         if (request.getParameter("type").equals("proposer")) {
             Proposer p = proposerMapper.selectProposerByProposerId(new Proposer(desId));
             path = userPathService.checkUserPath(p.getUserId());
@@ -125,10 +130,14 @@ public class fileCtrl {
             fileName = importedPartyMember.getFileName();
         }
         if (path != null) {
+            //读取文件
             File file = new File(path);
+            //判断文件是否存在
             if (file.exists()) {
-                response.setContentType("application/force-download");// 设置强制下载不打开
+                // 设置强制下载不打开
+                response.setContentType("application/force-download");
                 try {
+                    //设置下载头
                     response.addHeader("Content-Disposition",
                             "attachment; fileName=" + URLEncoder.encode(fileName.substring(19), "utf-8"));// 设置文件名
                 } catch (UnsupportedEncodingException e) {
@@ -138,6 +147,7 @@ public class fileCtrl {
                 FileInputStream fis = null;
                 BufferedInputStream bis = null;
                 try {
+                    //将文件写入流
                     fis = new FileInputStream(file);
                     bis = new BufferedInputStream(fis);
                     OutputStream os = response.getOutputStream();

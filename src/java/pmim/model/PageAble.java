@@ -3,15 +3,15 @@ package pmim.model;
 
 //暂未使用
 public class PageAble {
-    int desPage;
-    int resLimit;
-    int desLimit=10;
-    int count;
-    int ststus;
-    int id;
-    int userId;
-    Object thisPage;
-    int userType;
+    int desPage;//目标页
+    int resLimit;//源页
+    int desLimit=10;//页大小
+    int count;//数据总数
+    int ststus;//状态
+    int id;//id
+    int userId;//用户Id
+    Object thisPage;//当前页
+    int userType;//用户类型
 
     public int getDesPage() {
         return desPage;
