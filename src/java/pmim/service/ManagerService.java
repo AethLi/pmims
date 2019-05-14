@@ -32,20 +32,43 @@ public class ManagerService {
     @Autowired
     ActivistHelperMapper activistHelperMapper;
 
+    /**
+     * 获取当前页的上传说明
+     *
+     * @param position 用于标识是哪一页
+     * @return
+     */
     public Object initManagerPages(Integer position) {
         UploadInstruction uploadInstruction = new UploadInstruction();
         uploadInstruction.setPosition(position);
         return uim.selectUploadInstructionByPosition(uploadInstruction);
     }
 
+    /**
+     * 保存上传说明
+     *
+     * @param ui
+     * @return
+     */
     public String saveUploadInstruction(UploadInstruction ui) {
         uim.insertUploadInstruction(ui);
         return "修改成功";
     }
 
+    /**
+     * 初始化学生信息
+     *
+     * @param pa
+     * @param request
+     * @return
+     */
     public Object initTablePages(PageAble pa, HttpServletRequest request) {
+        //新建一个返回值
         Map<String, Object> result = new HashMap<>();
+        //根据PageAble进行查询
         List<Map<String, Object>> users = userMapper.selectUsersByPage(pa);
+        //判断用户类型来计算用户已上传的数量
+        //此处存在性能瓶颈，解决方案，优化sql，使用左连接Left Join减少磁盘操作
         if (pa.getUserType() == 0) {
             for (Map<String, Object> m : users) {
                 List<Proposer> proposers = proposerMapper.selectProposerByIdUndeleted(new SysUser(m.get("userId").toString()));
@@ -77,6 +100,7 @@ public class ManagerService {
         } else if (pa.getUserType() == 10) {
 
         }
+        //查询该条user的student信息
         for (Map<String, Object> m : users) {
             SysUser user = new SysUser();
             user.setUserId((String) m.get("userId"));
@@ -89,13 +113,14 @@ public class ManagerService {
         }
         result.put("users", users);
         if (pcs.permissionCheck(6, request)) {
+            //判断当前管理员权限，返回一个值用作页面是否展示普通管理员列表
             result.put("isSuperAdmin", true);
         } else {
             result.put("isSuperAdmin", false);
         }
         return result;
     }
-
+    //点击申请人页，弹出模态框的数据
     public Object proposerModal(String desId) {
         Map<String, Object> result = new HashMap<>();
         Student student = studentMapper.selectStudentById(new SysUser(desId));
