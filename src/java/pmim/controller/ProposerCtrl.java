@@ -48,8 +48,9 @@ public class ProposerCtrl {
     @RequestMapping(value = "/fileUpload.do", produces = "text/html;charset=UTF-8")
     public @ResponseBody
     Object fileUpload(HttpServletRequest request) {
-        //获取文件该保存的路径
+        //取出上传的是本页的哪一个文件
         String index = request.getParameter("index");
+        //获取文件该保存的路径
         SysUser currentSysUser = (SysUser) request.getSession().getAttribute("currentSysUser");
         String userPath = ups.checkUserPath(currentSysUser.getUserId());
         //调用ps.uploadFile将文件存入磁盘

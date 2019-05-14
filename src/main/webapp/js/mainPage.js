@@ -10,6 +10,7 @@ angular.module('mainPageApp', ['ui.router', 'oc.lazyLoad'])
         $scope.iAmActive = function (who) {
             $scope.whoIsActive = who;
         };
+        //权限检查，用作标识页面是否显示切换栏
         $scope.permissionCheck = function (desPermission) {
             if ($scope.PermissionCode >= 5) {
                 return false;

@@ -19,11 +19,14 @@ import pmim.tools.Tools;
 
 import javax.servlet.http.HttpServletRequest;
 
+//@SessionAttributes用于存其他controller保留在服务端的信息 value变量名，request.getSession().getAttribute(value的变量名)即可取用，types类型
 @SessionAttributes(value = "currentSysUser", types = SysUser.class)
-@Controller //配置自动扫描，将这个类注解为controller，会响应http请求中requestMapping中相对应的内容
+//配置自动扫描，将这个类注解为controller，会响应http请求中requestMapping中相对应的内容
+@Controller
+//@RequestMapping的参数value ：与类上面value进行拼接，响应对应的.do
 @RequestMapping(value = "/user")
 public class UserCtrl {
-    //自动注入一个实体
+    //@Autowired会自动注入一个实体，在此处相当于private UserService us =new UserService();
     @Autowired
     private UserService us;
     @Autowired
@@ -39,23 +42,30 @@ public class UserCtrl {
      * @param model
      * @return
      */
+    //web.xml中的配置，会处理无对应文件时，所有.do的请求，会去controller里面找RequestMapping，其他都会丢弃
+    //@RequestMapping的参数value ：与类上面value进行拼接，响应对应的.do
+    //public-方法的公有类型   Object-返回类型 AAccountCtrl(参数)-方法名，
     @RequestMapping(value = "/AAccount.do", produces = "text/html;charset=UTF-8")
+    //@ResponseBody这个注解会将返回数据（字符串）写入到返回的数据的response里面，再前端取出数据使用
     public @ResponseBody
+    //@RequestBody注解会将请求的Body里面的内容作为一个字符串jsonstr取出使用
     Object AAccountCtrl(HttpServletRequest request, @RequestBody String jsonstr, Model model) {
         //获取此次发送请求的数据
+        // JSONObject.toBean(JSONObject.fromObject(jsonstr), RequestAction.class)将请求数据转为RequestAction
         RequestAction ra = (RequestAction) JSONObject.toBean(JSONObject.fromObject(jsonstr), RequestAction.class);
         //判断此次请求是登录还是注册
         if ("register".equals(ra.getAction())) {
             //获取当前创建用户的信息
-            SysUser u = (SysUser) JSONObject.toBean(JSONObject.fromObject(jsonstr), SysUser.class);
+           /* SysUser u = (SysUser) JSONObject.toBean(JSONObject.fromObject(jsonstr), SysUser.class);
             u.setStatus(0);
             u.setUserPermission(0);
             u.setUserPwd(Tools.toMD5(u.getUserPwd()));
             //获取当前创建用户的学生部分信息
             Student s = (Student) JSONObject.toBean(JSONObject.fromObject(jsonstr), Student.class);
             //直接将UserService.register()的返回值 返回
-            return us.register(u, s);
-            //判断此次请求是否时登录
+            return us.register(u, s);*/
+            //判断此次请求是否是登录
+            //equals用作判断实体对象是否是同样的值
         } else if ("login".equals(ra.getAction())) {
             //获取登录信息（包含用户名，一次性口令，验证码）
             SysUser u = (SysUser) JSONObject.toBean(JSONObject.fromObject(jsonstr), SysUser.class);
@@ -71,7 +81,9 @@ public class UserCtrl {
             //返回值为空时是无效登录，验证码或密码错误
             if (u == null) {
                 request.getSession().setAttribute("identifyingCode", "sdfbhsadfsaiofhsadiohfoiashfoisahdfoiashfosi");
-                //
+                //JSONObject.fromObject(任意的类的实体对象)会将实体对象，转化为一个json格式的对象（实质是一个map）；
+                //new ResponseMessage(status,message,model)定义了一个返回类型的实体对象，再作为formObject的参数；
+                //toString（）：Java所有类都有这个方法，在此处是将json格式的对象转换为一个json格式的字符串。
                 return JSONObject.fromObject(new ResponseMessage(1, "账号或用户名错误错误", null)).toString();
             }
             if (u.getStatus() != 0) {
@@ -95,7 +107,13 @@ public class UserCtrl {
         }
         return null;
     }
-
+    //@RequestBody 会将request-请求，中的body部分取出并转换为一个json格式字符串
+    /**
+     * 初始化頁面
+     * @param request
+     * @param jsonstr
+     * @return
+     */
     @RequestMapping(value = "/initPage.do", produces = "text/html;charset=UTF-8")
     public @ResponseBody
     Object initPageCtrl(HttpServletRequest request, @RequestBody String jsonstr) {
@@ -108,6 +126,11 @@ public class UserCtrl {
         return us.initPage(currentSysUser);
     }
 
+    /**
+     * 登出
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/logout.do")
     public @ResponseBody
     Object logoutCtrl(HttpServletRequest request) {
@@ -117,6 +140,12 @@ public class UserCtrl {
         return JSONObject.fromObject(new ResponseMessage(0, "", null)).toString();
     }
 
+    /**
+     * 改密码
+     * @param request
+     * @param jsonstr
+     * @return
+     */
     @RequestMapping(value = "/changePassword.do", produces = "text/html;charset=UTF-8")
     public @ResponseBody
     Object changePassword(HttpServletRequest request, @RequestBody String jsonstr) {
@@ -128,6 +157,12 @@ public class UserCtrl {
 
     }
 
+    /**
+     * 添加管理员
+     * @param request
+     * @param jsonstr
+     * @return
+     */
     @RequestMapping(value = "/addAdmin.do", produces = "text/html;charset=UTF-8")
     public @ResponseBody
     Object addAdmin(HttpServletRequest request, @RequestBody String jsonstr) {
@@ -154,6 +189,12 @@ public class UserCtrl {
         return us.uploadFile(request, currentSysUser.getUserId(), userPath);
     }
 
+    /**
+     * 获取导入状态
+     * @param request
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/getImportedStatus.do", produces = "text/html;charset=UTF-8")
     public @ResponseBody
     Object getImportedStatus(HttpServletRequest request, Model model) {
@@ -170,6 +211,11 @@ public class UserCtrl {
 
     }
 
+    /**
+     * 导入用户
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/importNewUsers.do", produces = "text/html;charset=UTF-8")
     public @ResponseBody
     Object importNewUsers(HttpServletRequest request) {

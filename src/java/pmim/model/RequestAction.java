@@ -1,11 +1,13 @@
 package pmim.model;
 
+//返回模型,用作简单解析请求的内容
 public class RequestAction {
-    String action;
-    String resId;
-    String desId;
-    String code;
+    String action;//标识此次请求实际是要做什么
+    String resId;//源Id
+    String desId;//目标Id
+    String code;//目标值
 
+    //Java Bean生成的代码
     public String getAction() {
         return action;
     }

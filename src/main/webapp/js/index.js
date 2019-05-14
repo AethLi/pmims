@@ -1,5 +1,5 @@
 /**
- * 初始化angular的APP
+ * 初始化angular的APP （angular是页面应用，app范围内都是angular的编译区块）
  * app.controller 会将此controller定义为一个作用域
  * app.controller中的两个参数，第一个是依赖注入，第二个是此controller的主方法
  * 进入页面后会执行controller中的主方法
