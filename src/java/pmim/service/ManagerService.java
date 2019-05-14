@@ -122,14 +122,20 @@ public class ManagerService {
     }
     //点击申请人页，弹出模态框的数据
     public Object proposerModal(String desId) {
+        //新建返回值
         Map<String, Object> result = new HashMap<>();
+        //获取此学生的student信息
         Student student = studentMapper.selectStudentById(new SysUser(desId));
+        //存入结果
         result.put("student", student);
+        //查询此学生所有上传的文件
         List<Proposer> proposers = proposerMapper.selectProposerByIdUndeleted(new SysUser(desId));
+        //存入结果
         result.put("proposers", proposers);
+        //返回结果
         return result;
     }
-
+    //同123行
     public Object activistModal(String desId) {
         Map<String, Object> result = new HashMap<>();
         Student student = studentMapper.selectStudentById(new SysUser(desId));
@@ -141,6 +147,7 @@ public class ManagerService {
         return result;
     }
 
+    //同123行
     public Object developmentModal(String desId) {
         Map<String, Object> result = new HashMap<>();
         Student student = studentMapper.selectStudentById(new SysUser(desId));
@@ -151,6 +158,7 @@ public class ManagerService {
     }
 
 
+    //同123行
     public Object probationaryModal(String desId) {
         Map<String, Object> result = new HashMap<>();
         Student student = studentMapper.selectStudentById(new SysUser(desId));
@@ -160,8 +168,11 @@ public class ManagerService {
         return result;
     }
 
+    //通过某一文件
     public String acceptItem(String desId, int code) {
+        //判断文件类型，申请人还是什么
         if (code == 0) {
+            //写入通过
             proposerMapper.acceptProposerById(new Proposer(desId));
         } else if (code == 1) {
             activistMapper.acceptActivistById(new Activist(desId));
@@ -175,7 +186,9 @@ public class ManagerService {
         return "已成功通过该项";
     }
 
+    //拒绝某一文件
     public String disAcceptItem(String desId, Integer code) {
+        //判断文件类型，申请人还是什么
         if (code == 0) {
             proposerMapper.disAcceptProposerById(new Proposer(desId));
         } else if (code == 1) {
@@ -205,18 +218,22 @@ public class ManagerService {
         return "已成功删除该项";
     }
 
+    //新建管理员
     public void insertAdmin(String desId) {
         userMapper.insertUser_register(new SysUser(desId, 5, 0));
     }
 
+    //更新管理员状态
     public void updateAdmin(String desId, String code) {
         userMapper.updateUserById(new SysUser(desId, 5, Integer.valueOf(code)));
     }
 
+    //删除管理员
     public void deleteAdmin(String desId) {
         userMapper.deleteUserById(new SysUser(desId, 0, 0));
     }
 
+    //提升用户身份，即申请人提升到积极分子等
     public void levelUpUser(String desId, String code) {
         SysUser user = new SysUser(desId, Integer.valueOf(code), 0);
         if ("1".equals(code)) {

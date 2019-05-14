@@ -1,7 +1,14 @@
+/**
+ * 初始化angular的APP
+ * app.controller 会将此controller定义为一个作用域
+ * app.controller中的两个参数，第一个是依赖注入，第二个是此controller的主方法
+ * 进入页面后会执行controller中的主方法
+ */
 var app = angular.module('loginApp', []);
 app.controller('loginCtrl', function ($scope) {
-    // 所有事件绑定的方法都有$scope，login（）->$scope.login=function();
+    //所有JS前段的$scope为初始化页面的所有需要双向绑定的量
     $scope.code = "";
+    // 所有事件绑定的方法都有$scope，login（）->$scope.login=function();
     $scope.login = function () {
         if ($scope.userId == null && $scope.userPwd == null && $scope.code == null) {
             //判断用户名，密码，验证码是否为空，为空时不允许登录，直接返回，不执行后续操作
@@ -56,6 +63,9 @@ app.controller('loginCtrl', function ($scope) {
     $scope.changeCodeImage = function () {
         document.getElementById("img").src = "ACAPTCHA.do?" + Math.random();
     };
+    /**
+     * 跳转到注册页，未启用
+     */
     $scope.jump2Register = function () {
         window.location.href = "./html/register.html";
     }

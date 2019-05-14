@@ -1,9 +1,12 @@
+//初始化app和controller
 angular.module('mainPageApp', ['ui.router', 'oc.lazyLoad'])
     .controller('mainPageCtrl', function ($scope, $state) {
+        //初始化变量的双向绑定
         $scope.userName = "";
         $scope.userPermission = "";
         $scope.whoIsActive = 0;
         $scope.PermissionCode = undefined;
+        //切换页面时使上面高亮条也切换
         $scope.iAmActive = function (who) {
             $scope.whoIsActive = who;
         };
