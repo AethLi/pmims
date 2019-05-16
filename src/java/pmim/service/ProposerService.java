@@ -99,6 +99,7 @@ public class ProposerService {
                         pm.insertProposer(new Proposer(UUID.randomUUID().toString().replace("-", "0"), currentUser, fileRandomName, Calendar.getInstance().getTimeInMillis(), 0, Integer.valueOf(index)));
                         //catch(需要捕获的异常种类)
                     } catch (IOException e) {
+                        e.printStackTrace();
                         return JSONObject.fromObject(new ResponseMessage(1, "上传失败", null)).toString();
                     }
                 }

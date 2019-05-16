@@ -1,6 +1,8 @@
 angular.module('managerPageApp', [])
     .controller("userOverviewCtrl", function ($scope, $http) {
+        //调试查看是否成功加载controller
         console.log("userOverview.js onload!");
+        //初始化页面需要双向绑定的变量
         $scope.me = "";
         $scope.sex;
         $scope.oldPassword = "";
@@ -8,18 +10,22 @@ angular.module('managerPageApp', [])
         $scope.newPassword1 = "";
         $scope.importMenu = false;
         $scope.fileName = "未选择文件";
+        //类似于$.ajax()，发送一个异步请求，申请转入党员
         $http({
             url: "/user/getImportedStatus.do"
         }).then(function s(result) {
 
         });
+        //展开上传栏
         $scope.importPartyMemberFile = function () {
             $scope.importMenu = true;
         };
+        //更换文件时更新输入框中文件名
         $scope.ChooseFileChange = function () {
             $scope.fileName = $("#fileSelect")[0].files[0].name;
             $scope.$digest();
         };
+        //上传文件按钮事件监听
         $scope.uploadFile = function () {
             //新建了一个列表form
             let form = new FormData();
@@ -38,6 +44,7 @@ angular.module('managerPageApp', [])
                 }
             })
         };
+        //获取当前学生信息，写入到
         $.ajax({
             type: 'post',
             contentType: 'application/json;charset=utf-8',
