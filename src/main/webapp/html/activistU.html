@@ -379,7 +379,7 @@
                             </tr>
                             </thead>
                             <tr ng-repeat="x in fileList6">
-                                <td style="width: 50%"><a ng-click="fileDownload(x.activistId)" style="cursor:pointer">{{x.fileName.substring(19)}}</a>
+                                <td style="width: 50%"><a ng-click="ImageShow(x.activistId)" style="cursor:pointer">{{x.fileName.substring(19)}}</a>
                                 </td>
                                 <td style="width: 30%">{{timeConvert(x.date.time)}}</td>
                                 <td style="width: 10%">{{statusConvert(x.status)}}</td>
@@ -414,7 +414,7 @@
                     <form id="activistForm6" style="display: none">
                         <input name="index" value="6">
                         <input type="file" id="activist6FileChoose"
-                               accept="application/msword,.docx"
+                               accept="image/*"
                                onchange="angular.element(this).scope().ChooseFileChange('activist6FileChoose',6)"
                                ng-model="activist6FileChoose" name="file"/>
                         <input id="activist6FileUpload" type="button" ng-click="upload('activistForm6')">
@@ -472,7 +472,7 @@
                     <form id="activistForm7" style="display: none">
                         <input name="index" value="7">
                         <input type="file" id="activist7FileChoose"
-                               accept="application/msword,.docx"
+                               accept="application/zip"
                                onchange="angular.element(this).scope().ChooseFileChange('activist7FileChoose',7)"
                                ng-model="activist7FileChoose" name="file"/>
                         <input id="activist7FileUpload" type="button" ng-click="upload('activistForm7')">

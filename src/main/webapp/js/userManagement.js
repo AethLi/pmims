@@ -19,6 +19,7 @@ angular.module('mainPageApp', [])
                 processData: false,
                 success: function (result) {
                     alert(result.message);
+                    window.location.reload();
                 }
             })
         };
@@ -92,6 +93,8 @@ angular.module('mainPageApp', [])
             console.log("click on " + userId);
         };
         $scope.addAdmin = function () {
+            //$('')是一个jQuery的选择器，#表示ID选择器，.是class选择器
+            //.modal('show')是调用bootstrap的模态框展示
             $('#addAdminModal').modal("show");
         };
         $scope.addAdminSave = function () {
@@ -107,9 +110,11 @@ angular.module('mainPageApp', [])
                 }),
                 success: function (result) {
                     alert(result.message);
+                    window.location.reload();//刷新页面
                 }
             });
         };
+        //修改管理员的状态：启用0   停用1   删除2
         $scope.actionAdminUsers = function (userId, code) {
             if (code === 0) {
                 $.ajax({

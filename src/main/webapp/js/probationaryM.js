@@ -207,6 +207,22 @@ angular.module('managerPageApp', [])
                         }
                     }
                 })
+            } else if (action == 2) {
+                $.ajax({
+                    type: 'post',
+                    contentType: 'application/json;charset=utf-8',
+                    dataType: "json",
+                    async: true,
+                    url: '/user/deleteById.do',
+                    data: JSON.stringify({
+                        "desId": userId,
+                    }),
+                    success: function (result) {
+                        if (result.status === 0) {
+                            alert(result.message);
+                        }
+                    }
+                })
             }
         };
         $scope.timeConvert = function (time = +new Date()) {

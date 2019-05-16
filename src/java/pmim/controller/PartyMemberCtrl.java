@@ -32,7 +32,7 @@ public class PartyMemberCtrl {
      * @param jsonstr
      * @return
      */
-    @RequestMapping(value = "/user.do")
+    @RequestMapping(value = "/user.do", produces = "text/html;charset=UTF-8")
     public Object partyMemberUserCtrl(HttpServletRequest request, @RequestBody String jsonstr) {
         //获取请求内容
         RequestAction ra = (RequestAction) JSONObject.toBean(JSONObject.fromObject(jsonstr), RequestAction.class);
@@ -67,12 +67,17 @@ public class PartyMemberCtrl {
     @RequestMapping(value = "/fileUpload.do", produces = "text/html;charset=UTF-8")
     public @ResponseBody
     Object fileUpload(HttpServletRequest request) {
-        String index = request.getParameter("index");
         SysUser currentSysUser = (SysUser) request.getSession().getAttribute("currentSysUser");
         String userPath = "D:/idea project/pmims/uploadPath/dues/";
         return pms.uploadFile(request, currentSysUser.getUserId(), userPath);
     }
 
+    /**
+     * 未启用
+     *
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/getImportPartyMember", produces = "text/html;charset=UTF-8")
     public @ResponseBody
     Object getImportPartyMember(HttpServletRequest request) {
@@ -87,6 +92,13 @@ public class PartyMemberCtrl {
         }
     }
 
+    /**
+     * 同意转入
+     *
+     * @param request
+     * @param jsonstr
+     * @return
+     */
     @RequestMapping(value = "/acceptImportPartyMember.do", produces = "text/html;charset=UTF-8")
     public @ResponseBody
     Object acceptImportPartyMember(HttpServletRequest request, @RequestBody String jsonstr) {
@@ -103,6 +115,13 @@ public class PartyMemberCtrl {
         }
     }
 
+    /**
+     * 不同意转入
+     *
+     * @param request
+     * @param jsonstr
+     * @return
+     */
     @RequestMapping(value = "/disAcceptImportPartyMember.do", produces = "text/html;charset=UTF-8")
     public @ResponseBody
     Object disAcceptImportPartyMember(HttpServletRequest request, @RequestBody String jsonstr) {
@@ -119,6 +138,12 @@ public class PartyMemberCtrl {
         }
     }
 
+    /**
+     * 未启用
+     *
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/getMyImport.do", produces = "text/html;charset=UTF-8")
     public @ResponseBody
     Object getMyImport(HttpServletRequest request) {
@@ -130,6 +155,12 @@ public class PartyMemberCtrl {
         }
     }
 
+    /**
+     * 同意转出，此处调用service层处理逻辑
+     *
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/applyForExport.do", produces = "text/html;charset=UTF-8")
     public @ResponseBody
     Object applyForExport(HttpServletRequest request) {
@@ -141,6 +172,13 @@ public class PartyMemberCtrl {
         }
     }
 
+    /**
+     * 操作是否同意转出
+     *
+     * @param request
+     * @param jsonstr
+     * @return
+     */
     @RequestMapping(value = "exportPartyMemberAction.do", produces = "text/html;charset=UTF-8")
     public @ResponseBody
     Object exportPartyMemberAction(HttpServletRequest request, @RequestBody String jsonstr) {

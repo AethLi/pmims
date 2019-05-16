@@ -274,10 +274,14 @@ public class UserService {
                 //插入用户信息
                 um.insertUser_register(user);
                 //新建学生信息
-                Student student = new Student();
-                student.setUserId(user.getUserId());
-                //插入学生信息
-                sm.insertId(student);
+                try{
+                    Student student = new Student();
+                    student.setUserId(user.getUserId());
+                    //插入学生信息
+                    sm.insertId(student);
+                }catch (Exception e){
+//                    e.printStackTrace();
+                }
             }
         }
     }

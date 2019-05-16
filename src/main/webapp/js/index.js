@@ -31,7 +31,7 @@ app.controller('loginCtrl', function ($scope) {
         //async，true是异步，false是同步
         //同步是指：发送方发出数据后，等接收方发回响应以后才发下一个数据包的通讯方式。
         //异步是指：发送方发出数据后，不等接收方发回响应，接着发送下个数据包的通讯方式。
-        //success是一个回调函数，请求成果时，会接受一个result，
+        //success是一个回调函数，请求成功时，会接受一个result，
         $.ajax({
             type: 'post',
             contentType: 'application/json;charset=utf-8',

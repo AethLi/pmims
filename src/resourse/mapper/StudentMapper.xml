@@ -25,6 +25,6 @@
         SELECT userId, status from `user` where userPermission=5;
     </select>
     <insert id="insertId" parameterType="java.util.Map">
-        insert into student ('userId') values (#{userId});
+        insert into student (`userId`) values (#{userId});
     </insert>
 </mapper>

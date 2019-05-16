@@ -100,7 +100,7 @@ public class ManagerService {
         } else if (pa.getUserType() == 10) {
 
         }
-        //查询该条user的student信息
+        //查询该条用户的student信息
         for (Map<String, Object> m : users) {
             SysUser user = new SysUser();
             user.setUserId((String) m.get("userId"));
@@ -186,7 +186,7 @@ public class ManagerService {
         return "已成功通过该项";
     }
 
-    //拒绝某一文件
+    //不通过某一文件
     public String disAcceptItem(String desId, Integer code) {
         //判断文件类型，申请人还是什么
         if (code == 0) {
@@ -203,6 +203,7 @@ public class ManagerService {
         return "已成功退回该项";
     }
 
+    //删除文件某一文件，实际未启用
     public String deleteItem(String desId, Integer code) {
         if (code == 0) {
             proposerMapper.deleteProposerById(new Proposer(desId));
@@ -218,12 +219,20 @@ public class ManagerService {
         return "已成功删除该项";
     }
 
-    //新建管理员
+    /**
+     *
+     * @param desId 需要新增的管理员的Id
+     */
     public void insertAdmin(String desId) {
+        //写入数据库
         userMapper.insertUser_register(new SysUser(desId, 5, 0));
     }
 
-    //更新管理员状态
+    /**
+     *
+     * @param desId 需要更新的管理员的Id
+     * @param code 切换的状态
+     */
     public void updateAdmin(String desId, String code) {
         userMapper.updateUserById(new SysUser(desId, 5, Integer.valueOf(code)));
     }
@@ -233,11 +242,18 @@ public class ManagerService {
         userMapper.deleteUserById(new SysUser(desId, 0, 0));
     }
 
-    //提升用户身份，即申请人提升到积极分子等
+    /**
+     *
+     * @param desId 需要通过人的Id
+     * @param code 目标权限
+     */
     public void levelUpUser(String desId, String code) {
         SysUser user = new SysUser(desId, Integer.valueOf(code), 0);
+        //判断需要变更的目标权限
         if ("1".equals(code)) {
+            //写入变更时间
             user.setActivistDate(new Timestamp(System.currentTimeMillis()));
+            //写入数据库
             userMapper.update2Activist(user);
         } else if ("2".equals(code)) {
             user.setDevelopmentDate(new Timestamp(System.currentTimeMillis()));

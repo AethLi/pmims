@@ -58,7 +58,7 @@ public class ActivistCtrl {
         //获取文件该保存的路径
         SysUser currentSysUser = (SysUser) request.getSession().getAttribute("currentSysUser");
         String userPath = ups.checkUserPath(currentSysUser.getUserId());
-        //调用ps.uploadFile将文件存入磁盘
+        //调用ps.uploadFile将文件存入磁盘，把结果返回给js
         return as.uploadFile(request, currentSysUser.getUserId(), userPath, index);
     }
 

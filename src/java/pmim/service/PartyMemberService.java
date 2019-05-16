@@ -43,10 +43,33 @@ public class PartyMemberService {
 
     public Object init(SysUser currentSysUser) {
         if (currentSysUser.getUserPermission() == 5 || currentSysUser.getUserPermission() == 6) {
+            //创建返回值
+            List<Map<String, Object>> results = new ArrayList<>();
+            //查询所有党员
             List<SysUser> users = userMapper.selectUserByPermission(new SysUser("", 4, 0));
-            return users;
+            //遍历所有的党员
+            for (SysUser u : users) {
+                u.setUserPwd("");
+                //初始化单个返回值
+                Map<String, Object> result;
+                try {
+                    //将单个党员的SysUser信息转化为Map
+                    result = ObjectUtils.convertBean(u);
+                    //查询该人的student信息，并将名字存入单个返回结果
+                    Student student = studentMapper.selectStudentById(u);
+                    result.put("studentName", student.getName());
+                    //将单个返回结果存入最终返回结果
+                    results.add(result);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+            return results;
         } else {
             SysUser thisUser = userMapper.selectUser_withNoPwd(currentSysUser);
+            //调用getDatePoor（）计算入党多久，网上学习的
             return getDatePoor(System.currentTimeMillis(), thisUser.getPartyMemberDate().getTime());
         }
     }
@@ -60,22 +83,30 @@ public class PartyMemberService {
         return String.valueOf(day);
     }
 
+    /**
+     * 获取党费记录
+     *
+     * @return
+     * @throws Exception
+     */
     public Object getShipDue() throws Exception {
         List<Map<String, Object>> results = new ArrayList<>();
+        //获取导入记录
         List<PartyMemberShipDues> partyMemberShipDues = partyMemberShipDuesMapper.selectAll();
+        //遍历导入记录
         for (PartyMemberShipDues p : partyMemberShipDues) {
             Map<String, Object> result = new HashMap<>();
+            //添加用户的Id到党费信息中
             result.put("userId", p.getUserId());
-//            Student student=new Student();
-//            student.setUserId(p.getUserId());
             try {
+                //获取这条用户信息的student信息，并将用户名放入党费信息中
                 SysUser user = new SysUser();
                 user.setUserId(p.getUserId());
                 Student student = studentMapper.selectStudentById(user);
                 result.put("name", student.getName());
-                result.put("date", p.getDate());
-                result.put("amount", p.getAmount());
-                result.put("createBy", p.getCreateBy());
+                result.put("date", p.getDate());//时间
+                result.put("amount", p.getAmount());//金额
+                result.put("createBy", p.getCreateBy());//收费人
             } catch (NullPointerException e) {
                 e.printStackTrace();
             }
@@ -84,6 +115,14 @@ public class PartyMemberService {
         return JSONObject.fromObject(new ResponseMessage(0, "", results)).toString();
     }
 
+    /**
+     * 导入党费记录
+     *
+     * @param request  用于解析文件上传的实体对象
+     * @param userId   当前用户Id
+     * @param userPath 路径
+     * @return
+     */
     public Object uploadFile(HttpServletRequest request, String userId, String userPath) {
         File proposerPath = new File(userPath);
         if (!proposerPath.exists()) {
@@ -105,6 +144,7 @@ public class PartyMemberService {
                         e.printStackTrace();
                     }
                     try {
+                        //将导入信息写入数据库，网上学习
                         SpreadsheetMLPackage importFile = SpreadsheetMLPackage.load(new File(path));
                         WorkbookPart workbookPart = importFile.getWorkbookPart();
                         WorksheetPart sheet = workbookPart.getWorksheet(0);
@@ -118,9 +158,17 @@ public class PartyMemberService {
                 }
             }
         }
-        return JSONObject.fromObject(new ResponseMessage(0,"操作成功",null)).toString();
+        return JSONObject.fromObject(new ResponseMessage(0, "操作成功", null)).toString();
     }
 
+    /**
+     * 就是146行实际进行操作的
+     *
+     * @param sheet
+     * @param formatter
+     * @param userId
+     * @throws Docx4JException
+     */
     private void insertContent(WorksheetPart sheet, DataFormatter formatter, String userId) throws Docx4JException {
 
         Worksheet ws = sheet.getContents();
@@ -148,15 +196,25 @@ public class PartyMemberService {
         }
     }
 
+    /**
+     * 获取转入的党员信息
+     *
+     * @return
+     * @throws Exception
+     */
     public Object getImportPartyMember() throws Exception {
+        //查询所有转入党员
         List<ImportedPartyMember> importedPartyMembers = importedPartyMemberMapper.selectWithAll_New();
-        List<Map<String, Object>> result = new ArrayList<>();
+        //新建了一个最终结果
+        List<Map<String, Object>> results = new ArrayList<>();
+        //遍历所有导入党员，并将他的名字放入最终结果
         for (ImportedPartyMember ipm : importedPartyMembers) {
-            Map<String, Object> mipm = ObjectUtils.convertBean(ipm);
+            Map<String, Object> mipm = ObjectUtils.convertBean(ipm); //将转入党员信息转换为Map，方便修改
             SysUser user = new SysUser();
             user.setUserId(ipm.getUserId());
             Student student = studentMapper.selectStudentById(user);
-            result.add(mipm);
+            //将每一条信息放入最终结果
+            results.add(mipm);
             try {
                 mipm.put("name", student.getName());
             } catch (Exception e) {
@@ -164,15 +222,24 @@ public class PartyMemberService {
             }
 
         }
-        return JSONObject.fromObject(new ResponseMessage(0, "", result)).toString();
+        return JSONObject.fromObject(new ResponseMessage(0, "", results)).toString();
     }
 
+    /**
+     * 同意转入
+     *
+     * @param userId
+     * @return
+     */
     public Object acceptImportPartyMember(String userId) {
+        //查询同意转入的人的user信息
         SysUser sysUser = new SysUser();
         sysUser.setUserId(userId);
         sysUser.setUserPermission(7);
         sysUser.setPartyMemberDate(new Timestamp(new java.util.Date().getTime()));
+        //同意转入并写入数据库
         userMapper.update2PartyMember(sysUser);
+        //避免重复查询到此条信息
         ImportedPartyMember ipm = new ImportedPartyMember();
         ipm.setUserId(userId);
         ipm.setStatus(1);
@@ -180,6 +247,12 @@ public class PartyMemberService {
         return JSONObject.fromObject(new ResponseMessage(0, "操作成功", null)).toString();
     }
 
+    /**
+     * 不同意转入
+     *
+     * @param userId
+     * @return
+     */
     public Object disAcceptImportPartyMember(String userId) {
         ImportedPartyMember ipm = new ImportedPartyMember();
         ipm.setUserId(userId);
@@ -188,6 +261,12 @@ public class PartyMemberService {
         return JSONObject.fromObject(new ResponseMessage(0, "操作成功", null)).toString();
     }
 
+    /**
+     * 实际未启用
+     *
+     * @param currentUser
+     * @return
+     */
     public Object getMyImport(SysUser currentUser) {
         Map<String, Object> result = new HashMap<>();
         result.put("status", 0);
@@ -203,17 +282,31 @@ public class PartyMemberService {
         return result;
     }
 
+    /**
+     * 申请转出
+     *
+     * @param currentSysUser
+     * @return
+     */
     public Object applyForExport(SysUser currentSysUser) {
         currentSysUser.setUserPermission(10);
         userMapper.updatePermissionById(currentSysUser);
         return JSONObject.fromObject(new ResponseMessage(0, "申请成功", null)).toString();
     }
 
+
+    /**
+     * 操作是否同意转出
+     * @param ra
+     * @return
+     */
     public Object exportPartyMemberAction(RequestAction ra) {
         SysUser user = new SysUser();
         user.setUserId(ra.getDesId());
+        //同意转出
         if (ra.getCode().equals("0")) {
             user.setUserPermission(11);
+            //不同意转出
         } else {
             user.setUserPermission(4);
         }
