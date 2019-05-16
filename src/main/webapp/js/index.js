@@ -37,6 +37,7 @@ app.controller('loginCtrl', function ($scope) {
             contentType: 'application/json;charset=utf-8',
             dataType: "json",
             async: true,
+            //连接后端
             url: '/user/AAccount.do',
             //JSON.stringify()方法将JSON格式的变量转化为字符串
             data: JSON.stringify({
@@ -47,6 +48,7 @@ app.controller('loginCtrl', function ($scope) {
             }),
             success: function (result) {
                 if (result.status === 0)
+                    //校验身份，返回一个结果，再做一个重定向
                     window.location.href = result.message;
                 else if (result.status === 1) {
                     alert(result.message);

@@ -29,7 +29,7 @@ public class UserPathService {
      * @return
      */
     public String checkUserPath(String userId) {
-        //获取当前用户的user信息
+        //获取当前用户的user信息存在sysuser
         SysUser currentSysUser = new SysUser(userId);
         currentSysUser = um.selectUser_withNoPwd(currentSysUser);
         //无已生成目录时重新生成一个随机目录，写入数据库
@@ -40,20 +40,25 @@ public class UserPathService {
 //                student.setUserId(currentSysUser.getUserId());
 //                sm.insertStudent(student);
 //            }
+            //对用户的userID进行md5加密
             String userPath = Tools.toMD5(currentSysUser.getUserId()) + currentSysUser.getUserId() + "_" + Calendar.getInstance().get(Calendar.YEAR) + (new RandomDataGenerator()).nextInt(0, 100);
+           //为当前系统用户设置文件存储路径
             currentSysUser.setUserPath(userPath);
+            //更新用户在数据库的存储路径
             um.updateUserPath(currentSysUser);
-            //创建目录
+            //在本地创建目录
             File file = new File("D:/idea project/pmims/uploadPath/" + userPath + "/");
+            //判断路径不存在
             if (!file.exists()) {
+                //创建文件夹
                 file.mkdir();
             }
             //返回路径
             return file.getPath() + "/";
         } else {
             //返回路径
-            File file = new File("D:/idea project/pmims/uploadPath/" + currentSysUser.getUserPath()  + "/");
-            if (!file.exists()) {
+            File file=new File("D:/idea project/pmims/uploadPath/"+currentSysUser.getUserPath()+"/");
+            if(!file.exists()){
                 file.mkdir();
             }
             return "D:/idea project/pmims/uploadPath/" + currentSysUser.getUserPath() + "/";

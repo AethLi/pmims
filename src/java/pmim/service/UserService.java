@@ -66,7 +66,7 @@ public class UserService {
             //未查询到时返回空
             return null;
         }
-        //判断一次性口令是否正确
+        //判断一次性口令是否正确,把数据库的密码拿出来进行MD5处理后与前端密码是否相等
         if (u.getUserPwd().equals(Tools.toMD5(desSysUser.getUserPwd() + identifyingCode))) {
             return desSysUser;
         }
@@ -162,7 +162,7 @@ public class UserService {
         if (!proposerPath.exists()) {
             proposerPath.mkdir();
         }
-        //获取multipart解析
+        //文件上传的核心代码是参照网上的，获取multipart解析（165-198）
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(
                 request.getSession().getServletContext());
         if (multipartResolver.isMultipart(request)) {
@@ -208,7 +208,7 @@ public class UserService {
     }
 
     public Object importNewUsers(HttpServletRequest request, String pathstr) {
-        //基本同于本页158行
+        //获取磁盘存入路径
         File filePath = new File(pathstr);
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(
                 request.getSession().getServletContext());

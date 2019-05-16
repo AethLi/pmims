@@ -8,11 +8,14 @@ angular.module('mainPageApp', ['ui.router', 'oc.lazyLoad'])
         $scope.PermissionCode = undefined;
         //切换页面时使上面高亮条也切换
         $scope.iAmActive = function (who) {
+            //判断用户身份是积极分子还是发展对象或者后续身份。
             $scope.whoIsActive = who;
         };
         //权限检查，用作标识页面是否显示切换栏
         $scope.permissionCheck = function (desPermission) {
-
+            if ($scope.PermissionCode >= 5) {
+                return false;
+            }
             if ($scope.PermissionCode < desPermission) {
                 return false;
             } else

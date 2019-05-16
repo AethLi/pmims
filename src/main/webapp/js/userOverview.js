@@ -21,8 +21,11 @@ angular.module('managerPageApp', [])
             $scope.$digest();
         };
         $scope.uploadFile = function () {
+            //新建了一个列表form
             let form = new FormData();
+            //append是往form添加用户选择的一个文件
             form.append("file", $("#fileSelect")[0].files[0]);
+            //发起请求
             $.ajax({
                 type: 'post',
                 url: '/user/fileUpload.do',

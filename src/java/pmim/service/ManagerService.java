@@ -62,7 +62,7 @@ public class ManagerService {
      * @param request
      * @return
      */
-    public Object  initTablePages(PageAble pa, HttpServletRequest request) {
+    public Object initTablePages(PageAble pa, HttpServletRequest request) {
         //新建一个返回值
         Map<String, Object> result = new HashMap<>();
         //根据PageAble进行查询
@@ -135,7 +135,7 @@ public class ManagerService {
         //返回结果
         return result;
     }
-    //同123行
+    //点击积极分子页，弹出模态框的数据
     public Object activistModal(String desId) {
         Map<String, Object> result = new HashMap<>();
         Student student = studentMapper.selectStudentById(new SysUser(desId));
@@ -147,7 +147,7 @@ public class ManagerService {
         return result;
     }
 
-    //同123行
+    //点击发展对象页，弹出模态框的数据
     public Object developmentModal(String desId) {
         Map<String, Object> result = new HashMap<>();
         Student student = studentMapper.selectStudentById(new SysUser(desId));
@@ -158,7 +158,7 @@ public class ManagerService {
     }
 
 
-    //同123行
+    //点击预备党员页，弹出模态框的数据
     public Object probationaryModal(String desId) {
         Map<String, Object> result = new HashMap<>();
         Student student = studentMapper.selectStudentById(new SysUser(desId));

@@ -91,7 +91,7 @@ public class ProposerService {
                     }
                     //根据这个文件要存入的磁盘的位置和文件名，生成一个字符串
                     String path = proposerPath.getPath() + "/" + fileRandomName;
-                    //捕获异常
+                    //捕获异常（上传）
                     try {
                         //存入文件，将文件装入一个空文件
                         file.transferTo(new File(path));

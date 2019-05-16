@@ -34,6 +34,7 @@ public class PartyMemberCtrl {
      */
     @RequestMapping(value = "/user.do")
     public Object partyMemberUserCtrl(HttpServletRequest request, @RequestBody String jsonstr) {
+        //获取请求内容
         RequestAction ra = (RequestAction) JSONObject.toBean(JSONObject.fromObject(jsonstr), RequestAction.class);
         if ("init".equals(ra.getAction())) {
             return JSONObject.fromObject(new ResponseMessage(0, "", pms.init((SysUser) request.getSession().getAttribute("currentSysUser")))).toString();

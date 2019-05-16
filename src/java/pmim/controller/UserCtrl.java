@@ -43,7 +43,7 @@ public class UserCtrl {
      * @return
      */
     //web.xml中的配置，会处理无对应文件时，所有.do的请求，会去controller里面找RequestMapping，其他都会丢弃
-    //@RequestMapping的参数value ：与类上面value进行拼接，响应对应的.do
+    //@RequestMapping的参数value ：与类上面value进行拼接，响应对应的.do，produces是限定返回值类型---此处返回一个text/ html格式，字符编码为utf-8的数据包
     //public-方法的公有类型   Object-返回类型 AAccountCtrl(参数)-方法名，
     @RequestMapping(value = "/AAccount.do", produces = "text/html;charset=UTF-8")
     //@ResponseBody这个注解会将返回数据（字符串）写入到返回的数据的response里面，再前端取出数据使用
@@ -54,6 +54,7 @@ public class UserCtrl {
         // JSONObject.toBean(JSONObject.fromObject(jsonstr), RequestAction.class)将请求数据转为RequestAction
         RequestAction ra = (RequestAction) JSONObject.toBean(JSONObject.fromObject(jsonstr), RequestAction.class);
         //判断此次请求是登录还是注册
+        // equals用作判断实体对象是否是同样的值
         if ("register".equals(ra.getAction())) {
             //获取当前创建用户的信息
            /* SysUser u = (SysUser) JSONObject.toBean(JSONObject.fromObject(jsonstr), SysUser.class);
@@ -64,6 +65,7 @@ public class UserCtrl {
             Student s = (Student) JSONObject.toBean(JSONObject.fromObject(jsonstr), Student.class);
             //直接将UserService.register()的返回值 返回
             return us.register(u, s);*/
+
             //判断此次请求是否是登录
             //equals用作判断实体对象是否是同样的值
         } else if ("login".equals(ra.getAction())) {
@@ -74,9 +76,12 @@ public class UserCtrl {
                 //将验证码失效化
                 request.getSession().setAttribute("identifyingCode", "oishfioasdhfdsofhiodshfasoifhoadhfasohoidsaf");
                 //验证码错误则返回信息
+                //JSONObject.fromObject(任意的类的实体对象)会将实体对象，转化为一个json格式的对象（实质是一个map）；
+                //new ResponseMessage(status,message,model)定义了一个返回类型的实体对象，再作为formObject的参数；
+                //toString（）：Java所有类都有这个方法，在此处是将json格式的对象转换为一个json格式的字符串。
                 return JSONObject.fromObject(new ResponseMessage(1, "验证码错误", null)).toString();
             }
-            //验证登录信息
+            //验证登录信息，U——用户是否在数据库存在
             u = us.login(u, request.getSession().getAttribute("identifyingCode").toString());
             //返回值为空时是无效登录，验证码或密码错误
             if (u == null) {
@@ -84,7 +89,7 @@ public class UserCtrl {
                 //JSONObject.fromObject(任意的类的实体对象)会将实体对象，转化为一个json格式的对象（实质是一个map）；
                 //new ResponseMessage(status,message,model)定义了一个返回类型的实体对象，再作为formObject的参数；
                 //toString（）：Java所有类都有这个方法，在此处是将json格式的对象转换为一个json格式的字符串。
-                return JSONObject.fromObject(new ResponseMessage(1, "账号或用户名错误错误", null)).toString();
+                return JSONObject.fromObject(new ResponseMessage(1, "账号或密码错误", null)).toString();
             }
             if (u.getStatus() != 0) {
                 return JSONObject.fromObject(new ResponseMessage(1, "账户停用", null)).toString();
@@ -181,9 +186,9 @@ public class UserCtrl {
     @RequestMapping(value = "/fileUpload.do", produces = "text/html;charset=UTF-8")
     public @ResponseBody
     Object fileUpload(HttpServletRequest request) {
-        //获取当前登录用户
+        //获取当前登录用户，因为之前的登录信息放在SessionAttributes
         SysUser currentSysUser = (SysUser) request.getSession().getAttribute("currentSysUser");
-        //获取用户路径
+        //获取属于用户的存储路径
         String userPath = ups.checkUserPath(currentSysUser.getUserId());
         //调用us.uploadFile上传文件
         return us.uploadFile(request, currentSysUser.getUserId(), userPath);
