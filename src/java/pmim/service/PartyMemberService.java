@@ -118,7 +118,7 @@ public class PartyMemberService {
                 }
             }
         }
-        return null;
+        return JSONObject.fromObject(new ResponseMessage(0,"操作成功",null)).toString();
     }
 
     private void insertContent(WorksheetPart sheet, DataFormatter formatter, String userId) throws Docx4JException {

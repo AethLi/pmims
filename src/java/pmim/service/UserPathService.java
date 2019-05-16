@@ -52,6 +52,10 @@ public class UserPathService {
             return file.getPath() + "/";
         } else {
             //返回路径
+            File file = new File("D:/idea project/pmims/uploadPath/" + currentSysUser.getUserPath()  + "/");
+            if (!file.exists()) {
+                file.mkdir();
+            }
             return "D:/idea project/pmims/uploadPath/" + currentSysUser.getUserPath() + "/";
         }
     }

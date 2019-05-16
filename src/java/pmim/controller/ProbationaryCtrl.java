@@ -23,7 +23,7 @@ public class ProbationaryCtrl {
 
     @RequestMapping(value = "/user.do", produces = "text/html;charset=UTF-8")
     public @ResponseBody
-    Object activistUser(HttpServletRequest request, @RequestBody String jsonstr) {
+    Object probationaryUser(HttpServletRequest request, @RequestBody String jsonstr) {
         RequestAction ra = (RequestAction) JSONObject.toBean(JSONObject.fromObject(jsonstr), RequestAction.class);
         if ("initProbationaryUserPage".equals(ra.getAction())) {
             return ps.initUserPage((SysUser) request.getSession().getAttribute("currentSysUser"));

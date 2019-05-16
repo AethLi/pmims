@@ -31,34 +31,12 @@ angular.module('managerPageApp', [])
 
         $scope.fileAction = function (index, desId) {
             if (index === 0) {
-                $.ajax({
-                    type: 'post',
-                    contentType: 'application/json;charset=utf-8',
-                    dataType: "json",
-                    async: true,
-                    url: '/file/imageShowUrl.do',
-                    data: JSON.stringify({
-                        desId: desId,
-                        action: "proposer"
-                    }),
-                    success: function () {
-                    }
-                })
-            } else if (index === 1) {
-                $.ajax({
-                    type: 'post',
-                    contentType: 'application/json;charset=utf-8',
-                    dataType: "json",
-                    async: true,
-                    url: '/file/fileDownUrl.do',
-                    data: JSON.stringify({
-                        "desId": desId,
-                    }),
-                    success: function () {
-                    }
-                })
+                window.open("/html/imageShow.html?desId=" + desId + "&type=activist");
             }
-        }
+            else if (index === 1) {
+                window.open("/file/fileDownload.do?desId=" + desId + "&type=activist");
+            }
+        };
         $scope.saveUploadInstruction = function (index) {
             var uploadInstruction = "";
             if (index === 0) {
@@ -90,7 +68,7 @@ angular.module('managerPageApp', [])
                     "instruction": uploadInstruction
                 }),
                 success: function (result) {
-
+                    alert(result.message);
                 }
             });
         };

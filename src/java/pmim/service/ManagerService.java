@@ -62,7 +62,7 @@ public class ManagerService {
      * @param request
      * @return
      */
-    public Object initTablePages(PageAble pa, HttpServletRequest request) {
+    public Object  initTablePages(PageAble pa, HttpServletRequest request) {
         //新建一个返回值
         Map<String, Object> result = new HashMap<>();
         //根据PageAble进行查询

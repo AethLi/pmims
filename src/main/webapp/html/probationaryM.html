@@ -33,7 +33,7 @@
                 <span style="font-size: 20px" ng-click="saveUploadInstruction(3)">保存</span>
             </label>
         </div>
-        <div style="margin-top: 50px" class="well">所有申请人列表</div>
+        <div style="margin-top: 50px" class="well">所有预备党员列表</div>
         <div>
             <table class="table" style="background: #b3b3b3">
                 <thead>
@@ -123,7 +123,7 @@
                 <tbody>
                 <tr ng-repeat="x in probationaryFile1">
                     <td style="text-overflow:ellipsis;width: 200px;cursor: pointer">
-                        <a ng-click="fileAction(0,x.probationaryId)">{{x.fileName.substring(19)}}</a>
+                        <a ng-click="fileAction(1,x.probationaryId)">{{x.fileName.substring(19)}}</a>
                     </td>
                     <td>
                         {{timeConvert(x.date.time)}}
@@ -148,23 +148,23 @@
                     <td style="width: 60px">审核</td>
                 </tr>
                 </thead>
-            <tbody>
-            <tr ng-repeat="x in probationaryFile2">
-                <td style="text-overflow:ellipsis;width: 200px;cursor: pointer">
-                    <a ng-click="fileAction(0,x.probationaryId)">{{x.fileName.substring(19)}}</a>
-                </td>
-                <td>
-                    {{timeConvert(x.date.time)}}
-                </td>
-                <td>
-                    {{statusConvert(x.status)}}
-                </td>
-                <td>
-                    <input type="button" ng-click="accept(x.probationaryId)" value="通过">
-                    <input type="button" ng-click="disAccept(x.probationaryId)" value="不通过">
-                </td>
-            </tr>
-            </tbody>
+                <tbody>
+                <tr ng-repeat="x in probationaryFile2">
+                    <td style="text-overflow:ellipsis;width: 200px;cursor: pointer">
+                        <a ng-click="fileAction(0,x.probationaryId)">{{x.fileName.substring(19)}}</a>
+                    </td>
+                    <td>
+                        {{timeConvert(x.date.time)}}
+                    </td>
+                    <td>
+                        {{statusConvert(x.status)}}
+                    </td>
+                    <td>
+                        <input type="button" ng-click="accept(x.probationaryId)" value="通过">
+                        <input type="button" ng-click="disAccept(x.probationaryId)" value="不通过">
+                    </td>
+                </tr>
+                </tbody>
             </table>
             <div style="margin-top: 50px" class="well">其他资料（图片）已上传文件列表</div>
             <table class="table" style="background: #b3b3b3">
@@ -176,22 +176,22 @@
                     <td style="width: 60px">审核</td>
                 </tr>
                 <tbody>
-            <tr ng-repeat="x in probationaryFile3">
-                <td style="text-overflow:ellipsis;width: 200px;cursor: pointer">
-                    <a ng-click="fileAction(0,x.probationaryId)">{{x.fileName.substring(19)}}</a>
-                </td>
-                <td>
-                    {{timeConvert(x.date.time)}}
-                </td>
-                <td>
-                    {{statusConvert(x.status)}}
-                </td>
-                <td>
-                    <input type="button" ng-click="accept(x.probationaryId)" value="通过">
-                    <input type="button" ng-click="disAccept(x.probationaryId)" value="不通过">
-                </td>
-            </tr>
-            </tbody>
+                <tr ng-repeat="x in probationaryFile3">
+                    <td style="text-overflow:ellipsis;width: 200px;cursor: pointer">
+                        <a ng-click="fileAction(0,x.probationaryId)">{{x.fileName.substring(19)}}</a>
+                    </td>
+                    <td>
+                        {{timeConvert(x.date.time)}}
+                    </td>
+                    <td>
+                        {{statusConvert(x.status)}}
+                    </td>
+                    <td>
+                        <input type="button" ng-click="accept(x.probationaryId)" value="通过">
+                        <input type="button" ng-click="disAccept(x.probationaryId)" value="不通过">
+                    </td>
+                </tr>
+                </tbody>
             </table>
         </div>
     </div>
