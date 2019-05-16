@@ -100,7 +100,7 @@ public class fileCtrl {
         String fileName = null;
         //拿到前台传入的文件Id
         String desId = request.getParameter("desId");
-        //判断文件类型来选择路径
+        //判断文件类型来选择路径，是申请人的文件还是什么
         if (request.getParameter("type").equals("proposer")) {
             Proposer p = proposerMapper.selectProposerByProposerId(new Proposer(desId));
             path = userPathService.checkUserPath(p.getUserId());
